@@ -25,22 +25,22 @@
                   Dashboard
               </span>
               </router-link>
-              <router-link to="/workspace">
+              <router-link to="/">
                   <span class=" mx-1 text-xs text-gray-300 px-8 dashboard-button-hover">
                       Workspace
                   </span>
               </router-link>
-              <router-link to="/order/stf">
+              <router-link to="/">
                   <span class=" mx-1 text-xs text-gray-300 px-8 dashboard-button-hover">
                       Orders
                   </span>
               </router-link>
-              <router-link to="/procurement">
+              <router-link to="/">
                   <span class=" mx-1 text-xs text-gray-300 px-8 dashboard-button-hover">
                       Procurement
                   </span>
               </router-link>
-              <router-link to="/warehouse">
+              <router-link to="/">
                   <span class=" mx-1 text-xs text-gray-300 px-8 dashboard-button-hover">
                       Warehouse
                   </span>

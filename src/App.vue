@@ -23,6 +23,10 @@
 
 import NavbarLayout from './layouts/NavbarLayout.vue';
 
+import { ArcElement,Chart as ChartJS } from "chart.js";
+
+ChartJS.register(ArcElement);
+
 </script>
 
 <style scoped></style>
