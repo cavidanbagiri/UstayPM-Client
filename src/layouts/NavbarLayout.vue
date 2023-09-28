@@ -75,14 +75,14 @@
 
       <!-- STF Menu -->
       <div class="relative">
-          <router-link to="/" class="no-underline ">
+          <router-link to="/stf" class="no-underline ">
               <span @mouseover="stf_tooltip = true" @mouseleave="stf_tooltip = false"
                   class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-blue-800 duration-300"><i
                       class="fa-solid fa-plus fa-md" style="color:white"></i>
               </span>
               <span v-if="stf_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
-                  Orders
+                  MySTF
               </span>
           </router-link>
       </div>
