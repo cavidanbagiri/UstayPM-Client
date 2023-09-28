@@ -1,29 +1,30 @@
 import { defineStore } from "pinia";
 import axios from 'axios';
+axios.defaults.withCredentials = true;
 const UserStore = defineStore('User Store',{
   state: () => ({
-    user_inform: {}
+    user: {}
   }),
 
-  getters: {},
+  getters: {
+    GETUSER : (state)=>state.user,
+  },
 
   actions: {
 
-    async LOGINSER (values) {
-      console.log('Login User Func Are Working : ',values);
-      // try{ 
-      //   await axios.post('http://localhost:5173/api/')
-      //   .then((respond)=>{
-      //     console.log('user inform : ',respond.data);
-      //     user_inform = respond.data
-      //   })
-      //   .catch((err)=>{
-      //     console.log('object');
-      //   })
-      // }
-      // catch(err){
-      //   console.log('User Login Error : ', err);
-      // }
+    async LOGINSER (user_data) {
+      try{ 
+        await axios.post(`${import.meta.env.VITE_API}/user/login`,
+        user_data)
+        .then((respond)=>{
+          this.user = respond.data
+          sessionStorage.setItem("user", JSON.stringify(respond.data));  
+        })
+      }
+      catch(err){
+        console.log('User Login Error s catch : ', err);
+        return err;
+      }
 
     } 
 

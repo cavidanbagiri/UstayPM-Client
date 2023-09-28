@@ -27,7 +27,7 @@
       </div>
       <!-- WorkSpace Menu -->
       <div class="relative">
-          <router-link to="/workspace">
+          <router-link to="/">
               <span @mouseover="workspace_tooltip = true" @mouseleave="workspace_tooltip = false"
                   class="rounded-md cursor-pointer  mt-5 w-8 h-8 flex flex-row justify-center items-center hover:bg-blue-800 duration-300"><i
                       class="fa-solid fa-briefcase fa-md" style="color:white"></i>
@@ -75,7 +75,7 @@
 
       <!-- STF Menu -->
       <div class="relative">
-          <router-link to="/order/stf" class="no-underline ">
+          <router-link to="/" class="no-underline ">
               <span @mouseover="stf_tooltip = true" @mouseleave="stf_tooltip = false"
                   class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-blue-800 duration-300"><i
                       class="fa-solid fa-plus fa-md" style="color:white"></i>
@@ -88,7 +88,7 @@
       </div>
       <!-- Warehouse Menu -->
       <div class="relative">
-          <router-link to="/procurement" class="no-underline ">
+          <router-link to="/" class="no-underline ">
               <span @mouseover="procurement_tooltip = true" @mouseleave="procurement_tooltip = false"
                   class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-blue-800 duration-300">
                   <i class="fa-regular fa-handshake fa-sm" style="color:white;"></i>
@@ -101,7 +101,7 @@
       </div>
       <!-- Procurement Menu -->
       <div class="relative">
-          <router-link to="/warehouse" class="no-underline ">
+          <router-link to="/" class="no-underline ">
               <span @mouseover="warehouse_tooltip = true" @mouseleave="warehouse_tooltip = false"
                   class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-blue-800 duration-300">
                   <i class="fa-solid fa-warehouse fa-sm" style="color:white;"></i>

@@ -41,6 +41,7 @@ import { ref } from 'vue';
 
 import { ErrorMessage } from 'vee-validate';
 import UserStore from '../../store/store.user_store.js';
+import router from '../../router/index.js';
 
 const user_store = UserStore();
 
@@ -48,17 +49,19 @@ const user_not_found = ref('');
 
 const login = async (values) => {
 
-    console.log('values is : ',values);
-
-    // await user_store.LOGINSER(values)
-    //     .then((respond) => {
-    //         if (respond?.response?.data) {
-    //             user_not_found.value = respond.response.data;
-    //         } else {
-    //             router.push({ path: 'Homeview' });
-    //             location.reload();
-    //         }
-    //     })
+    
+    await user_store.LOGINSER(values)
+        .then((respond) => {
+            if (respond?.response?.data) {
+                user_not_found.value = respond.response.data;
+            } else {
+                // router.push({ path: 'Homeview' });
+                // location.reload();
+                router.push({path:'/'})
+            }
+        }).catch((err)=>{
+          user_not_found.value = err;
+        })
 
 
 }
