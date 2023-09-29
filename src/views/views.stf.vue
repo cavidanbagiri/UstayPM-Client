@@ -43,7 +43,6 @@
 
 <script setup>
 
-import { ref } from 'vue';
 import ShowSTF from '../components/stf/show_stf/ShowSTF.vue';
 import CreateSTF from '../components/stf/create_stf/CreateSTF.vue';
 

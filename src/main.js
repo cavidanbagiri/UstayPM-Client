@@ -14,6 +14,7 @@ import './index.css'
 
 // Import Plugins
 import validation from './plugins/validation'; 
+import dateFormat from './plugins/date_format';
 
 // Create Pinia
 const pinia = createPinia(App);
@@ -28,5 +29,6 @@ app.use(router);
 
 // User Plugin Validation
 app.use(validation);
+app.use(dateFormat);
 
 app.mount('#app')
