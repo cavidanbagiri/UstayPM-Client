@@ -29,4 +29,6 @@ ChartJS.register(ArcElement);
 
 </script>
 
-<style scoped></style>
+<style lang="scss" scped>
+ @import './assets/style.scss';
+</style>

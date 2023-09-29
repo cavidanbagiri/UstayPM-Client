@@ -1,0 +1,47 @@
+
+.table_header {
+  background-color: rgb(243 244 246);
+  letter-spacing: 0.5px; 
+  font-size: x-small;
+}
+
+.table_row {
+  background-color: rgb(243 244 246);
+  letter-spacing: 0.3px; 
+  font-size: xx-small;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.analyz_header {
+  letter-spacing: 1px; 
+  font-size: small;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 500;
+}
+
+.analyz_show_data {
+  letter-spacing: 0.5px; 
+  font-size: medium;
+  font-weight: bold;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.analyz_get_data {
+  letter-spacing: 0.5px; 
+  font-size: x-small;
+  font-weight: bold;
+}
+
+.dashboard-button-hover {
+  &:hover{
+      cursor: pointer;
+      background-color: rgb(107 114 128);
+      font-weight: bold;
+      padding-left : 32px;
+      padding-right : 32px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+      border-radius: 32px;
+      border-width: 1px;
+  }
+}
