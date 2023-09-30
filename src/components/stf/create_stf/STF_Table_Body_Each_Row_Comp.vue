@@ -11,9 +11,9 @@
         </div>
     </td>
     <!-- Material Type Selected -->
-    <td scope="row" class="p-1   border text-gray-900 whitespace-nowrap dark:text-white" style=";">
-        <!-- <input class="border outline-none font-sans rounded-lg w-full h-full p-2" type="text" placeholder="Material Type..."> -->
-        <select class="border border-red-500 outline-none font-sans rounded-lg w-full h-full p-2 "
+    <td scope="row" class="p-1   border text-gray-900 whitespace-nowrap dark:text-white table_row" style="">
+        <!-- <input class="border outline-none  rounded-lg w-full h-full p-2" type="text" placeholder="Material Type..."> -->
+        <select class="border border-red-500 outline-none  rounded-lg w-full h-full p-2 "
             v-model="each.material_type">
             <option disabled value="">Type</option>
             <option>Project</option>
@@ -22,24 +22,24 @@
         </select>
     </td>
     <!-- Material Name -->
-    <td class="p-1   border text-gray-900 whitespace-nowrap dark:text-white">
-        <input class="border border-red-500 outline-none font-sans rounded-lg w-full h-full p-2 " type="text"
+    <td class="p-1   border text-gray-900 whitespace-nowrap dark:text-white ">
+        <input class="border border-red-500 outline-none rounded-lg w-full h-full p-2 " type="text"
             placeholder="Material Name..." v-model=each.material_name>
     </td>
     <!-- Material Link -->
     <td class="p-1   border text-gray-900 whitespace-nowrap dark:text-white">
-        <input class="border outline-none font-sans rounded-lg w-full h-full p-2 " type="text"
+        <input class="border outline-none  rounded-lg w-full h-full p-2 " type="text"
             placeholder="Material Link..." v-model=each.link>
     </td>
     <!-- Material Count -->
     <td class="p-1 border">
-        <input class="border border-red-500 outline-none font-sans rounded-lg w-full h-full p-2 " type="number" min="0.001"
+        <input class="border border-red-500 outline-none  rounded-lg w-full h-full p-2 " type="number" min="0.001"
             placeholder="Count..." v-model=each.material_amount>
     </td>
     <!-- Material Unit -->
     <td class="p-1 border" style=";">
-        <!-- <input class="border outline-none font-sans rounded-lg w-full h-full p-2 " type="text" placeholder="Unit..."> -->
-        <select class="border border-red-500 outline-none font-sans rounded-lg w-full h-full p-2 " v-model="each.material_unit">
+        <!-- <input class="border outline-none  rounded-lg w-full h-full p-2 " type="text" placeholder="Unit..."> -->
+        <select class="border border-red-500 outline-none  rounded-lg w-full h-full p-2 " v-model="each.material_unit">
             <option disabled value="">Unit</option>
             <option>Adet</option>
             <option>M2</option>
@@ -50,8 +50,8 @@
     </td>
     <!-- Area Field -->
     <td class="p-1 border">
-        <!-- <input class="border outline-none font-sans rounded-lg w-full h-full p-2" type="text" placeholder="Field..."> -->
-        <select class="border border-red-500 outline-none font-sans rounded-lg w-full h-full p-2 "
+        <!-- <input class="border outline-none  rounded-lg w-full h-full p-2" type="text" placeholder="Field..."> -->
+        <select class="border border-red-500 outline-none  rounded-lg w-full h-full p-2 "
             v-model="each.fieldId">
             <option disabled value="">Field</option>
             <option v-for="i in stf_store.GETFIELDSNAME" :value="i.id">{{ i.field_name }}</option>
@@ -60,7 +60,7 @@
     
     <!-- Comment Section -->
     <td class="p-1 border" style=";">
-        <input class="border outline-none font-sans rounded-lg w-full h-full p-2 " type="text" placeholder="Comment..."
+        <input class="border outline-none  rounded-lg w-full h-full p-2 " type="text" placeholder="Comment..."
             v-model=each.comment>
     </td>
 </template>

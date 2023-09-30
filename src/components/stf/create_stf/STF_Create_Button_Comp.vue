@@ -12,7 +12,11 @@
 
 
 import STFStore from '../../../store/store.stf';
+import UserStore from '../../../store/store.user_store';
+
 const stf_store = STFStore();
+
+const user_store = UserStore();
 
 // Define Prop For Getting All Rows Values
 const prop = defineProps(['row_size']);
@@ -60,7 +64,7 @@ const createSTF = async () => {
                 
                 const data = {
                     orders: stf_store.order_list,
-                    // user: user_store?.user
+                    user: user_store?.user
                 }
                 console.log('sending data : ',stf_store.order_list);
                 for(let i = stf_store.order_list?.length ; i > prop.row_size ; i -- ){
@@ -71,16 +75,16 @@ const createSTF = async () => {
                         if (respond?.response?.status === 400) {
                             alert('MTF Cant Create');
                         }
-                        // else {
-                        //     stf_store.creating_mtf_toast=true
-                        //     setTimeout(() => {
-                        //         stf_store.creating_mtf_toast=false
-                        //         emit('setRowSize');
-                        //         stf_store.after_created = true;
-                        //         stf_store.tab_num = 0;
-                        //         stf_store.fetchUserSTFAll(data.user);
-                        //     }, 500);
-                        // }
+                        else {
+                            stf_store.creating_mtf_toast=true
+                            setTimeout(() => {
+                                stf_store.creating_mtf_toast=false
+                                emit('setRowSize');
+                                stf_store.after_created = true;
+                                stf_store.tab_num = 0;
+                                stf_store.fetchUserSTFAll(data.user);
+                            }, 500);
+                        }
                     }).catch((err) => {
                         console.log('from create Error component : ', err);
                     })

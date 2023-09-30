@@ -32,15 +32,15 @@ const STFStore = defineStore("STFStore",{
     // Create STF
     async createSTF(data) {
       console.log('created data : ',data);
-      // try {
-      //   await axios
-      //     .post(`${import.meta.env.VITE_API}/stf/createstf`, data)
-      //     .then((respond) => {
-      //       return respond;
-      //     });
-      // } catch (err) {
-      //   return err;
-      // }
+      try {
+        await axios
+          .post(`${import.meta.env.VITE_API}/stf/createstf`, data)
+          .then((respond) => {
+            return respond;
+          });
+      } catch (err) {
+        return err;
+      }
     },
 
     // Get Fields Name
@@ -52,7 +52,6 @@ const STFStore = defineStore("STFStore",{
           .get(`${import.meta.env.VITE_API}/admin/fieldnames/${ProjectModelId}`)
           .then((respond) => {
             this.fields = respond.data;
-            console.log('Checking Field : ',this.fields);
           })
           .catch((err) => {
             console.log("Error Is : ", err);

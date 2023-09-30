@@ -145,7 +145,8 @@
 <script setup>
 
 import { ref, watchEffect } from 'vue';
-
+import UserStore from '../store/store.user_store';
+const user_store = UserStore();
 
 // Show Tooltips
 const home_tooltip = ref(false)
@@ -160,6 +161,13 @@ const workspace_tooltip = ref(false)
 const menu_tooltip = ref(false)
 const login_tooltip = ref(false);
 
+
+// Get User Inform
+const user = ref();
+watchEffect(() => {
+    user.value = JSON.parse(sessionStorage?.getItem('user'));
+    user_store.user = user.value;
+})
 
 </script>
 

@@ -2,7 +2,7 @@
   <div class=" flex flex-col  bg-white">
 
     <!-- If User Login -->
-    <div class="bg-white">
+    <div v-if="user_store.user" class="bg-white">
       <div class="bg-white sticky top-0">
 
         <div class="flex flex-row anim h-10 bg-white items-center sticky left-16 "
@@ -36,6 +36,10 @@
         <component :is="tabs[stf_store.tab_num]" />
       </keep-alive>
 
+    </div>
+
+    <div v-else>
+      <span>User Not Login </span>
     </div>
 
   </div>

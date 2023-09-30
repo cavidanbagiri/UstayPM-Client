@@ -19,13 +19,6 @@
     <table class="text-left mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
       <TableHeader :table_headers="stf_store.GETALLSTFHEADERS" />
       <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
-      <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
-      <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
-      <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
-      <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
-      <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
-      <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
-      <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
     </table>
 
     <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"
@@ -43,12 +36,28 @@ import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
 import ShowSTFEachRow from './ShowSTFEachRow.vue';
 import SelectingRows from './SelectingRows.vue';
+import UserStore from '../../../store/store.user_store';
 
 const stf_store = STFStore();
+const user_store = UserStore();
 
 onMounted(async () => {
+  const user = user_store.GETUSER;
+    if(user===undefined){
+    }
+    else{
+      // console.log('user is : ',user);
+        // // Get Data For statistic result
+        // await order_store.getUserStatisticResult(user.id);
+        // // Get Data For Showing STF
+        // await order_store.showSTF(user);
+        // // Get Data For Table Headers
+        // if (order_store.GETORDERHEADERS.length === 0) {
+        //     await order_store.getHeaders();
+        // }
+        await stf_store.fetchUserSTFAll(user.id);
+    }
   // Fetch All STF Data
-  await stf_store.fetchUserSTFAll(1);
 
  
 })
