@@ -31,7 +31,6 @@ const STFStore = defineStore("STFStore",{
 
     // Create STF
     async createSTF(data) {
-      console.log('created data : ',data);
       try {
         await axios
           .post(`${import.meta.env.VITE_API}/stf/createstf`, data)
@@ -62,21 +61,24 @@ const STFStore = defineStore("STFStore",{
     },
 
     // Fetch All User STF
-    async fetchUserSTFAll(user_id){
-      try{
-        axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user_id}`)
-        .then((respond)=>{
-          this.all_stf = respond.data;
-          this.getHeaders();
-        })
-        .catch((err)=>{
-          console.log('Fetch User Catch Error : ',err);
-        })
-
-      }catch(err){
-        console.log('Fetch User STF Error : ', err);
-        return err;
-      } 
+    async fetchUserSTFAll(user){
+      // console.log('user id is : ',user_id);
+      if( user?.id) {
+        try{
+          axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
+          .then((respond)=>{
+            this.all_stf = respond.data;
+            // this.getHeaders();
+          })
+          .catch((err)=>{
+            console.log('Fetch User Catch Error : ',err);
+          })
+  
+        }catch(err){
+          console.log('Fetch User STF Error : ', err);
+          return err;
+        } 
+      }
     },
     // Fetch All User STF Headers
     async getHeaders() {

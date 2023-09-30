@@ -17,20 +17,20 @@
     </div>
 
     <table class="text-left mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
-      <TableHeader :table_headers="stf_store.GETALLSTFHEADERS" />
+      <TableHeader :table_headers="table_headers" />
       <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
     </table>
 
     <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"
       @closeRowInform="closeRowInform" />-->
-     
-      <SelectingRows/>
+
+    <SelectingRows />
   </div>
 </template>
-
+   
 <script setup>
 
-import { onMounted } from 'vue';
+import { onMounted, watchEffect, ref } from 'vue';
 import STFStore from '../../../store/store.stf';
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
@@ -40,26 +40,48 @@ import UserStore from '../../../store/store.user_store';
 
 const stf_store = STFStore();
 const user_store = UserStore();
+const table_headers = ref([]);
+// const user = ref('')
 
 onMounted(async () => {
   const user = user_store.GETUSER;
-    if(user===undefined){
+  if (user === undefined) {
+  }
+  else {
+    // console.log('user is : ',user);
+    // // Get Data For statistic result
+    // await order_store.getUserStatisticResult(user.id);
+    // // Get Data For Showing STF
+    // await order_store.showSTF(user);
+    // // Get Data For Table Headers
+    // if (order_store.GETORDERHEADERS.length === 0) {
+    //     await order_store.getHeaders();
+    // }
+    await stf_store.fetchUserSTFAll(user);
+    if(stf_store.all_stf_headers.length === 0){ 
+      console.log('yes here work');
+      await stf_store.getHeaders();
+      table_headers.value = stf_store.all_stf_headers;
     }
-    else{
-      // console.log('user is : ',user);
-        // // Get Data For statistic result
-        // await order_store.getUserStatisticResult(user.id);
-        // // Get Data For Showing STF
-        // await order_store.showSTF(user);
-        // // Get Data For Table Headers
-        // if (order_store.GETORDERHEADERS.length === 0) {
-        //     await order_store.getHeaders();
-        // }
-        await stf_store.fetchUserSTFAll(user.id);
-    }
+  }
   // Fetch All STF Data
+})
 
- 
+// Get Statistic Result And Show
+watchEffect(async () => {
+  // For Created STF
+  if (stf_store.after_created === true) {
+    // user.value = user_store.GETUSER;
+    const user = await user_store.GETUSER;
+    if(user === undefined){
+      console.log('user is undefined');
+    }else{
+      console.log('else work : and   ',user);
+      console.log('else work : and id is  ',user);  
+      await stf_store.fetchUserSTFAll(user.id);
+    }
+    stf_store.after_created = false;
+  }
 })
 
 </script> 

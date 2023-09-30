@@ -87,7 +87,6 @@ const each = reactive({
 
 watchEffect(() => {
     if (stf_store.order_list?.length >= 1) {
-        console.log('if from watch : ',stf_store);
         let check = false;
         for (let i of stf_store.order_list) {
             if (i.each_id === each.each_id) {
