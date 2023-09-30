@@ -11,14 +11,56 @@ const STFStore = defineStore("STFStore",{
     all_stf : null, // Fetch All User STF 
     all_stf_headers : [], // Get All fetching Data Headers
     selecting_rows : [], // Selecting Rows Will Ad To This Array
+    order_list : [], // During Create New STF, The Rows will add inside of this list for checking
+    fields: [], // Fecth ALl Field accroding to project, and show when new stf creating
+    /*
+      After Creating New STF
+    */
+    creating_mtf_toast: false, // For Showing Toast After Creating New STF,
+    after_created: false, // After Creating New STF, this will provide to cleaning order_list
+    
   }),
 
   getters: {
     GETALLSTF: (state) => state.all_stf,
     GETALLSTFHEADERS: (state) => state.all_stf_headers,
-    GETSELECTINGROWS: (state) => state.selecting_rows
+    GETSELECTINGROWS: (state) => state.selecting_rows,
+    GETFIELDSNAME: (state) => state.fields,
   },
   actions: {
+
+    // Create STF
+    async createSTF(data) {
+      console.log('created data : ',data);
+      // try {
+      //   await axios
+      //     .post(`${import.meta.env.VITE_API}/stf/createstf`, data)
+      //     .then((respond) => {
+      //       return respond;
+      //     });
+      // } catch (err) {
+      //   return err;
+      // }
+    },
+
+    // Get Fields Name
+    async fetchFieldsNames(ProjectModelId) {
+      // Temporary Value
+      ProjectModelId = 1;
+      try {
+        await axios
+          .get(`${import.meta.env.VITE_API}/admin/fieldnames/${ProjectModelId}`)
+          .then((respond) => {
+            this.fields = respond.data;
+            console.log('Checking Field : ',this.fields);
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("fetch Field Names Error : ", err);
+      }
+    },
 
     // Fetch All User STF
     async fetchUserSTFAll(user_id){
@@ -26,7 +68,6 @@ const STFStore = defineStore("STFStore",{
         axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user_id}`)
         .then((respond)=>{
           this.all_stf = respond.data;
-          console.log(this.all_stf);
           this.getHeaders();
         })
         .catch((err)=>{
@@ -44,7 +85,6 @@ const STFStore = defineStore("STFStore",{
         // Add Header To Header List
         for (let [key, value] of Object.entries(this?.all_stf[0])) {
           if (key !== "id") {
-            console.log(key);
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);
             val = val.split("_").join(" ");

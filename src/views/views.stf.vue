@@ -43,6 +43,8 @@
 
 <script setup>
 
+import { onMounted } from 'vue';
+
 import ShowSTF from '../components/stf/show_stf/ShowSTF.vue';
 import CreateSTF from '../components/stf/create_stf/CreateSTF.vue';
 
@@ -55,11 +57,12 @@ const stf_store = STFStore();
 const tabs = [ShowSTF, CreateSTF];
 
 const changeTab = (num) => {
-
   stf_store.tab_num = num;
-
 }
 
+onMounted(async()=>{
+  stf_store.fetchFieldsNames(1);
+})
 
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <tr :class="checked_style ? 'text-white bg-blue-600  hover:bg-blue-500 ' : ' bg-white transition ease-in-out delay-10 hover:-translate-y-2 hover:scale-1 hover:bg-indigo-500 duration-10 '"
+  <tr :class="checked_style ? 'text-white bg-blue-600  hover:bg-blue-500 ' : ' bg-white transition ease-in-out delay-10 hover:-translate-y-1 hover:scale-1 hover:bg-indigo-500 duration-10 '"
       class="border-b  hover:cursor-pointer table_row">
       <TableRowInform :each="prop?.each" />
       <td class="w-1 p-4 py-2 ">
