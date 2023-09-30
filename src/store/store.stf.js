@@ -140,7 +140,47 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
+     // Get Filtered Data                                       
+     async getFilteredData(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      // try {
+      //   await axios
+      //     .get(
+      //       `
+      //           ${import.meta.env.VITE_API}/order/filteredobject${queries}
+      //       `
+      //     )
+      //     .then((respond) => {
+      //       this.all_stf = respond.data;
+      //       return respond;
+      //     })
+      //     .catch((err) => {
+      //       console.log("Error Is : ", err);
+      //     });
+      // } catch (err) {
+      //   console.log("Get Filtered Data Error : ", err);
+      // }
+    },
 
+    // Create URL query from table filter watcher             
+    createUrlQuery(filtered_object) {
+      let queries = "";
+
+      // Get All Keys from filtered_object
+      for (let [key, value] of Object.entries(filtered_object)) {
+        // If queries_string is empty and question mark
+        if (queries === "") {
+          queries += "?";
+        }
+        if (filtered_object[key] !== "") {
+        }
+        queries += `${key}=${filtered_object[key]}`;
+        queries += "&";
+      }
+      queries = queries.slice(0, -1);
+
+      return queries;
+    },
 
   } 
 

@@ -7,16 +7,16 @@
         <STFStatistics />
 
 
-        <!-- Table Filter Section
-        <table-filter @filterFunction="filterFunction">
-          <table-expand v-if="true" :table_headers="order_store.GETORDERHEADERS" />
-        </table-filter> -->
+        <!-- Table Filter Section -->
+        <TableFilter @filterFunction="filterFunction">
+          <TableExpand v-if="true" :table_headers="stf_store.GETALLSTFHEADERS" />
+        </TableFilter>
 
       </div>
     </div>
 
     <table class=" mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
-      <TableHeader :table_headers="table_headers" />
+      <TableHeader :table_headers="stf_store.GETALLSTFHEADERS" />
       <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
     </table>
 
@@ -36,10 +36,12 @@ import TableHeader from '../../../layouts/TableHeader.vue';
 import ShowSTFEachRow from './ShowSTFEachRow.vue';
 import SelectingRows from './SelectingRows.vue';
 import UserStore from '../../../store/store.user_store';
+import TableFilter from '../../../layouts/TableFilter.vue';
+import TableExpand from '../../../layouts/TableExpand.vue'
 
 const stf_store = STFStore();
 const user_store = UserStore();
-const table_headers = ref([]);
+// const table_headers = ref([]);
 // const user = ref('') 
 
 onMounted(async () => {
@@ -57,10 +59,9 @@ onMounted(async () => {
     //     await order_store.getHeaders();
     // }
     await stf_store.fetchUserSTFAll(user);
-    if(stf_store.all_stf_headers.length === 0){ 
-      console.log('yes here work');
+    if(stf_store.GETALLSTFHEADERS.length === 0){ 
       await stf_store.getHeaders();
-      table_headers.value = stf_store.all_stf_headers;
+      // table_headers.value = stf_store.all_stf_headers;
     }
   }
   // Fetch All STF Data
@@ -68,9 +69,9 @@ onMounted(async () => {
 
 // Get Statistic Result And Show
 watchEffect(async () => {
-  if(stf_store.all_stf_headers.length === 0){ 
+  if(stf_store.GETALLSTFHEADERS.length === 0){ 
       await stf_store.getHeaders();
-      table_headers.value = stf_store.all_stf_headers;
+      // table_headers.value = stf_store.all_stf_headers;
     }
   // For Created STF
   if (stf_store.after_created === true) {
@@ -83,6 +84,15 @@ watchEffect(async () => {
     stf_store.after_created = false;
   }
 })
+
+// Get Filtered Data
+const filterFunction = async (filtered_objects)=>{
+    if(user_store.GETUSER !== undefined ){
+        filtered_objects.user = user_store?.GETUSER?.id
+        await stf_store.getFilteredData(filtered_objects);
+    }
+}
+
 
 </script> 
 
