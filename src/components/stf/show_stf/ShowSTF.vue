@@ -1,6 +1,5 @@
 <template>
   <div class="flex flex-col" style="display: inline-block;">
-
     <!-- Filter Statistic Section-->
     <div class="sticky top-10 px-1 ">
       <div class=" sticky left-16 flex flex-col bg-white" style="display: inline-block; width: calc(100vw - 5rem);">
@@ -16,7 +15,7 @@
       </div>
     </div>
 
-    <table class="text-left mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
+    <table class=" mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
       <TableHeader :table_headers="table_headers" />
       <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
     </table>
@@ -41,7 +40,7 @@ import UserStore from '../../../store/store.user_store';
 const stf_store = STFStore();
 const user_store = UserStore();
 const table_headers = ref([]);
-// const user = ref('')
+// const user = ref('') 
 
 onMounted(async () => {
   const user = user_store.GETUSER;
@@ -69,15 +68,16 @@ onMounted(async () => {
 
 // Get Statistic Result And Show
 watchEffect(async () => {
+  if(stf_store.all_stf_headers.length === 0){ 
+      await stf_store.getHeaders();
+      table_headers.value = stf_store.all_stf_headers;
+    }
   // For Created STF
   if (stf_store.after_created === true) {
     // user.value = user_store.GETUSER;
-    const user = await user_store.GETUSER;
+    const user = user_store.GETUSER;
     if(user === undefined){
-      console.log('user is undefined');
     }else{
-      console.log('else work : and   ',user);
-      console.log('else work : and id is  ',user);  
       await stf_store.fetchUserSTFAll(user.id);
     }
     stf_store.after_created = false;

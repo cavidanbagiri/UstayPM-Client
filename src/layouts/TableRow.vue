@@ -16,7 +16,7 @@
       </div>
 
       <!-- Date Time Design -->
-      <div v-else-if="i.name === 'createdAt'" class="w-24 text-center">
+      <div v-else-if="i.name === 'createdAt'" class="w-26 text-center">
           <DateFormat :time="prop.each[i.name]" />
       </div>
 
