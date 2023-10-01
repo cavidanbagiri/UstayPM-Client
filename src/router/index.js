@@ -4,13 +4,14 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/views.home.vue';
 import AuthView from '../views/views.login.vue';
 import STFView from '../views/views.stf.vue';
+import ProcurementViews from '../views/views.procurement.vue';
 
 const routes = [
 
   {path:'/', name:"Homeview", component: HomeView},
   {path:'/stf', name:"STFView", component: STFView},
-  {path:'/user/login', name:"Loginview", component: AuthView}
-
+  {path:'/user/login', name:"Loginview", component: AuthView},
+  {path:'/procurement',name:"SMSView", component: ProcurementViews}
 ]
 
 const router = createRouter({

@@ -21,7 +21,7 @@
 
             <span :class="stf_store.tab_num === 2 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTab(2)"
               class="text-black px-3 py-2 pt-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-warehouse fa-lg "></i>
-               Show Warehouse</span>
+               Warehouse</span>
 
             <span :class="stf_store.tab_num === 3 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTab(3)"
               class="text-black px-3 py-2 pt-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-upload fa-lg "></i>
