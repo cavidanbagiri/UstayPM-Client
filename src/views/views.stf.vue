@@ -27,7 +27,7 @@
               class="text-black px-3 py-2 pt-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-upload fa-lg "></i>
               Provides</span>
 
-          </div>
+          </div> 
 
         </div>
       </div>

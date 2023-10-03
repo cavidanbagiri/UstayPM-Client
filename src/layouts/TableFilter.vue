@@ -20,7 +20,7 @@
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search Date</span>
                     <input class="border outline-none rounded-md border-gray-300 p-2" type="date" name="" id=""
-                        placeholder="Date" v-model="filtered_objects.created_at" />
+                        placeholder="Date" v-model="filtered_objects.createdAt" />
                 </div>
                 <!-- Search With Material Type-->
                 <div class="flex flex-col m-1">
@@ -108,7 +108,7 @@ const emits = defineEmits(['filterFunction', 'filtered_fields']);
 const filtered_objects = reactive({
     user : '',
     date_order : '',
-    created_at : '',
+    createdAt : '',
     material_type : '',
     material_name : '',
     stf_num : '',

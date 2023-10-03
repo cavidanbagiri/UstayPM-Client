@@ -143,23 +143,24 @@ const STFStore = defineStore("STFStore",{
      // Get Filtered Data                                       
      async getFilteredData(filtered_object) {
       const queries = this.createUrlQuery(filtered_object);
-      // try {
-      //   await axios
-      //     .get(
-      //       `
-      //           ${import.meta.env.VITE_API}/order/filteredobject${queries}
-      //       `
-      //     )
-      //     .then((respond) => {
-      //       this.all_stf = respond.data;
-      //       return respond;
-      //     })
-      //     .catch((err) => {
-      //       console.log("Error Is : ", err);
-      //     });
-      // } catch (err) {
-      //   console.log("Get Filtered Data Error : ", err);
-      // }
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/stf/filter${queries}
+            `
+          )
+          .then((respond) => {
+            this.all_stf = respond.data; 
+            console.log('all stf : ',this.all_stf);
+            return respond;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
     },
 
     // Create URL query from table filter watcher             
