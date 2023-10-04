@@ -54,7 +54,7 @@
 
 import { onMounted } from 'vue';
 
-import STFAll from '../components/procurement/stf/STFAll.vue';
+import STFAll from '../components/procurement/stf/Get_All_STF.vue';
 import SMSAll from '../components/procurement/sms/SMSAll.vue';
 import CreateSMS from '../components/procurement/createsms/Get_Creating_SM.vue';
 

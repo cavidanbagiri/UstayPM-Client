@@ -1,0 +1,98 @@
+
+<template>
+  <div class="flex flex-col" style="display: inline-block;">
+
+    <div class="h-40 sticky top-10 bg-white w-full">
+      <div class=" sticky left-16 flex flex-col bg-white" style="display: inline-block; width: calc(100vw - 5rem);">
+        <!-- <table-stf-statistics :statistic_result="procurement_store.statistic_result"
+          @fetchCurrentData="fetchCurrentData" /> -->
+          <STFStatistics/>
+
+
+        <!-- <Filter_Section_Comp /> -->
+        <!-- <table-filter @filterFunction="filterFunction">
+          <table-expand v-if="true" :table_headers="procurement_store.stf_table_headers" />
+        </table-filter> -->
+
+      </div>
+    </div>
+
+    <div class="mt-1 shadow-md sm:rounded-lg w-full border-2 analyz_header">
+
+      <!-- Table -->
+      <table class="text-left text-gray-800 dark:text-gray-400 w-full">
+        <!-- Table Header -->
+        <TableHeader :table_headers="procurement_store.stf_table_headers" />
+         <!-- Table Border -->
+        <Get_All_STF_Table_Body_Comp /> 
+      </table>
+    </div>
+
+
+    <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"
+      @closeRowInform="closeRowInform" /> -->
+    <Show_STF_Selecting_Task />
+
+  </div>
+</template>
+
+<script setup>
+
+// Import Section
+import { onMounted, watchEffect } from 'vue'
+import ProcurementStore from '../../../store/store.procurement';
+
+import TableHeader from '../../../layouts/TableHeader.vue';
+// import IndexStore from '../../../store';
+import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
+import Get_All_STF_Table_Body_Comp from './Get_All_STF_Table_Body_Comp.vue';
+import STFStatistics from '../../../layouts/STFStatistics.vue';
+
+// Create variable for importing data
+const procurement_store = ProcurementStore();
+// const index_store = IndexStore();
+
+onMounted(async () => {
+  // Fetch All STF
+  await procurement_store.fetchSTF()
+  // Get Data For Statistic Result
+  // await procurement_store.getSTFStatisticsResult();
+  // Get Data For Table Headers
+  if (procurement_store.stf_table_headers.length === 0) {
+    procurement_store.getSTFHeaders();
+  }
+}
+)
+
+// Get Filtered Data
+// const filterFunction = async (filtered_objects) => {
+//   await procurement_store.getFilteredDataSTF(filtered_objects);
+// }
+
+// After Creating SM, This code will work
+// watchEffect(async () => {
+
+//   // For Fetch All STF
+//   if (procurement_store.after_created) {
+//     await procurement_store.fetchAllSTF();
+//   }
+
+// })
+
+// const fetchCurrentData = async (statistic_result_value) => {
+//   if (statistic_result_value === 0) {
+//     await procurement_store.fetchAllSTF();
+//   }
+//   else if(statistic_result_value === 4){
+//     procurement_store.tab_num = 4;
+//   } 
+//   else {
+//     await procurement_store.fetchStatisticResultData(statistic_result_value);
+//   }
+// }
+
+// const closeRowInform = () => index_store.row_inform_condition = false;
+
+</script>
+
+<style lang="scss" scoped></style>
