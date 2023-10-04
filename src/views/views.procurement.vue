@@ -56,6 +56,7 @@ import { onMounted } from 'vue';
 
 import STFAll from '../components/procurement/stf/STFAll.vue';
 import SMSAll from '../components/procurement/sms/SMSAll.vue';
+import CreateSMS from '../components/procurement/createsms/Get_Creating_SM.vue';
 
 
 import ProcurementStore from '../store/store.procurement';
@@ -64,7 +65,7 @@ import UserStore from '../store/store.user_store';
 const user_store = UserStore();
 const procurement_store = ProcurementStore();
 
-const tabs = [STFAll, SMSAll];
+const tabs = [STFAll, SMSAll, CreateSMS];
 
 const changeTab = (num) => {
   procurement_store.tab_num = num;
