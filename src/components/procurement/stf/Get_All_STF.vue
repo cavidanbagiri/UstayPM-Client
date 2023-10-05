@@ -70,14 +70,14 @@ onMounted(async () => {
 // }
 
 // After Creating SM, This code will work
-// watchEffect(async () => {
+watchEffect(async () => {
 
-//   // For Fetch All STF
-//   if (procurement_store.after_created) {
-//     await procurement_store.fetchAllSTF();
-//   }
+  // For Fetch All STF
+  if (procurement_store.after_created) {
+    await procurement_store.fetchSTF();
+  }
 
-// })
+})
 
 // const fetchCurrentData = async (statistic_result_value) => {
 //   if (statistic_result_value === 0) {

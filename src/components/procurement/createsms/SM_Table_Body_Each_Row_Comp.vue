@@ -27,7 +27,7 @@
             v-model="each.sm_material_name">
         </th>
         <th class="px-2 py-2   border text-center">
-            <span>{{ prop?.each?.count }}</span>
+            <span>{{ prop?.each?.material_amount }}</span>
         </th>
         <!-- User Import SM Material Count -->
         <th class="px-2 py-2   border text-center">
@@ -35,7 +35,7 @@
             v-model="each.sm_material_amount">
         </th>
         <th class="px-2 py-2   border text-center">
-            <span>{{ prop?.each?.unit }}</span>
+            <span>{{ prop?.each?.material_unit }}</span>
         </th>
         <th class="px-2 py-2   border text-center">
             <select class="border border-red-400 outline-none font-sans rounded-lg w-full h-full p-2 " v-model="each.sm_material_unit">
@@ -78,7 +78,7 @@ const currency_list = ['₽ - RUR','$ - USD','₺ - TL','€ - EURO','₼ - MANA
 const each = reactive({
     // ProjectModelId: prop?.each?.ProjectModelId,
     // DepartmentModelId: prop?.each?.DepartmentModelId,
-    STFModelId: prop?.each?.stf_id,
+    stfId: prop?.each?.stf_id,
     // sms_amount:prop?.each?.count,
     // left_over_amount:prop?.each?.count,
     // left_over_amount:this?.sm_material_amount,

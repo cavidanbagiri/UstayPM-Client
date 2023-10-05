@@ -80,7 +80,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
 
 
     // Fetch SFT Headers
-    // Get Table Headers and show in STF                                                        [ Checked ]
+    // Get Table Headers and show in STF
     async getSTFHeaders() {
       if (this.all_stf.length) {
         for (let [key, value] of Object.entries(this.all_stf[0])) {
@@ -137,9 +137,46 @@ const ProcurementStore = defineStore("ProcurementStore",{
       }
     },
 
+    
+    // Get Companies Names          
+    async getCompaniesNames() {
+      try{
+        await axios
+        .get(`${import.meta.env.VITE_API}/procurement/companies`)
+        .then((respond) => {
+          this.companies_names = respond.data;
+          console.log('companies names : ',this.companies_names);
+        })
+        .catch((err) => {
+          console.log("Getting Companies Names Errors : ", err);
+        });
+      }
+      catch(err){
+        console.log('Get Companies Name Error : ',err);
+      }
+    },
+
+
+    // Get Procurement Users Names
+    async getProcurementUsersNames() {
+      try{
+        await axios
+        .get(`${import.meta.env.VITE_API}/procurement/users`)
+        .then((respond) => {
+          this.procurement_users_names = respond.data;
+          console.log('procurement users : ',this.procurement_users_names);
+        })
+        .catch((err) => {
+          console.log("Get Users Names Errors : ", err);
+        });
+      }
+      catch(err){
+        console.log('Get Procurement Users Error : ',err);
+      }
+    },
+
 
   }
-
 })
 
 export default ProcurementStore

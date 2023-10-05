@@ -13,9 +13,10 @@
                     id="" v-model="common_data.procurement_coming_date">
             </div>
             <div>
+                <!-- {{ supplier_list }} -->
                 <select class="border outline-none font-sans rounded-lg w-full h-full p-2 text-xs"
                     v-model="common_data.supplierName">
-                    <option v-for="i in supplier_list" :value="i.id">{{ i.username }}</option>
+                    <option v-for="i in supplier_list" :value="i.user_id">{{ i.procurement_users }}</option>
                 </select>
             </div>
         </div>
@@ -47,10 +48,11 @@ const supplier_list = computed(() => {
 
 // Select Vendor
 const selectVendor = (vendor) => {
-    common_data.VendorModelId = vendor?.id;
+    common_data.VendorModelId = vendor?.company_id;
 }
 
 const createSM = async () => {
+    console.log('func work');
     let check_valid = true;
     if (common_data.VendorModelId === 0) {
         check_valid = false;
@@ -80,6 +82,8 @@ const createSM = async () => {
             else {
                 procurement_store.creating_STF_datas[i].VendorModelId = common_data.VendorModelId;
                 procurement_store.creating_STF_datas[i].supplierName = common_data.supplierName;
+                // procurement_store.creating_STF_datas[i].VendorModelId = 1;
+                // procurement_store.creating_STF_datas[i].supplierName = 2;
             }
         }
     }
@@ -104,6 +108,9 @@ const createSM = async () => {
             }).catch((err) => {
 
             })
+    }
+    else{
+        console.log('not valied');
     }
 
 }
