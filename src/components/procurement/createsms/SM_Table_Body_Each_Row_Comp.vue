@@ -31,7 +31,7 @@
         </th>
         <!-- User Import SM Material Count -->
         <th class="px-2 py-2   border text-center">
-            <input class="border outline-none font-sans border-red-400 rounded-lg w-full h-full p-2 text-xs" type="number" placeholder="Price"
+            <input class="border outline-none font-sans border-red-400 rounded-lg w-full h-full p-2 text-xs" type="number" placeholder="Amount"
             v-model="each.sm_material_amount">
         </th>
         <th class="px-2 py-2   border text-center">
@@ -76,12 +76,9 @@ const currency_list = ['₽ - RUR','$ - USD','₺ - TL','€ - EURO','₼ - MANA
 
 // Create Each Row For Taking Value and sending To Server
 const each = reactive({
-    // ProjectModelId: prop?.each?.ProjectModelId,
-    // DepartmentModelId: prop?.each?.DepartmentModelId,
     stfId: prop?.each?.stf_id,
-    // sms_amount:prop?.each?.count,
-    // left_over_amount:prop?.each?.count,
-    // left_over_amount:this?.sm_material_amount,
+    project_id: prop?.each.project_id,
+    department_id: prop?.each.department_id,
     price : 0,
     sm_material_name : prop?.each?.material_name,
     sm_material_amount : prop?.each?.count,
