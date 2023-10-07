@@ -10,9 +10,9 @@
 
 
         <!-- <Filter_Section_Comp /> -->
-        <!-- <table-filter @filterFunction="filterFunction">
-          <table-expand v-if="true" :table_headers="procurement_store.stf_table_headers" />
-        </table-filter> -->
+        <TableFilter @filterFunction="filterFunction">
+          <TableExpand v-if="true" :table_headers="procurement_store.stf_table_headers" />
+        </TableFilter>
 
       </div>
     </div>
@@ -40,14 +40,16 @@
 
 // Import Section
 import { onMounted, watchEffect } from 'vue'
-import ProcurementStore from '../../../store/store.procurement';
 
 import TableHeader from '../../../layouts/TableHeader.vue';
 // import IndexStore from '../../../store';
+
 import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
 import Get_All_STF_Table_Body_Comp from './Get_All_STF_Table_Body_Comp.vue';
 import STFStatistics from '../../../layouts/STFStatistics.vue';
-
+import TableFilter from '../../../layouts/TableFilter.vue';
+import TableExpand from '../../../layouts/TableExpand.vue'
+import ProcurementStore from '../../../store/store.procurement';
 // Create variable for importing data
 const procurement_store = ProcurementStore();
 // const index_store = IndexStore();

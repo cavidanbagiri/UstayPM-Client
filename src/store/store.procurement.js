@@ -33,8 +33,14 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Get All STF
     all_stf: [], //
 
+    // Get All SM
+    all_sms: [], //
+
     // For Showing STF Table Headers
     stf_table_headers: [],//   
+
+    // For Showing S< Table Headers
+    sm_table_headers: [],//   
 
 
   }),
@@ -76,8 +82,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
         console.log('Fetch All STF Error : ',err);
       }
     },
-
-
 
     // Fetch SFT Headers
     // Get Table Headers and show in STF
@@ -137,6 +141,76 @@ const ProcurementStore = defineStore("ProcurementStore",{
       }
     },
 
+    // Fetch All SMS                                                                            [ Checked ]
+    async fetchAllSM() {
+      try{
+        await axios
+        .get(`${import.meta.env.VITE_API}/procurement/fetchsm`)
+        .then((respond) => {
+          this.all_sms = respond.data;
+          console.log('sms : ',this.all_sms);
+        })
+        .catch((err) => {
+          console.log("all stf Error : ", err);
+        });
+      }
+      catch(err){
+        console.log('Fetch ALl SM Error : ',err);
+      }
+    },
+
+    // Get Table Headers and show in STF
+    async getSMHeaders() {
+      if (this.all_sms.length) {
+        for (let [key, value] of Object.entries(this.all_sms[0])) {
+          if (key !== "id") {
+            let header_cond = {};
+            let val = key.charAt(0).toUpperCase() + key.slice(1);
+            val = val.split("_").join(" ");
+            // const val = key.charAt(0).toUpperCase() + key.slice(1);
+            if (
+              key === "stf_num" ||
+              key === "sm_num" ||
+              key === "created_at" ||
+              key === "situation" ||
+              key === "sm_material_name" ||
+              key === "sm_material_amount" ||
+              key === "sm_material_unit" ||
+              key === "sm_num" ||
+              key === "username" ||
+              key === "orderer"
+            ) {
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = true;
+            } else {
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = false;
+            }
+            this.sm_table_headers.push(header_cond);
+          }
+        }
+        // Sort Headers
+        for (let i = 0; i < this.sm_table_headers?.length; i++) {
+          if (this.sm_table_headers[i].name === "stf_num") {
+            let temp = this.sm_table_headers[0];
+            this.sm_table_headers[0] = this.sm_table_headers[i];
+            this.sm_table_headers[i] = temp;
+          }
+          if (this.sm_table_headers[i].name === "sm_num") {
+            let temp = this.sm_table_headers[1];
+            this.sm_table_headers[1] = this.sm_table_headers[i];
+            this.sm_table_headers[i] = temp;
+          }
+          if (this.sm_table_headers[i].name === "situation") {
+            let temp = this.sm_table_headers[2];
+            this.sm_table_headers[2] = this.sm_table_headers[i];
+            this.sm_table_headers[i] = temp;
+          }
+        }
+      }
+    },
     
     // Get Companies Names          
     async getCompaniesNames() {
