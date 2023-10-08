@@ -30,7 +30,8 @@
                 placeholder="Count..." v-model="each_row_data.entering_delivery_amount">
         </td>
         <td class="px-2  text-start border-y-y ">
-            <select class="border-y outline-none font-sans rounded-lg w-full h-full p-1 text-xs" v-model="each_row_data.delivery_unit">
+            <select class="border-y outline-none font-sans rounded-lg w-full h-full p-1 text-xs"
+                v-model="each_row_data.delivery_unit">
                 <option disabled value="">Unit</option>
                 <option>Adet</option>
                 <option>M2</option>
@@ -51,7 +52,7 @@
             {{ prop?.each_item?.sm_material_name }}
         </td>
         <td class="px-2 py-2   border-y text-start">
-            {{ prop?.each_item?.sm_material_amount }} 
+            {{ prop?.each_item?.sm_material_amount }}
         </td>
         <td class="px-2 py-2   border-y text-center">
             {{ prop?.each_item?.sm_material_unit }}
@@ -78,7 +79,7 @@
 </template>
 
 <script setup>
- 
+
 import { reactive, watchEffect, computed } from 'vue';
 import DateFormat from '../../../layouts/DateFormat.vue';
 import WarehouseStore from '../../../store/store.warehouse';
@@ -88,24 +89,25 @@ const warehouse_store = WarehouseStore();
 const prop = defineProps(['each_item', 'index', 'table_data']);
 
 const each_row_data = reactive({
-    entering_delivery_amount:prop?.each_item?.left_over_amount,
-    delivery_amount:prop?.each_item?.left_over_amount,
-    delivery_unit:prop?.each_item?.unit,
+    entering_delivery_amount: prop?.each_item?.left_over, // 1000
+    delivery_amount: prop?.each_item?.left_over, // 100
+    delivery_unit: prop?.each_item?.sm_material_unit,
     certificate: false,
     passport: false
 })
 
 
 
-watchEffect(()=>{
-    
-    if( each_row_data?.entering_delivery_amount < ( (each_row_data?.delivery_amount) + (each_row_data?.delivery_amount * 10) / 100  ) ){
+watchEffect(() => {
+
+    if (each_row_data?.entering_delivery_amount < ((each_row_data?.delivery_amount) + (each_row_data?.delivery_amount * 10) / 100)) {
         prop.table_data.push(each_row_data);
-        console.log('enter if : ',warehouse_store.processing_checked_values);
+        console.log('enter if : ', warehouse_store.processing_checked_values);
         warehouse_store.accepted_condition = true;
     }
-    else{
+    else {
         console.log('u cant enter this value because bigger than %10 ');
+        alert("u cant enter this value because bigger than %10")
         warehouse_store.accepted_condition = false;
     }
 

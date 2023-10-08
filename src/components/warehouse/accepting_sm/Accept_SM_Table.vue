@@ -7,10 +7,9 @@
 
         <!-- Accept Button -->
         <!-- <button @click="acceptedByWarehouse" v-if="warehouse_store.processing_checked_values?.length"  -->
-            {{ warehouse_store.processing_checked_values }}
+        {{ warehouse_store.processing_checked_values }}
         <button @click="acceptedByWarehouse" v-if="warehouse_store.processing_checked_values?.length > 0"
-            :disabled="warehouse_store.accepted_condition"
-             class="p-2 px-3 text-white font-weight rounded-lg my-1"
+            :disabled="!warehouse_store.accepted_condition" class="p-2 px-3 text-white font-weight rounded-lg my-1"
             :class="warehouse_store?.accepted_condition ? 'bg-red-600 ' : 'bg-red-200'">
             Accept
         </button>
