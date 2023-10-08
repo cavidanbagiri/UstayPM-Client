@@ -101,7 +101,7 @@
       </div>
       <!-- Procurement Menu -->
       <div class="relative">
-          <router-link to="/" class="no-underline ">
+          <router-link to="/warehouse" class="no-underline ">
               <span @mouseover="warehouse_tooltip = true" @mouseleave="warehouse_tooltip = false"
                   class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-blue-800 duration-300">
                   <i class="fa-solid fa-warehouse fa-sm" style="color:white;"></i>
