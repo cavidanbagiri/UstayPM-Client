@@ -89,6 +89,7 @@ const warehouse_store = WarehouseStore();
 const prop = defineProps(['each_item', 'index', 'table_data']);
 
 const each_row_data = reactive({
+    sm_id: prop?.each_item.sm_id,
     entering_delivery_amount: prop?.each_item?.left_over, // 1000
     delivery_amount: prop?.each_item?.left_over, // 100
     delivery_unit: prop?.each_item?.sm_material_unit,
@@ -101,12 +102,12 @@ const each_row_data = reactive({
 watchEffect(() => {
 
     if (each_row_data?.entering_delivery_amount < ((each_row_data?.delivery_amount) + (each_row_data?.delivery_amount * 10) / 100)) {
-        prop.table_data.push(each_row_data);
-        console.log('enter if : ', warehouse_store.processing_checked_values);
+        if (warehouse_store.processing_checked_values.length > prop.table_data.length) {
+            prop.table_data.push(each_row_data);
+        }
         warehouse_store.accepted_condition = true;
     }
     else {
-        console.log('u cant enter this value because bigger than %10 ');
         alert("u cant enter this value because bigger than %10")
         warehouse_store.accepted_condition = false;
     }
