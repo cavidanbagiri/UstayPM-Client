@@ -16,10 +16,10 @@
           <span :class="warehouse_store?.tab_num === 1 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(1)"
             class=" text-black px-3 pb-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-download fa-md"></i>
             Received SM</span>
-          <!-- <span :class="warehouse_store?.tab_num === 2 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(2)"
+          <span :class="warehouse_store?.tab_num === 2 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(2)"
             class=" text-black px-3 pb-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-plus fa-md"></i>
             Accept SM</span>
-          <span :class="warehouse_store?.tab_num === 3 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(3)"
+          <!-- <span :class="warehouse_store?.tab_num === 3 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(3)"
             class=" text-black px-3 pb-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-minus fa-md"></i>
             Provide SM</span>
           <span :class="warehouse_store?.tab_num === 4 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(4)"
@@ -51,12 +51,14 @@
 
 import Show_SM_Table from '../components/warehouse/processing_sm/Show_SM_Table.vue';
 import Accept_SM_Table  from '../components/warehouse/accepting_sm/Accept_SM_Table.vue';
+import Received_SM_Table from '../components/warehouse/received_sm/Received_SM_Table.vue';
 
 import WarehouseStore from '../store/store.warehouse';
 const warehouse_store = WarehouseStore();
 
 const tabs = [
 Show_SM_Table,
+Received_SM_Table,
 Accept_SM_Table,
   // Received_SM_Table,
   // Provide_SM_Table,

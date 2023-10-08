@@ -36,7 +36,7 @@
                   {{ i.showname }}
               </div>
 
-              <div v-else-if="i.name==='material_name' || i.name==='sm_material_name' " class="min-w-[600px]">
+              <div v-else-if="i.name==='material_name' || i.name==='sm_material_name' || i.name==='delivery_material_name' " class="min-w-[600px]">
                   {{ i.showname }}
               </div>
 

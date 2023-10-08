@@ -1,5 +1,5 @@
 <template>
-    <div v-if="selecting_rows.length >= 1" class="mtf-anim fixed w-full bottom-10 flex flex-col mb-4 items-center rounded-lg">
+    <div v-if="selecting_rows?.length >= 1" class="mtf-anim fixed w-full bottom-10 flex flex-col mb-4 items-center rounded-lg">
         <div class="flex justify-between bg-white w-1/2 border rounded-md shadow-2xl">
             <div class="flex items-center">
                 <span class="bg-blue-600 py-4 px-6 text-white font-bold rounded-l-md text-3xl">{{ selecting_rows.length
@@ -18,10 +18,10 @@
                 <!-- <button v-font-family class="flex flex-col items-center mx-3 cursor-pointer p-1 hover:bg-gray-100 "> <i
                         class="fa-regular fa-file-zipper"></i> <span class="text-xs">Add Archieve</span></button> -->
                 <!-- Create SM -->        
-                <button @click="acceptSM()" :disabled="warehouse_store.toggle_accept_sm"
-                    :class="warehouse_store.toggle_accept_sm ? 'text-gray-400 hover:bg-white cursor-default ' : ''"
+                <button @click="provideSM()" :disabled="warehouse_store.toggle_received_sm"
+                    :class="warehouse_store.toggle_received_sm ? 'text-gray-400 hover:bg-white cursor-default ' : ''"
                     class="flex flex-col items-center mx-3 cursor-pointer p-1 hover:bg-gray-100 "> <i
-                        class="fa-regular fa-handshake"></i> <span class="text-xs">Accept SM</span></button>
+                        class="fa-regular fa-handshake"></i> <span class="text-xs">Provide SM</span></button>
                 <!-- Set Star -->        
                 <button class="flex flex-col items-center mx-3 cursor-pointer p-1 hover:bg-gray-100 "> <i
                         class="fa-regular fa-star"></i> <span class="text-xs">Set Star</span></button>
@@ -39,20 +39,20 @@ const warehouse_store = WarehouseStore();
 const selecting_rows = ref([]);
 
 watchEffect(() => {
-    selecting_rows.value = warehouse_store.processing_checked_values
+    selecting_rows.value = warehouse_store.receiving_checked_values
 })
 
-const acceptSM = async () => {
-    warehouse_store.tab_num = 2;
+const provideSM = async () => {
+    warehouse_store.tab_num = 3;
 }
 
 const unselect = () => {
     warehouse_store.after_created = true
-    warehouse_store.processing_checked_values = warehouse_store.processing_checked_values.filter((item) => item.id === -1)
+    warehouse_store.receiving_checked_values = warehouse_store.receiving_checked_values.filter((item) => item.id === -1)
     setTimeout(() => {
         warehouse_store.after_created = false;
     }, 1000)
-    console.log('processing list : ', warehouse_store.processing_checked_values);
+    console.log('processing list : ', warehouse_store.receiving_checked_values);
 }
 
 </script>

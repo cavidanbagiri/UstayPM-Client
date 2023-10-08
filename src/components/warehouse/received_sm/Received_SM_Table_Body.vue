@@ -1,0 +1,44 @@
+
+<template>
+    <Received_SM_Table_Body_Each_Row v-for="(each, index) in warehouse_store.received_sms" :each="each" :index="index"
+        @addChecked="addChecked" @removeChecked="removeChecked" />
+</template>
+
+<script setup>
+
+import { ref, watchEffect } from 'vue';
+import Received_SM_Table_Body_Each_Row from './Received_SM_Table_Body_Each_Row.vue'
+import WarehouseStore from '../../../store/store.warehouse';
+const warehouse_store = WarehouseStore();
+
+const addChecked = (item) => {
+    console.log('added ',item);
+    warehouse_store.receiving_checked_values.push(item);
+}
+
+// Remove Operation FIx Needed
+const removeChecked = (selected_item) => {
+    console.log('selected : ',selected_item);
+    warehouse_store.receiving_checked_values = warehouse_store.receiving_checked_values.filter((each) => each.sm_id !== selected_item.sm_id)
+    for (let i = 0; i < warehouse_store.receiving_checked_values.length; i++) {
+        if (warehouse_store.receiving_checked_values[i].stf_id === selected_item.stf_id) {
+            warehouse_store.receiving_checked_values.splice(i, 1);
+        }
+    }
+}
+
+watchEffect(() => {
+    const check = ref(false);
+    for (let i = 0; i < warehouse_store.receiving_checked_values?.length; i++) {
+        if (warehouse_store.receiving_checked_values[i].situation === 'Processing') {
+            check.value = true
+            break;
+        }
+    }
+    // check.value ? warehouse_store.toggle_received_sm = true : warehouse_store.toggle_received_sm = false
+
+})
+
+</script>
+
+<style lang="scss" scoped></style>
