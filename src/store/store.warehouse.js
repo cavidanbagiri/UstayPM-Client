@@ -23,8 +23,13 @@ const WarehouseStore = defineStore("WarehouseStore", {
     received_sms: [],
     receiving_sm_headers: [],
 
-    // 
+    // Select Warehouse Items and Send Provide Page For Provide Area 
     receiving_checked_values: [],
+
+    // Fetch Departments and show Provide Sm Page From Warehouse
+    departments : [],
+    // Fetch Warehouse Delivert Types and show Provide Sm Page From Warehouse
+    delivery_types : [],
 
   }),
 
@@ -183,7 +188,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
 
     // Post Accepted waiting to Warehouse
     async provideSM(data) {
-      console.log('data  : ',data);
       try{
         await axios
         .post(`${import.meta.env.VITE_API}/warehouse/provide`, data)
@@ -196,6 +200,42 @@ const WarehouseStore = defineStore("WarehouseStore", {
         console.log('Provide  SM Error : ',err);
       }
     },
+
+    // Fetch Departments
+    async fetchDepartments (){
+      try{
+        await axios.get(`${import.meta.env.VITE_API}/warehouse/departments`)
+        .then((respond)=>{
+          this.departments = respond.data;
+          console.log('departments : ',this.departments);
+        }).catch((err)=>{
+          console.log('Fetch Departments Error : ',err);
+        })
+      }
+      catch(err){
+        console.log('Fetch Departments Error : ',err);
+      }
+    },
+
+
+    // Fetch Departments
+    async fetchWarehouseDeliveryTypes (){
+      try{
+        await axios.get(`${import.meta.env.VITE_API}/warehouse/deliverytypes`)
+        .then((respond)=>{
+          this.delivery_types = respond.data;
+          console.log('delivery types : ',this.delivery_types);
+        }).catch((err)=>{
+          console.log('Fetch Departments Error : ',err);
+        })
+      }
+      catch(err){
+        console.log('Fetch Departments Error : ',err);
+      }
+    }
+
+
+
 
   }
 

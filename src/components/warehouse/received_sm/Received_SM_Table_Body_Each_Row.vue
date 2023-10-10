@@ -2,7 +2,7 @@
 <template>
     <tr :class="checked ? 'text-white  bg-blue-600 hover:bg-blue-500 ' : 'bg-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-10 hover:bg-indigo-500 duration-100'"
     class="border-b table_row hover:cursor-pointer">
-        <table-inform-button :each="prop?.each" />
+        <TableRowInform :each="prop?.each" />
         <td class="w-1 p-4 py-2 ">
             <div class="flex items-center">
                 <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
@@ -24,6 +24,7 @@
 import { ref } from 'vue';
 import TableRow from '../../../layouts/TableRow.vue';
 import WarehouseStore from '../../../store/store.warehouse';
+import TableRowInform from '../../../layouts/TableRowInform.vue'
 const warehouse_store = WarehouseStore();
 
 // Get Each Item from parent

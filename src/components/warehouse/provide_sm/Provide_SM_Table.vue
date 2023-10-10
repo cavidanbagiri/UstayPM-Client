@@ -27,7 +27,7 @@
 
 <script setup>
 
-import { ref, reactive } from 'vue';
+import { ref, onMounted } from 'vue';
 
 import Provide_SM_Table_Body from './Provide_SM_Table_Body.vue';
 import Provide_SM_Table_Header from './Provide_SM_Table_Header.vue';
@@ -39,10 +39,14 @@ const warehouse_store = WarehouseStore();
 
 const entering_rows = ref([]);
 
+onMounted(async()=>{
+    await warehouse_store.fetchDepartments();
+    await warehouse_store.fetchWarehouseDeliveryTypes();
+})
+
+// Provide Sm Call Backend
 const provideSM = () => {
-
     const sending_data = {};
-
     if (user_store.user !== null ){
         sending_data.user = user_store.user.id;
         sending_data.data = entering_rows.value;

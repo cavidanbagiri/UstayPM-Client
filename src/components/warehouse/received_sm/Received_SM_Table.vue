@@ -13,7 +13,8 @@
 
 
                 <!-- <Filter_Section_Comp /> -->
-                <TableFilter @filterFunction="filterFunction">
+                <!-- <TableFilter @filterFunction="filterFunction"> -->
+                <TableFilter>
                     <TableExpand v-if="true" :table_headers="warehouse_store.receiving_sm_headers" />
                 </TableFilter>
 
