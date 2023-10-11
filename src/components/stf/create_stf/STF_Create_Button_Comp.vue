@@ -66,7 +66,6 @@ const createSTF = async () => {
                     orders: stf_store.order_list,
                     user: user_store?.user
                 }
-                console.log('sending data : ',stf_store.order_list);
                 for(let i = stf_store.order_list?.length ; i > prop.row_size ; i -- ){
                     const some = stf_store.order_list?.pop();
                 }

@@ -105,7 +105,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
 
     // Post Accepted waiting to Warehouse
     async acceptWaitingSM(data) {
-      console.log('data is : ',data);
       try{
         await axios
         .post(`${import.meta.env.VITE_API}/warehouse/accept`, data)
