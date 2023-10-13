@@ -34,11 +34,35 @@ import STF_Table_Body_Comp from './STF_Table_Body_Comp.vue';
 import STF_Table_Row_Count_Comp from './STF_Table_Row_Count_Comp.vue';
 import STF_Create_Button_Comp from './STF_Create_Button_Comp.vue';
 import Toast from '../../design/Toast.vue';
-
+import STFStore from '../../../store/store.stf';
+const stf_store = STFStore();
 /************************************************* Row Management ****************/
 const row_size = ref(1);
 const addNewRow = () => {
-    row_size.value += 1;
+    let cond = true;
+    let index = 0;
+    for(let i of stf_store.order_list){
+        const material_name = i?.material_name.trim();
+        // if(i?.material_name === '' ){
+        if(material_name === '' ){
+            cond = false;
+            alert(`${index} Row Material Name Cant Be Empty`);
+        }
+        else if(i?.material_amount <= 0){
+            cond = false;
+            alert(`${index} Row Material Amount Cant Be 0`);
+        }
+        else if(i?.material_unit === ''){
+            cond = false;
+            alert(`${index} Row Material Unit Is Not Selected`);
+        }
+        else if(i?.fieldId === 0){
+            cond = false;
+            alert(`${index} Row Field Is Not Selected`);
+        }
+        index++;
+    }
+    if(cond)row_size.value += 1;
 }
 const removeRow = () => {
     if(row_size.value > 1){

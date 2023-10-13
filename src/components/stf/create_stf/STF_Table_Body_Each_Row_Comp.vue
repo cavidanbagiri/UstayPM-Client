@@ -94,8 +94,7 @@ watchEffect(() => {
                 break;
             }
         }
-        if (!check && (each.material_name!=='' || each.material_type!=='') ) {
-        // if (!check && (each.material_name!=='') ) {
+        if(!check && (each.each_id !='') ){
             stf_store.order_list.push(each);
         }
     }

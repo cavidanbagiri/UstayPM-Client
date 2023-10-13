@@ -25,6 +25,7 @@ const prop = defineProps(['row_size']);
 const emit = defineEmits(['setRowSize']);
 
 const createSTF = async () => {
+    console.log('store us : ',stf_store.order_list);
     if (stf_store.order_list.length === 0) {
         alert('Must Create at least 1 data');
     }
@@ -37,22 +38,22 @@ const createSTF = async () => {
         for (let i = 0; i < prop.row_size; i++) {
 
             // Check If material type and material name is not empty
-            if (stf_store.order_list[i].material_name === '') {
+            if (stf_store.order_list[i]?.material_name === '') {
                 check = false;
                 alert(`${i + 1} Row Material Name is Empty`)
                 break;
             }
-            else if (stf_store.order_list[i].material_amount <= 0) {
+            else if (stf_store.order_list[i]?.material_amount <= 0) {
                 check = false;
-                alert(`${i + 1} Row Count Is Not True`)
+                alert(`${i + 1} Row Material Amount Cant Be 0`)
                 break;
             }
-            else if (stf_store.order_list[i].material_unit === '') {
+            else if (stf_store.order_list[i]?.material_unit === '') {
                 check = false;
                 alert(`${i + 1} Row Unit Is Not Selected`)
                 break;
             }
-            else if (stf_store.order_list[i].fieldId === '') {
+            else if (stf_store.order_list[i]?.fieldId === '') {
                 check = false;
                 alert(`${i + 1} Row Field Not Selected`)
                 break;
