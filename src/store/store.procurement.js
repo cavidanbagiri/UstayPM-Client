@@ -42,6 +42,9 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // For Showing S< Table Headers
     sm_table_headers: [],//   
 
+    // Disable Or Enable Create SM Button
+    toggle_createsm: false, //
+
 
   }),
   getters:{

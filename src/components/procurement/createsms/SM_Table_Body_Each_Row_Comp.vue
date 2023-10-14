@@ -81,10 +81,11 @@ const each = reactive({
     department_id: prop?.each.department_id,
     price : 0,
     sm_material_name : prop?.each?.material_name,
-    sm_material_amount : prop?.each?.count,
-    sm_material_unit : prop?.each?.unit,
+    sm_material_amount : prop?.each?.material_amount,
+    sm_material_unit : prop?.each?.material_unit,
     total : 0,
     currency : '₽ - RUR',
+    created_at : ''
 })
 
 // Create a prop for getting a value from parent

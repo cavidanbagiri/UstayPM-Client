@@ -29,7 +29,6 @@ const removeChecked = (selected_item) => {
             procurement_store.checked_values.splice(i,1);
         }
     }
-    console.log('procurement checked values : ', procurement_store.checked_values);
 }
 
 
@@ -41,14 +40,14 @@ watchEffect(()=>{
     //         break;
     //     }
     // }
-    // if(procurement_store.checked_values?.length>1){
-    //     for(let i = 0 ; i < procurement_store.checked_values?.length - 1; i++ ){
-    //         if( procurement_store.checked_values[i].stf_num !== procurement_store.checked_values[i+1].stf_num ){
-    //             check.value = true
-    //             break;
-    //         }
-    //     }
-    // }
+    if(procurement_store.checked_values?.length>1){
+        for(let i = 0 ; i < procurement_store.checked_values?.length - 1; i++ ){
+            if( procurement_store.checked_values[i].stf_num !== procurement_store.checked_values[i+1].stf_num ){
+                check.value = true
+                break;
+            }
+        }
+    }
     check.value ? procurement_store.toggle_createsm = true : procurement_store.toggle_createsm = false  
 })
 

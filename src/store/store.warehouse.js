@@ -51,7 +51,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
 
     // Get Table Headers and show in STF
     async getProcessingSMHeaders() {
-      console.log('header work');
       if (this.processing_sms.length) {
         for (let [key, value] of Object.entries(this.processing_sms[0])) {
           if (key !== "id") {

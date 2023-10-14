@@ -71,7 +71,9 @@ onMounted(async () => {
     // Get \Warehouse Statistics Resukt just about SM
     // await warehouse_store.getStatisticResult();
     // Get Table Headers
-    await warehouse_store.getProcessingSMHeaders()
+    if(warehouse_store.processing_sm_headers.length === 0){
+        await warehouse_store.getProcessingSMHeaders()
+    }
 })
 
 // Get Filtered Data

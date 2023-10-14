@@ -52,7 +52,7 @@ const selectVendor = (vendor) => {
 }
 
 const createSM = async () => {
-    console.log('func work');
+    console.log('func work : ',common_data);
     let check_valid = true;
     if (common_data.VendorModelId === 0) {
         check_valid = false;
@@ -82,6 +82,7 @@ const createSM = async () => {
             else {
                 procurement_store.creating_STF_datas[i].VendorModelId = common_data.VendorModelId;
                 procurement_store.creating_STF_datas[i].supplierName = common_data.supplierName;
+                procurement_store.creating_STF_datas[i].ProcurementComingDate = common_data.procurement_coming_date;
                 // procurement_store.creating_STF_datas[i].VendorModelId = 1;
                 // procurement_store.creating_STF_datas[i].supplierName = 2;
             }
