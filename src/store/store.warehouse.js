@@ -18,6 +18,9 @@ const WarehouseStore = defineStore("WarehouseStore", {
     */
     accepted_condition : true,
     receive_success_show_message : false,
+
+    // After Accepted SM 
+    after_created: false,
     
     // Fetch Received SMS and SHow 
     received_sms: [],
@@ -37,12 +40,10 @@ const WarehouseStore = defineStore("WarehouseStore", {
   actions:{
     // Get Waiting SM                                                               [ Check ]
     async getProcessingSMS() {
-      console.log('this function work');
       await axios
         .get(`${import.meta.env.VITE_API}/warehouse/processingsm`) 
         .then((respond) => {
           this.processing_sms = respond.data;
-          console.log('sms : ',this.processing_sms); 
         })
         .catch((err) => {
           console.log("Get Warehouse Waiting Error : ", err);
@@ -125,7 +126,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
         .get(`${import.meta.env.VITE_API}/warehouse/receivedsm`)
         .then((respond) => {
           this.received_sms = respond.data;
-          console.log('received : ',this.received_sms);
         })
         .catch((err) => {
           console.log("Received Items Error : ", err);

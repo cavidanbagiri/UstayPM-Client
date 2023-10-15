@@ -4,7 +4,7 @@
         <div class="flex flex-col m-1 ">
             <span class="text-xs m-1">Providing Date</span>
             <input class="border outline-none rounded-md border-gray-300 text-xs p-2" type="date" name="" id=""
-                placeholder="Date" v-model="prop.sms_data.delivery_date" />
+                placeholder="Date" v-model="prop.sms_data.providing_date" />
         </div>
         <div class="flex flex-col m-1 ">
             <span class="text-xs m-1">Document Date</span>

@@ -32,7 +32,7 @@
                   &#9679{{ prop.each.situation }} 
               </span>
           </div>
-          <div v-else-if="prop.each[i.name] === 'Received'">
+          <div v-else-if="prop.each[i.name] === 'Completed'">
               <span class="bg-green-100 w-full text-green-500 py-[0.30rem] px-2 rounded-md">
                   &#9679{{ prop.each.situation }}
               </span>

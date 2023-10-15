@@ -24,7 +24,7 @@
 
 <script setup>
 
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import TableRow from '../../../layouts/TableRow.vue';
 import TableRowInform from '../../../layouts/TableRowInform.vue';
 import WarehouseStore from '../../../store/store.warehouse';
@@ -42,7 +42,11 @@ const checked = ref(false);
 
 const checkboxCond = () => checked.value === true ? emit('addChecked', prop?.each) : emit('removeChecked', prop?.each);
 
-
+watchEffect(() => {
+    if (warehouse_store.after_created) {
+        checked.value = false;
+    }
+})
 
 </script>
 

@@ -61,11 +61,9 @@ const checkboxCond = () => {
 
 
 watchEffect(() => {
-
     if (procurement_store.after_created) {
         checked.value = false;
     }
-
 })
 
 

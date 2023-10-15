@@ -45,6 +45,7 @@ const user_store = UserStore();
 const sms_data = reactive({
     delivery_date: '',
     doc_date: '',
+    providing_date: '',
     doc_number: ''
 });
 // Accepting Material Data
@@ -61,11 +62,16 @@ const acceptedByWarehouse = async () => {
     await warehouse_store.acceptWaitingSM(data)
         .then((respond) => {
             warehouse_store.receive_success_show_message = true
+            warehouse_store.after_created = true;
+            warehouse_store.processing_checked_values = warehouse_store.processing_checked_values.filter((item) => item.id === -1)
             setTimeout(async () => {
                 warehouse_store.receive_success_show_message = false;
-                // await warehouse_store.fetchReceivingSM();
+                await warehouse_store.fetchReceivingSM();
                 warehouse_store.tab_num = 0
-            }, 500)
+            }, 1000)
+            setTimeout(()=>{
+                warehouse_store.after_created = false;
+            })
         }).catch((err) => {
             console.log('Received Material Error : ', err);
         })

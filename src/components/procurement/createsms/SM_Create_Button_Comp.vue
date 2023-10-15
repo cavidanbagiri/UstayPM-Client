@@ -83,8 +83,6 @@ const createSM = async () => {
                 procurement_store.creating_STF_datas[i].VendorModelId = common_data.VendorModelId;
                 procurement_store.creating_STF_datas[i].supplierName = common_data.supplierName;
                 procurement_store.creating_STF_datas[i].ProcurementComingDate = common_data.procurement_coming_date;
-                // procurement_store.creating_STF_datas[i].VendorModelId = 1;
-                // procurement_store.creating_STF_datas[i].supplierName = 2;
             }
         }
     }
@@ -95,7 +93,7 @@ const createSM = async () => {
                 procurement_store.sm_success_show_message = true;
                 procurement_store.after_created = true;
                 procurement_store.checked_values = procurement_store.checked_values.filter((item) => item.id === -1)
-
+                console.log('procurement_store.checked_values is : ',procurement_store.checked_values);
                 // Show Error Message and Return Back All STF Page
                 setTimeout(() => {
                     procurement_store.tab_num = 0;
