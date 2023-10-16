@@ -1,5 +1,6 @@
 <template>
   <div class="flex flex-col" style="display: inline-block;">
+    <TableCommonComp/>
     <!-- Filter Statistic Section-->
     <div class="sticky top-10 px-1 ">
       <div class=" sticky left-16 flex flex-col bg-white" style="display: inline-block; width: calc(100vw - 5rem);">
@@ -38,6 +39,7 @@ import SelectingRows from './SelectingRows.vue';
 import UserStore from '../../../store/store.user_store';
 import TableFilter from '../../../layouts/TableFilter.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
+import TableCommonComp from '../../design/TableCommonComp.vue';
 
 const stf_store = STFStore();
 const user_store = UserStore();

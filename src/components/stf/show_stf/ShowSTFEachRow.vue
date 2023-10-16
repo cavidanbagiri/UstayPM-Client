@@ -1,6 +1,7 @@
 <template>
-  <tr :class="checked_style ? 'text-white bg-blue-600  hover:bg-blue-500 ' : ' bg-white transition ease-out delay-1 hover:-translate-y-1 hover:scale-1 hover:bg-indigo-500 duration-11 '"
-      class="border-b  hover:cursor-pointer table_row">
+  <tr :class="checked_style ? 'text-white bg-blue-600  hover:bg-blue-500 ' : 
+  ' bg-white  hover:bg-indigo-500 '"
+      class="border-b  hover:cursor-pointer table_row ">
       <TableRowInform :each="prop?.each" />
       <td class="w-1 p-4 py-2 ">
           <div class="flex items-center">

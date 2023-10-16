@@ -152,7 +152,6 @@ const STFStore = defineStore("STFStore",{
           )
           .then((respond) => {
             this.all_stf = respond.data; 
-            console.log('all stf : ',this.all_stf);
             return respond;
           })
           .catch((err) => {
