@@ -14,7 +14,7 @@
             {{ prop?.index + 1 }}
         </th>
 
-        <TableRow :each = "prop?.each" :table_headers="warehouse_store.receiving_sm_headers" />
+        <TableRow :each = "prop?.each" :table_headers="warehouse_store.warehouse_data_headers" />
 
     </tr>
 </template>

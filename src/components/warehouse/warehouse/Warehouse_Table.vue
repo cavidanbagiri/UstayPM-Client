@@ -15,7 +15,7 @@
                 <!-- <Filter_Section_Comp /> -->
                 <!-- <TableFilter @filterFunction="filterFunction"> -->
                 <TableFilter>
-                    <TableExpand v-if="true" :table_headers="warehouse_store.receiving_sm_headers" />
+                    <TableExpand v-if="true" :table_headers="warehouse_store.warehouse_data_headers" />
                 </TableFilter>
 
             </div>
@@ -24,12 +24,12 @@
         <!-- Table -->
         <div class="">
             <table class=" text-xs text-left text-gray-800 dark:text-gray-400 w-full " style="font-size: xx-small;">
-                <TableHeader :table_headers="warehouse_store.receiving_sm_headers" />
-                <Received_SM_Table_Body />
+                <TableHeader :table_headers="warehouse_store.warehouse_data_headers" />
+                <Warehouse_Table_Body />
             </table>
         </div>
 
-        <Show_Received_Selecting_Task />
+        <Show_Warehouse_Selecting_Task />
 
         <!-- <table-row-inform 
         :row_inform="index_store.row_detail_data" 
@@ -50,8 +50,8 @@ import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilter from '../../../layouts/TableFilter.vue';
 import TableExpand from '../../../layouts/TableExpand.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
-import Received_SM_Table_Body from './Received_SM_Table_Body.vue'
-import Show_Received_Selecting_Task from './Show_Received_Selecting_Task.vue';
+import Warehouse_Table_Body from './Warehouse_Table_Body.vue'
+import Show_Warehouse_Selecting_Task from './Show_Warehouse_Selecting_Task.vue';
 import TableCommonComp from '../../design/TableCommonComp.vue';
 import WarehouseStore from '../../../store/store.warehouse';
 // import IndexStore from '../../../store';
@@ -63,12 +63,12 @@ const warehouse_store = WarehouseStore();
 
 onMounted(async () => {
     // Get All Waiting SMS
-    await warehouse_store.fetchReceivingSM();
+    await warehouse_store.fetchWarehouseData();
     // Get \Warehouse Statistics Resukt just about SM
     // await warehouse_store.getStatisticResult();
     // Get Table Headers
-    if(warehouse_store.receiving_sm_headers.length === 0){
-        warehouse_store.getReceivingSMHeaders();
+    if(warehouse_store.warehouse_data_headers.length === 0){
+        warehouse_store.getWarehouseDataHeaders();
     }
 })
 

@@ -5,7 +5,7 @@
         <!-- <Accept_Received_Data_Message /> -->
 
         <!-- Accept Button -->
-        <button @click="provideSM" v-if="warehouse_store.receiving_checked_values?.length"
+        <button @click="provideSM" v-if="warehouse_store.warehouse_data_checked_values?.length"
             class="bg-red-600 p-2 px-3 text-white font-weight rounded-lg my-1">
             Provide
         </button>
@@ -53,7 +53,7 @@ const provideSM = async () => {
         await warehouse_store.provideSM(sending_data)
         .then((respond)=>{
             // warehouse_store.after_provide = true;
-            warehouse_store.receiving_checked_values = warehouse_store.receiving_checked_values.filter((item) => item.id === -1);
+            warehouse_store.warehouse_data_checked_values = warehouse_store.warehouse_data_checked_values.filter((item) => item.id === -1);
             setTimeout(()=>{
                 warehouse_store.tab_num=1;
                 // warehouse_store.after_provide = false;

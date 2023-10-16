@@ -25,11 +25,11 @@ const WarehouseStore = defineStore("WarehouseStore", {
     after_provide: false,
     
     // Fetch Received SMS and SHow 
-    received_sms: [],
-    receiving_sm_headers: [],
+    warehouse_data: [],
+    warehouse_data_headers: [],
 
     // Select Warehouse Items and Send Provide Page For Provide Area 
-    receiving_checked_values: [],
+    warehouse_data_checked_values: [],
 
     // Fetch Departments and show Provide Sm Page From Warehouse
     departments : [],
@@ -123,11 +123,11 @@ const WarehouseStore = defineStore("WarehouseStore", {
     },
 
     // Fetch Received Items and Show In Warehouse/received
-    async fetchReceivingSM() {
+    async fetchWarehouseData() {
       await axios
-        .get(`${import.meta.env.VITE_API}/warehouse/receivedsm`)
+        .get(`${import.meta.env.VITE_API}/warehouse/warehouse`)
         .then((respond) => {
-          this.received_sms = respond.data;
+          this.warehouse_data = respond.data;
         })
         .catch((err) => {
           console.log("Received Items Error : ", err);
@@ -135,9 +135,9 @@ const WarehouseStore = defineStore("WarehouseStore", {
     },
 
     // Get Table Headers and show in STF
-    async getReceivingSMHeaders() {
-      if (this.received_sms?.length) {
-        for (let [key, value] of Object.entries(this.received_sms[0])) {
+    async getWarehouseDataHeaders() {
+      if (this.warehouse_data?.length) {
+        for (let [key, value] of Object.entries(this.warehouse_data[0])) {
           if (key !== "id") {
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);
@@ -149,6 +149,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
               key === "situation" ||
               key === "delivery_material_name" ||
               key === "delivery_material_amount" ||
+              key === "stock" ||
               key === "delivery_material_unit" ||
               key === "username" ||
               key === "orderer" ||
@@ -162,25 +163,25 @@ const WarehouseStore = defineStore("WarehouseStore", {
               header_cond["name"] = `${key}`;
               header_cond["value"] = false;
             }
-            this.receiving_sm_headers.push(header_cond);
+            this.warehouse_data_headers.push(header_cond);
           }
         }
         // Sort Headers
-        for (let i = 0; i < this.receiving_sm_headers?.length; i++) {
-          if (this.receiving_sm_headers[i].name === "stf_num") {
-            let temp = this.receiving_sm_headers[0];
-            this.receiving_sm_headers[0] = this.receiving_sm_headers[i];
-            this.receiving_sm_headers[i] = temp;
+        for (let i = 0; i < this.warehouse_data_headers?.length; i++) {
+          if (this.warehouse_data_headers[i].name === "stf_num") {
+            let temp = this.warehouse_data_headers[0];
+            this.warehouse_data_headers[0] = this.warehouse_data_headers[i];
+            this.warehouse_data_headers[i] = temp;
           }
-          if (this.receiving_sm_headers[i].name === "sm_num") {
-            let temp = this.receiving_sm_headers[1];
-            this.receiving_sm_headers[1] = this.receiving_sm_headers[i];
-            this.receiving_sm_headers[i] = temp;
+          if (this.warehouse_data_headers[i].name === "sm_num") {
+            let temp = this.warehouse_data_headers[1];
+            this.warehouse_data_headers[1] = this.warehouse_data_headers[i];
+            this.warehouse_data_headers[i] = temp;
           }
-          if (this.receiving_sm_headers[i].name === "situation") {
-            let temp = this.receiving_sm_headers[2];
-            this.receiving_sm_headers[2] = this.receiving_sm_headers[i];
-            this.receiving_sm_headers[i] = temp;
+          if (this.warehouse_data_headers[i].name === "situation") {
+            let temp = this.warehouse_data_headers[2];
+            this.warehouse_data_headers[2] = this.warehouse_data_headers[i];
+            this.warehouse_data_headers[i] = temp;
           }
         }
       }

@@ -39,7 +39,7 @@ const warehouse_store = WarehouseStore();
 const selecting_rows = ref([]);
 
 watchEffect(() => {
-    selecting_rows.value = warehouse_store.receiving_checked_values
+    selecting_rows.value = warehouse_store.warehouse_data_checked_values
 })
 
 const provideSM = async () => {
@@ -48,11 +48,11 @@ const provideSM = async () => {
 
 const unselect = () => {
     warehouse_store.after_created = true
-    warehouse_store.receiving_checked_values = warehouse_store.receiving_checked_values.filter((item) => item.id === -1)
+    warehouse_store.warehouse_data_checked_values = warehouse_store.warehouse_data_checked_values.filter((item) => item.id === -1)
     setTimeout(() => {
         warehouse_store.after_created = false;
     }, 1000)
-    console.log('processing list : ', warehouse_store.receiving_checked_values);
+    console.log('processing list : ', warehouse_store.warehouse_data_checked_values);
 }
 
 </script>

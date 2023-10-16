@@ -2,7 +2,7 @@
 <template>
 
     <Provide_Sm_Table_Body_Each_Row
-    v-for="(each_item, index) in warehouse_store?.receiving_checked_values"
+    v-for="(each_item, index) in warehouse_store?.warehouse_data_checked_values"
     :each_item="each_item" :index="index" :entering_rows="entering_rows" :store="warehouse_store"
     />
     
