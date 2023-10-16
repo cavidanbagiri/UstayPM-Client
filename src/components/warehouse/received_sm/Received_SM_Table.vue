@@ -1,7 +1,7 @@
 
 <template>
     <div class="flex flex-col" style="display:inline-block">
-
+        <TableCommonComp/>
         <div class="sticky h-40 top-10 bg-white">
             <div class=" sticky left-16 flex flex-col w-max bg-white"
                 style="display:inline-block; width: calc(100vw - 5rem);">
@@ -49,11 +49,10 @@ import { onMounted } from 'vue';
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilter from '../../../layouts/TableFilter.vue';
 import TableExpand from '../../../layouts/TableExpand.vue';
-
 import TableHeader from '../../../layouts/TableHeader.vue';
-
 import Received_SM_Table_Body from './Received_SM_Table_Body.vue'
 import Show_Received_Selecting_Task from './Show_Received_Selecting_Task.vue';
+import TableCommonComp from '../../design/TableCommonComp.vue';
 import WarehouseStore from '../../../store/store.warehouse';
 // import IndexStore from '../../../store';
 

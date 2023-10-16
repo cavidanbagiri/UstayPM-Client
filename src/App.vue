@@ -16,12 +16,15 @@
 
     </div>
 
+    <MessageMain/>
+
   </div>
 </template>
 
 <script setup>
 
 import NavbarLayout from './layouts/NavbarLayout.vue';
+import MessageMain from './components/message/MessageMain.vue';
 
 import { ArcElement,Chart as ChartJS } from "chart.js";
 

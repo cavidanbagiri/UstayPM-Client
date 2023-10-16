@@ -1,7 +1,7 @@
 
 <template>
   <div class="flex flex-col" style="display: inline-block;">
-
+    <TableCommonComp/>
     <div class="h-40 sticky top-10 bg-white w-full">
       <div class=" sticky left-16 flex flex-col bg-white" style="display: inline-block; width: calc(100vw - 5rem);">
         <!-- <table-stf-statistics :statistic_result="procurement_store.statistic_result"
@@ -42,7 +42,7 @@
 import { onMounted, watchEffect } from 'vue'
 
 import TableHeader from '../../../layouts/TableHeader.vue';
-// import IndexStore from '../../../store';
+import TableCommonComp from '../../design/TableCommonComp.vue';
 
 import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
 import Get_All_STF_Table_Body_Comp from './Get_All_STF_Table_Body_Comp.vue';

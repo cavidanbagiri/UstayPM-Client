@@ -1,7 +1,7 @@
 <template>
     
     <div class="flex flex-col" style="display:inline-block">
-
+        <TableCommonComp/>
         <div class="sticky h-40 top-10 bg-white">
             <div class=" sticky left-16 flex flex-col w-max bg-white" style="display:inline-block; width: calc(100vw - 5rem);">
                 <STFStatistics/>
@@ -52,6 +52,7 @@ import TableExpand from '../../../layouts/TableExpand.vue'
 import Get_SM_Body_Table from './Get_SM_Body_Table.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
 import ProcurementStore from '../../../store/store.procurement';
+import TableCommonComp from '../../design/TableCommonComp.vue';
 // import IndexStore from '../../../store';
 
 // Create variable for importing data
