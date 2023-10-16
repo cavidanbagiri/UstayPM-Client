@@ -45,15 +45,21 @@ onMounted(async()=>{
 })
 
 // Provide Sm Call Backend
-const provideSM = () => {
+const provideSM = async () => {
     const sending_data = {};
     if (user_store.user !== null ){
         sending_data.user = user_store.user.id;
         sending_data.data = entering_rows.value;
-
-        warehouse_store.provideSM(sending_data);
+        await warehouse_store.provideSM(sending_data)
+        .then((respond)=>{
+            // warehouse_store.after_provide = true;
+            warehouse_store.receiving_checked_values = warehouse_store.receiving_checked_values.filter((item) => item.id === -1);
+            setTimeout(()=>{
+                warehouse_store.tab_num=1;
+                // warehouse_store.after_provide = false;
+            },1000)
+        })
     }
-
 }
 
 </script>

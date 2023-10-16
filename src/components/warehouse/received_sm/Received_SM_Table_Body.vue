@@ -12,29 +12,30 @@ import WarehouseStore from '../../../store/store.warehouse';
 const warehouse_store = WarehouseStore();
 
 const addChecked = (item) => {
-    console.log('added ',item);
     warehouse_store.receiving_checked_values.push(item);
+    console.log('item ius : ', warehouse_store.receiving_checked_values);
 }
 
 // Remove Operation FIx Needed
 const removeChecked = (selected_item) => {
-    console.log('selected : ',selected_item);
     warehouse_store.receiving_checked_values = warehouse_store.receiving_checked_values.filter((each) => each.sm_id !== selected_item.sm_id)
-    for (let i = 0; i < warehouse_store.receiving_checked_values.length; i++) {
-        if (warehouse_store.receiving_checked_values[i].stf_id === selected_item.stf_id) {
-            warehouse_store.receiving_checked_values.splice(i, 1);
+
+    for(let i=0; i<warehouse_store.receiving_checked_values.length; i ++){
+        if(warehouse_store.receiving_checked_values[i].sm_id===selected_item.sm_id){
+            warehouse_store.receiving_checked_values.splice(i,1);
         }
     }
+
 }
 
 watchEffect(() => {
-    const check = ref(false);
-    for (let i = 0; i < warehouse_store.receiving_checked_values?.length; i++) {
-        if (warehouse_store.receiving_checked_values[i].situation === 'Processing') {
-            check.value = true
-            break;
-        }
-    }
+    // const check = ref(false);
+    // for (let i = 0; i < warehouse_store.receiving_checked_values?.length; i++) {
+    //     if (warehouse_store.receiving_checked_values[i].situation === 'Processing') {
+    //         check.value = true
+    //         break;
+    //     }
+    // }
     // check.value ? warehouse_store.toggle_received_sm = true : warehouse_store.toggle_received_sm = false
 
 })

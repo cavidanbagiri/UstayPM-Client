@@ -21,6 +21,8 @@ const WarehouseStore = defineStore("WarehouseStore", {
 
     // After Accepted SM 
     after_created: false,
+    // After Provide Material
+    after_provide: false,
     
     // Fetch Received SMS and SHow 
     received_sms: [],

@@ -52,7 +52,6 @@ const unselect = () => {
     setTimeout(() => {
         warehouse_store.after_created = false;
     }, 1000)
-    console.log('processing list : ', warehouse_store.processing_checked_values);
 }
 
 </script>

@@ -30,12 +30,6 @@ const removeChecked = (selected_item) => {
 
 watchEffect(() => {
     const check = ref(false);
-    // for (let i = 0; i < warehouse_store.processing_checked_values?.length; i++) {
-    //     if (warehouse_store.processing_checked_values[i].situation === 'Received') {
-    //         check.value = true
-    //         break;
-    //     }
-    // }
     if (warehouse_store.processing_checked_values?.length > 1) {
         for (let i = 0; i < warehouse_store.processing_checked_values?.length - 1; i++) {
             if (warehouse_store.processing_checked_values[i].stf_num !== warehouse_store.processing_checked_values[i + 1].stf_num) {
