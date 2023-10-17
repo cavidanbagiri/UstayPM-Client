@@ -67,8 +67,6 @@ const STFStore = defineStore("STFStore",{
           await axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
           .then((respond)=>{
             this.all_stf = respond.data;
-            console.log('stf is : ', this.all_stf);
-            console.log('stf zero is : ', this.all_stf[0]);
           })
           .catch((err)=>{
             console.log('Fetch User Catch Error : ',err);
@@ -84,7 +82,6 @@ const STFStore = defineStore("STFStore",{
     async getHeaders() {
       if (this.all_stf?.length>1) {
         // Add Header To Header List
-        console.log('header is : ',this?.all_stf);
         for (let [key, value] of Object.entries(this?.all_stf[0])) {
           // Handle If Header name contain id or Id
           const last_two_digits = key.slice(key.length - 2, key.length );

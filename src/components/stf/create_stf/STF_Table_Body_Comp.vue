@@ -1,6 +1,6 @@
 
 <template>
-    <tbody >
+    <tbody>
         <STF_Table_Body_Column_Name_Comp :row_size=prop?.row_size :order_list="order_list" /> 
     </tbody>
 </template>

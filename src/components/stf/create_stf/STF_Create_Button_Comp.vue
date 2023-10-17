@@ -43,9 +43,14 @@ const createSTF = async () => {
                 alert(`${i + 1} Row Material Name is Empty`)
                 break;
             }
+            else if (stf_store.order_list[i]?.material_type === '' ) {
+                check = false;
+                alert(`${i + 1} Row Material Type Cant Be An Empty`)
+                break;
+            }
             else if (stf_store.order_list[i]?.material_amount <= 0) {
                 check = false;
-                alert(`${i + 1} Row Material Amount Cant Be 0`)
+                alert(`${i + 1} Row Material Amount In Not True Amount`)
                 break;
             }
             else if (stf_store.order_list[i]?.material_unit === '') {
@@ -53,7 +58,7 @@ const createSTF = async () => {
                 alert(`${i + 1} Row Unit Is Not Selected`)
                 break;
             }
-            else if (stf_store.order_list[i]?.fieldId === '') {
+            else if (stf_store.order_list[i]?.fieldId === 0) {
                 check = false;
                 alert(`${i + 1} Row Field Not Selected`)
                 break;
