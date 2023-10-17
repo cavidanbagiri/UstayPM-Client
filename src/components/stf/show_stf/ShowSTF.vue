@@ -30,7 +30,7 @@
    
 <script setup>
 
-import { onMounted, watchEffect, ref } from 'vue';
+import { onMounted } from 'vue';
 import STFStore from '../../../store/store.stf';
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
@@ -43,49 +43,19 @@ import TableCommonComp from '../../design/TableCommonComp.vue';
 
 const stf_store = STFStore();
 const user_store = UserStore();
-// const table_headers = ref([]);
-// const user = ref('') 
 
 onMounted(async () => {
   const user = user_store.GETUSER;
   if (user === undefined) {
   }
   else {
-    // console.log('user is : ',user);
-    // // Get Data For statistic result
-    // await order_store.getUserStatisticResult(user.id);
-    // // Get Data For Showing STF
-    // await order_store.showSTF(user);
-    // // Get Data For Table Headers
-    // if (order_store.GETORDERHEADERS.length === 0) {
-    //     await order_store.getHeaders();
-    // }
     await stf_store.fetchUserSTFAll(user);
     if(stf_store.GETALLSTFHEADERS.length === 0){ 
       await stf_store.getHeaders();
-      // table_headers.value = stf_store.all_stf_headers;
     }
   }
-  // Fetch All STF Data
 })
 
-// Get Statistic Result And Show
-watchEffect(async () => {
-  if(stf_store.GETALLSTFHEADERS.length === 0){ 
-      await stf_store.getHeaders();
-      // table_headers.value = stf_store.all_stf_headers;
-    }
-  // For Created STF
-  if (stf_store.after_created === true) {
-    // user.value = user_store.GETUSER;
-    const user = user_store.GETUSER;
-    if(user === undefined){
-    }else{
-      await stf_store.fetchUserSTFAll(user.id);
-    }
-    stf_store.after_created = false;
-  }
-})
 
 // Get Filtered Data
 const filterFunction = async (filtered_objects)=>{

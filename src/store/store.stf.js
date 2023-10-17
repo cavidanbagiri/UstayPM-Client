@@ -62,13 +62,13 @@ const STFStore = defineStore("STFStore",{
 
     // Fetch All User STF
     async fetchUserSTFAll(user){
-      // console.log('user id is : ',user_id);
       if( user?.id) {
         try{
-          axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
+          await axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
           .then((respond)=>{
             this.all_stf = respond.data;
-            // this.getHeaders();
+            console.log('stf is : ', this.all_stf);
+            console.log('stf zero is : ', this.all_stf[0]);
           })
           .catch((err)=>{
             console.log('Fetch User Catch Error : ',err);
@@ -82,8 +82,9 @@ const STFStore = defineStore("STFStore",{
     },
     // Fetch All User STF Headers
     async getHeaders() {
-      if (this.all_stf?.length) {
+      if (this.all_stf?.length>1) {
         // Add Header To Header List
+        console.log('header is : ',this?.all_stf);
         for (let [key, value] of Object.entries(this?.all_stf[0])) {
           if (key !== "id") {
             let header_cond = {};
@@ -92,14 +93,14 @@ const STFStore = defineStore("STFStore",{
             if (
               key === "completed" ||
               key === "stf_num" ||
-              key === "sm_num" ||
               key === "createdAt" ||
               key === "situation" ||
               key === "material_type" ||
               key === "material_name" ||
               key === "material_unit" ||
               key === "material_amount" ||
-              key === "username"
+              key === "username" ||
+              key === "field_name"
             ) {
               // header_cond[`${key}`] = true;
               header_cond["showname"] = `${val}`;
@@ -124,16 +125,6 @@ const STFStore = defineStore("STFStore",{
           if (this.all_stf_headers[i].name === "stf_num") {
             let temp = this.all_stf_headers[1];
             this.all_stf_headers[1] = this.all_stf_headers[i];
-            this.all_stf_headers[i] = temp;
-          }
-          if (this.all_stf_headers[i].name === "sm_num") {
-            let temp = this.all_stf_headers[2];
-            this.all_stf_headers[2] = this.all_stf_headers[i];
-            this.all_stf_headers[i] = temp;
-          }
-          if (this.all_stf_headers[i].name === "situation") {
-            let temp = this.all_stf_headers[3];
-            this.all_stf_headers[3] = this.all_stf_headers[i];
             this.all_stf_headers[i] = temp;
           }
         }

@@ -54,8 +54,8 @@ const WarehouseStore = defineStore("WarehouseStore", {
 
     // Get Table Headers and show in STF
     async getProcessingSMHeaders() {
-      if (this.processing_sms.length) {
-        for (let [key, value] of Object.entries(this.processing_sms[0])) {
+      if (this.processing_sms?.length) {
+        for (let [key, value] of Object.entries(this?.processing_sms[0])) {
           if (key !== "id") {
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);

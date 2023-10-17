@@ -107,11 +107,11 @@ const emits = defineEmits(['filterFunction', 'filtered_fields']);
 // Create Filtered Object
 const filtered_objects = reactive({
     user : '',
-    date_order : '',
     createdAt : '',
     material_type : '',
     material_name : '',
     stf_num : '',
+    date_order : '',
 })
 
 watchEffect(()=>{
