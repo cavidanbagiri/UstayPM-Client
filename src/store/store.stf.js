@@ -86,7 +86,9 @@ const STFStore = defineStore("STFStore",{
         // Add Header To Header List
         console.log('header is : ',this?.all_stf);
         for (let [key, value] of Object.entries(this?.all_stf[0])) {
-          if (key !== "id") {
+          // Handle If Header name contain id or Id
+          const last_two_digits = key.slice(key.length - 2, key.length );
+          if (key !== "id" && last_two_digits !== 'id' && last_two_digits !=='Id' ) {
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);
             val = val.split("_").join(" ");
