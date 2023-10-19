@@ -25,8 +25,8 @@
       <!-- S/S Section -->
       <th class="px-2 py-2 font-medium text-center">{{ prop.index + 1 }}</th>
       
-
-      <TableRow :each = "prop?.each" :table_headers="stf_store.all_stf_headers" />
+      <!-- {{ stf_store.GETWAREHOUSEHEADERS }} -->
+      <TableRow :each = "prop?.each" :table_headers="stf_store.GETWAREHOUSEHEADERS" />
 
 
 

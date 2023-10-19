@@ -24,6 +24,10 @@
                   {{ i.showname }}
               </div>
 
+              <div v-else-if="i.name==='stf_num'" class="w-28">
+                  {{ i.showname }}
+              </div>
+
               <div v-else-if="i.name==='sm_num'" class="w-32">
                   {{ i.showname }}
               </div>

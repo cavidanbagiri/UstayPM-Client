@@ -10,9 +10,12 @@ const STFStore = defineStore("STFStore",{
     tab_num : 0, // Create Listening FOr Changing STF Page Menu
     all_stf : null, // Fetch All User STF 
     all_stf_headers : [], // Get All fetching Data Headers
-    selecting_rows : [], // Selecting Rows Will Ad To This Array
+    warehouse_selecting_rows : [], // Selecting Rows Will Ad To This Array
     order_list : [], // During Create New STF, The Rows will add inside of this list for checking
     fields: [], // Fecth ALl Field accroding to project, and show when new stf creating
+    warehouse_data : [], // Fetch All Warehouse Data 
+    warehouse_headers : [], // Fetch All Warehouse Headers
+    warehouse_selecting_rows : [], // Selected Warehouses Rows
     /*
       After Creating New STF
     */
@@ -24,8 +27,10 @@ const STFStore = defineStore("STFStore",{
   getters: {
     GETALLSTF: (state) => state.all_stf,
     GETALLSTFHEADERS: (state) => state.all_stf_headers,
-    GETSELECTINGROWS: (state) => state.selecting_rows,
+    GETSELECTINGROWS: (state) => state.warehouse_selecting_rows,
     GETFIELDSNAME: (state) => state.fields,
+    GETWAREHOUSEDATA: (state) => state.warehouse_data,
+    GETWAREHOUSEHEADERS: (state) => state.warehouse_headers
   },
   actions: {
 
@@ -130,8 +135,8 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
-     // Get Filtered Data                                       
-     async getFilteredData(filtered_object) {
+    // Get Filtered Data                                       
+    async getFilteredData(filtered_object) {
       const queries = this.createUrlQuery(filtered_object);
       try {
         await axios
@@ -149,6 +154,79 @@ const STFStore = defineStore("STFStore",{
           });
       } catch (err) {
         console.log("Get Filtered Data Error : ", err);
+      }
+    },
+
+    // Fetch Warehouse Data
+    async fetchWarehouseData(user) {
+      if( user?.id) {
+        try{
+          await axios.get(`${import.meta.env.VITE_API}/stf/warehouse/${user.id}`)
+          .then((respond)=>{
+            this.warehouse_data = respond.data;
+          })
+          .catch((err)=>{
+            console.log('Fetch User Catch Error : ',err);
+          })
+  
+        }catch(err){
+          console.log('Fetch User STF Error : ', err);
+          return err;
+        } 
+      }
+    },
+
+    // Fetch All User STF Headers
+    async getWarehouseHeaders() {
+      if (this.warehouse_data?.length>1) {
+        console.log('inside is work ');
+        // Add Header To Header List
+        for (let [key, value] of Object.entries(this?.warehouse_data[0])) {
+          // Handle If Header name contain id or Id
+          const last_two_digits = key.slice(key.length - 2, key.length );
+          if (key !== "id" && last_two_digits !== 'id' && last_two_digits !=='Id' ) {
+            let header_cond = {};
+            let val = key.charAt(0).toUpperCase() + key.slice(1);
+            val = val.split("_").join(" ");
+            if (
+              key === "stf_num" ||
+              key === "sm_num" ||
+              key === "material_name" ||
+              key === "amount" ||
+              key === "unit" ||
+              key === "vendor_name" ||
+              key === "stock" ||
+              key === "certificate" ||
+              key === "passport" ||
+              key === "field"
+              
+            ) {
+              // header_cond[`${key}`] = true;
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = true;
+            } else {
+              // header_cond[`${key}`] = false;
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = false;
+            }
+            this.warehouse_headers.push(header_cond);
+          }
+        }
+        // Sort Headers
+        // for (let i = 0; i < this.warehouse_data?.length; i++) {
+        //   if (this.warehouse_data[i].name === "completed") {
+        //     let temp = this.warehouse_data[0];
+        //     this.warehouse_data[0] = this.warehouse_data[i];
+        //     this.warehouse_data[i] = temp;
+        //   }
+        //   if (this.warehouse_data[i].name === "stf_num") {
+        //     let temp = this.warehouse_data[1];
+        //     this.warehouse_data[1] = this.warehouse_data[i];
+        //     this.warehouse_data[i] = temp;
+        //   }
+        // }
       }
     },
 
