@@ -135,28 +135,6 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
-    // Get Filtered Data                                       
-    async getFilteredData(filtered_object) {
-      const queries = this.createUrlQuery(filtered_object);
-      try {
-        await axios
-          .get(
-            `
-                ${import.meta.env.VITE_API}/stf/filter${queries}
-            `
-          )
-          .then((respond) => {
-            this.all_stf = respond.data; 
-            return respond;
-          })
-          .catch((err) => {
-            console.log("Error Is : ", err);
-          });
-      } catch (err) {
-        console.log("Get Filtered Data Error : ", err);
-      }
-    },
-
     // Fetch Warehouse Data
     async fetchWarehouseData(user) {
       if( user?.id) {
@@ -227,6 +205,48 @@ const STFStore = defineStore("STFStore",{
         //     this.warehouse_data[i] = temp;
         //   }
         // }
+      }
+    },
+
+     // Get Filtered Data For User STF
+     async getFilteredData(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/stf/filter${queries}
+            `
+          )
+          .then((respond) => {
+            this.all_stf = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
+    },
+
+    // Get Filtered Data For User STF
+    async getFilteredWarehouseData(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/stf/filterwarehouse${queries}
+            `
+          )
+          .then((respond) => {
+            this.warehouse_data = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
       }
     },
 
