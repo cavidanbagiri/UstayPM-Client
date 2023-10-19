@@ -66,7 +66,7 @@ const addNewRow = () => {
         }
         index++;
     }
-    if (cond && stf_store.order_list ) row_size.value += 1;
+    if (cond && stf_store.order_list.length ) row_size.value += 1;
     console.log('row size is : ',row_size.value);
 }
 const removeRow = () => {
