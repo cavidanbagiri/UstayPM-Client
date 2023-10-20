@@ -25,9 +25,16 @@
         <ErrorMessage name="password" class="text-xs text-red-500" />
       </div>
 
-      <button
-        class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign
+      <button v-if="!waiting"
+        class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 
+        font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Sign
         in</button>
+
+        <button v-if="waiting" class="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 
+        font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+          <span class="loading loading-spinner"></span>
+          loading
+        </button>
       <span class="text-red-500 flex text-sm mt-2 justify-end">{{ user_not_found }}</span>
     </VeeForm>
 
@@ -40,28 +47,30 @@
 import { ref } from 'vue';
 
 import { ErrorMessage } from 'vee-validate';
-import UserStore from '../../store/store.user_store.js';
 import router from '../../router/index.js';
 
+import UserStore from '../../store/store.user_store.js';
 const user_store = UserStore();
 
 const user_not_found = ref('');
 
-const login = async (values) => {
+const waiting = ref(false);
 
-    
-    await user_store.LOGINSER(values)
-        .then((respond) => {
-            if (respond?.response?.data) {
-                user_not_found.value = respond.response.data;
-            } else {
-                // router.push({ path: 'Homeview' });
-                // location.reload();
-                router.push({path:'/'})
-            }
-        }).catch((err)=>{
-          user_not_found.value = err;
-        })
+const login = async (values) => {
+  waiting.value = true;
+  await user_store.LOGINSER(values)
+    .then((respond) => {
+      if (respond?.response?.data) {
+        user_not_found.value = respond.response.data;
+        waiting.value = false;
+      } else {
+        waiting.value = false;
+        router.push({ path: '/' })
+      }
+    }).catch((err) => {
+      user_not_found.value = err;
+      waiting.value = false;
+    })
 
 
 }

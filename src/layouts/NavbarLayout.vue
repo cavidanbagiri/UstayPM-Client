@@ -126,7 +126,9 @@
           </router-link>
       </div>
 
-      <div class="relative">
+      
+
+      <div v-if="!user_store.user" class="relative">
           <router-link to="/user/login">
               <span @mouseover="login_tooltip = true" @mouseleave="login_tooltip = false"
                   class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-blue-800 duration-300">
@@ -135,6 +137,19 @@
               <span v-if="login_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md">
                   Login
+              </span>
+          </router-link>
+      </div>
+
+      <div v-else class="relative">
+          <router-link to="/user/login">
+              <span @mouseover="logout_tooltip = true" @mouseleave="logout_tooltip = false"
+                  class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-blue-800 duration-300">
+                  <i class="fa-solid fa-right-from-bracket fa-sm" style="color:white;"></i>
+              </span>
+              <span v-if="logout_tooltip"
+                  class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md">
+                  Logout
               </span>
           </router-link>
       </div>
@@ -160,6 +175,7 @@ const messages_tooltip = ref(false)
 const workspace_tooltip = ref(false)
 const menu_tooltip = ref(false)
 const login_tooltip = ref(false);
+const logout_tooltip = ref(false);
 
 
 // Get User Inform

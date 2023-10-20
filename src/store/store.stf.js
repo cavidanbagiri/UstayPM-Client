@@ -36,6 +36,7 @@ const STFStore = defineStore("STFStore",{
 
     // Create STF
     async createSTF(data) {
+      console.log('front data is : ',data);
       try {
         await axios
           .post(`${import.meta.env.VITE_API}/stf/createstf`, data)
