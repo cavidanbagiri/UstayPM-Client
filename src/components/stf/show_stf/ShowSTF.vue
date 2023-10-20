@@ -17,13 +17,11 @@
     </div>
 
     <Suspense>
-
       <template #default>
         <table class=" mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
           <TableHeader :table_headers="stf_store.GETALLSTFHEADERS" />
           <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
         </table>
-
       </template>
 
       <template #fallback>
@@ -31,7 +29,6 @@
           ...Loading
         </div>
       </template>
-
     </Suspense>
 
     <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"
