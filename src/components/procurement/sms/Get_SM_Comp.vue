@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <div class="">
+        <div v-if ="procurement_store.sm_table_headers.length" class="">
             <table class="text-left text-gray-800 w-full">
                 <!-- <Table-Header :table_headers="procurement_store.sm_table_headers" /> -->
                 <TableHeader :table_headers="procurement_store.sm_table_headers" />
@@ -28,6 +28,10 @@
                 </tbody>
 
             </table>
+        </div>
+
+        <div v-else class="flex flex-row justify-center items-center w-full h-96">  
+            <span class="loading loading-dots loading-lg"></span>
         </div>
 
         <!-- <table-row-inform 

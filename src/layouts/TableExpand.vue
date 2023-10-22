@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col border shadow-xl p-2 absolute w-96 h-96 top-14 right-0 bg-white overflow-hidden overflow-y-scroll">
         <div class="mt-12 sticky top-10">
-            <input class="border-2 border-indigo-600 my-2 w-full p-2 rounded-lg text-sm outline-none " type="text" name="" id="">
+            <input class="border-2 border-indigo-600 my-2 w-full p-2 rounded-lg text-sm outline-none " type="text" name="" id="" placeholder="Column Name..." style="font-style: italic;">
         </div>
         <ul class="">
             <li v-for="key in prop?.table_headers">

@@ -12,8 +12,8 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Create Listening FOr Changing STF Page Menu
     tab_num : 0, 
 
-    // After Creating New SMS, Messagw will shown
-    sm_success_show_message: false, 
+    // Show Message After Creating New SMS
+    msg_cond : false,
   
     // For choosing STF and sending for creating STF
     checked_values: [],
@@ -91,7 +91,8 @@ const ProcurementStore = defineStore("ProcurementStore",{
     async getSTFHeaders() {
       if (this.all_stf.length) {
         for (let [key, value] of Object.entries(this.all_stf[0])) {
-          if (key !== "id") {
+          const last_two_digits = key.slice(key.length - 2, key.length );
+          if (key !== "id" && last_two_digits !== 'id' && last_two_digits !=='Id' ) {
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);
             val = val.split("_").join(" ");

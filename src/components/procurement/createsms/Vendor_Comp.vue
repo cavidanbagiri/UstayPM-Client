@@ -2,19 +2,35 @@
 <template>
     <div class="flex flex-col relative">
 
-        <button class="border py-2 mx-5 rounded-xl text-xs px-3" @click="show=!show">
-            Choose Vendor
-        </button>
+        <div class="p-0 flex items-center">
+            <span v-if="selecting_vendor != '' " class="text-sm max-w-[500px]">
+                <span class="font-bold">
+                    Selecting Vendor
+                </span> 
+                : " {{ selecting_vendor }} "
+            </span>
+            <button class="border py-3 mx-5 rounded-xl text-sm px-3" @click="show=!show">
+                Select Vendor
+            </button>
+        </div>
 
         <Transition name="show">
-            <div v-if="show" class="flex flex-col bg-white border rounded-md shadow-xl absolute top-10  p-2 w-96 h-96 overflow-auto">
-                <div class="flex justify-between text-gray-600">
-                    <span class="font-bold text-lg">Companies</span>
-                    <button class="font-bold text-lg hover:bg-gray-100 py-1 px-2 rounded-md"><i class="fa-solid fa-xmark"></i></button>
+            <div v-if="show" class="flex flex-col bg-white border rounded-xl shadow-2xl absolute top-10 right-10 p-0 min-w-[700px] max-h-[600px] overflow-auto" >
+                <!-- Title Section -->
+                <div class="sticky top-0 bg-white p-2 height-[30px]">
+                    <div class="flex justify-between text-gray-600">
+                        <span class="font-bold text-xl" style="font-family: 'Roboto', sans-serif ;">Companies</span>
+                        <button @click = closeComp class="font-bold text-lg hover:bg-gray-100 py-1 px-2 rounded-md"><i class="fa-solid fa-xmark"></i></button>
+                    </div>
                 </div>
-                <ul>
-                    <li v-for="i in prop.vendor_list" @click="selectVendor(i)"
-                        class="m-1 p-1 px-2 hover:bg-gray-100 text-xs cursor-pointer rounded-md ">
+                <!-- Search Company Name Section -->
+                <div class=" sticky top-[36px] p-2 bg-white">
+                    <input class="border-2 border-indigo-600 my-2 w-full p-2 rounded-lg text-sm outline-none " type="text" name="" id="" placeholder="Company Name..." style="font-style: italic;">
+                </div>
+                <!-- Companies Names Section -->
+                <ul class="">
+                    <li v-for="i in prop.vendor_list" @click="selectVendor(i)" style="font-family:'Roboto', sans-serif;"
+                        class="m-1 p-1 px-2 hover:bg-gray-100  cursor-pointer rounded-md ">
                         {{ i.vendor_name }}
                     </li>
                 </ul>
@@ -29,13 +45,19 @@
 import { ref } from 'vue';
 
 const show = ref(false);
+const selecting_vendor = ref('');
 
 const prop = defineProps(['vendor_list']);
-const emit = defineEmits(['selectVendor'])
+const emit = defineEmits(['selectVendor']);
+
+const closeComp = () => {
+    show.value = false
+}
 
 const selectVendor = (vendor) => {
+    selecting_vendor.value = vendor.vendor_name;
     emit("selectVendor", vendor);
-    show.value=false;
+    show.value = false;
 }
 
 </script>
@@ -44,11 +66,11 @@ const selectVendor = (vendor) => {
 
 
 .show-enter-active {
-    animation: show 0.5s;
+    animation: show 0.2s;
 }
 
 .show-leave-active {
-    animation: show 0.5s reverse;
+    animation: show 0.2s reverse;
 }
 
 @keyframes show {

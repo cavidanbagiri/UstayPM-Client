@@ -16,10 +16,14 @@
       </div>
     </div>
 
-    <table class=" mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
+    <table v-if="stf_store.GETWAREHOUSEHEADERS.length" class=" mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
       <TableHeader :table_headers="stf_store.GETWAREHOUSEHEADERS" />
       <ShowWarehouseEachRow v-for="(i, index) in stf_store.warehouse_data" :each="i" :index="index" />
     </table>
+
+    <div v-else class="flex flex-row justify-center items-center w-full h-96">
+      <span class="loading loading-dots loading-lg"></span>
+    </div>
 
     <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"
       @closeRowInform="closeRowInform" />-->

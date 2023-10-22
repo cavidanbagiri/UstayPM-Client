@@ -1,10 +1,13 @@
 
 <template>
     <div class="mb-1 mt-3 flex justify-between ">
-        <button v-if="procurement_store.GETCHECKEDVALUES.length >= 1" @click="createSM"
-            class="bg-red-600 font-medium text-xs py-1 px-3 rounded-md text-white">
+        <button v-if="procurement_store.GETCHECKEDVALUES.length >= 1" @click="createSM" class="btn btn-outline btn-primary">
             Create SM
         </button>
+        <!-- <button 
+            class="bg-red-600 font-medium text-xs py-1 px-3 rounded-md text-white">
+            Create SM
+        </button> -->
         <div class="flex">
             <Vendor_Comp :vendor_list="vendor_list" @selectVendor="selectVendor" />
             <!-- Choosing Procurement Coming Date-->
@@ -16,16 +19,18 @@
                 <!-- {{ supplier_list }} -->
                 <select class="border outline-none font-sans rounded-lg w-full h-full p-2 text-xs"
                     v-model="common_data.supplierName">
-                    <option v-for="i in supplier_list" :value="i.user_id">{{ i.procurement_users }}</option>
+                    <option v-for="i in supplier_list" :value="i.user_id" >{{ i.procurement_users }}</option>
                 </select>
             </div>
         </div>
+        <Toast :cond="procurement_store.msg_cond" messages="New STF Successfuly Created" />
     </div>
 </template>
 
 <script setup>
 
 import { ref, reactive, watchEffect, computed } from 'vue';
+import Toast from '../../design/Toast.vue';
 
 import ProcurementStore from '../../../store/store.procurement.js';
 import Vendor_Comp from './Vendor_Comp.vue';
@@ -52,7 +57,6 @@ const selectVendor = (vendor) => {
 }
 
 const createSM = async () => {
-    console.log('func work : ',common_data);
     let check_valid = true;
     if (common_data.VendorModelId === 0) {
         check_valid = false;
@@ -90,15 +94,14 @@ const createSM = async () => {
         await procurement_store.createSM(procurement_store.GETCREATINGSTFDATA)
             .then((respond) => {
                 procurement_store.creating_STF_datas = [];
-                procurement_store.sm_success_show_message = true;
+                procurement_store.msg_cond = true;
                 procurement_store.after_created = true;
                 procurement_store.checked_values = procurement_store.checked_values.filter((item) => item.id === -1)
-                console.log('procurement_store.checked_values is : ',procurement_store.checked_values);
                 // Show Error Message and Return Back All STF Page
                 setTimeout(() => {
                     procurement_store.tab_num = 0;
-                    procurement_store.sm_success_show_message = false;
-                }, 500)
+                    procurement_store.msg_cond = false;
+                }, 1000)
 
                 setTimeout(() => {
                     procurement_store.after_created = false;
