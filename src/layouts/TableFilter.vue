@@ -3,14 +3,14 @@
     <!-- Filter Section -->
     <div class="mtf-anim z-70 " style="letter-spacing: 1px;font-size: x-small;">
         <!-- Common Filters Section -->
-        <div class="relative flex flex-row items-center justify-between">
+        <div class="relative flex flex-row items-center justify-between filter_headers">
             <!-- Common Filter Keys -->
             <div class="flex flex-row start">
                 <!-- Date Order -->
                 <div class="flex flex-col my-1 mr-3" style="font-size: x-small;">
                     <span class="m-1">Date Order</span>
                     <select
-                        class="border outline-none font-sans rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
+                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
                         v-model="filtered_objects.date_order">
                         <option value="Descending">Descendig</option>
                         <option>Ascending</option>
@@ -26,7 +26,7 @@
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search Type</span>
                     <select v-model="filtered_objects.material_type"
-                        class="border outline-none font-sans rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
+                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
                         >
                         <option>All</option>
                         <option>Project</option>

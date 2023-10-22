@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-10 gap-3 justify-between sticky anim bg-white">
+  <div class="grid grid-cols-10 gap-3 justify-between sticky bg-white">
 
     <div class=" col-span-2 flex flex-row justify-between border shadow-md w-full p-3 rounded-md
           hover:shadow-xl hover:cursor-pointer ">

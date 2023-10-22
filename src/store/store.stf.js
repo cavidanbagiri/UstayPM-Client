@@ -19,7 +19,7 @@ const STFStore = defineStore("STFStore",{
     /*
       After Creating New STF
     */
-    creating_mtf_toast: false, // For Showing Toast After Creating New STF,
+    msg_cond: false, // For Showing Toast After Creating New STF,
     after_created: false, // After Creating New STF, this will provide to cleaning order_list
     
   }),

@@ -21,7 +21,7 @@
         <!-- Create STF Button-->
         <STF_Create_Button_Comp @setRowSize="setRowSize" :row_size="row_size" />
 
-        <Toast />
+        <Toast :cond="stf_store.msg_cond" messages="New STF Successfuly Created" />
 
     </div>
 </template>
@@ -82,7 +82,6 @@ const setRowSize = () => {
     row_size.value = 0;
 }
 /****************************************************************************** */
-
 /************************************************* Create Creating Items List ***/
 let order_list = ref([]);
 const againFunc = () => {

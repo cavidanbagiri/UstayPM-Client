@@ -25,7 +25,6 @@ const prop = defineProps(['row_size']);
 const emit = defineEmits(['setRowSize']);
 
 const createSTF = async () => {
-    console.log('store us : ',stf_store.order_list);
     if (stf_store.order_list.length === 0) {
         alert('Must Create at least 1 data');
     }
@@ -65,9 +64,8 @@ const createSTF = async () => {
             }
         }
         if (check) {
+            
             try {
-                //Excute Post Method
-                
                 const data = {
                     orders: stf_store.order_list,
                     user: user_store?.user
@@ -81,14 +79,16 @@ const createSTF = async () => {
                             alert('MTF Cant Create');
                         }
                         else {
-                            stf_store.creating_mtf_toast=true
+                            stf_store.msg_cond=true
                             setTimeout(() => {
-                                stf_store.creating_mtf_toast=false
                                 emit('setRowSize');
                                 stf_store.after_created = true;
                                 stf_store.tab_num = 0;
                                 stf_store.fetchUserSTFAll(data.user);
                             }, 500);
+                            setTimeout(()=>{
+                                stf_store.msg_cond=false
+                            },1000)
                         }
                     }).catch((err) => {
                         console.log('from create Error component : ', err);

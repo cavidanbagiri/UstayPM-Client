@@ -1,10 +1,10 @@
 
 <template>
-  <div v-if="stf_store.creating_mtf_toast" class="fixed top-10 left-1/3 p-3 border-2 w-1/3 h-24 rounded-xl bg-green-500 text-white flex items-center justify-center">
+  <div v-if="prop.cond" class="fixed top-5 left-1/3 p-1  w-1/3  rounded-lg text-sm bg-green-500 text-white flex items-center justify-center anim">
 
       <div>
-          <span class="font-bold text-2xl " style="font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
-              Mtf Successfully Created
+          <span class=" text-xl " style="font-family: 'Roboto', sans-serif; ">
+              {{ prop.messages }}
           </span>
       </div>
 
@@ -13,10 +13,23 @@
 
 <script setup>
 
-import STFStore from '../../store/store.stf';
-const stf_store = STFStore();
+const prop = defineProps(['cond', 'messages'])
+
 
 
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+
+.anim{
+    animation: right_to_center;
+    animation-duration: 0.5s;
+}
+
+@keyframes right_to_center {
+    from{left: -20%;}
+    /* from{left:-100px} */
+    /* to{top:500px} */
+}
+
+</style>

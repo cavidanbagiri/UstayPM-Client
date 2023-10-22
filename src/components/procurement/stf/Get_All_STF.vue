@@ -17,15 +17,19 @@
       </div>
     </div>
 
-    <div class="mt-1 shadow-md sm:rounded-lg w-full border-2 analyz_header">
+    <div v-if="procurement_store.stf_table_headers.length>0" class="mt-1 shadow-md sm:rounded-lg w-full border-2 analyz_header">
 
       <!-- Table -->
-      <table class="text-left text-gray-800 dark:text-gray-400 w-full">
+      <table  class="text-left text-gray-800 dark:text-gray-400 w-full">
         <!-- Table Header -->
         <TableHeader :table_headers="procurement_store.stf_table_headers" />
          <!-- Table Border -->
         <Get_All_STF_Table_Body_Comp /> 
       </table>
+    </div>
+
+    <div v-else class="flex flex-row justify-center items-center w-full h-96">  
+      <span class="loading loading-dots loading-lg"></span>
     </div>
 
 

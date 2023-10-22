@@ -16,14 +16,13 @@
       </div>
     </div>
 
-    <table v-if="stf_store.GETALLSTFHEADERS.length"
-      class=" mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
+    <table v-if="stf_store.GETALLSTFHEADERS.length" class=" mx-2   w-full shadow-xl  mt-1">
       <TableHeader :table_headers="stf_store.GETALLSTFHEADERS" />
       <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
     </table>
+    
     <div v-else class="flex flex-row justify-center items-center w-full h-96">
-      
-<span class="loading loading-dots loading-lg"></span>
+      <span class="loading loading-dots loading-lg"></span>
     </div>
 
     <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"

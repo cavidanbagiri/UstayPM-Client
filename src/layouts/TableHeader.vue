@@ -1,6 +1,6 @@
 
 <template>
-  <thead class="text-gray-100 bg-slate-700  sticky top-48 table_header border-b-4 shadow-md">
+  <thead class="text-gray-100 bg-slate-700  sticky top-48  border-b-4 shadow-md table_header ">
       <tr>
           <th scope="col-4" class=" pl-1">
               <div class="flex flex-col items-center">
@@ -15,11 +15,11 @@
               </div>
           </th>
           <th class="px-2 py-3 text-center">
-              <div class="flex flex-col">
+              <div class="flex flex-col font-thin">
                   S/S
               </div>
           </th>
-          <th v-for="i in prop?.table_headers" v-show="i.value" scope="col" class="px-2 py-1 text-center border">
+          <th v-for="i in prop?.table_headers" v-show="i.value" scope="col" class="px-2 py-1 text-center border font-thin">
               <div v-if="i.name==='situation'" class="w-20">
                   {{ i.showname }}
               </div>
