@@ -28,7 +28,7 @@
               class="text-black px-3 py-2 pt-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-upload fa-lg "></i>
               Warehouse</span>
 
-            <span :class="procurement_store.tab_num === 3 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTab(3)"
+            <span :class="procurement_store.tab_num === 4 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTab(3)"
               class="text-black px-3 py-2 pt-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-upload fa-lg "></i>
               Provides</span>
 
@@ -68,7 +68,8 @@ const procurement_store = ProcurementStore();
 const tabs = [STFAll, SMSAll, CreateSMS];
 
 const changeTab = (num) => {
-  procurement_store.tab_num = num;
+  
+  num !==2 ? procurement_store.tab_num = num : ''
 }
 
 onMounted(async () => {

@@ -15,7 +15,7 @@
     </div>
 
     <div class="my-3 flex justify-between">
-      <span style="font-size: 0.9rem;">STatus</span>
+      <span style="font-size: 0.9rem;">Status</span>
       <div class="border text-sm px-1">
         <select class="select select-bordered w-full max-w-xs">
           <option disabled selected>Normal</option>

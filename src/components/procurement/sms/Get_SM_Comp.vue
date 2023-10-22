@@ -77,9 +77,9 @@ onMounted(async()=>{
 })
 
 // Get Filtered Data
-// const filterFunction = async (filtered_objects)=>{
-//     await procurement_store.getFilteredDataSM(filtered_objects);
-// }
+const filterFunction = async (filtered_objects)=>{
+    await procurement_store.getFilteredDataSM(filtered_objects);
+}
 
 
 

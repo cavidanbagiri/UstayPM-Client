@@ -61,19 +61,16 @@ const procurement_store = ProcurementStore();
 onMounted(async () => {
   // Fetch All STF
   await procurement_store.fetchSTF()
-  // Get Data For Statistic Result
-  // await procurement_store.getSTFStatisticsResult();
-  // Get Data For Table Headers
   if (procurement_store.stf_table_headers.length === 0) {
     procurement_store.getSTFHeaders();
   }
 }
 )
 
-// Get Filtered Data
-// const filterFunction = async (filtered_objects) => {
-//   await procurement_store.getFilteredDataSTF(filtered_objects);
-// }
+//Get Filtered Data
+const filterFunction = async (filtered_objects) => {
+  await procurement_store.getFilteredDataSTF(filtered_objects);
+}
 
 // After Creating SM, This code will work
 watchEffect(async () => {
