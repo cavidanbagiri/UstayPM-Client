@@ -57,7 +57,7 @@ import { onMounted } from 'vue';
 import STFAll from '../components/procurement/stf/Get_All_STF.vue';
 import SMSAll from '../components/procurement/sms/Get_SM_Comp.vue';
 import CreateSMS from '../components/procurement/createsms/Get_Creating_SM.vue';
-
+import WarehouseData from '../components/procurement/warehouse/WarehouseData.vue';
 
 import ProcurementStore from '../store/store.procurement';
 import UserStore from '../store/store.user_store';
@@ -65,7 +65,7 @@ import UserStore from '../store/store.user_store';
 const user_store = UserStore();
 const procurement_store = ProcurementStore();
 
-const tabs = [STFAll, SMSAll, CreateSMS];
+const tabs = [STFAll, SMSAll, CreateSMS, WarehouseData];
 
 const changeTab = (num) => {
   

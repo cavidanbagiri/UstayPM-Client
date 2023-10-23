@@ -46,7 +46,15 @@ const ProcurementStore = defineStore("ProcurementStore",{
     toggle_createsm: false, //
 
     // Fetch Username For Server For Filtered STF and SM With Username
-    created_stf_username: []
+    created_stf_username: [],
+    
+    // Fetch Warehouse Data 
+    warehouse_data: [],
+
+    // Fetch Warehouse Headers
+    warehouse_headers: [],
+
+    warehouse_selecting_rows : [], // Selecting Rows Will Ad To This Array
 
   }),
   getters:{
@@ -54,6 +62,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     GETCOMPANIESNAMES: (state) => state.companies_names,
     GETPROCUREMENTUSERSNAMES: (state) => state.procurement_users_names,
     GETCREATINGSTFDATA: (state) => state.creating_STF_datas,
+    GETWAREHOUSEHEADERS: (state) => state.warehouse_headers
   },
   actions:{
 
@@ -304,6 +313,98 @@ const ProcurementStore = defineStore("ProcurementStore",{
             this.all_sms = respond.data;
             console.log('respond data is : ', respond.data);
             console.log('after : ',this.all_sms);
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
+    },
+
+    // Fetch Warehouse Data
+    async fetchWarehouseData() {
+        try{
+          await axios.get(`${import.meta.env.VITE_API}/procurement/warehouse`)
+          .then((respond)=>{
+            this.warehouse_data = respond.data;
+            console.log('this warehouse data is : ',this.warehouse_data);
+          })
+          .catch((err)=>{
+            console.log('Fetch User Catch Error : ',err);
+          })
+  
+        }catch(err){
+          console.log('Fetch User STF Error : ', err);
+          return err;
+        }
+    },
+
+    // Fetch All User STF Headers
+    async getWarehouseHeaders() {
+      if (this.warehouse_data?.length>1) {
+        // Add Header To Header List
+        for (let [key, value] of Object.entries(this?.warehouse_data[0])) {
+          // Handle If Header name contain id or Id
+          const last_two_digits = key.slice(key.length - 2, key.length );
+          if (key !== "id" && last_two_digits !== 'id' && last_two_digits !=='Id' ) {
+            let header_cond = {};
+            let val = key.charAt(0).toUpperCase() + key.slice(1);
+            val = val.split("_").join(" ");
+            if (
+              key === "stf_num" ||
+              key === "sm_num" ||
+              key === "material_name" ||
+              key === "amount" ||
+              key === "unit" ||
+              key === "vendor_name" ||
+              key === "stock" ||
+              key === "certificate" ||
+              key === "passport" ||
+              key === "field"
+              
+            ) {
+              // header_cond[`${key}`] = true;
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = true;
+            } else {
+              // header_cond[`${key}`] = false;
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = false;
+            }
+            this.warehouse_headers.push(header_cond);
+          }
+        }
+        // Sort Headers
+        // for (let i = 0; i < this.warehouse_data?.length; i++) {
+        //   if (this.warehouse_data[i].name === "completed") {
+        //     let temp = this.warehouse_data[0];
+        //     this.warehouse_data[0] = this.warehouse_data[i];
+        //     this.warehouse_data[i] = temp;
+        //   }
+        //   if (this.warehouse_data[i].name === "stf_num") {
+        //     let temp = this.warehouse_data[1];
+        //     this.warehouse_data[1] = this.warehouse_data[i];
+        //     this.warehouse_data[i] = temp;
+        //   }
+        // }
+      }
+    },
+
+    // Get Filtered Data For User STF
+    async getFilteredWarehouseData(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/procurement/filterwarehouse${queries}
+            `
+          )
+          .then((respond) => {
+            this.warehouse_data = respond.data;
           })
           .catch((err) => {
             console.log("Error Is : ", err);
