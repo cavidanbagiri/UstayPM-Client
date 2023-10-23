@@ -28,7 +28,7 @@
     const procurement_store = ProcurementStore();
 
     onMounted(async ()=>{
-        await procurement_store.getCompaniesNames();
+        // await procurement_store.getCompaniesNames();
         await procurement_store.getProcurementUsersNames();
     })
 

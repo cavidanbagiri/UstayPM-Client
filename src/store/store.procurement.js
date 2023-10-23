@@ -154,7 +154,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
         .get(`${import.meta.env.VITE_API}/procurement/fetchsm`)
         .then((respond) => {
           this.all_sms = respond.data;
-          console.log('sms : ',this.all_sms);
         })
         .catch((err) => {
           console.log("all stf Error : ", err);
@@ -273,7 +272,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Get Filtered Data For User STF
     async getFilteredDataSTF(filtered_object) {
       const queries = this.createUrlQuery(filtered_object);
-      console.log('queries is : ', queries);
       try {
         await axios
           .get(
@@ -295,7 +293,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Get Filtered Data For User STF
     async getFilteredDataSM(filtered_object) {
       const queries = this.createUrlQuery(filtered_object);
-      console.log('filtered query ',filtered_object);
       try {
         await axios
           .get(
@@ -304,7 +301,9 @@ const ProcurementStore = defineStore("ProcurementStore",{
             `
           )
           .then((respond) => {
-            this.all_sm = respond.data;
+            this.all_sms = respond.data;
+            console.log('respond data is : ', respond.data);
+            console.log('after : ',this.all_sms);
           })
           .catch((err) => {
             console.log("Error Is : ", err);

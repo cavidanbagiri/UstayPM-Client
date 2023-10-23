@@ -65,6 +65,7 @@ onMounted(async () => {
     procurement_store.getSTFHeaders();
   }
   await procurement_store.fetchSTFCreateUsernames();
+  await procurement_store.getCompaniesNames();
 }
 )
 

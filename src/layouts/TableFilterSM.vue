@@ -72,40 +72,30 @@
               </div>
               <!-- Search Vendor Name -->
               <div class="flex flex-col m-1">
-                  <span class="m-1">Search Vendor</span>
-                  <label for="search"
-                      class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                  <div class="relative">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                          <svg aria-hidden="true" class="w-4 h-4 text-gray-500 " fill="none" stroke="currentColor"
-                              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                          </svg>
-                      </div>
-                      <input type="text" id="search"
-                          class="block w-full p-2 pl-10 outline-none text-gray-900 border border-blue-300 rounded-lg  hover:border-blue-600  shadow-lg"
-                          placeholder="SM..." v-model="filtered_objects.vendor_name" >
-                  </div>
-              </div>
-              <!-- Search User Name -->
+                    <span class="m-1">Search Vendor Name</span>
+                    <select v-model="filtered_objects.vendor_name"
+                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
+                        >
+                        <option v-for="i in procurement_store.companies_names" class="text-lg" 
+                        :value="i.company_id"
+                        style="font-family: 'Lato', sans-serif;">
+                          {{ i.vendor_name }}
+                        </option>
+                    </select>
+                </div>
+              <!-- Search With Username -->
               <div class="flex flex-col m-1">
-                  <span class="m-1">Search User</span>
-                  <label for="search"
-                      class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                  <div class="relative">
-                      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                          <svg aria-hidden="true" class="w-4 h-4 text-gray-500 " fill="none" stroke="currentColor"
-                              viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                          </svg>
-                      </div>
-                      <input type="text" id="search"
-                          class="block w-full p-2 pl-10 outline-none text-gray-900 border border-blue-300 rounded-lg  hover:border-blue-600  shadow-lg"
-                          placeholder="User..." v-model="filtered_objects.user_name" >
-                  </div>
-              </div>
+                    <span class="m-1">Search Username</span>
+                    <select v-model="filtered_objects.usernames"
+                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
+                        >
+                        <option v-for="i in procurement_store.created_stf_username" class="text-lg" 
+                        :value="i.id"
+                        style="font-family: 'Lato', sans-serif;">
+                          {{ i.ordered_name }}
+                        </option>
+                    </select>
+                </div>
           </div>
           <div class="flex flex-row justify-end">
               <!-- Search With Material Name -->
@@ -153,7 +143,8 @@
 <script setup>
 
 import { ref, reactive, watchEffect } from 'vue';
-
+import ProcurementStore from '../store/store.procurement';
+const procurement_store = ProcurementStore();
 // Define Emits
 const emits = defineEmits(['filterFunction', 'filtered_fields']);
 
@@ -162,7 +153,7 @@ const filtered_objects = reactive({
   createdAt : '',
   sm_material_name : '',
   vendor_name : '',
-  user_name : '',
+  usernames : '',
   stf_num : '',
   sm_num : '',
   date_order : '',
