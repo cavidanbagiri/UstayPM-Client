@@ -1,5 +1,5 @@
 <template>
-    <tbody class="text-gray-500">
+    <tbody class="text-black">
         
         <Get_All_STF_Table_Body_Each_Row_Comp 
         v-for="(each, index) in procurement_store.all_stf"

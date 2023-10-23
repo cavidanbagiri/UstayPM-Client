@@ -11,9 +11,9 @@
                     <table-expand v-if="true" :table_headers="procurement_store.sm_table_headers" />
                 </table-filter> -->
                 <!-- Table Filter Section -->
-        <TableFilter @filterFunction="filterFunction">
+        <TableFilterSM @filterFunction="filterFunction">
           <TableExpand v-if="true" :table_headers="procurement_store.sm_table_headers" />
-        </TableFilter>
+        </TableFilterSM>
 
             </div>
         </div>
@@ -51,7 +51,7 @@
 import { onMounted } from 'vue';
 // import Show_SM_Table from './Show_SM_Table.vue';
 import STFStatistics from '../../../layouts/STFStatistics.vue';
-import TableFilter from '../../../layouts/TableFilter.vue';
+import TableFilterSM from '../../../layouts/TableFilterSM.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import Get_SM_Body_Table from './Get_SM_Body_Table.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';

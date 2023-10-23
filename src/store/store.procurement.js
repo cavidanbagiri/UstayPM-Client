@@ -45,6 +45,8 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Disable Or Enable Create SM Button
     toggle_createsm: false, //
 
+    // Fetch Username For Server For Filtered STF and SM With Username
+    created_stf_username: []
 
   }),
   getters:{
@@ -241,7 +243,23 @@ const ProcurementStore = defineStore("ProcurementStore",{
         .get(`${import.meta.env.VITE_API}/procurement/users`)
         .then((respond) => {
           this.procurement_users_names = respond.data;
-          console.log('procurement users : ',this.procurement_users_names);
+        })
+        .catch((err) => {
+          console.log("Get Users Names Errors : ", err);
+        });
+      }
+      catch(err){
+        console.log('Get Procurement Users Error : ',err);
+      }
+    },
+
+    // Fet Username Data Who Create STF
+    async fetchSTFCreateUsernames() {
+      try{
+        await axios
+        .get(`${import.meta.env.VITE_API}/procurement/createdstfusers`)
+        .then((respond) => {
+          this.created_stf_username = respond.data;
         })
         .catch((err) => {
           console.log("Get Users Names Errors : ", err);
@@ -255,6 +273,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Get Filtered Data For User STF
     async getFilteredDataSTF(filtered_object) {
       const queries = this.createUrlQuery(filtered_object);
+      console.log('queries is : ', queries);
       try {
         await axios
           .get(
@@ -276,6 +295,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Get Filtered Data For User STF
     async getFilteredDataSM(filtered_object) {
       const queries = this.createUrlQuery(filtered_object);
+      console.log('filtered query ',filtered_object);
       try {
         await axios
           .get(
@@ -284,7 +304,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
             `
           )
           .then((respond) => {
-            this.all_stf = respond.data;
+            this.all_sm = respond.data;
           })
           .catch((err) => {
             console.log("Error Is : ", err);

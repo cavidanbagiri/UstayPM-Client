@@ -34,7 +34,20 @@
                         <option>Fixture</option>
                     </select>
                 </div>
-                <!-- Search With MTF -->
+                <!-- Search With Username -->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Search Username</span>
+                    <select v-model="filtered_objects.usernames"
+                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
+                        >
+                        <option v-for="i in procurement_store.created_stf_username" class="text-lg" 
+                        :value="i.id"
+                        style="font-family: 'Lato', sans-serif;">
+                          {{ i.ordered_name }}
+                        </option>
+                    </select>
+                </div>
+                <!-- Search With STF -->
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search STF</span>
                     <label for="search"
@@ -49,8 +62,7 @@
                         </div>
                         <input type="text" id="search"
                             class="block w-full p-2 pl-10 outline-none text-gray-900 border border-blue-300 rounded-lg  hover:border-blue-600  shadow-lg"
-                            placeholder="MTF..." v-model="filtered_objects.stf_num" >
-
+                            placeholder="STF..." v-model="filtered_objects.stf_num" >
                     </div>
                 </div>
             </div>
@@ -100,13 +112,14 @@
 <script setup>
 
 import { ref, reactive, watchEffect } from 'vue';
-
+import ProcurementStore from '../store/store.procurement';
+const procurement_store = ProcurementStore();
 // Define Emits
 const emits = defineEmits(['filterFunction', 'filtered_fields']);
 
 // Create Filtered Object
 const filtered_objects = reactive({
-    user : '',
+    usernames : '',
     createdAt : '',
     material_type : '',
     material_name : '',
