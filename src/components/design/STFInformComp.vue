@@ -2,25 +2,26 @@
   <div v-if="prop.cond"
     class="border flex flex-col bg-white absolute top-5 left-5 shadow-2xl p-2 px-4 rounded-2xl w-80">
     <div class="flex justify-end items-center">
-      <!-- <span class=" pb-2 pt-1 text-xl text-gray-600 text-center" style="font-family: 'Lato', sans-serif;">
-        STF Information</span> -->
       <span class="text-xl" @click="close">
         <i class="fa-solid fa-xmark text-gray-400 hover:text-black"></i>
       </span>
     </div>
     <div class="flex flex-col">
       <span class=" py-2  text-gray-900 row_item">
-          <i class="fa-regular fa-trash-can px-1 text-gray-500"></i>
-        Get Information</span>
+          <i class="fa-brands fa-joget px-1 text-gray-500"></i>
+        Get STF Information</span>
       <span class=" py-2  text-gray-900 row_item">
-          <i class="fa-regular fa-trash-can px-1 text-gray-500"></i>
-        Creating SM</span>
+          <i class="fa-regular fa-circle-question px-1 text-gray-500"></i>
+        Get SM Information</span>
       <span class=" py-2  text-gray-900 row_item">
-          <i class="fa-regular fa-trash-can px-1 text-gray-500"></i>
+          <i class="fa-regular fa-eye-slash px-1 text-gray-500"></i>
+        Set Hide</span>
+      <span class=" py-2  text-gray-900 row_item">
+          <i class="fa-regular fa-star px-1 text-gray-500"></i>
         Set Star</span>
       <span class=" py-2  text-gray-900 row_item">
-          <i class="fa-regular fa-trash-can px-1 text-gray-500"></i>
-        Hide</span>
+          <i class="fa-regular fa-pen-to-square px-1 text-gray-500"></i>
+        Update Row</span>
       <span class=" py-2  text-gray-900 row_item">
           <i class="fa-regular fa-trash-can px-1 text-gray-500"></i>
         Remove Row</span>

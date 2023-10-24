@@ -1,7 +1,6 @@
 
 <template>
     <div class="flex flex-col relative">
-
         <div class="p-0 flex items-center">
             <span v-if="selecting_vendor != '' " class="text-sm max-w-[500px]">
                 <span class="font-bold">
@@ -19,7 +18,7 @@
                 <!-- Title Section -->
                 <div class="sticky top-0 bg-white p-2 height-[30px]">
                     <div class="flex justify-between text-gray-600">
-                        <span class="font-bold text-xl" style="font-family: 'Roboto', sans-serif ;">Companies</span>
+                        <span class="font-bold text-2xl" style="font-family: 'Lato', sans-serif ;">Companies</span>
                         <button @click = closeComp class="font-bold text-lg hover:bg-gray-100 py-1 px-2 rounded-md"><i class="fa-solid fa-xmark"></i></button>
                     </div>
                 </div>
@@ -29,14 +28,13 @@
                 </div>
                 <!-- Companies Names Section -->
                 <ul class="">
-                    <li v-for="i in prop.vendor_list" @click="selectVendor(i)" style="font-family:'Roboto', sans-serif;"
+                    <li v-for="i in prop.vendor_list" @click="selectVendor(i)" style="font-family:'Lato', sans-serif;"
                         class="m-1 p-1 px-2 hover:bg-gray-100  cursor-pointer rounded-md ">
                         {{ i.vendor_name }}
                     </li>
                 </ul>
             </div>
         </Transition>
-
     </div>
 </template>
 
