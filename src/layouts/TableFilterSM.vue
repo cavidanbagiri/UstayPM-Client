@@ -83,10 +83,10 @@
                     </select>
                 </div> -->
                 <!-- Vendor Name -->
-                <div class="flex flex-col m-1 relative">
+                <div class="flex flex-col m-1 relative  justify-start items-start">
                     <span class="m-1">Search Vendor Name</span>
-                    <div class="p-0 flex items-center m-1">
-                        <button class="border py-3 mx-5 rounded-xl text-sm px-3" @click="show = !show">
+                    <div class="p-0 flex items-start">
+                        <button class="border border-blue-300 py-2  rounded-lg text-sm px-3" @click="show = !show">
                             Select Vendor
                         </button>
                     </div>
@@ -111,6 +111,12 @@
                             </div>
                             <!-- Companies Names Section -->
                             <ul class="">
+                                <li style="font-family:'Lato', sans-serif;" 
+                                    class="m-1 p-1 px-2 hover:bg-gray-100  cursor-pointer rounded-md ">
+                                    <span @click="selectedComp('All')">
+                                        All
+                                    </span>
+                                </li>
                                 <li v-for="i in procurement_store.companies_names" @click="selectedComp(i)"
                                     style="font-family:'Lato', sans-serif;"
                                     class="m-1 p-1 px-2 hover:bg-gray-100  cursor-pointer rounded-md ">
@@ -125,6 +131,7 @@
                     <span class="m-1">Search Username</span>
                     <select v-model="filtered_objects.usernames"
                         class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
+                        <option value="All">All</option>
                         <option v-for="i in procurement_store.created_stf_username" class="text-lg" :value="i.id"
                             style="font-family: 'Lato', sans-serif;">
                             {{ i.ordered_name }}
@@ -185,7 +192,9 @@ const emits = defineEmits(['filterFunction', 'filtered_fields']);
 
 const show = ref(false);
 const selectedComp = (val) => {
-    filtered_objects.vendor_name = val.company_id;
+    val !== 'All' ? 
+    filtered_objects.vendor_name = val.company_id :  
+    filtered_objects.vendor_name = val  
     show.value = false
 }
 
