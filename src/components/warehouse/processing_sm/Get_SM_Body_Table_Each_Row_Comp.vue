@@ -1,7 +1,7 @@
 
 <template>
     <tr :class="checked ? 'text-white  bg-blue-600 hover:bg-blue-500 ' : 'bg-white  hover:bg-gray-100'"
-        class="border-b table_row hover:cursor-pointer hover:text-white ">
+        class="border-b table_row hover:cursor-pointer hover:text-black ">
         <TableRowInform :each="prop?.each" />
         <td class="w-1 p-4 py-2 ">
 

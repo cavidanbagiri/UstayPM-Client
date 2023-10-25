@@ -56,7 +56,8 @@ const WarehouseStore = defineStore("WarehouseStore", {
     async getProcessingSMHeaders() {
       if (this.processing_sms?.length) {
         for (let [key, value] of Object.entries(this?.processing_sms[0])) {
-          if (key !== "id") {
+          const last_two_digits = key.slice(key.length - 2, key.length );
+          if (key !== "id" && last_two_digits !== 'id' && last_two_digits !=='Id' ) {
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);
             val = val.split("_").join(" ");
@@ -69,6 +70,11 @@ const WarehouseStore = defineStore("WarehouseStore", {
               key === "sm_material_amount" ||
               key === "sm_material_unit" ||
               key === "sm_num" ||
+              key === "price" ||
+              key === "total" ||
+              key === "currency" ||
+              key === "supplier" ||
+              key === "vendor_name" ||
               key === "username" ||
               key === "orderer" ||
               key === "left_over_amount"
