@@ -195,6 +195,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
               key === "price" ||
               key === "total" ||
               key === "currency" ||
+              key === "left_over" ||
               key === "supplier" ||
               key === "vendor_name" ||
               key === "username" ||

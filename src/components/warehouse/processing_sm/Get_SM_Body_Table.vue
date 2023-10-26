@@ -8,7 +8,7 @@
 
 import { ref, watchEffect } from 'vue';
 import Get_SM_Body_Table_Each_Row_Comp from './Get_Sm_Body_Table_Each_Row_Comp.vue'
-import WarehouseStore from '../../../store/store.warehouse'; 
+import WarehouseStore from '../../../store/store.warehouse';
 const warehouse_store = WarehouseStore();
 
 
@@ -20,9 +20,9 @@ const addChecked = (item) => {
 const removeChecked = (selected_item) => {
     warehouse_store.processing_checked_values = warehouse_store.processing_checked_values.filter((each) => each.sm_id !== selected_item.sm_id)
 
-    for(let i=0; i<warehouse_store.processing_checked_values.length; i ++){
-        if(warehouse_store.processing_checked_values[i].stf_id===selected_item.stf_id){
-            warehouse_store.processing_checked_values.splice(i,1);
+    for (let i = 0; i < warehouse_store.processing_checked_values.length; i++) {
+        if (warehouse_store.processing_checked_values[i].stf_id === selected_item.stf_id) {
+            warehouse_store.processing_checked_values.splice(i, 1);
         }
     }
 
@@ -30,7 +30,14 @@ const removeChecked = (selected_item) => {
 
 watchEffect(() => {
     const check = ref(false);
-    if (warehouse_store.processing_checked_values?.length > 1) {
+    if (warehouse_store.processing_checked_values?.length >= 1) {
+        for (let i of warehouse_store.processing_checked_values) {
+            if (i?.situation === "Completed") {
+                check.value = true;
+            }
+        }
+    }
+    if (warehouse_store.processing_checked_values?.length >= 1) {
         for (let i = 0; i < warehouse_store.processing_checked_values?.length - 1; i++) {
             if (warehouse_store.processing_checked_values[i].stf_num !== warehouse_store.processing_checked_values[i + 1].stf_num) {
                 check.value = true

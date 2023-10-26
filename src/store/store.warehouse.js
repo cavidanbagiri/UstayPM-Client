@@ -75,6 +75,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
               key === "currency" ||
               key === "supplier" ||
               key === "vendor_name" ||
+              key === "left_over" ||
               key === "username" ||
               key === "orderer" ||
               key === "left_over_amount"

@@ -43,7 +43,6 @@ const user_store = UserStore();
 
 // Accepting Data Information
 const sms_data = reactive({
-    delivery_date: '',
     doc_date: '',
     providing_date: '',
     doc_number: ''
@@ -53,28 +52,56 @@ const table_data = ref([]);
 
 // Checked Values;
 const acceptedByWarehouse = async () => {
-    const data = {
-        user: user_store.user,
-        checked_values: warehouse_store.processing_checked_values,
-        sms_data: sms_data,
-        table_data: table_data.value
+
+    let check = true;
+    console.log('l am working');
+    for( let [key, value] of Object.entries(sms_data) ){
+        value = value.toString().trim();
+        if(key === "doc_number" && value === '' ){
+            check = false;
+            alert("Doc Number Cant Be Empty")
+            break;
+        }
+        if( key === 'providing_date' && value === '' ){
+            check = false;
+            alert("Provind Date Cant Be Empty");
+            break;
+        }
+        if( key === 'doc_date' && value === '' ){
+            check = false;
+            alert("Doc Date Cant Be Empty");
+            break;
+        }
     }
-    await warehouse_store.acceptWaitingSM(data)
-        .then((respond) => {
-            warehouse_store.receive_success_show_message = true
-            warehouse_store.after_created = true;
-            warehouse_store.processing_checked_values = warehouse_store.processing_checked_values.filter((item) => item.id === -1)
-            setTimeout(async () => {
-                warehouse_store.receive_success_show_message = false;
-                await warehouse_store.fetchReceivingSM();
-                warehouse_store.tab_num = 0
-            }, 1000)
-            setTimeout(()=>{
-                warehouse_store.after_created = false;
+
+    if (check) {
+        const data = {
+            user: user_store.user,
+            checked_values: warehouse_store.processing_checked_values,
+            sms_data: sms_data,
+            table_data: table_data.value
+        }
+        await warehouse_store.acceptWaitingSM(data)
+            .then((respond) => {
+                warehouse_store.receive_success_show_message = true
+                warehouse_store.after_created = true;
+                warehouse_store.processing_checked_values = warehouse_store.processing_checked_values.filter((item) => item.id === -1)
+                setTimeout(async () => {
+                    warehouse_store.receive_success_show_message = false;
+                    await warehouse_store.getProcessingSMS();
+                    sms_data.doc_date = '';
+                    sms_data.providing_date = '';
+                    sms_data.doc_number = '';
+                    warehouse_store.tab_num = 0;
+                }, 1000)
+                setTimeout(() => {
+                    warehouse_store.after_created = false;
+                })
+            }).catch((err) => {
+                console.log('Received Material Error : ', err);
             })
-        }).catch((err) => {
-            console.log('Received Material Error : ', err);
-        })
+    }
+
 }
 
 
