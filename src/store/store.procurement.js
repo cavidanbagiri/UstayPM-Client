@@ -240,7 +240,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
         .get(`${import.meta.env.VITE_API}/procurement/companies`)
         .then((respond) => {
           this.companies_names = respond.data;
-          console.log('companies names : ',this.companies_names);
         })
         .catch((err) => {
           console.log("Getting Companies Names Errors : ", err);
@@ -333,7 +332,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
           await axios.get(`${import.meta.env.VITE_API}/procurement/warehouse`)
           .then((respond)=>{
             this.warehouse_data = respond.data;
-            console.log('this warehouse data is : ',this.warehouse_data);
           })
           .catch((err)=>{
             console.log('Fetch User Catch Error : ',err);
@@ -405,7 +403,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/procurement/filterwarehouse${queries}
+                ${import.meta.env.VITE_API}/warehouse/filter${queries}
             `
           )
           .then((respond) => {

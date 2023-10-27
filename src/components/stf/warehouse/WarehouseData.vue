@@ -9,14 +9,14 @@
 
 
         <!-- Table Filter Section -->
-        <TableFilter @filterFunction="filterFunction">
+        <TableFilterWarehouse @filterFunction="filterFunction">
           <TableExpand v-if="true" :table_headers="stf_store.GETWAREHOUSEHEADERS" />
-        </TableFilter>
+        </TableFilterWarehouse>
 
       </div>
     </div>
 
-    <table v-if="stf_store.GETWAREHOUSEHEADERS.length" class=" mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1">
+    <table v-if="stf_store.GETWAREHOUSEHEADERS.length" class=" mx-2 text-gray-800  w-full shadow-xl bg-white mt-1">
       <TableHeader :table_headers="stf_store.GETWAREHOUSEHEADERS" />
       <ShowWarehouseEachRow v-for="(i, index) in stf_store.warehouse_data" :each="i" :index="index" />
     </table>
@@ -41,12 +41,14 @@ import TableHeader from '../../../layouts/TableHeader.vue';
 import ShowWarehouseEachRow from './ShowWarehouseEachRow.vue';
 import SelectingRows from './SelectingRows.vue';
 import UserStore from '../../../store/store.user_store';
-import TableFilter from '../../../layouts/TableFilter.vue';
+import TableFilterWarehouse from '../../../layouts/TableFilterWarehouse.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';
+import WarehouseStore from '../../../store/store.warehouse';
 
 const stf_store = STFStore();
 const user_store = UserStore();
+const warehouse_store = WarehouseStore();
 
 onMounted(async () => {
   const user = user_store.GETUSER;
@@ -54,6 +56,7 @@ onMounted(async () => {
   }
   else {
     await stf_store.fetchWarehouseData(user);
+    await warehouse_store.getCompaniesNames();
     if(stf_store.GETWAREHOUSEHEADERS.length === 0){ 
       await stf_store.getWarehouseHeaders();
     }

@@ -9,9 +9,9 @@
 
 
         <!-- Table Filter Section -->
-        <TableFilter @filterFunction="filterFunction">
+        <TableFilterWarehouse @filterFunction="filterFunction">
           <TableExpand v-if="true" :table_headers="procurement_store.GETWAREHOUSEHEADERS" />
-        </TableFilter>
+        </TableFilterWarehouse>
 
       </div>
     </div>
@@ -41,15 +41,19 @@ import TableHeader from '../../../layouts/TableHeader.vue';
 import ShowWarehouseEachRow from './ShowWarehouseEachRow.vue';
 import SelectingRows from './SelectingRows.vue';
 import UserStore from '../../../store/store.user_store';
-import TableFilter from '../../../layouts/TableFilter.vue';
+import TableFilterWarehouse from '../../../layouts/TableFilterWarehouse.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';
+import WarehouseStore from '../../../store/store.warehouse';
 
 const procurement_store = ProcurementStore();
 const user_store = UserStore();
+const warehouse_store = WarehouseStore();
 
 onMounted(async () => {
   await procurement_store.fetchWarehouseData();
+  await warehouse_store.getCompaniesNames();
+  await warehouse_store.fetchSTFCreateUsernames();
   if(procurement_store.GETWAREHOUSEHEADERS.length === 0){ 
     await procurement_store.getWarehouseHeaders();
   }
@@ -58,12 +62,12 @@ onMounted(async () => {
 
 
 // Get Filtered Data
-// const filterFunction = async (filtered_objects)=>{
-//     if(user_store.GETUSER !== undefined ){
-//         filtered_objects.user = user_store?.GETUSER?.id
-//         await procurement_store.getFilteredWarehouseData(filtered_objects);
-//     }
-// }
+const filterFunction = async (filtered_objects)=>{
+    if(user_store.GETUSER !== undefined ){
+        filtered_objects.user = user_store?.GETUSER?.id
+        await procurement_store.getFilteredWarehouseData(filtered_objects);
+    }
+}
 
 
 </script> 

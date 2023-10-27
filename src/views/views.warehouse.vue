@@ -69,7 +69,7 @@ Provide_SM_Table
 ];
 
 const changeTabe = (num) => {
-  warehouse_store.tab_num = num;
+  num !== 2 ? warehouse_store.tab_num = num : ''
 }
 
 </script>

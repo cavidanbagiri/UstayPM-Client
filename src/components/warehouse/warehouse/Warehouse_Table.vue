@@ -14,19 +14,22 @@
 
                 <!-- <Filter_Section_Comp /> -->
                 <!-- <TableFilter @filterFunction="filterFunction"> -->
-                <TableFilter>
+                <TableFilterWarehouse @filterFunction="filterFunction">
                     <TableExpand v-if="true" :table_headers="warehouse_store.warehouse_data_headers" />
-                </TableFilter>
+                </TableFilterWarehouse>
 
             </div>
         </div>
 
         <!-- Table -->
         <div class="">
-            <table class=" text-xs text-left text-gray-800 dark:text-gray-400 w-full " style="font-size: xx-small;">
+            <table v-if="warehouse_store.warehouse_data_headers.length" class=" mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1" style="font-size: xx-small;">
                 <TableHeader :table_headers="warehouse_store.warehouse_data_headers" />
                 <Warehouse_Table_Body />
             </table>
+            <div v-else class="flex flex-row justify-center items-center w-full h-96">
+              <span class="loading loading-dots loading-lg"></span>
+            </div>
         </div>
 
         <Show_Warehouse_Selecting_Task />
@@ -47,7 +50,7 @@
 import { onMounted } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
-import TableFilter from '../../../layouts/TableFilter.vue';
+import TableFilterWarehouse from '../../../layouts/TableFilterWarehouse.vue';
 import TableExpand from '../../../layouts/TableExpand.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
 import Warehouse_Table_Body from './Warehouse_Table_Body.vue'
@@ -71,6 +74,11 @@ onMounted(async () => {
         warehouse_store.getWarehouseDataHeaders();
     }
 })
+
+// Get Filtered Data
+const filterFunction = async (filtered_objects)=>{
+    await warehouse_store.getFilteredDataWarehouse(filtered_objects);
+}
 
 // Get Filtered Data
 // const filterFunction = async (filtered_objects)=>{

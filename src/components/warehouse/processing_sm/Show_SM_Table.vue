@@ -26,10 +26,13 @@
 
         <!-- Table -->
         <div class="">
-            <table class=" text-xs text-left text-gray-800 dark:text-gray-400 w-full " style="font-size: xx-small;">
+            <table v-if="warehouse_store.processing_sm_headers.length" class=" text-xs text-left text-gray-800 dark:text-gray-400 w-full " style="font-size: xx-small;">
                 <TableHeader :table_headers="warehouse_store.processing_sm_headers" />
                 <Get_SM_Body_Table />
             </table>
+            <div v-else class="flex flex-row justify-center items-center w-full h-96">
+              <span class="loading loading-dots loading-lg"></span>
+            </div>
         </div>
 
         <Show_STF_Selecting_Task />
@@ -68,6 +71,10 @@ const warehouse_store = WarehouseStore();
 onMounted(async () => {
     // Get All Waiting SMS
     await warehouse_store.getProcessingSMS();
+    // Get All Companies Names For Filtering 
+    await warehouse_store.getCompaniesNames();
+    // Get All Creating Users Names For Users
+    await warehouse_store.fetchSTFCreateUsernames();
     // Get \Warehouse Statistics Resukt just about SM
     // await warehouse_store.getStatisticResult();
     // Get Table Headers

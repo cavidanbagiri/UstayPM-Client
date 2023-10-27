@@ -21,7 +21,7 @@ const STFStore = defineStore("STFStore",{
     */
     msg_cond: false, // For Showing Toast After Creating New STF,
     after_created: false, // After Creating New STF, this will provide to cleaning order_list
-    
+
   }),
 
   getters: {
@@ -158,7 +158,6 @@ const STFStore = defineStore("STFStore",{
     // Fetch All User STF Headers
     async getWarehouseHeaders() {
       if (this.warehouse_data?.length>1) {
-        console.log('inside is work ');
         // Add Header To Header List
         for (let [key, value] of Object.entries(this?.warehouse_data[0])) {
           // Handle If Header name contain id or Id
@@ -237,7 +236,7 @@ const STFStore = defineStore("STFStore",{
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/stf/filterwarehouse${queries}
+                ${import.meta.env.VITE_API}/warehouse/filter${queries}
             `
           )
           .then((respond) => {

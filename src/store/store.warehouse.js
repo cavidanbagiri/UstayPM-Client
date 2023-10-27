@@ -36,6 +36,12 @@ const WarehouseStore = defineStore("WarehouseStore", {
     // Fetch Warehouse Delivert Types and show Provide Sm Page From Warehouse
     delivery_types : [],
 
+    // Choose Companies Name
+    companies_names: [], // 
+
+    // Fetch Username For Server For Filtered STF and SM With Username
+    created_stf_username: [],
+
   }),
 
 
@@ -133,6 +139,61 @@ const WarehouseStore = defineStore("WarehouseStore", {
       }
     },
 
+    // Get Filtered Data For User STF
+    async getFilteredDataWarehouse(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/warehouse/filter${queries}
+            `
+          )
+          .then((respond) => {
+            this.warehouse_data = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
+    },
+
+    // Get Companies Names          
+    async getCompaniesNames() {
+      try{
+        await axios
+        .get(`${import.meta.env.VITE_API}/procurement/companies`)
+        .then((respond) => {
+          this.companies_names = respond.data;
+        })
+        .catch((err) => {
+          console.log("Getting Companies Names Errors : ", err);
+        });
+      }
+      catch(err){
+        console.log('Get Companies Name Error : ',err);
+      }
+    },
+
+    // Fet Username Data Who Create STF
+    async fetchSTFCreateUsernames() {
+      try{
+        await axios
+        .get(`${import.meta.env.VITE_API}/procurement/createdstfusers`)
+        .then((respond) => {
+          this.created_stf_username = respond.data;
+        })
+        .catch((err) => {
+          console.log("Get Users Names Errors : ", err);
+        });
+      }
+      catch(err){
+        console.log('Get Procurement Users Error : ',err);
+      }
+    },
+
     // Post Accepted waiting to Warehouse
     async acceptWaitingSM(data) {
       try{
@@ -153,7 +214,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     // Fetch Received Items and Show In Warehouse/received
     async fetchWarehouseData() {
       await axios
-        .get(`${import.meta.env.VITE_API}/warehouse/warehouse`)
+        .get(`${import.meta.env.VITE_API}/warehouse`)
         .then((respond) => {
           this.warehouse_data = respond.data;
         })
