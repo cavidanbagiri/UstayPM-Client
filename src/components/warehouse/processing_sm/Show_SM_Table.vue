@@ -17,9 +17,9 @@
 
 
                 <!-- <Filter_Section_Comp /> -->
-                <TableFilter @filterFunction="filterFunction">
+                <TableFilterSM @filterFunction="filterFunction">
                     <TableExpand v-if="true" :table_headers="warehouse_store.processing_sm_headers" /> 
-                </TableFilter>
+                </TableFilterSM>
 
             </div>
         </div>
@@ -50,7 +50,7 @@
 import { onMounted } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
-import TableFilter from '../../../layouts/TableFilter.vue';
+import TableFilterSM from '../../../layouts/TableFilterSM.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import Get_SM_Body_Table from './Get_SM_Body_Table.vue';
 import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
@@ -78,7 +78,7 @@ onMounted(async () => {
 
 // Get Filtered Data
 const filterFunction = async (filtered_objects)=>{
-    // await warehouse_store.getFilteredDataWaitingSMS(filtered_objects);
+    await warehouse_store.getFilteredDataProcessingSM(filtered_objects);
 }
 
 // const fetchCurrentData = async (statistic_result_value) => {

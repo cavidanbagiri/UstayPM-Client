@@ -112,6 +112,27 @@ const WarehouseStore = defineStore("WarehouseStore", {
       }
     },
 
+    // Get Filtered Data For User STF
+    async getFilteredDataProcessingSM(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/procurement/filtersm${queries}
+            `
+          )
+          .then((respond) => {
+            this.processing_sms = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
+    },
+
     // Post Accepted waiting to Warehouse
     async acceptWaitingSM(data) {
       try{
@@ -154,10 +175,10 @@ const WarehouseStore = defineStore("WarehouseStore", {
               key === "sm_num" ||
               key === "created_at" ||
               key === "situation" ||
-              key === "delivery_material_name" ||
-              key === "delivery_material_amount" ||
+              key === "material_name" ||
+              key === "amount" ||
               key === "stock" ||
-              key === "delivery_material_unit" ||
+              key === "unit" ||
               key === "username" ||
               key === "orderer" ||
               key === "delivery_amount"
@@ -240,9 +261,27 @@ const WarehouseStore = defineStore("WarehouseStore", {
       catch(err){
         console.log('Fetch Departments Error : ',err);
       }
-    }
+    },
 
+    // Create URL query from table filter watcher             
+    createUrlQuery(filtered_object) {
+      let queries = "";
 
+      // Get All Keys from filtered_object
+      for (let [key, value] of Object.entries(filtered_object)) {
+        // If queries_string is empty and question mark
+        if (queries === "") {
+          queries += "?";
+        }
+        if (filtered_object[key] !== "") {
+        }
+        queries += `${key}=${filtered_object[key]}`;
+        queries += "&";
+      }
+      queries = queries.slice(0, -1);
+
+      return queries;
+    },
 
 
   }

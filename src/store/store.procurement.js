@@ -318,8 +318,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
           )
           .then((respond) => {
             this.all_sms = respond.data;
-            console.log('respond data is : ', respond.data);
-            console.log('after : ',this.all_sms);
           })
           .catch((err) => {
             console.log("Error Is : ", err);
