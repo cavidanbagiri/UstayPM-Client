@@ -48,28 +48,11 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
-    // Get Fields Name
-    async fetchFieldsNames(ProjectModelId) {
-      // Temporary Value
-      ProjectModelId = 1;
-      try {
-        await axios
-          .get(`${import.meta.env.VITE_API}/admin/fieldnames/${ProjectModelId}`)
-          .then((respond) => {
-            this.fields = respond.data;
-          })
-          .catch((err) => {
-            console.log("Error Is : ", err);
-          });
-      } catch (err) {
-        console.log("fetch Field Names Error : ", err);
-      }
-    },
-
     // Fetch All User STF
     async fetchUserSTFAll(user){
       if( user?.id) {
         try{
+          // await axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
           await axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
           .then((respond)=>{
             this.all_stf = respond.data;
@@ -84,6 +67,26 @@ const STFStore = defineStore("STFStore",{
         } 
       }
     },
+
+    // Get Filtered Data For User STF
+    async getFilteredData(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `${import.meta.env.VITE_API}/stf/filter${queries}`
+          )
+          .then((respond) => {
+            this.all_stf = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
+    },
+
     // Fetch All User STF Headers
     async getHeaders() {
       if (this.all_stf?.length>1) {
@@ -189,24 +192,21 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
-     // Get Filtered Data For User STF
-     async getFilteredData(filtered_object) {
-      const queries = this.createUrlQuery(filtered_object);
+    // Get Fields Name
+    async fetchFieldsNames(ProjectModelId) {
+      // Temporary Value
+      ProjectModelId = 1;
       try {
         await axios
-          .get(
-            `
-                ${import.meta.env.VITE_API}/stf/filter${queries}
-            `
-          )
+          .get(`${import.meta.env.VITE_API}/admin/fieldnames/${ProjectModelId}`)
           .then((respond) => {
-            this.all_stf = respond.data;
+            this.fields = respond.data;
           })
           .catch((err) => {
             console.log("Error Is : ", err);
           });
       } catch (err) {
-        console.log("Get Filtered Data Error : ", err);
+        console.log("fetch Field Names Error : ", err);
       }
     },
 

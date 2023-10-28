@@ -46,6 +46,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
 
 
   actions:{
+    
     // Get Waiting SM                                                               [ Check ]
     async getProcessingSMS() {
       await axios
@@ -56,6 +57,27 @@ const WarehouseStore = defineStore("WarehouseStore", {
         .catch((err) => {
           console.log("Get Warehouse Waiting Error : ", err);
         });
+    },
+
+    // Get Filtered Data For User STF
+    async getFilteredDataProcessingSM(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/procurement/filtersm${queries}
+            `
+          )
+          .then((respond) => {
+            this.processing_sms = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
     },
 
     // Get Table Headers and show in STF
@@ -115,27 +137,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
             this.processing_sm_headers[i] = temp;
           }
         }
-      }
-    },
-
-    // Get Filtered Data For User STF
-    async getFilteredDataProcessingSM(filtered_object) {
-      const queries = this.createUrlQuery(filtered_object);
-      try {
-        await axios
-          .get(
-            `
-                ${import.meta.env.VITE_API}/procurement/filtersm${queries}
-            `
-          )
-          .then((respond) => {
-            this.processing_sms = respond.data;
-          })
-          .catch((err) => {
-            console.log("Error Is : ", err);
-          });
-      } catch (err) {
-        console.log("Get Filtered Data Error : ", err);
       }
     },
 

@@ -97,6 +97,25 @@ const ProcurementStore = defineStore("ProcurementStore",{
       }
     },
 
+    // Get Filtered Data For User STF
+    async getFilteredDataSTF(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `${import.meta.env.VITE_API}/procurement/filterstf${queries}`
+          )
+          .then((respond) => {
+            this.all_stf = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
+    },
+
     // Fetch SFT Headers
     // Get Table Headers and show in STF
     async getSTFHeaders() {
@@ -156,7 +175,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
       }
     },
 
-    // Fetch All SMS                                                                            [ Checked ]
+    // Fetch All SMS
     async fetchAllSM() {
       try{
         await axios
@@ -170,6 +189,27 @@ const ProcurementStore = defineStore("ProcurementStore",{
       }
       catch(err){
         console.log('Fetch ALl SM Error : ',err);
+      }
+    },
+
+    // Get Filtered Data For User STF
+    async getFilteredDataSM(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/procurement/filtersm${queries}
+            `
+          )
+          .then((respond) => {
+            this.all_sms = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
       }
     },
 
@@ -281,48 +321,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
       }
       catch(err){
         console.log('Get Procurement Users Error : ',err);
-      }
-    },
-
-    // Get Filtered Data For User STF
-    async getFilteredDataSTF(filtered_object) {
-      const queries = this.createUrlQuery(filtered_object);
-      try {
-        await axios
-          .get(
-            `
-                ${import.meta.env.VITE_API}/procurement/filterstf${queries}
-            `
-          )
-          .then((respond) => {
-            this.all_stf = respond.data;
-          })
-          .catch((err) => {
-            console.log("Error Is : ", err);
-          });
-      } catch (err) {
-        console.log("Get Filtered Data Error : ", err);
-      }
-    },
-
-    // Get Filtered Data For User STF
-    async getFilteredDataSM(filtered_object) {
-      const queries = this.createUrlQuery(filtered_object);
-      try {
-        await axios
-          .get(
-            `
-                ${import.meta.env.VITE_API}/procurement/filtersm${queries}
-            `
-          )
-          .then((respond) => {
-            this.all_sms = respond.data;
-          })
-          .catch((err) => {
-            console.log("Error Is : ", err);
-          });
-      } catch (err) {
-        console.log("Get Filtered Data Error : ", err);
       }
     },
 
