@@ -74,7 +74,8 @@ const STFStore = defineStore("STFStore",{
       try {
         await axios
           .get(
-            `${import.meta.env.VITE_API}/stf/filter${queries}`
+            // `${import.meta.env.VITE_API}/stf/filter${queries}`
+            `${import.meta.env.VITE_API}/procurement/filterstf${queries}`
           )
           .then((respond) => {
             this.all_stf = respond.data;
@@ -195,7 +196,6 @@ const STFStore = defineStore("STFStore",{
     // Get Fields Name
     async fetchFieldsNames(ProjectModelId) {
       // Temporary Value
-      ProjectModelId = 1;
       try {
         await axios
           .get(`${import.meta.env.VITE_API}/admin/fieldnames/${ProjectModelId}`)

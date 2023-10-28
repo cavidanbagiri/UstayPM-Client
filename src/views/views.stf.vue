@@ -66,7 +66,13 @@ const changeTab = (num) => {
 }
 
 onMounted(async()=>{
-  stf_store.fetchFieldsNames(1);
+  const user = user_store.GETUSER;
+  if (user === undefined) {
+  }
+  else {
+    console.log('user is : ',user.projectId);
+    stf_store.fetchFieldsNames(1);
+  }
 })
 
 </script>

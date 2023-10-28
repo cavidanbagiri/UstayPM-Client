@@ -28,7 +28,7 @@
 
 <script setup>
 
-import { ref, onMounted } from 'vue';
+import { ref } from 'vue';
 import STF_Table_Header_Comp from './STF_Table_Header_Comp.vue';
 import STF_Table_Body_Comp from './STF_Table_Body_Comp.vue';
 import STF_Table_Row_Count_Comp from './STF_Table_Row_Count_Comp.vue';
