@@ -136,25 +136,6 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
-    // Fetch Warehouse Data
-    async fetchWarehouseData(user) {
-      if( user?.id) {
-        try{
-          await axios.get(`${import.meta.env.VITE_API}/stf/warehouse/${user.id}`)
-          .then((respond)=>{
-            this.warehouse_data = respond.data;
-          })
-          .catch((err)=>{
-            console.log('Fetch User Catch Error : ',err);
-          })
-  
-        }catch(err){
-          console.log('Fetch User STF Error : ', err);
-          return err;
-        } 
-      }
-    },
-
     // Fetch All User STF Headers
     async getWarehouseHeaders() {
       if (this.warehouse_data?.length>1) {
@@ -229,7 +210,26 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
-    // Get Filtered Data For User STF
+    // Fetch Warehouse Data
+    async fetchWarehouseData(user) {
+      if( user?.id) {
+        try{
+          await axios.get(`${import.meta.env.VITE_API}/stf/warehouse/${user.id}`)
+          .then((respond)=>{
+            this.warehouse_data = respond.data;
+          })
+          .catch((err)=>{
+            console.log('Fetch User Catch Error : ',err);
+          })
+  
+        }catch(err){
+          console.log('Fetch User STF Error : ', err);
+          return err;
+        } 
+      }
+    },
+
+    // Get Filtered Data For User Warehouse
     async getFilteredWarehouseData(filtered_object) {
       const queries = this.createUrlQuery(filtered_object);
       try {
