@@ -70,8 +70,7 @@ onMounted(async()=>{
   if (user === undefined) {
   }
   else {
-    console.log('user is : ',user.projectId);
-    stf_store.fetchFieldsNames(1);
+    stf_store.fetchFieldsNames(user?.projectId);
   }
 })
 
