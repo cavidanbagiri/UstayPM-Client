@@ -177,6 +177,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
 
     // Fetch All SMS
     async fetchAllSM(projectId) {
+     if(projectId){
       try{
         await axios
         .get(`${import.meta.env.VITE_API}/procurement/fetchsm/${projectId}`)
@@ -190,6 +191,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
       catch(err){
         console.log('Fetch ALl SM Error : ',err);
       }
+     }
     },
 
     // Get Filtered Data For User STF
