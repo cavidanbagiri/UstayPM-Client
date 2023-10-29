@@ -59,6 +59,7 @@ import Get_SM_Body_Table from './Get_SM_Body_Table.vue';
 import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
 import TableCommonComp from '../../design/TableCommonComp.vue';
 
+import UserStore from '../../../store/store.user_store';
 import WarehouseStore from '../../../store/store.warehouse';
 // import IndexStore from '../../../store';
 
@@ -66,20 +67,27 @@ import TableHeader from '../../../layouts/TableHeader.vue';
 
 // Create variable for importing data
 const warehouse_store = WarehouseStore();
+const user_store = UserStore();
 // const index_store = IndexStore();
 
 onMounted(async () => {
     // Get All Waiting SMS
-    await warehouse_store.getProcessingSMS();
-    // Get All Companies Names For Filtering 
-    await warehouse_store.getCompaniesNames();
-    // Get All Creating Users Names For Users
-    await warehouse_store.fetchSTFCreateUsernames();
-    // Get \Warehouse Statistics Resukt just about SM
-    // await warehouse_store.getStatisticResult();
-    // Get Table Headers
-    if(warehouse_store.processing_sm_headers.length === 0){
-        await warehouse_store.getProcessingSMHeaders()
+    const user = user_store.GETUSER;
+    if (user === null || user === undefined ) {
+        console.log('if work');
+    }
+    else{
+        await warehouse_store.getProcessingSMS(user?.projectId);
+        // Get All Companies Names For Filtering 
+        await warehouse_store.getCompaniesNames();
+        // Get All Creating Users Names For Users
+        await warehouse_store.fetchSTFCreateUsernames();
+        // Get \Warehouse Statistics Resukt just about SM
+        // await warehouse_store.getStatisticResult();
+        // Get Table Headers
+        if(warehouse_store.processing_sm_headers.length === 0){
+            await warehouse_store.getProcessingSMHeaders()
+        }
     }
 })
 

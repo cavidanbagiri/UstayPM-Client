@@ -176,10 +176,10 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Fetch All SMS
-    async fetchAllSM() {
+    async fetchAllSM(projectId) {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/procurement/fetchsm`)
+        .get(`${import.meta.env.VITE_API}/procurement/fetchsm/${projectId}`)
         .then((respond) => {
           this.all_sms = respond.data;
         })

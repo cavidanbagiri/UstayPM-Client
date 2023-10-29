@@ -3,7 +3,7 @@
 <template>
   <div class="flex flex-col bg-white">
 
-    <div class=" bg-white">
+    <div v-if="user_store.user" class=" bg-white">
 
       <div class="sticky top-0 bg-white">
         <div class="flex flex-row anim h-10 bg-white items-center sticky left-16 "
@@ -37,6 +37,9 @@
       </keep-alive>
 
     </div>
+    <div v-else>
+      <span>User Not Login</span>
+    </div>
 
   </div>
 </template>
@@ -55,8 +58,9 @@ import Warehouse_Table from '../components/warehouse/warehouse/Warehouse_Table.v
 import Provide_SM_Table from '../components/warehouse/provide_sm/Provide_SM_Table.vue';
 
 import WarehouseStore from '../store/store.warehouse';
+import UserStore from '../store/store.user_store';
 const warehouse_store = WarehouseStore();
-
+const user_store = UserStore();
 const tabs = [
 Show_SM_Table,
 Warehouse_Table,

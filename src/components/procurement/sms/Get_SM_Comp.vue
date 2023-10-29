@@ -55,24 +55,32 @@ import TableFilterSM from '../../../layouts/TableFilterSM.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import Get_SM_Body_Table from './Get_SM_Body_Table.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
-import ProcurementStore from '../../../store/store.procurement';
 import TableCommonComp from '../../design/TableCommonComp.vue';
 // import IndexStore from '../../../store';
 
 // Create variable for importing data
+import UserStore from '../../../store/store.user_store';
+import ProcurementStore from '../../../store/store.procurement';
 const procurement_store = ProcurementStore();
+const user_store = UserStore();
 // const index_store = IndexStore();
 
 
 onMounted(async()=>{
     // Fetch All SM
-    await procurement_store.fetchAllSM();
-    // Fetch SM Statistic Result
-    // await procurement_store.getSMStatisticsResult();
-    // Fetch Table Headers For SM
-    // procurement_store.getSMHeaders();
-    if (procurement_store.sm_table_headers.length === 0) {
-    procurement_store.getSMHeaders();
+    const user = user_store.GETUSER;
+    if (user === null || user === undefined ) {
+        console.log('if work');
+    }
+    else{
+        await procurement_store.fetchAllSM(user?.projectId);
+        // Fetch SM Statistic Result
+        // await procurement_store.getSMStatisticsResult();
+        // Fetch Table Headers For SM
+        // procurement_store.getSMHeaders();
+        if (procurement_store.sm_table_headers.length === 0) {
+        procurement_store.getSMHeaders();
+    }
   }
 })
 

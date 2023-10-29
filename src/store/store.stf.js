@@ -196,17 +196,19 @@ const STFStore = defineStore("STFStore",{
     // Get Fields Name
     async fetchFieldsNames(ProjectModelId) {
       // Temporary Value
-      try {
-        await axios
-          .get(`${import.meta.env.VITE_API}/admin/fieldnames/${ProjectModelId}`)
-          .then((respond) => {
-            this.fields = respond.data;
-          })
-          .catch((err) => {
-            console.log("Error Is : ", err);
-          });
-      } catch (err) {
-        console.log("fetch Field Names Error : ", err);
+      if(ProjectModelId){
+        try {
+          await axios
+            .get(`${import.meta.env.VITE_API}/admin/fieldnames/${ProjectModelId}`)
+            .then((respond) => {
+              this.fields = respond.data;
+            })
+            .catch((err) => {
+              console.log("Error Is : ", err);
+            });
+        } catch (err) {
+          console.log("fetch Field Names Error : ", err);
+        }
       }
     },
 
