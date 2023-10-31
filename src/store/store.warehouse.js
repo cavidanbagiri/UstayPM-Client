@@ -73,7 +73,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/procurement/filtersm${queries}
+                ${import.meta.env.VITE_API}/common/filtersm${queries}
             `
           )
           .then((respond) => {
@@ -154,7 +154,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/warehouse/filter${queries}
+                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
             `
           )
           .then((respond) => {

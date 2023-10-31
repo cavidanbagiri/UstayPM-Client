@@ -75,7 +75,7 @@ const STFStore = defineStore("STFStore",{
         await axios
           .get(
             // `${import.meta.env.VITE_API}/stf/filter${queries}`
-            `${import.meta.env.VITE_API}/procurement/filterstf${queries}`
+            `${import.meta.env.VITE_API}/common/filterstf${queries}`
           )
           .then((respond) => {
             this.all_stf = respond.data;
@@ -238,7 +238,7 @@ const STFStore = defineStore("STFStore",{
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/warehouse/filter${queries}
+                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
             `
           )
           .then((respond) => {

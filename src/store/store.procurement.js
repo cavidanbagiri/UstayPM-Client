@@ -103,7 +103,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
       try {
         await axios
           .get(
-            `${import.meta.env.VITE_API}/procurement/filterstf${queries}`
+            `${import.meta.env.VITE_API}/common/filterstf${queries}`
           )
           .then((respond) => {
             this.all_stf = respond.data;
@@ -201,7 +201,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/procurement/filtersm${queries}
+                ${import.meta.env.VITE_API}/common/filtersm${queries}
             `
           )
           .then((respond) => {
@@ -404,7 +404,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/warehouse/filter${queries}
+                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
             `
           )
           .then((respond) => {
