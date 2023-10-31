@@ -147,61 +147,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
       }
     },
 
-    // Get Filtered Data For User STF
-    async getFilteredDataWarehouse(filtered_object) {
-      const queries = this.createUrlQuery(filtered_object);
-      try {
-        await axios
-          .get(
-            `
-                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
-            `
-          )
-          .then((respond) => {
-            this.warehouse_data = respond.data;
-          })
-          .catch((err) => {
-            console.log("Error Is : ", err);
-          });
-      } catch (err) {
-        console.log("Get Filtered Data Error : ", err);
-      }
-    },
-
-    // Get Companies Names          
-    async getCompaniesNames() {
-      try{
-        await axios
-        .get(`${import.meta.env.VITE_API}/procurement/companies`)
-        .then((respond) => {
-          this.companies_names = respond.data;
-        })
-        .catch((err) => {
-          console.log("Getting Companies Names Errors : ", err);
-        });
-      }
-      catch(err){
-        console.log('Get Companies Name Error : ',err);
-      }
-    },
-
-    // Fet Username Data Who Create STF
-    async fetchSTFCreateUsernames() {
-      try{
-        await axios
-        .get(`${import.meta.env.VITE_API}/procurement/createdstfusers`)
-        .then((respond) => {
-          this.created_stf_username = respond.data;
-        })
-        .catch((err) => {
-          console.log("Get Users Names Errors : ", err);
-        });
-      }
-      catch(err){
-        console.log('Get Procurement Users Error : ',err);
-      }
-    },
-
     // Post Accepted waiting to Warehouse
     async acceptWaitingSM(data) {
       try{
@@ -229,6 +174,27 @@ const WarehouseStore = defineStore("WarehouseStore", {
         .catch((err) => {
           console.log("Received Items Error : ", err);
         });
+    },
+
+    // Get Filtered Data For User STF
+    async getFilteredDataWarehouse(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
+            `
+          )
+          .then((respond) => {
+            this.warehouse_data = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
     },
 
     // Get Table Headers and show in STF
@@ -302,10 +268,9 @@ const WarehouseStore = defineStore("WarehouseStore", {
     // Fetch Departments
     async fetchDepartments (){
       try{
-        await axios.get(`${import.meta.env.VITE_API}/warehouse/departments`)
+        await axios.get(`${import.meta.env.VITE_API}/common/fetchdepartments`)
         .then((respond)=>{
           this.departments = respond.data;
-          console.log('departments : ',this.departments);
         }).catch((err)=>{
           console.log('Fetch Departments Error : ',err);
         })
@@ -315,6 +280,39 @@ const WarehouseStore = defineStore("WarehouseStore", {
       }
     },
 
+    // Get Companies Names          
+    async getCompaniesNames() {
+      try{
+        await axios
+        .get(`${import.meta.env.VITE_API}/common/fetchcompanies`)
+        .then((respond) => {
+          this.companies_names = respond.data;
+        })
+        .catch((err) => {
+          console.log("Getting Companies Names Errors : ", err);
+        });
+      }
+      catch(err){
+        console.log('Get Companies Name Error : ',err);
+      }
+    },
+
+    // Fet Username Data Who Create STF
+    async fetchSTFCreateUsernames() {
+      try{
+        await axios
+        .get(`${import.meta.env.VITE_API}/common/createdstfusers`)
+        .then((respond) => {
+          this.created_stf_username = respond.data;
+        })
+        .catch((err) => {
+          console.log("Get Users Names Errors : ", err);
+        });
+      }
+      catch(err){
+        console.log('Get Procurement Users Error : ',err);
+      }
+    },
 
     // Fetch Departments
     async fetchWarehouseDeliveryTypes (){
@@ -322,7 +320,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
         await axios.get(`${import.meta.env.VITE_API}/warehouse/deliverytypes`)
         .then((respond)=>{
           this.delivery_types = respond.data;
-          console.log('delivery types : ',this.delivery_types);
         }).catch((err)=>{
           console.log('Fetch Departments Error : ',err);
         })

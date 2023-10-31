@@ -1,27 +1,24 @@
-
-import { defineStore } from 'pinia';
-import axios from 'axios';
+import { defineStore } from "pinia";
+import axios from "axios";
 
 axios.defaults.withCredentials = true;
 
-const STFStore = defineStore("STFStore",{
-
+const STFStore = defineStore("STFStore", {
   state: () => ({
-    tab_num : 0, // Create Listening FOr Changing STF Page Menu
-    all_stf : null, // Fetch All User STF 
-    all_stf_headers : [], // Get All fetching Data Headers
-    warehouse_selecting_rows : [], // Selecting Rows Will Ad To This Array
-    order_list : [], // During Create New STF, The Rows will add inside of this list for checking
+    tab_num: 0, // Create Listening FOr Changing STF Page Menu
+    all_stf: null, // Fetch All User STF
+    all_stf_headers: [], // Get All fetching Data Headers
+    warehouse_selecting_rows: [], // Selecting Rows Will Ad To This Array
+    order_list: [], // During Create New STF, The Rows will add inside of this list for checking
     fields: [], // Fecth ALl Field accroding to project, and show when new stf creating
-    warehouse_data : [], // Fetch All Warehouse Data 
-    warehouse_headers : [], // Fetch All Warehouse Headers
-    warehouse_selecting_rows : [], // Selected Warehouses Rows
+    warehouse_data: [], // Fetch All Warehouse Data
+    warehouse_headers: [], // Fetch All Warehouse Headers
+    warehouse_selecting_rows: [], // Selected Warehouses Rows
     /*
       After Creating New STF
     */
     msg_cond: false, // For Showing Toast After Creating New STF,
     after_created: false, // After Creating New STF, this will provide to cleaning order_list
-
   }),
 
   getters: {
@@ -30,13 +27,11 @@ const STFStore = defineStore("STFStore",{
     GETSELECTINGROWS: (state) => state.warehouse_selecting_rows,
     GETFIELDSNAME: (state) => state.fields,
     GETWAREHOUSEDATA: (state) => state.warehouse_data,
-    GETWAREHOUSEHEADERS: (state) => state.warehouse_headers
+    GETWAREHOUSEHEADERS: (state) => state.warehouse_headers,
   },
   actions: {
-
     // Create STF
     async createSTF(data) {
-      console.log('front data is : ',data);
       try {
         await axios
           .post(`${import.meta.env.VITE_API}/stf/createstf`, data)
@@ -49,22 +44,22 @@ const STFStore = defineStore("STFStore",{
     },
 
     // Fetch All User STF
-    async fetchUserSTFAll(user){
-      if( user?.id) {
-        try{
+    async fetchUserSTFAll(user) {
+      if (user?.id) {
+        try {
           // await axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
-          await axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
-          .then((respond)=>{
-            this.all_stf = respond.data;
-          })
-          .catch((err)=>{
-            console.log('Fetch User Catch Error : ',err);
-          })
-  
-        }catch(err){
-          console.log('Fetch User STF Error : ', err);
+          await axios
+            .get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
+            .then((respond) => {
+              this.all_stf = respond.data;
+            })
+            .catch((err) => {
+              console.log("Fetch User Catch Error : ", err);
+            });
+        } catch (err) {
+          console.log("Fetch User STF Error : ", err);
           return err;
-        } 
+        }
       }
     },
 
@@ -90,12 +85,16 @@ const STFStore = defineStore("STFStore",{
 
     // Fetch All User STF Headers
     async getHeaders() {
-      if (this.all_stf?.length>1) {
+      if (this.all_stf?.length > 1) {
         // Add Header To Header List
         for (let [key, value] of Object.entries(this?.all_stf[0])) {
           // Handle If Header name contain id or Id
-          const last_two_digits = key.slice(key.length - 2, key.length );
-          if (key !== "id" && last_two_digits !== 'id' && last_two_digits !=='Id' ) {
+          const last_two_digits = key.slice(key.length - 2, key.length);
+          if (
+            key !== "id" &&
+            last_two_digits !== "id" &&
+            last_two_digits !== "Id"
+          ) {
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);
             val = val.split("_").join(" ");
@@ -140,14 +139,58 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
+    // Get Fields Name
+    async fetchFieldsNames(ProjectModelId) {
+      // Temporary Value
+      if (ProjectModelId) {
+        try {
+          await axios
+            .get(
+              `${import.meta.env.VITE_API}/common/fetchfields/${ProjectModelId}`
+            )
+            .then((respond) => {
+              this.fields = respond.data;
+            })
+            .catch((err) => {
+              console.log("Error Is : ", err);
+            });
+        } catch (err) {
+          console.log("fetch Field Names Error : ", err);
+        }
+      }
+    },
+
+    // Fetch Warehouse Data
+    async fetchWarehouseData(user) {
+      if (user?.id) {
+        try {
+          await axios
+            .get(`${import.meta.env.VITE_API}/stf/warehouse/${user.id}`)
+            .then((respond) => {
+              this.warehouse_data = respond.data;
+            })
+            .catch((err) => {
+              console.log("Fetch User Catch Error : ", err);
+            });
+        } catch (err) {
+          console.log("Fetch User STF Error : ", err);
+          return err;
+        }
+      }
+    },
+
     // Fetch All User STF Headers
     async getWarehouseHeaders() {
-      if (this.warehouse_data?.length>1) {
+      if (this.warehouse_data?.length > 1) {
         // Add Header To Header List
         for (let [key, value] of Object.entries(this?.warehouse_data[0])) {
           // Handle If Header name contain id or Id
-          const last_two_digits = key.slice(key.length - 2, key.length );
-          if (key !== "id" && last_two_digits !== 'id' && last_two_digits !=='Id' ) {
+          const last_two_digits = key.slice(key.length - 2, key.length);
+          if (
+            key !== "id" &&
+            last_two_digits !== "id" &&
+            last_two_digits !== "Id"
+          ) {
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);
             val = val.split("_").join(" ");
@@ -162,7 +205,6 @@ const STFStore = defineStore("STFStore",{
               key === "certificate" ||
               key === "passport" ||
               key === "field"
-              
             ) {
               // header_cond[`${key}`] = true;
               header_cond["showname"] = `${val}`;
@@ -193,44 +235,6 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
-    // Get Fields Name
-    async fetchFieldsNames(ProjectModelId) {
-      // Temporary Value
-      if(ProjectModelId){
-        try {
-          await axios
-            .get(`${import.meta.env.VITE_API}/admin/fieldnames/${ProjectModelId}`)
-            .then((respond) => {
-              this.fields = respond.data;
-            })
-            .catch((err) => {
-              console.log("Error Is : ", err);
-            });
-        } catch (err) {
-          console.log("fetch Field Names Error : ", err);
-        }
-      }
-    },
-
-    // Fetch Warehouse Data
-    async fetchWarehouseData(user) {
-      if( user?.id) {
-        try{
-          await axios.get(`${import.meta.env.VITE_API}/stf/warehouse/${user.id}`)
-          .then((respond)=>{
-            this.warehouse_data = respond.data;
-          })
-          .catch((err)=>{
-            console.log('Fetch User Catch Error : ',err);
-          })
-  
-        }catch(err){
-          console.log('Fetch User STF Error : ', err);
-          return err;
-        } 
-      }
-    },
-
     // Get Filtered Data For User Warehouse
     async getFilteredWarehouseData(filtered_object) {
       const queries = this.createUrlQuery(filtered_object);
@@ -252,7 +256,7 @@ const STFStore = defineStore("STFStore",{
       }
     },
 
-    // Create URL query from table filter watcher             
+    // Create URL query from table filter watcher
     createUrlQuery(filtered_object) {
       let queries = "";
 
@@ -271,9 +275,7 @@ const STFStore = defineStore("STFStore",{
 
       return queries;
     },
-
-  } 
-
-})
+  },
+});
 
 export default STFStore;

@@ -117,7 +117,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Fetch SFT Headers
-    // Get Table Headers and show in STF
     async getSTFHeaders() {
       if (this.all_stf.length) {
         for (let [key, value] of Object.entries(this.all_stf[0])) {
@@ -279,7 +278,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     async getCompaniesNames() {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/procurement/companies`)
+        .get(`${import.meta.env.VITE_API}/common/fetchcompanies`)
         .then((respond) => {
           this.companies_names = respond.data;
         })
@@ -296,7 +295,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     async getProcurementUsersNames() {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/procurement/users`)
+        .get(`${import.meta.env.VITE_API}/common/procurementusers`)
         .then((respond) => {
           this.procurement_users_names = respond.data;
         })
@@ -313,7 +312,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     async fetchSTFCreateUsernames() {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/procurement/createdstfusers`)
+        .get(`${import.meta.env.VITE_API}/common/createdstfusers`)
         .then((respond) => {
           this.created_stf_username = respond.data;
         })
