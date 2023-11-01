@@ -102,8 +102,8 @@ const WarehouseStore = defineStore("WarehouseStore", {
               key === "created_at" ||
               key === "situation" ||
               key === "sm_material_name" ||
-              key === "sm_material_amount" ||
-              key === "sm_material_unit" ||
+              key === "amount" ||
+              key === "unit" ||
               key === "sm_num" ||
               key === "price" ||
               key === "total" ||

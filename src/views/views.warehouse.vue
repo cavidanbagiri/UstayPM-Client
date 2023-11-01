@@ -5,7 +5,7 @@
 
     <div v-if="user_store.user" class=" bg-white">
 
-      <div class="sticky top-0 bg-white">
+      <div class="sticky top-0 bg-white" style="font-family: 'Poppins', sans-serif;">
         <div class="flex flex-row anim h-10 bg-white items-center sticky left-16 "
           style="letter-spacing: 1px;font-size: x-small;display: inline-block;">
 

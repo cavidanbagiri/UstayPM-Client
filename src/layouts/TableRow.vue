@@ -1,5 +1,5 @@
 <template>
-  <th v-for="i in prop?.table_headers" v-show="i.value" class="px-2 py-2 font-medium text-center " style="font-family: 'Roboto', sans-serif;">
+  <th v-for="i in prop?.table_headers" v-show="i.value" class="px-2 py-2 font-medium text-center " style="font-family: 'Poppins', sans-serif;">
       <div v-if="i.name === 'stf_num'" class="w-24">
         <span class="bg-orange-100 text-orange-500 py-[0.30rem] px-2 rounded-md "> {{ prop.each[i.name] }}</span>
       </div>

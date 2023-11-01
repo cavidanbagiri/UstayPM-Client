@@ -60,13 +60,14 @@ const close = () => {
 <style scoped>
 
   .row_item {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 300;
+    font-family: 'Poppins', sans-serif;
     font-size: 17px;
   }
   .row_item:hover{
-    background-color: rgb(226 232 240);
+    background-color: rgb(22, 233, 110);
     border-radius: 10px;
+    padding-left: 5px;
+    transition: 0.3s;
   }
 
 </style>

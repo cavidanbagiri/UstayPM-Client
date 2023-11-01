@@ -2,7 +2,7 @@
   <div class=" flex flex-col  bg-white">
 
     <!-- If User Login -->
-    <div v-if="user_store.user" class="bg-white" style="font-family: Roboto ;">
+    <div v-if="user_store.user" class="bg-white" style="font-family: 'Poppins', sans-serif ;">
       <div class="bg-white sticky top-0">
 
         <div class="flex flex-row anim h-10 bg-white items-center sticky left-16 "
