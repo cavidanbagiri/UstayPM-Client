@@ -87,7 +87,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
         .get(`${import.meta.env.VITE_API}/procurement/fetchstf`)
         .then((respond) => {
           this.all_stf = respond.data;
-          console.log('stf  \n', this.all_stf);
         })
         .catch((err) => {
           console.log("all stf Error : ", err);
@@ -183,7 +182,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
         .get(`${import.meta.env.VITE_API}/procurement/fetchsm/${projectId}`)
         .then((respond) => {
           this.all_sms = respond.data;
-          console.log('sm \n', this.all_sms);
         })
         .catch((err) => {
           console.log("all stf Error : ", err);

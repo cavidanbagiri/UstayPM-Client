@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gradient-to-r from-blue-400 to-blue-500 fixed right-0 top-0 z-50 py-2 rounded-lg flex">
+  <div class="bg-gradient-to-r from-slate-800 to-slate-900 fixed right-0 top-0 z-50 py-2 rounded-lg flex">
     <div class="mx-5" ><i class=" cursor-pointer hover:text-gray-500 fa-solid fa-gear fa-lg text-gray-100"></i></div>
     <div class="mx-5" ><i class=" cursor-pointer hover:text-gray-500 fa-solid fa-chart-column fa-lg text-gray-100"></i></div>
     <div class="mx-5" ><i class=" cursor-pointer hover:text-gray-500 fa-solid fa-file-csv fa-lg text-gray-100"></i></div>

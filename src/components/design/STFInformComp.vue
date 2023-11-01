@@ -7,7 +7,7 @@
       </span>
     </div>
     <div class="flex flex-col">
-      <span class=" py-2  text-gray-900 row_item">
+      <span @click="getSTFInform" class=" py-2  text-gray-900 row_item">
           <i class="fa-brands fa-joget px-1 text-gray-500"></i>
         Get STF Information</span>
       <span class=" py-2  text-gray-900 row_item">
@@ -43,16 +43,18 @@
 
 <script setup>
 
-// import {ref} from 'vue';
+import IndexStore from '../../store/store.index';
 
-// const cond = ref(false);
-
-const prop = defineProps(['cond'])
+const index_store = IndexStore();
+const prop = defineProps(['cond', 'each'])
 const emit = defineEmits(['closeInform'])
 
-const close = () => {
-  console.log('me also');
-  emit('closeInform')
+// Close Inform Button 
+const close = () => {emit('closeInform')}
+
+// Get STF Information
+const getSTFInform = () => {
+  index_store.fetchSTFRowInform(prop?.each?.stf_id)
 }
 
 </script>

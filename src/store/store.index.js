@@ -10,10 +10,9 @@ const IndexStore = defineStore('IndexStore',{
 
         // Common Design
         canvas_toggle : false,
-        user_teleport : false,
 
         // Table Row Inform
-        row_inform_condition : false,
+        // row_inform_condition : false,
         row_detail_data : null,
     }),
 
@@ -26,15 +25,17 @@ const IndexStore = defineStore('IndexStore',{
         TOGGLECANVAS () {
             this.canvas_toggle = !this.canvas_toggle;
         },
-        TOGGLEUSERTELEPORT () { 
-            this.user_teleport = !this.user_teleport;
-        },
+        // TOGGLEUSERTELEPORT () { 
+        //     this.user_teleport = !this.user_teleport;
+        // },
         // Get Row Information
-        async getRowDetails (stfid){
+        async fetchSTFRowInform (stfid){
+            console.log('stf id is : ',stfid);
           await axios.get(`
-            http://localhost:3000/order/getrowdetails/${stfid}
+            ${import.meta.env.VITE_API}/common/fetchstfrowinform/${stfid}
           `).then((respond)=>{
             this.row_detail_data = respond.data;
+            console.log('Row Detail Data : \n',this.row_detail_data);
         }).catch((err)=>{
             console.log('row detail respond Error : ',err);
           })
