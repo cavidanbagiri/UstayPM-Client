@@ -2,12 +2,12 @@
   <div class="flex flex-col h-screen bg-gradient-to-r from-blue-400 to-blue-500 w-14 items-center justify-start p-0 m-0 rounded-r-md 
   border-r-2 ">
       <!-- Open Toggle Canvas -->
-      <div class="relative">
+      <div class="relative" @click="toggleCanvas">
           <span
               class="rounded-md cursor-pointer  mt-5 w-8 h-8 flex flex-row justify-center items-center hover:bg-blue-800 duration-300"><i
                   class="fa-solid fa-bars fa-md" style="color:white;"></i>
           </span>
-          <span v-if="menu_tooltip"
+          <span v-if="menu_tooltip" 
               class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
               Catalog
           </span>
@@ -161,7 +161,10 @@
 
 import { ref, watchEffect } from 'vue';
 import UserStore from '../store/store.user_store';
+import IndexStore from '../store/store.index';
+
 const user_store = UserStore();
+const index_store = IndexStore();
 
 // Show Tooltips
 const home_tooltip = ref(false)
@@ -184,6 +187,8 @@ watchEffect(() => {
     user.value = JSON.parse(sessionStorage?.getItem('user'));
     user_store.user = user.value;
 })
+
+const toggleCanvas = () => index_store.TOGGLECANVAS()
 
 </script>
 

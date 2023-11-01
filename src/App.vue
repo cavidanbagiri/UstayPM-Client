@@ -10,7 +10,7 @@
 
     <div class="p-0">
 
-      <!-- <Off_Canvas_Comp v-if="store.GETCANVASTOGGLE" /> -->
+      <MenuCanvas v-if="index_store.canvas_toggle"/>
 
       <router-view></router-view>
 
@@ -25,8 +25,11 @@
 
 import NavbarLayout from './layouts/NavbarLayout.vue';
 import MessageMain from './components/message/MessageMain.vue';
-
+import MenuCanvas from './layouts/MenuCanvas.vue';
+import IndexStore from './store/store.index';
 import { ArcElement,Chart as ChartJS } from "chart.js";
+
+const index_store = IndexStore();
 
 ChartJS.register(ArcElement);
 
