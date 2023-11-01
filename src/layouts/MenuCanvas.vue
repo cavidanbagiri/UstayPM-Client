@@ -1,18 +1,18 @@
 <template>
-    <div class=" mtf-anim fixed shadow-2xl z-10 px-2 py-1 h-screen bg-white w-80 rounded-xl border-2 border-blue-200">
+    <div class=" mtf-anim fixed shadow-2xl z-10 px-2 py-1 h-screen bg-slate-900 w-80 rounded-xl border ">
         <div class="flex justify-end ">
-            <span class=" hover:bg-blue-500  px-2 py-1 my-1 rounded-md cursor-pointer" @click="closeOffCanvas"><i class="fa-solid fa-xmark fa-xl text-gray-500 hover:text-gray-100"></i></span>
+            <span class=" hover:bg-green-500  px-2 py-1 my-1 rounded-md cursor-pointer" @click="closeOffCanvas"><i class="fa-solid fa-xmark fa-xl text-gray-200 hover:text-gray-100"></i></span>
         </div>
-        <span class="p-2 rounded-xl cursor-pointer hover:bg-blue-500 flex flex-row items-center hover:text-white">
+        <span class="p-2 rounded-xl cursor-pointer hover:bg-green-500 flex flex-row items-center hover:text-white">
             <img class="w-10 h-10 rounded-full"
                 src="https://img.freepik.com/free-photo/the-beautiful-girl-stands-near-walll-with-leaves_8353-5377.jpg?w=2000"
                 alt="">
-            <span  style="font-family: 'Poppins', sans-serif; font-size: 1.1rem;" class=" pl-1">{{ user_store?.user?.name }} {{
+            <span  style="font-family: 'Poppins', sans-serif; font-size: 1.1rem;" class=" pl-1 text-gray-200">{{ user_store?.user?.name }} {{
                 user_store?.user?.surname
             }}  </span>
         </span>
-        <ul class="p-0 mt-5 text-gray-600" style="font-family: 'Poppins', sans-serif; font-size: 1.1rem;">
-            <li class="hover:bg-blue-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center">
+        <ul class="p-0 mt-5 text-gray-300" style="font-family: 'Poppins', sans-serif; font-size: 1.1rem;">
+            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center">
                 <div class="text-md w-10 flex items-center justify-center">
                         <i class="fa-solid fa-briefcase fa-md"></i>
                 </div>
@@ -20,7 +20,7 @@
                     My Workspace
                 </span>
             </li>
-            <li class="hover:bg-blue-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center">
+            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center">
                 <div class="text-md w-10 flex items-center justify-center">
                     <i class="fa-solid fa-bell fa-md"></i>
                 </div>
@@ -28,7 +28,15 @@
                     Notification
                 </span>
             </li>
-            <li class="hover:bg-blue-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
+            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
+                <div class="text-md w-10 flex items-center justify-center">
+                    <i class="fa-solid fa-message fa-md"></i>
+                </div>
+                <span>
+                    Messages
+                </span>
+            </li>
+            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
                 <div class="text-md w-10 flex items-center justify-center">
                     <i class="fa-solid fa-star fa-md"></i>
                 </div>
@@ -36,14 +44,22 @@
                     Starred
                 </span>
             </li>
+            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
+                <div class="text-md w-10 flex items-center justify-center">
+                    <i class="fa-solid fa-eye fa-md"></i>
+                </div>
+                <span>
+                    Hide
+                </span>
+            </li>
             <!-- Procurement -->
             <router-link to="/procurement">
-                <li class="hover:bg-blue-500 hover:text-gray-100 p-2  mt-2 rounded-lg  py-2 px-4 cursor-pointer "
+                <li class="hover:bg-green-500 hover:text-gray-100 p-2  mt-2 rounded-lg  py-2 px-4 cursor-pointer "
                     @click="show_procurement_dropdown = !show_procurement_dropdown">
                     <div class="">
                         <div class="flex justify-between">
                             <div class="flex justify-center items-center">
-                                <i class="fa-solid fa-cart-shopping fa-sm w-8"></i>
+                                <div class="w-8"><i class="fa-solid fa-cart-shopping fa-sm"></i></div>
                                 <span>Procurement</span>
                             </div>
                             <div>
@@ -107,13 +123,15 @@
             </router-link>
             <!-- Warehouse -->
             <router-link to="/warehouse">
-                <li class="hover:bg-blue-500 hover:text-gray-100  p-2 mt-2 rounded-lg  py-2 px-4 cursor-pointer"
+                <li class="hover:bg-green-500 hover:text-gray-100  p-2 mt-2 rounded-lg  py-2 px-4 cursor-pointer"
                     @click="show_warehouse_dropdown = !show_warehouse_dropdown">
                     <div>
                         <div class="flex justify-between">
-                            <div class="">
-                                <span class="text-md">
-                                    <i class="fa-solid fa-warehouse fa-sm w-7"></i>
+                            <div class="flex justify-center items-center">
+                                <div class="w-8">
+                                    <i class="fa-solid fa-warehouse fa-sm"></i>
+                                </div>
+                                <span class="">
                                     Warehouse
                                 </span>
                             </div>
@@ -163,8 +181,17 @@
                     </div>
                 </li>
             </router-link>
+            <!-- User profile -->
+            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
+                <div class="text-md w-10 flex items-center justify-center">
+                    <i class="fa-solid fa-user fa-md"></i>
+                </div>
+                <span>
+                    User
+                </span>
+            </li>
             <!-- Login Logout -->
-            <li v-if="!user_store?.user" class="hover:bg-blue-500 hover:text-gray-100  p-2 mt-2 rounded-lg cursor-pointer flex items-center " @click="openUserLogin" >
+            <li v-if="!user_store?.user" class="hover:bg-green-500 hover:text-gray-100  p-2 mt-2 rounded-lg cursor-pointer flex items-center " @click="openUserLogin" >
                 
                 <!-- <span @click="openUserLogin" >
                     <i class="fa-solid fa-right-to-bracket fa-md"></i>
@@ -179,7 +206,7 @@
                 </span>
 
             </li>
-            <li v-else class="hover:bg-blue-500 hover:text-gray-100  p-2 mt-2 rounded-lg cursor-pointer flex items-center"  @click="openUserLogout" >
+            <li v-else class="hover:bg-green-500 hover:text-gray-100  p-2 mt-2 rounded-lg cursor-pointer flex items-center"  @click="openUserLogout" >
                 
                 <!-- <span @click="openUserLogout">
                     <i class="fa-solid fa-arrow-right-from-bracket fa-md"></i>
@@ -233,8 +260,8 @@ const closeOffCanvas = () => {
 }
 
 // Show procurement Dropdown
-const show_procurement_dropdown = ref(false);
-const show_warehouse_dropdown = ref(false);
+const show_procurement_dropdown = ref(true);
+const show_warehouse_dropdown = ref(true);
 
 </script>
 
