@@ -87,6 +87,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
         .get(`${import.meta.env.VITE_API}/procurement/fetchstf`)
         .then((respond) => {
           this.all_stf = respond.data;
+          console.log('stf  \n', this.all_stf);
         })
         .catch((err) => {
           console.log("all stf Error : ", err);
@@ -133,8 +134,8 @@ const ProcurementStore = defineStore("ProcurementStore",{
               key === "situation" ||
               key === "material_type" ||
               key === "material_name" ||
-              key === "material_unit" ||
-              key === "material_amount" ||
+              key === "amount" ||
+              key === "unit" ||
               key === "username"
             ) {
               header_cond["showname"] = `${val}`;
@@ -182,6 +183,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
         .get(`${import.meta.env.VITE_API}/procurement/fetchsm/${projectId}`)
         .then((respond) => {
           this.all_sms = respond.data;
+          console.log('sm \n', this.all_sms);
         })
         .catch((err) => {
           console.log("all stf Error : ", err);
@@ -230,8 +232,8 @@ const ProcurementStore = defineStore("ProcurementStore",{
               key === "created_at" ||
               key === "situation" ||
               key === "sm_material_name" ||
-              key === "sm_material_amount" ||
-              key === "sm_material_unit" ||
+              key === "amount" ||
+              key === "unit" ||
               key === "sm_num" ||
               key === "price" ||
               key === "total" ||

@@ -105,8 +105,8 @@ const STFStore = defineStore("STFStore", {
               key === "situation" ||
               key === "material_type" ||
               key === "material_name" ||
-              key === "material_unit" ||
-              key === "material_amount" ||
+              key === "amount" ||
+              key === "unit" ||
               key === "username" ||
               key === "field_name"
             ) {

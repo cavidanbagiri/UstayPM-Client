@@ -44,7 +44,7 @@
                   {{ i.showname }}
               </div>
 
-              <div v-else-if="i.name==='sm_material_amount' " class="min-w-[120px]">
+              <div v-else-if="i.name==='amount' " class="min-w-[120px]">
                   {{ i.showname }}
               </div>
 
