@@ -42,7 +42,7 @@
                         >
                         <option v-for="i in procurement_store.created_stf_username" class="text-lg" 
                         :value="i.id"
-                        style="font-family: 'Lato', sans-serif;">
+                        style="font-family: 'Poppins', sans-serif;">
                           {{ i.ordered_name }}
                         </option>
                     </select>

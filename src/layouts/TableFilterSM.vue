@@ -77,7 +77,7 @@
                         >
                         <option v-for="i in procurement_store.companies_names" class="text-lg" 
                         :value="i.company_id"
-                        style="font-family: 'Lato', sans-serif;">
+                        style="font-family: 'Poppins', sans-serif;">
                           {{ i.vendor_name }}
                         </option>
                     </select>
@@ -97,7 +97,7 @@
                             <div class="sticky top-0 bg-white p-2 height-[30px]">
                                 <div class="flex justify-between text-gray-600">
                                     <span class="font-bold text-2xl"
-                                        style="font-family: 'Lato', sans-serif ;">Companies</span>
+                                        style="font-family: 'Poppins', sans-serif ;">Companies</span>
                                     <button @click=closeComp
                                         class="font-bold text-lg hover:bg-gray-100 py-1 px-2 rounded-md">
                                         <i class="fa-solid fa-xmark"></i>
@@ -107,18 +107,18 @@
                             <!-- Search Company Name Section -->
                             <div class=" sticky top-[36px] p-2 bg-white">
                                 <input class="border-2 border-indigo-600 my-2 w-full p-2 rounded-lg text-sm outline-none "
-                                    type="text" name="" id="" placeholder="Company Name..." style="font-style: italic;">
+                                    type="text" name="" id="" placeholder="Company Name..." style="">
                             </div>
                             <!-- Companies Names Section -->
                             <ul class="">
-                                <li style="font-family:'Lato', sans-serif;" 
+                                <li style="font-family:'Poppins', sans-serif;" 
                                     class="m-1 p-1 px-2 hover:bg-gray-100  cursor-pointer rounded-md ">
-                                    <span @click="selectedComp('All')">
+                                    <span @click="selectedComp('All')" style="font-family:'Poppins', sans-serif;" class="text-lg" >
                                         All
                                     </span>
                                 </li>
                                 <li v-for="i in procurement_store.companies_names" @click="selectedComp(i)"
-                                    style="font-family:'Lato', sans-serif;"
+                                    style="font-family:'Poppins', sans-serif;"
                                     class="m-1 p-1 px-2 hover:bg-gray-100  cursor-pointer rounded-md ">
                                     {{ i.vendor_name }}
                                 </li>
@@ -133,7 +133,7 @@
                         class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
                         <option value="All">All</option>
                         <option v-for="i in procurement_store.created_stf_username" class="text-lg" :value="i.id"
-                            style="font-family: 'Lato', sans-serif;">
+                            style="font-family: 'Poppins', sans-serif;">
                             {{ i.ordered_name }}
                         </option>
                     </select>
