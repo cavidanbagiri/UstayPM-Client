@@ -12,7 +12,7 @@ const IndexStore = defineStore('IndexStore',{
         canvas_toggle : false,
 
         // Table Row Inform
-        // row_inform_condition : false,
+        row_inform_condition : false,
         row_detail_data : null,
     }),
 

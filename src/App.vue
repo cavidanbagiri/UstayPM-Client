@@ -18,6 +18,8 @@
 
     <MessageMain/>
 
+    <STFInformBar v-if="index_store.row_inform_condition"/>
+
   </div>
 </template>
 
@@ -26,6 +28,7 @@
 import NavbarLayout from './layouts/NavbarLayout.vue';
 import MessageMain from './components/message/MessageMain.vue';
 import MenuCanvas from './layouts/MenuCanvas.vue';
+import STFInformBar from './layouts/STFInformBar.vue';
 import IndexStore from './store/store.index';
 import { ArcElement,Chart as ChartJS } from "chart.js";
 
