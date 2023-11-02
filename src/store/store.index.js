@@ -25,9 +25,6 @@ const IndexStore = defineStore('IndexStore',{
         TOGGLECANVAS () {
             this.canvas_toggle = !this.canvas_toggle;
         },
-        // TOGGLEUSERTELEPORT () { 
-        //     this.user_teleport = !this.user_teleport;
-        // },
         // Get Row Information
         async fetchSTFRowInform (stfid){
             console.log('stf id is : ',stfid);

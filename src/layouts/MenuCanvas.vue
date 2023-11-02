@@ -1,34 +1,29 @@
 <template>
-    <div class=" mtf-anim fixed shadow-2xl z-10 px-2 py-1 h-screen bg-slate-900 w-80 rounded-xl border ">
-        <div class="flex justify-end ">
-            <span class=" hover:bg-green-500  px-2 py-1 my-1 rounded-md cursor-pointer" @click="closeOffCanvas"><i class="fa-solid fa-xmark fa-xl text-gray-200 hover:text-gray-100"></i></span>
-        </div>
-        <span class="p-2 rounded-xl cursor-pointer hover:bg-green-500 flex flex-row items-center hover:text-white">
+    <div :class="anim_toggle ? 'mtf-anim-open' : 'mtf-anim-close' "  class=" fixed shadow-xl z-10 px-2 py-1 h-screen bg-slate-900 w-80 rounded-xl">
+
+        <!-- <div class="flex justify-end "> -->
+            <span class="  bg-green-500 hover:bg-green-400 p-1 w-8 h-8  rounded-full cursor-pointer absolute top-1 -right-3 flex items-center justify-center" @click="closeOffCanvas">
+                <i class="fa-solid fa-chevron-left fa-xl text-white hover:text-gray-100"></i>
+            </span>
+        <!-- </div> -->
+        <div class="p-2 rounded-xl cursor-pointer mt-10 hover:bg-green-500 hover:duration-300 flex flex-row items-center hover:text-white border border-green-500">
             <img class="w-10 h-10 rounded-full"
                 src="https://img.freepik.com/free-photo/the-beautiful-girl-stands-near-walll-with-leaves_8353-5377.jpg?w=2000"
                 alt="">
-            <span  style="font-family: 'Poppins', sans-serif; font-size: 1.1rem;" class=" pl-1 text-gray-200">{{ user_store?.user?.name }} {{
+            <span  style="font-family: 'Poppins', sans-serif; font-size: 1.1rem;" class=" pl-1 text-gray-200 ">{{ user_store?.user?.name }} {{
                 user_store?.user?.surname
             }}  </span>
-        </span>
+        </div>
         <ul class="p-0 mt-5 text-gray-300" style="font-family: 'Poppins', sans-serif; font-size: 1.1rem;">
-            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center">
+            <li class="hover:bg-green-500 hover:text-gray-100 hover:duration-300 p-2 mt-2 rounded-lg cursor-pointer flex items-center">
                 <div class="text-md w-10 flex items-center justify-center">
                         <i class="fa-solid fa-briefcase fa-md"></i>
                 </div>
                 <span>
-                    My Workspace
+                    Workspace
                 </span>
             </li>
-            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center">
-                <div class="text-md w-10 flex items-center justify-center">
-                    <i class="fa-solid fa-bell fa-md"></i>
-                </div>
-                <span>
-                    Notification
-                </span>
-            </li>
-            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
+            <li class="hover:bg-green-500 hover:text-gray-100 hover:duration-300  p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
                 <div class="text-md w-10 flex items-center justify-center">
                     <i class="fa-solid fa-message fa-md"></i>
                 </div>
@@ -36,7 +31,15 @@
                     Messages
                 </span>
             </li>
-            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
+            <li class="hover:bg-green-500 hover:text-gray-100 hover:duration-300  p-2 mt-2 rounded-lg cursor-pointer flex items-center">
+                <div class="text-md w-10 flex items-center justify-center">
+                    <i class="fa-solid fa-bell fa-md"></i>
+                </div>
+                <span>
+                    Notification
+                </span>
+            </li>
+            <li class="hover:bg-green-500 hover:text-gray-100 hover:duration-300  p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
                 <div class="text-md w-10 flex items-center justify-center">
                     <i class="fa-solid fa-star fa-md"></i>
                 </div>
@@ -44,7 +47,7 @@
                     Starred
                 </span>
             </li>
-            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
+            <li class="hover:bg-green-500 hover:text-gray-100 hover:duration-300  p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
                 <div class="text-md w-10 flex items-center justify-center">
                     <i class="fa-solid fa-eye fa-md"></i>
                 </div>
@@ -54,7 +57,7 @@
             </li>
             <!-- Procurement -->
             <router-link to="/procurement">
-                <li class="hover:bg-green-500 hover:text-gray-100 p-2  mt-2 rounded-lg  py-2 px-4 cursor-pointer "
+                <li class="hover:bg-green-500 hover:text-gray-100 hover:duration-300  p-2  mt-2 rounded-lg  py-2 px-4 cursor-pointer "
                     @click="show_procurement_dropdown = !show_procurement_dropdown">
                     <div class="">
                         <div class="flex justify-between">
@@ -75,25 +78,25 @@
                                 class="z-10 rounded-lg shadow w-50 dark:bg-gray-700">
 
                                 <ul class="h-auto py-2 dark:text-gray-200 " aria-labelledby="dropdownUsersButton">
-                                    <li class="hover:bg-slate-400 rounded-lg" style="font-size: 1rem;"
+                                    <li class="hover:bg-green-400 rounded-lg" style="font-size: 1rem;"
                                         @click="procurement_store.tab_num = 0">
                                         <div class=" flex items-center px-4">
                                             <i class="fa-regular fa-clock fa-lg"></i>
-                                            <a href="#" class="flex items-center rounded-lg px-4 py-2 hover:bg-slate-400">
+                                            <a href="#" class="flex items-center rounded-lg px-4 py-2 ">
                                                 Waiting STF
                                             </a>
                                         </div>
                                     </li>
-                                    <li class=" hover:bg-slate-400 rounded-lg" style="font-size: 1rem;"
+                                    <li class=" hover:bg-green-400 rounded-lg" style="font-size: 1rem;"
                                         @click="procurement_store.tab_num = 1">
                                         <div class=" flex items-center px-4">
                                             <i class="fa-solid fa-arrow-rotate-left fa-lg"></i>
-                                            <a href="#" class="flex items-center rounded-lg px-4 py-2 hover:bg-slate-400">
+                                            <a href="#" class="flex items-center rounded-lg px-4 py-2 ">
                                                 Processing SM
                                             </a>
                                         </div>
                                     </li>
-                                    <li class=" hover:bg-slate-400 rounded-lg" style="font-size: 1rem;"
+                                    <li class=" hover:bg-green-400 rounded-lg" style="font-size: 1rem;"
                                         @click="procurement_store.tab_num = 2">
                                         <div class=" flex items-center px-4">
                                             <i class="fa-solid fa-download fa-lg"></i>
@@ -103,7 +106,7 @@
                                         </div>
 
                                     </li>
-                                    <li class=" hover:bg-slate-400 rounded-lg" style="font-size: 1rem;"
+                                    <li class=" hover:bg-green-400 rounded-lg" style="font-size: 1rem;"
                                         @click="procurement_store.tab_num = 3">
                                         <div class=" flex items-center px-4">
                                             <i class="fa-solid fa-reply-all fa-lg"></i>
@@ -123,7 +126,7 @@
             </router-link>
             <!-- Warehouse -->
             <router-link to="/warehouse">
-                <li class="hover:bg-green-500 hover:text-gray-100  p-2 mt-2 rounded-lg  py-2 px-4 cursor-pointer"
+                <li class="hover:bg-green-500 hover:text-gray-100  hover:duration-300  p-2 mt-2 rounded-lg  py-2 px-4 cursor-pointer"
                     @click="show_warehouse_dropdown = !show_warehouse_dropdown">
                     <div>
                         <div class="flex justify-between">
@@ -144,19 +147,18 @@
                         <!-- Dropdown menu -->
                         <transition name="slide-fade">
                             <div id="dropdownUsers" v-if="show_warehouse_dropdown"
-                                class="z-10 rounded-lg shadow w-50 dark:bg-gray-700">
-
+                                class="z-10 rounded-lg shadow w-50 dark:bg-green-700">
                                 <ul class="h-auto py-2 dark:text-gray-200 " aria-labelledby="dropdownUsersButton">
-                                    <li class=" hover:bg-slate-400 rounded-lg" @click="warehouse_store.tab_num=0">
+                                    <li class=" hover:bg-green-400 rounded-lg" @click="warehouse_store.tab_num=0">
                                         <div class=" flex items-center px-4">
                                             <i class="fa-solid fa-arrow-rotate-left fa-lg"></i>
-                                            <a href="#" class="flex items-center rounded-lg px-4 py-2 hover:bg-slate-400"  style="font-size: 1rem;">
+                                            <a href="#" class="flex items-center rounded-lg px-4 py-2 "  style="font-size: 1rem;">
                                                 Processing SM
                                             </a>
                                         </div>
                                     </li>
                                     <!-- <router-link to="/warehouse/received"> -->
-                                        <li class=" hover:bg-slate-400 rounded-lg" @click="warehouse_store.tab_num=1">
+                                        <li class=" hover:bg-green-400 rounded-lg" @click="warehouse_store.tab_num=1">
                                             <div class=" flex items-center px-4">
                                                 <i class="fa-solid fa-download fa-lg"></i>
                                                 <span class="flex items-center rounded-lg px-4 py-2"  style="font-size: 1rem;">
@@ -165,7 +167,7 @@
                                             </div>
                                         </li>
                                     <!-- </router-link> -->
-                                    <li class=" hover:bg-slate-400 rounded-lg"  @click="warehouse_store.tab_num=2">
+                                    <li class=" hover:bg-green-400 rounded-lg"  @click="warehouse_store.tab_num=2">
                                         <div class=" flex items-center px-4">
                                             <i class="fa-solid fa-check-double fa-lg"></i>
                                             <a href="#" class="flex items-center rounded-lg px-4 py-2"  style="font-size: 1rem;">
@@ -182,7 +184,7 @@
                 </li>
             </router-link>
             <!-- User profile -->
-            <li class="hover:bg-green-500 hover:text-gray-100 p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
+            <li class="hover:bg-green-500 hover:text-gray-100 hover:duration-300  p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
                 <div class="text-md w-10 flex items-center justify-center">
                     <i class="fa-solid fa-user fa-md"></i>
                 </div>
@@ -191,7 +193,7 @@
                 </span>
             </li>
             <!-- Login Logout -->
-            <li v-if="!user_store?.user" class="hover:bg-green-500 hover:text-gray-100  p-2 mt-2 rounded-lg cursor-pointer flex items-center " @click="openUserLogin" >
+            <li v-if="!user_store?.user" class="hover:bg-green-500 hover:duration-300  hover:text-gray-100  p-2 mt-2 rounded-lg cursor-pointer flex items-center " @click="openUserLogin" >
                 
                 <!-- <span @click="openUserLogin" >
                     <i class="fa-solid fa-right-to-bracket fa-md"></i>
@@ -206,7 +208,7 @@
                 </span>
 
             </li>
-            <li v-else class="hover:bg-green-500 hover:text-gray-100  p-2 mt-2 rounded-lg cursor-pointer flex items-center"  @click="openUserLogout" >
+            <li v-else class="hover:bg-green-500 hover:text-gray-100  hover:duration-300  p-2 mt-2 rounded-lg cursor-pointer flex items-center"  @click="openUserLogout" >
                 
                 <!-- <span @click="openUserLogout">
                     <i class="fa-solid fa-arrow-right-from-bracket fa-md"></i>
@@ -242,9 +244,11 @@ const user_store = UserStore();
 const procurement_store = ProcurementStore();
 const warehouse_store = WarehouseStore();
 
+const anim_toggle = ref(true);
+
 const openUserLogin = () => {
-    console.log('work');
-    index_store.TOGGLEUSERTELEPORT();
+    anim_toggle.value = true;
+    index_store.canvas_toggle = true;
 }
 
 const openUserLogout = () => {
@@ -255,8 +259,10 @@ const openUserLogout = () => {
 }
 
 const closeOffCanvas = () => {
-    console.log('clicked');
-    index_store.canvas_toggle = false;
+    anim_toggle.value = false;
+    setTimeout(()=>{
+        index_store.canvas_toggle = false;
+    },500)
 }
 
 // Show procurement Dropdown
@@ -266,8 +272,11 @@ const show_warehouse_dropdown = ref(true);
 </script>
 
 <style scoped>
-.mtf-anim {
+.mtf-anim-open {
     animation: openfilter 0.5s;
+}
+.mtf-anim-close {
+    animation: closefilter 0.5s;
 }
 
 @keyframes openfilter {
@@ -277,6 +286,15 @@ const show_warehouse_dropdown = ref(true);
 
     to {
         transform: translateX(0%);
+    }
+}
+@keyframes closefilter {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
     }
 }
 

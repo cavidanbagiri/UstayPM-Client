@@ -1,6 +1,6 @@
 <template>
   <tr :class="checked_style ? 'text-white bg-blue-600  hover:bg-blue-500 ' : 
-  ' bg-white  hover:bg-indigo-500 '"
+  ' bg-white  hover:bg-blue-600 hover:text-white hover:duration-200 '"
       class="border-b  hover:cursor-pointer table_row ">
       <TableRowInform :each="prop?.each" />
       <td class="w-1 p-4 py-2 ">
