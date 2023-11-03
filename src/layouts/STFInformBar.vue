@@ -13,7 +13,7 @@
                 <!-- STF Information Section -->
                 <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
                     <span class="text-header">STF Information</span>
-                    <div class="flex justify-start items-center">
+                    <div class="flex justify-start items-center ">
                         <div class="w-64 column-header column-header">STF Num</div>
                         <span class="column-value bg-orange-100 py-1 px-2 rounded-lg text-orange-400 font-bold">{{
                             index_store.row_detail_data.stf_num }}</span>
@@ -97,8 +97,17 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Price</div>
-                        <div class="column-value">{{ index_store.row_detail_data.price }} {{
-                            index_store.row_detail_data.total }} {{ index_store.row_detail_data.currency }}</div>
+                        <div class="column-value">
+                            <span class="pr-5">
+                                {{ index_store.row_detail_data.price }}
+                            </span> 
+                            <span class="bg-lime-900 text-white p-1 rounded-md">
+                                {{ index_store.row_detail_data.total }}
+                            </span>
+                            <span class="pl-5">
+                                {{ index_store.row_detail_data.currency }}
+                            </span>
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Left Over</div>
@@ -147,9 +156,17 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Price</div>
-                        <div class="column-value">{{ index_store.row_detail_data.delivery_material_price }} {{
-                            index_store.row_detail_data.delivery_material_total }} {{
-        index_store.row_detail_data.delivery_material_currency }}</div>
+                        <div class="column-value">
+                            <span class="pr-5">
+                                {{ index_store.row_detail_data.delivery_material_price }}
+                            </span> 
+                            <span class="bg-lime-900 text-white p-1 rounded-md">
+                                {{ index_store.row_detail_data.delivery_material_total }}
+                            </span>
+                            <span class="pl-5">
+                                {{ index_store.row_detail_data.delivery_material_currency }}
+                            </span>
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Stock</div>
@@ -157,11 +174,25 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Certificate</div>
-                        <div class="column-value">{{ index_store.row_detail_data.certificate }}</div>
+                        <div class="column-value w-6 h-6">
+                            <div v-if="index_store.row_detail_data.certificate">
+                                <img src="../assets/trueicon.png" alt="">
+                            </div>
+                            <div v-else >
+                                <img src="../assets/flaseicon.png" alt="">
+                            </div>
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Passport</div>
-                        <div class="column-value">{{ index_store.row_detail_data.passport }}</div>
+                        <div class="column-value w-6 h-6">
+                            <div v-if="index_store.row_detail_data.passport">
+                                <img src="../assets/trueicon.png" alt="">
+                            </div>
+                            <div v-else >
+                                <img src="../assets/flaseicon.png" alt="">
+                            </div>
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Doc Date</div>
@@ -220,7 +251,7 @@ const closeInformBar = () => {
     font-size: 17px;
     font-family: 'Roboto', sans-serif;
     color: #334155;
-    margin-top: 3px;
+    margin-top: 5px;
 }
 
 .column-value {
