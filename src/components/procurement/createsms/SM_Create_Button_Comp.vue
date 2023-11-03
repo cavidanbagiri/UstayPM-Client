@@ -57,6 +57,8 @@ const selectVendor = (vendor) => {
 }
 
 const createSM = async () => {
+    console.log('Cehcked Values : ', procurement_store.checked_values);
+    console.log('Creating STF Datas : ', procurement_store.creating_STF_datas);
     let check_valid = true;
     if (common_data.VendorModelId === 0) {
         check_valid = false;
@@ -67,6 +69,7 @@ const createSM = async () => {
         alert('Supplier Name Must Be Choosed')
     }
     else {
+        console.log('else work');
         for (let i = 0; i < procurement_store.GETCREATINGSTFDATA.length; i++) {            
             if (procurement_store.GETCREATINGSTFDATA[i].price <= 0) {
                 check_valid = false;
@@ -96,11 +99,14 @@ const createSM = async () => {
                 procurement_store.creating_STF_datas = [];
                 procurement_store.msg_cond = true;
                 procurement_store.after_created = true;
-                procurement_store.checked_values = procurement_store.checked_values.filter((item) => item.id === -1)
                 // Show Error Message and Return Back All STF Page
+                console.log('chech -> ', procurement_store.checked_values );
+                console.log('creat -> ', procurement_store.creating_STF_datas );
                 setTimeout(() => {
                     procurement_store.tab_num = 0;
                     procurement_store.msg_cond = false;
+                    procurement_store.checked_values = procurement_store.checked_values.filter((item) => item.stf_id === -1)
+                    procurement_store.creating_STF_datas = procurement_store.creating_STF_datas.filter((item) => item.project_id === -1)
                 }, 1000)
 
                 setTimeout(() => {

@@ -15,7 +15,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Show Message After Creating New SMS
     msg_cond : false,
   
-    // For choosing STF and sending for creating STF
+    // For choosing STF and sending for creating SM
     checked_values: [],
 
     // Choose Companies Name

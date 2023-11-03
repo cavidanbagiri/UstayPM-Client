@@ -3,7 +3,7 @@
 
         <!-- <div class="flex justify-end "> -->
             <span class="  bg-green-500 hover:bg-green-400 p-1 w-8 h-8  rounded-full cursor-pointer absolute top-1 -right-3 flex items-center justify-center" @click="closeOffCanvas">
-                <i class="fa-solid fa-chevron-left fa-xl text-white hover:text-gray-100"></i>
+                <i class="fa-solid fa-chevron-left fa-sm text-white hover:text-gray-100"></i>
             </span>
         <!-- </div> -->
         <div class="p-2 rounded-xl cursor-pointer mt-10 hover:bg-green-500 hover:duration-300 flex flex-row items-center hover:text-white border border-green-500">
@@ -189,7 +189,7 @@
                     <i class="fa-solid fa-user fa-md"></i>
                 </div>
                 <span>
-                    User
+                    User Profile
                 </span>
             </li>
             <!-- Login Logout -->
