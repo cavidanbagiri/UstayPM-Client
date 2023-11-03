@@ -1,20 +1,22 @@
 
 <template>
-    <div v-if="index_store.row_inform_condition" class="flex justify-end fixed right-0 top-0 w-screen h-screen z-50 border bg-opacity-80 bg-gray-300"
-    style="font-family: 'Poppins', sans-serif;">
-        <div class="flex flex-col w-3/4 bg-white rounded-lg p-5">
-            <div class="flex justify-end mx-5 text-xl font-bold">
+    <div v-if="index_store.row_inform_condition"
+        class="flex justify-end fixed right-0 top-0 w-screen h-screen z-50 border bg-opacity-80 bg-gray-300"
+        style="font-family: 'Poppins', sans-serif;">
+        <div class="flex flex-col w-1/2 bg-gray-100 rounded-lg">
+            <div class="flex justify-end mx-5 text-xl font-bold px-2 py-1">
                 <span @click="closeInformBar" class="cursor-pointer">
                     <i class="fa-solid fa-xmark fa-xl text-gray-500"></i>
                 </span>
             </div>
             <div class="flex flex-col  overflow-auto">
                 <!-- STF Information Section -->
-                <div class="flex flex-col  p-2 m-2 rounded-xl shadow-md my-3">
+                <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
                     <span class="text-header">STF Information</span>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header column-header">STF Num</div>
-                        <span class="column-value">{{ index_store.row_detail_data.stf_num }}</span>
+                        <span class="column-value bg-orange-100 py-1 px-2 rounded-lg text-orange-400 font-bold">{{
+                            index_store.row_detail_data.stf_num }}</span>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Type</div>
@@ -26,7 +28,8 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Amount</div>
-                        <div class="column-value">{{ index_store.row_detail_data.material_amount }} {{ index_store.row_detail_data.material_unit }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data.material_amount }} {{
+                            index_store.row_detail_data.material_unit }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Link</div>
@@ -37,16 +40,36 @@
                         <div class="column-value">{{ index_store.row_detail_data.material_comment }}</div>
                     </div>
                     <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Material Condition</div>
-                        <div class="column-value">{{ index_store.row_detail_data.completed }}</div>
+                        <div class="w-64 column-header">STF Status</div>
+                        <div class="column-value w-6 h-6">
+                            <div v-if="index_store.row_detail_data.completed"><img src="../assets/trueicon.png" alt="">
+                            </div>
+                            <div v-else><img src="../assets/falseicon.png" alt=""> </div>
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">STF Created Date</div>
-                        <div class="column-value">{{ index_store.row_detail_data.createdAt }}</div>
+                        <div class="column-value">
+                            <DateFormat :time="index_store.row_detail_data.createdAt" />
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Ordered By</div>
-                        <div class="column-value">{{ index_store.row_detail_data.ordered_by }}</div>
+                        <div class="column-value">
+                            <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
+                                <img class="w-12 h-12 rounded-full border"
+                                    src="https://img.freepik.com/free-photo/the-beautiful-girl-stands-near-walll-with-leaves_8353-5377.jpg?w=2000"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
+                                    class=" pl-2 text-gray-600 ">
+                                        {{ index_store.row_detail_data.ordered_by }}
+                                    </span>
+                                    <span  style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;" 
+                                    class="pl-2 text-gray-500">Warehouse Worker</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Field Name</div>
@@ -54,23 +77,28 @@
                     </div>
                 </div>
                 <!-- Sm Information Section -->
-                <div class="flex flex-col  p-2 m-2 rounded-xl shadow-md my-3">
-                    <span class="text-header">SM Information</span>
+                <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
+                    <span class="text-header ">SM Information</span>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">SM Num</div>
-                        <div class="column-value">{{ index_store.row_detail_data.sm_num }}</div>
+                        <div class="column-value bg-green-100 py-1 px-2 rounded-lg text-green-400 font-bold">{{
+                            index_store.row_detail_data.sm_num }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Name</div>
-                        <div class="column-value">{{ index_store.row_detail_data.sm_material_name }}</div>
+                        <div class="column-value">
+                            {{ index_store.row_detail_data.sm_material_name }}
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Amount</div>
-                        <div class="column-value">{{ index_store.row_detail_data.sm_material_amount }} {{ index_store.row_detail_data.sm_material_unit }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data.sm_material_amount }} {{
+                            index_store.row_detail_data.sm_material_unit }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Price</div>
-                        <div class="column-value">{{ index_store.row_detail_data.price }} {{ index_store.row_detail_data.total }} {{ index_store.row_detail_data.currency }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data.price }} {{
+                            index_store.row_detail_data.total }} {{ index_store.row_detail_data.currency }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Left Over</div>
@@ -78,19 +106,35 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Approximate Date</div>
-                        <div class="column-value">{{ index_store.row_detail_data.approximate_date }}</div>
+                        <div class="column-value">
+                            <DateFormat :time="index_store.row_detail_data.approximate_date" />
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Vendor Name</div>
-                        <div class="column-value">{{ index_store.row_detail_data.vendor_name }}</div>
+                        <div class="column-value font-bold text-red-500" style="font-size: 18px;">{{ index_store.row_detail_data.vendor_name }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Supplier Name</div>
-                        <div class="column-value">{{ index_store.row_detail_data.supplier_name }}</div>
+                        <div class="column-value">
+                            <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
+                                <img class="w-12 h-12 rounded-full border"
+                                    src="https://previews.123rf.com/images/mimagephotography/mimagephotography1403/mimagephotography140300170/26465271-close-up-horizontal-portrait-of-a-handsome-young-man-laughing-on-isolated-white-background.jpg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
+                                    class=" pl-2 text-gray-600 ">
+                                        {{ index_store.row_detail_data.supplier_name }}
+                                    </span>
+                                    <span  style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;" 
+                                    class="pl-2 text-gray-500">Warehouse Worker</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- Warehouse Information Section -->
-                <div class="flex flex-col  p-2 m-2 rounded-xl shadow-md my-3">
+                <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
                     <span class="text-header">Warehouse Information</span>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Delivery Material name</div>
@@ -98,11 +142,14 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Amount</div>
-                        <div class="column-value">{{ index_store.row_detail_data.delivery_material_amount }} {{ index_store.row_detail_data.delivery_material_unit }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data.delivery_material_amount }} {{
+                            index_store.row_detail_data.delivery_material_unit }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Price</div>
-                        <div class="column-value">{{ index_store.row_detail_data.delivery_material_price }} {{ index_store.row_detail_data.delivery_material_total }} {{ index_store.row_detail_data.delivery_material_currency }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data.delivery_material_price }} {{
+                            index_store.row_detail_data.delivery_material_total }} {{
+        index_store.row_detail_data.delivery_material_currency }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Stock</div>
@@ -126,10 +173,24 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Accepted By</div>
-                        <div class="column-value">{{ index_store.row_detail_data.accepted_by }}</div>
+                        <div class="column-value">
+                            <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
+                                <img class="w-12 h-12 rounded-full border"
+                                    src="https://previews.123rf.com/images/mimagephotography/mimagephotography1403/mimagephotography140300170/26465271-close-up-horizontal-portrait-of-a-handsome-young-man-laughing-on-isolated-white-background.jpg"
+                                    alt="">
+                                <div class="flex flex-col">
+                                    <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
+                                    class=" pl-2 text-gray-600 ">
+                                        {{ index_store.row_detail_data.accepted_by }}
+                                    </span>
+                                    <span  style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;" 
+                                    class="pl-2 text-gray-500">Warehouse Worker</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
@@ -137,6 +198,7 @@
 
 <script setup>
 
+import DateFormat from './DateFormat.vue';
 import IndexStore from '../store/store.index';
 const index_store = IndexStore();
 
@@ -147,23 +209,22 @@ const closeInformBar = () => {
 </script>
 
 <style scoped>
-
-.text-header{
+.text-header {
     text-align: center;
     font-weight: bold;
     color: black;
     font-size: 24px
 }
-.column-header{
+
+.column-header {
     font-size: 17px;
     font-family: 'Roboto', sans-serif;
     color: #334155;
+    margin-top: 3px;
 }
 
-.column-value{
+.column-value {
     font-size: 14px;
     font-family: 'Lato';
-}
-
-</style>
+}</style>
 
