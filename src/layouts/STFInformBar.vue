@@ -179,7 +179,7 @@
                                 <img src="../assets/trueicon.png" alt="">
                             </div>
                             <div v-else >
-                                <img src="../assets/flaseicon.png" alt="">
+                                <img src="../assets/falseicon.png" alt="">
                             </div>
                         </div>
                     </div>
@@ -190,7 +190,7 @@
                                 <img src="../assets/trueicon.png" alt="">
                             </div>
                             <div v-else >
-                                <img src="../assets/flaseicon.png" alt="">
+                                <img src="../assets/falseicon.png" alt="">
                             </div>
                         </div>
                     </div>
