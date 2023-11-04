@@ -2,7 +2,7 @@
 <template>
   <div class="flex flex-col p-1 w-96">
     <div class="flex justify-center">
-      <span class="text-lg font-bold">Order</span>
+      <span class="text-2xl font-bold text-gray-600">Order</span>
     </div>
     <div>
       <Doughnut :data="chartData" />
@@ -12,7 +12,7 @@
 
 <script setup>
 
-import { ref, watchEffect, reactive } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 

@@ -2,7 +2,7 @@
 <template>
   <div class="flex flex-col p-1 w-96">
     <div class="flex justify-center">
-      <span class="text-lg font-bold">Workspace</span>
+      <span class="text-2xl font-bold text-gray-600">Workspace</span>
     </div>
     <div>
       <Doughnut :data="chartData" />
