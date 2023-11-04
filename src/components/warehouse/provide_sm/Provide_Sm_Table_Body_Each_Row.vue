@@ -42,6 +42,16 @@
         </td>
         <td class="px-2  text-start border-y ">
             <div class=" py-1 px-2 rounded-xl ">
+                <input class="border w-full p-1 rounded-md outline-none" type="text" name="" placeholder="Serial NO" v-model="entering_data.serial_no">
+            </div>
+        </td>
+        <td class="px-2  text-start border-y ">
+            <div class=" py-1 px-2 rounded-xl ">
+                <input class="border w-full p-1 rounded-md outline-none" type="text" name="" placeholder="Unique ID" v-model="entering_data.unique_id">
+            </div>
+        </td>
+        <td class="px-2  text-start border-y ">
+            <div class=" py-1 px-2 rounded-xl ">
                 <input class="border w-full p-1 rounded-md outline-none" type="text" name="" placeholder="Name Surname" v-model="entering_data.provide_user">
             </div>
         </td>
@@ -72,6 +82,8 @@ const entering_data = reactive({
     department_id: prop?.each_item.department_id,
     type:'',
     provide_amount:0,
+    serial_no: '',
+    unique_id: '',
     provide_user:'',
     provide_user_card_number:'',
     provide_department:''

@@ -15,17 +15,17 @@
                     S/S
                 </div>
             </th>
-            <th scope="col" class="px-2 py-1  font-medium text-center border">
-                <div class="w-96 flex flex-col">
+            <th scope="col" class="px-2 py-1  font-medium text-center border w-1/3 ">
+                <div class="flex flex-col">
                     Material name
                 </div>
             </th>
-            <th scope="col" class="px-2 py-1  font-medium text-center border">
+            <th scope="col" class="px-2 py-1  font-medium text-center border w-24">
                 <div class="flex flex-col w-24">
                     Amount
                 </div>
             </th>
-            <th scope="col" class="px-2 py-1  font-medium text-center border">
+            <th scope="col" class="px-2 py-1  font-medium text-center border w-24">
                 <div class="flex flex-col w-24">
                     Unit
                 </div>
@@ -38,6 +38,16 @@
             <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-500">
                 <div class="flex flex-col">
                     Provide Amount
+                </div>
+            </th>
+            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-500">
+                <div class="flex flex-col">
+                    Serial Number
+                </div>
+            </th>
+            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-500">
+                <div class="flex flex-col">
+                    Unique ID
                 </div>
             </th>
             <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-500">
