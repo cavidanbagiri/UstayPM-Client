@@ -1,6 +1,9 @@
 
 <template>
     <div class=" overflow-x-auto shadow-xl sm:rounded-lg border p-2">
+        <h1 class=" text-center text-3xl py-4" 
+        style="font-family: 'Poppins';">
+        Create STF Form</h1>
         <button
             class="font-bold py-2 px-2 my-1 text-xs outline-none font-mono  border text-gray-100 rounded-xl bg-green-500 mb-2"
             v-if="row_size === 0" @click='againFunc()'> Create New STF </button>
