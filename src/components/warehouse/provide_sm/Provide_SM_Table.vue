@@ -2,17 +2,12 @@
 <template>
     <div class="mt-1 shadow-md sm:rounded-lg w-screen overflow-x-scroll p-2">
 
-        <!-- <Accept_Received_Data_Message /> -->
-
-        <!-- Accept Button -->
-        <button @click="provideSM" v-if="warehouse_store.warehouse_data_checked_values?.length"
-            class="bg-red-600 p-2 px-3 text-white font-weight rounded-lg my-1">
-            Provide
-        </button>
-
+        
         <!-- Accepting Data Inform -->
         <!-- <Accepting_data :sms_data="sms_data" /> -->
-
+        <h1 class=" text-center text-3xl py-4" 
+        style="font-family: 'Poppins';">
+        Material Provide Form</h1>
 
         <!-- Table -->
         <table class="text-xs text-left text-gray-800 dark:text-gray-400 w-full">
@@ -21,6 +16,15 @@
             <Provide_SM_Table_Body :entering_rows="entering_rows" />
 
         </table>
+
+        <!-- <Accept_Received_Data_Message /> -->
+
+        <!-- Accept Button -->
+        <button @click="provideSM" v-if="warehouse_store.warehouse_data_checked_values?.length"
+            class="bg-red-600 p-2 px-3 text-white font-weight rounded-lg my-1">
+            Provide
+        </button>
+
 
     </div>
 </template>

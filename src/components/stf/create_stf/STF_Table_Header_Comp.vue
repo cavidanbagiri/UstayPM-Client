@@ -5,17 +5,17 @@
                 S/S
             </th>
             <th scope="col" class="px-6 py-1 text-center border">
-                <div class="w-20">
-                    Material Type
+                <div class="">
+                    Type
                 </div>
             </th>
-            <th scope="col" class="px-6 py-1 text-center border">
-                <div class="w-96">
+            <th scope="col" class="px-6 py-1 text-center border w-1/3">
+                <div class="">
                     Material Name
                 </div>
             </th>
             <th scope="col" class="px-6 py-1 text-center border">
-                <div class="w-48">
+                <div class="">
                     Link
                 </div>
             </th>

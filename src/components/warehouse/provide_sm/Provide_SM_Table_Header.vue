@@ -1,6 +1,6 @@
 
 <template>
-    <thead class="text-black bg-gray-100 dark:bg-gray-700 dark:text-gray-400 border w-full table_header ">
+    <thead class="text-white bg-slate-800 dark:bg-gray-700 dark:text-gray-400 border w-full table_header ">
         <tr class="">
             <th scope="col-4" class=" px-4">
                 <div class="flex flex-col items-center">
@@ -22,7 +22,7 @@
             </th>
             <th scope="col" class="px-2 py-1  font-medium text-center border">
                 <div class="flex flex-col w-24">
-                    Delivery Amount
+                    Amount
                 </div>
             </th>
             <th scope="col" class="px-2 py-1  font-medium text-center border">
@@ -30,28 +30,28 @@
                     Unit
                 </div>
             </th>
-            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-100">
-                <div class="flex flex-col w-24">
+            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-500">
+                <div class="flex flex-col">
                     Type
                 </div>
             </th>
-            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-100">
-                <div class="flex flex-col w-24">
+            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-500">
+                <div class="flex flex-col">
                     Provide Amount
                 </div>
             </th>
-            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-100">
-                <div class="flex flex-col w-24">
+            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-500">
+                <div class="flex flex-col">
                     Provide Worker
                 </div>
             </th>
-            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-100">
-                <div class="flex flex-col w-24">
+            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-500">
+                <div class="flex flex-col">
                     Card number
                 </div>
             </th>
-            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-100">
-                <div class="flex flex-col w-28">
+            <th scope="col" class="px-2 py-1  font-medium text-center border bg-violet-500">
+                <div class="flex flex-col">
                     Provide Department
                 </div>
             </th>

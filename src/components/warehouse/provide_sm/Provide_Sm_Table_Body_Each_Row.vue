@@ -15,17 +15,17 @@
         </td>
         <td class="px-2  text-start border-y ">
             <div class="   py-1 px-2 rounded-xl ">
-                <span>{{ prop?.each_item?.delivery_material_name }}</span>
+                <span>{{ prop?.each_item?.material_name }}</span>
             </div>
         </td>
         <td class="px-2  text-start border-y ">
             <div class="   py-1 px-2 rounded-xl ">
-                <span>{{ prop?.each_item?.delivery_material_amount }}</span>
+                <span>{{ prop?.each_item?.amount }}</span>
             </div>
         </td>
         <td class="px-2  text-start border-y ">
             <div class="   py-1 px-2 rounded-xl ">
-                <span>{{ prop?.each_item?.delivery_material_unit }}</span>
+                <span>{{ prop?.each_item?.unit }}</span>
             </div>
         </td>
         <td class="px-2  text-start border-y ">
