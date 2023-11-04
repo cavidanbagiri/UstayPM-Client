@@ -1,11 +1,11 @@
 
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import HomeView from '../views/views.home.vue';
-import AuthView from '../views/views.login.vue';
-import STFView from '../views/views.stf.vue';
-import ProcurementViews from '../views/views.procurement.vue';
-import WarehouseView from '../views/views.warehouse.vue';
+const HomeView = () => import('../views/views.home.vue');
+const AuthView  = () => import('../views/views.login.vue');
+const STFView  = () => import('../views/views.stf.vue');
+const ProcurementViews  = () => import('../views/views.procurement.vue');
+const WarehouseView  = () => import('../views/views.warehouse.vue');
 
 const routes = [
 
