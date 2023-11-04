@@ -9,40 +9,40 @@
                     <i class="fa-solid fa-xmark fa-xl text-gray-500"></i>
                 </span>
             </div>
-            <div class="flex flex-col  overflow-auto">
+            <div v-if="index_store.row_detail_data" class="flex flex-col  overflow-auto">
                 <!-- STF Information Section -->
                 <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
                     <span class="text-header">STF Information</span>
                     <div class="flex justify-start items-center ">
                         <div class="w-64 column-header column-header">STF Num</div>
                         <span class="column-value bg-orange-100 py-1 px-2 rounded-lg text-orange-400 font-bold">{{
-                            index_store.row_detail_data.stf_num }}</span>
+                            index_store.row_detail_data[0]?.stf_num }}</span>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Type</div>
-                        <div class="column-value">{{ index_store.row_detail_data.material_type }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data[0]?.material_type }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Name</div>
-                        <div class="column-value">{{ index_store.row_detail_data.material_name }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data[0]?.material_name }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Amount</div>
-                        <div class="column-value">{{ index_store.row_detail_data.material_amount }} {{
-                            index_store.row_detail_data.material_unit }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data[0]?.material_amount }} {{
+                            index_store.row_detail_data[0]?.material_unit }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Link</div>
-                        <div class="column-value">{{ index_store.row_detail_data.material_link }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data[0]?.material_link }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Comment</div>
-                        <div class="column-value">{{ index_store.row_detail_data.material_comment }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data[0]?.material_comment }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">STF Status</div>
                         <div class="column-value w-6 h-6">
-                            <div v-if="index_store.row_detail_data.completed"><img src="../assets/trueicon.png" alt="">
+                            <div v-if="index_store.row_detail_data[0]?.completed"><img src="../assets/trueicon.png" alt="">
                             </div>
                             <div v-else><img src="../assets/falseicon.png" alt=""> </div>
                         </div>
@@ -50,7 +50,7 @@
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">STF Created Date</div>
                         <div class="column-value">
-                            <DateFormat :time="index_store.row_detail_data.createdAt" />
+                            <DateFormat :time="index_store.row_detail_data[0]?.createdAt" />
                         </div>
                     </div>
                     <div class="flex justify-start items-center">
@@ -63,7 +63,7 @@
                                 <div class="flex flex-col">
                                     <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
                                     class=" pl-2 text-gray-600 ">
-                                        {{ index_store.row_detail_data.ordered_by }}
+                                        {{ index_store.row_detail_data[0]?.ordered_by }}
                                     </span>
                                     <span  style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;" 
                                     class="pl-2 text-gray-500">Warehouse Worker</span>
@@ -73,154 +73,158 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Field Name</div>
-                        <div class="column-value">{{ index_store.row_detail_data.field_name }}</div>
+                        <div class="column-value">{{ index_store.row_detail_data[0]?.field_name }}</div>
                     </div>
                 </div>
-                <!-- Sm Information Section -->
-                <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
-                    <span class="text-header ">SM Information</span>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">SM Num</div>
-                        <div class="column-value bg-green-100 py-1 px-2 rounded-lg text-green-400 font-bold">{{
-                            index_store.row_detail_data.sm_num }}</div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Material Name</div>
-                        <div class="column-value">
-                            {{ index_store.row_detail_data.sm_material_name }}
+
+                <!-- <div  class="flex flex-col"> -->
+                    <!-- Sm Information Section -->
+                    <div v-for="i in index_store?.row_detail_data" class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
+                        <span class="text-header ">SM Information</span>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">SM Num</div>
+                            <div class="column-value bg-green-100 py-1 px-2 rounded-lg text-green-400 font-bold">{{
+                                i.sm_num }}</div>
                         </div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Material Amount</div>
-                        <div class="column-value">{{ index_store.row_detail_data.sm_material_amount }} {{
-                            index_store.row_detail_data.sm_material_unit }}</div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Price</div>
-                        <div class="column-value">
-                            <span class="pr-5">
-                                {{ index_store.row_detail_data.price }}
-                            </span> 
-                            <span class="bg-lime-900 text-white p-1 rounded-md">
-                                {{ index_store.row_detail_data.total }}
-                            </span>
-                            <span class="pl-5">
-                                {{ index_store.row_detail_data.currency }}
-                            </span>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Material Name</div>
+                            <div class="column-value">
+                                {{ i.sm_material_name }}
+                            </div>
                         </div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Left Over</div>
-                        <div class="column-value">{{ index_store.row_detail_data.left_over }}</div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Approximate Date</div>
-                        <div class="column-value">
-                            <DateFormat :time="index_store.row_detail_data.approximate_date" />
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Material Amount</div>
+                            <div class="column-value">{{ i.sm_material_amount }} {{
+                                i.sm_material_unit }}</div>
                         </div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Vendor Name</div>
-                        <div class="column-value font-bold text-red-500" style="font-size: 18px;">{{ index_store.row_detail_data.vendor_name }}</div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Supplier Name</div>
-                        <div class="column-value">
-                            <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
-                                <img class="w-12 h-12 rounded-full border"
-                                    src="https://previews.123rf.com/images/mimagephotography/mimagephotography1403/mimagephotography140300170/26465271-close-up-horizontal-portrait-of-a-handsome-young-man-laughing-on-isolated-white-background.jpg"
-                                    alt="">
-                                <div class="flex flex-col">
-                                    <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
-                                    class=" pl-2 text-gray-600 ">
-                                        {{ index_store.row_detail_data.supplier_name }}
-                                    </span>
-                                    <span  style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;" 
-                                    class="pl-2 text-gray-500">Warehouse Worker</span>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Price</div>
+                            <div class="column-value">
+                                <span class="pr-5">
+                                    {{ i.price }}
+                                </span> 
+                                <span class="bg-lime-900 text-white p-1 rounded-md">
+                                    {{ i.total }}
+                                </span>
+                                <span class="pl-5">
+                                    {{ i.currency }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Left Over</div>
+                            <div class="column-value">{{ i.left_over }}</div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Approximate Date</div>
+                            <div class="column-value">
+                                <DateFormat :time="i.approximate_date" />
+                            </div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Vendor Name</div>
+                            <div class="column-value font-bold text-red-500" style="font-size: 18px;">{{ i.vendor_name }}</div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Supplier Name</div>
+                            <div class="column-value">
+                                <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
+                                    <img class="w-12 h-12 rounded-full border"
+                                        src="https://previews.123rf.com/images/mimagephotography/mimagephotography1403/mimagephotography140300170/26465271-close-up-horizontal-portrait-of-a-handsome-young-man-laughing-on-isolated-white-background.jpg"
+                                        alt="">
+                                    <div class="flex flex-col">
+                                        <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
+                                        class=" pl-2 text-gray-600 ">
+                                            {{ i.supplier_name }}
+                                        </span>
+                                        <span  style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;" 
+                                        class="pl-2 text-gray-500">Warehouse Worker</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Warehouse Information Section -->
-                <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
-                    <span class="text-header">Warehouse Information</span>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Delivery Material name</div>
-                        <div class="column-value">{{ index_store.row_detail_data.delivery_material_name }}</div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Material Amount</div>
-                        <div class="column-value">{{ index_store.row_detail_data.delivery_material_amount }} {{
-                            index_store.row_detail_data.delivery_material_unit }}</div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Price</div>
-                        <div class="column-value">
-                            <span class="pr-5">
-                                {{ index_store.row_detail_data.delivery_material_price }}
-                            </span> 
-                            <span class="bg-lime-900 text-white p-1 rounded-md">
-                                {{ index_store.row_detail_data.delivery_material_total }}
-                            </span>
-                            <span class="pl-5">
-                                {{ index_store.row_detail_data.delivery_material_currency }}
-                            </span>
+                    <!-- Warehouse Information Section -->
+                    <div v-for="i in index_store?.row_detail_data" class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
+                        <span class="text-header">Warehouse Information</span>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Delivery Material name</div>
+                            <div class="column-value">{{ i.delivery_material_name }}</div>
                         </div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Stock</div>
-                        <div class="column-value">{{ index_store.row_detail_data.stock }}</div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Certificate</div>
-                        <div class="column-value w-6 h-6">
-                            <div v-if="index_store.row_detail_data.certificate">
-                                <img src="../assets/trueicon.png" alt="">
-                            </div>
-                            <div v-else >
-                                <img src="../assets/falseicon.png" alt="">
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Material Amount</div>
+                            <div class="column-value">{{ i.delivery_material_amount }} {{
+                                i.delivery_material_unit }}</div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Price</div>
+                            <div class="column-value">
+                                <span class="pr-5">
+                                    {{ i.delivery_material_price }}
+                                </span> 
+                                <span class="bg-lime-900 text-white p-1 rounded-md">
+                                    {{ i.delivery_material_total }}
+                                </span>
+                                <span class="pl-5">
+                                    {{ i.delivery_material_currency }}
+                                </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Passport</div>
-                        <div class="column-value w-6 h-6">
-                            <div v-if="index_store.row_detail_data.passport">
-                                <img src="../assets/trueicon.png" alt="">
-                            </div>
-                            <div v-else >
-                                <img src="../assets/falseicon.png" alt="">
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Stock</div>
+                            <div class="column-value">{{ i.stock }}</div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Certificate</div>
+                            <div class="column-value w-6 h-6">
+                                <div v-if="i.certificate">
+                                    <img src="../assets/trueicon.png" alt="">
+                                </div>
+                                <div v-else >
+                                    <img src="../assets/falseicon.png" alt="">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Doc Date</div>
-                        <div class="column-value">{{ index_store.row_detail_data.doc_date }}</div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Doc Number</div>
-                        <div class="column-value">{{ index_store.row_detail_data.doc_number }}</div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Accepted By</div>
-                        <div class="column-value">
-                            <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
-                                <img class="w-12 h-12 rounded-full border"
-                                    src="https://previews.123rf.com/images/mimagephotography/mimagephotography1403/mimagephotography140300170/26465271-close-up-horizontal-portrait-of-a-handsome-young-man-laughing-on-isolated-white-background.jpg"
-                                    alt="">
-                                <div class="flex flex-col">
-                                    <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
-                                    class=" pl-2 text-gray-600 ">
-                                        {{ index_store.row_detail_data.accepted_by }}
-                                    </span>
-                                    <span  style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;" 
-                                    class="pl-2 text-gray-500">Warehouse Worker</span>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Passport</div>
+                            <div class="column-value w-6 h-6">
+                                <div v-if="i.passport">
+                                    <img src="../assets/trueicon.png" alt="">
+                                </div>
+                                <div v-else >
+                                    <img src="../assets/falseicon.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Doc Date</div>
+                            <div class="column-value">{{ i.doc_date }}</div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Doc Number</div>
+                            <div class="column-value">{{ i.doc_number }}</div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Accepted By</div>
+                            <div class="column-value">
+                                <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
+                                    <img class="w-12 h-12 rounded-full border"
+                                        src="https://previews.123rf.com/images/mimagephotography/mimagephotography1403/mimagephotography140300170/26465271-close-up-horizontal-portrait-of-a-handsome-young-man-laughing-on-isolated-white-background.jpg"
+                                        alt="">
+                                    <div class="flex flex-col">
+                                        <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
+                                        class=" pl-2 text-gray-600 ">
+                                            {{ i.accepted_by }}
+                                        </span>
+                                        <span  style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;" 
+                                        class="pl-2 text-gray-500">Warehouse Worker</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                <!-- </div> -->
+                
 
             </div>
         </div>
