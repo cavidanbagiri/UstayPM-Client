@@ -1,7 +1,7 @@
 <template>
   <td class="hover:text-blue-400 p-1 relative">
       <div class="flex items-center justify-center ">
-          <span @click="getRowDetail"><i class="fa-solid fa-ellipsis-vertical fa-2xl text-gray-300 "></i></span>
+          <span @click="getRowDetail"><i class="fa-solid fa-ellipsis-vertical fa-2xl text-green-500 "></i></span>
           <STFInformComp :cond="cond" :each="prop?.each" @close-inform="closeRowDetail"/>
       </div>
   </td>

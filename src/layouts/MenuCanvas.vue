@@ -193,19 +193,21 @@
                 </span>
             </li>
             <!-- Login Logout -->
-            <li v-if="!user_store?.user" class="hover:bg-green-500 hover:duration-300  hover:text-gray-100  p-2 mt-2 rounded-lg cursor-pointer flex items-center " @click="openUserLogin" >
+            <li v-if="!user_store?.user" class="hover:bg-green-500 hover:duration-300  hover:text-gray-100 rounded-lg cursor-pointer flex items-center " @click="openUserLogin" >
                 
                 <!-- <span @click="openUserLogin" >
                     <i class="fa-solid fa-right-to-bracket fa-md"></i>
                     Log In
                 </span> -->
 
-                <div  @click="openUserLogin" class="text-md w-10 flex items-center justify-center">
+                <router-link to="/user/login" class="hover:bg-green-500 hover:duration-300  hover:text-gray-100  p-2 mt-2 rounded-lg cursor-pointer flex items-center ">
+                    <div  @click="openUserLogin" class="text-md w-10 flex items-center justify-center">
                     <i class="fa-solid fa-right-to-bracket  fa-md"></i>
                 </div>
                 <span>
                     Log In
                 </span>
+                </router-link>
 
             </li>
             <li v-else class="hover:bg-green-500 hover:text-gray-100  hover:duration-300  p-2 mt-2 rounded-lg cursor-pointer flex items-center"  @click="openUserLogout" >
