@@ -25,6 +25,12 @@
       <span class="loading loading-dots loading-lg"></span>
     </div>
 
+    <div v-if="stf_store.warehouse_data?.length === 0" class="flex flex-row justify-center items-center w-full h-96">
+      <span class="text-3xl">
+          There is not any data in warehouse which created by <spanm class="font-bold">{{user_store.user.name}} {{user_store.user.surname}}</spanm>
+        </span>
+    </div>
+
     <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"
       @closeRowInform="closeRowInform" />-->
 
