@@ -25,8 +25,12 @@ const UserStore = defineStore('User Store',{
         console.log('User Login Error s catch : ', err);
         return err;
       }
+    },
 
-    } 
+    async LOGOUTUSER (){
+      sessionStorage.clear();
+      this.user = null;
+    }
 
   },
 });

@@ -43,7 +43,7 @@ const STFStore = defineStore("STFStore", {
       }
     },
 
-    // Fetch All User STF
+    // Fetch All User STF -> Checked
     async fetchUserSTFAll(user) {
       if (user?.id) {
         try {
@@ -51,7 +51,9 @@ const STFStore = defineStore("STFStore", {
           await axios
             .get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
             .then((respond) => {
-              this.all_stf = respond.data;
+              if(respond.data.length !== 0){
+                this.all_stf = respond.data;
+              }
             })
             .catch((err) => {
               console.log("Fetch User Catch Error : ", err);
@@ -73,7 +75,9 @@ const STFStore = defineStore("STFStore", {
             `${import.meta.env.VITE_API}/common/filterstf${queries}`
           )
           .then((respond) => {
-            this.all_stf = respond.data;
+            if(respond.data){
+              this.all_stf = respond.data;
+            }
           })
           .catch((err) => {
             console.log("Error Is : ", err);

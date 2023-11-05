@@ -141,7 +141,7 @@
           </router-link>
       </div>
 
-      <div v-else class="relative">
+      <div v-else class="relative" @click="logout">
           <router-link to="/user/login">
               <span @mouseover="logout_tooltip = true" @mouseleave="logout_tooltip = false"
                   class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
@@ -189,6 +189,11 @@ watchEffect(() => {
 })
 
 const toggleCanvas = () => index_store.TOGGLECANVAS()
+
+// User logout
+const logout = () => {
+    user_store.LOGOUTUSER();
+}
 
 </script>
 

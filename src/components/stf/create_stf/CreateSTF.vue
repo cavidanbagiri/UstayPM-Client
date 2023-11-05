@@ -49,28 +49,27 @@ const addNewRow = () => {
         // if(i?.material_name === '' ){
         if (i?.material_type === '') {
             cond = false;
-            alert(`${index} Row Material Type Cant Be Empty`);
+            alert(`${index+1} Row Material Type Cant Be Empty`);
         }
         else if (material_name === '') {
             cond = false;
-            alert(`${index} Row Material Name Cant Be Empty`);
+            alert(`${index+1} Row Material Name Cant Be Empty`);
         }
         else if (i?.material_amount <= 0) {
             cond = false;
-            alert(`${index} Row Material Amount Cant Be 0`);
+            alert(`${index+1} Row Material Amount Cant Be 0`);
         }
         else if (i?.material_unit === '') {
             cond = false;
-            alert(`${index} Row Material Unit Is Not Selected`);
+            alert(`${index+1} Row Material Unit Is Not Selected`);
         }
         else if (i?.fieldId === 0) {
             cond = false;
-            alert(`${index} Row Field Is Not Selected`);
+            alert(`${index+1} Row Field Is Not Selected`);
         }
         index++;
     }
     if (cond && stf_store.order_list.length ) row_size.value += 1;
-    console.log('row size is : ',row_size.value);
 }
 const removeRow = () => {
     if (row_size.value > 1) {

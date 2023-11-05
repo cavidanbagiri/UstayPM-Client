@@ -7,7 +7,7 @@
               <div class="flex flex-col ">
                   <span class="text-gray-200 text-4xl p-1 "
                       style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-                      Welcome Back, Cavidan
+                      Welcome Back, {{ user_store.user?.name }}
                   </span>
                   <span class="text-gray-300 text-xs mt-3 p-1">For Showing an Orders, Click + Button</span>
               </div>
@@ -52,6 +52,9 @@
 </template>
 
 <script setup>
+
+import UserStore from '../../store/store.user_store';
+const user_store = UserStore();
 
 
 </script>
