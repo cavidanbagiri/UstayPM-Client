@@ -29,17 +29,26 @@
 
 <script setup>
 
-import { ref, reactive, watchEffect, computed } from 'vue';
+import { reactive, computed, watchEffect} from 'vue';
 import Toast from '../../design/Toast.vue';
 
 import ProcurementStore from '../../../store/store.procurement.js';
+import UserStore from '../../../store/store.user_store';
 import Vendor_Comp from './Vendor_Comp.vue';
 const procurement_store = ProcurementStore();
+const user_store = UserStore();
 
 const common_data = reactive({
     procurement_coming_date: '',
     VendorModelId: 0,
     supplierName: 0,
+    createdBy: '',
+})
+
+watchEffect(()=>{
+    // if(common_data){
+    //     common_data?.createdBy = user_store?.user?.id
+    // }
 })
 
 // Get All Vendors and Show in vendors List
@@ -57,8 +66,6 @@ const selectVendor = (vendor) => {
 }
 
 const createSM = async () => {
-    console.log('Cehcked Values : ', procurement_store.checked_values);
-    console.log('Creating STF Datas : ', procurement_store.creating_STF_datas);
     let check_valid = true;
     if (common_data.VendorModelId === 0) {
         check_valid = false;
@@ -69,7 +76,7 @@ const createSM = async () => {
         alert('Supplier Name Must Be Choosed')
     }
     else {
-        console.log('else work');
+        common_data.createdBy = user_store.user.id;
         for (let i = 0; i < procurement_store.GETCREATINGSTFDATA.length; i++) {            
             if (procurement_store.GETCREATINGSTFDATA[i].price <= 0) {
                 check_valid = false;
@@ -90,6 +97,7 @@ const createSM = async () => {
                 procurement_store.creating_STF_datas[i].VendorModelId = common_data.VendorModelId;
                 procurement_store.creating_STF_datas[i].supplierName = common_data.supplierName;
                 procurement_store.creating_STF_datas[i].ProcurementComingDate = common_data.procurement_coming_date;
+                procurement_store.creating_STF_datas[i].createdBy = common_data.createdBy;
             }
         }
     }
@@ -100,8 +108,6 @@ const createSM = async () => {
                 procurement_store.msg_cond = true;
                 procurement_store.after_created = true;
                 // Show Error Message and Return Back All STF Page
-                console.log('chech -> ', procurement_store.checked_values );
-                console.log('creat -> ', procurement_store.creating_STF_datas );
                 setTimeout(() => {
                     procurement_store.tab_num = 0;
                     procurement_store.msg_cond = false;
@@ -111,8 +117,6 @@ const createSM = async () => {
                 setTimeout(() => {
                     procurement_store.after_created = false;
                     procurement_store.creating_STF_datas = procurement_store.creating_STF_datas.filter((item) => item.project_id === -1)
-                    console.log('second Cehcked Values : ', procurement_store.checked_values);
-                    console.log('second Creating STF Datas : ', procurement_store.creating_STF_datas);
                 }, 2000)
 
             }).catch((err) => {

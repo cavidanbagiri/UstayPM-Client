@@ -24,13 +24,12 @@
     <div v-else class="flex flex-row justify-center items-center w-full h-96">
       <span class="loading loading-dots loading-lg"></span>
     </div>
-      <div v-if="stf_store.all_stf?.length === 0 " class="flex flex-row justify-center items-center w-full h-96">
-        <span class="text-3xl">
-          There is not any Orders for showing, If you want to create a new Order, you can click 
-            <span @click="goCreateSTF" class="bg-blue-500 text-white p-3 rounded-md shadow-lg cursor-pointer hover:bg-red-400">+ Create STF</span>
-          button
-        </span>
-      </div>
+    
+    <div v-if="stf_store.all_stf?.length === 0" class="flex flex-row justify-center items-center w-full h-96">
+      <span class="text-3xl">
+        There is not any Orders for showing
+      </span>
+    </div>
 
     <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"
       @closeRowInform="closeRowInform" />-->
@@ -74,10 +73,6 @@ const filterFunction = async (filtered_objects) => {
     filtered_objects.user = user_store?.GETUSER?.id
     await stf_store.getFilteredData(filtered_objects);
   }
-}
-
-const goCreateSTF = () => {
-  stf_store.tab_num = 1;
 }
 
 </script> 

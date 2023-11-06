@@ -24,7 +24,7 @@
                   {{ i.showname }}
               </div>
 
-              <div v-else-if="i.name==='stf_num'" class="w-28">
+              <div v-else-if="i.name==='stf_num'" class="w-26">
                   {{ i.showname }}
               </div>
 
@@ -33,6 +33,10 @@
               </div>
 
               <div v-else-if="i.name==='created_at'" class="w-24">
+                  {{ i.showname }}
+              </div>
+
+              <div v-else-if="i.name==='approximate_date'" class="w-32">
                   {{ i.showname }}
               </div>
 

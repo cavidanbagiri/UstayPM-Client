@@ -1,4 +1,5 @@
 <template>
+    <Toast :cond = showToastval.cond :messages=showToastval.messages />
     <div v-if="selecting_rows.length >= 1" class="mtf-anim fixed left-1/4 bottom-10 flex flex-row mb-4 justify-center rounded-lg w-1/2">
         <div class="flex justify-between bg-white border rounded-md shadow-2xl w-full">
             <div class="flex items-center">
@@ -32,18 +33,43 @@
 
 <script setup>
 
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, reactive } from 'vue';
+import Toast from '../../design/Toast.vue';
 import ProcurementStore from '../../../store/store.procurement';
+import UserStore from '../../../store/store.user_store';
 const procurement_store = ProcurementStore();
+const user_store = UserStore();
 
 const selecting_rows = ref([]);
+
+const showToastval = reactive({
+    cond: false,
+    messages: ''
+})
 
 watchEffect(() => {
     selecting_rows.value = procurement_store.checked_values
 })
 
 const createSM = async () => {
-    procurement_store.tab_num = 2;
+    if(user_store.user){
+        if(user_store.user.departmentId !== 2) {
+            // ... Only Procurement Users can create a new sms
+            showToastval.cond = true;
+            showToastval.messages = "You dont have authority for creating new SM";
+            setTimeout(()=>{
+                showToastval.cond = false
+            },1000)
+        }
+        else{
+            procurement_store.tab_num = 2;
+        }
+    }
+    else{
+        // ... User Not Login Error Return
+        showToastval.cond = true;
+        showToastval.messages = "User Not Login";
+    }
 }
 
 const unselect = () => {

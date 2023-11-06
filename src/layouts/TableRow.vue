@@ -1,10 +1,10 @@
 <template>
   <th v-for="i in prop?.table_headers" v-show="i.value" class="px-2 py-2 font-medium text-center " style="font-family: 'Poppins', sans-serif;">
-      <div v-if="i.name === 'stf_num'" class="w-24">
+      <div v-if="i.name === 'stf_num'" class="w-26">
         <span class="bg-orange-100 text-orange-500 py-[0.30rem] px-2 rounded-md "> {{ prop.each[i.name] }}</span>
       </div>
 
-      <div v-else-if="i.name === 'completed'" class="w-24">
+      <div v-else-if="i.name === 'completed'" class="w-26">
         <span v-if="prop.each[i.name] === false" class="text-red-500 py-[0.30rem] px-2 rounded-md "><i class="fa-solid fa-xmark text-xl text-bold"></i></span>
         <span v-if="prop.each[i.name] === true" class="text-green-500 py-[0.30rem] px-2 rounded-md "><i class="fa-solid fa-check  text-xl"></i></span>
       </div>
@@ -17,6 +17,11 @@
 
       <!-- Date Time Design -->
       <div v-else-if="i.name === 'createdAt'" class="w-26 text-center">
+          <DateFormat :time="prop.each[i.name]" />
+      </div>
+
+      <!-- Date Time Design -->
+      <div v-else-if="i.name === 'approximate_date'" class="w-26 text-center">
           <DateFormat :time="prop.each[i.name]" />
       </div>
 
