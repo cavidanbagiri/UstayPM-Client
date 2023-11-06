@@ -1,4 +1,4 @@
-<template>
+<template> 
   <div class="flex flex-col " style="display: inline-block;">
     <TableCommonComp />
     <!-- Filter Statistic Section-->
