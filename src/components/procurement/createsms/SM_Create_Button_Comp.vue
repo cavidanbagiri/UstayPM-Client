@@ -112,11 +112,17 @@ const createSM = async () => {
                     procurement_store.tab_num = 0;
                     procurement_store.msg_cond = false;
                     procurement_store.checked_values = procurement_store.checked_values.filter((item) => item.stf_id === -1)
+                    common_data.procurement_coming_date = '',
+                    common_data.supplierName = 0,
+                    common_data.VendorModelId = 0,
+                    common_data.createdBy = ''
                 }, 1000)
                 
                 setTimeout(() => {
                     procurement_store.after_created = false;
                     procurement_store.creating_STF_datas = procurement_store.creating_STF_datas.filter((item) => item.project_id === -1)
+                    console.log('checked values : \n',procurement_store.checked_values);
+                    console.log('createating stf data \n : ',procurement_store.checked_values);
                 }, 2000)
 
             }).catch((err) => {

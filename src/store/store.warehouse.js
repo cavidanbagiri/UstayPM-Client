@@ -255,7 +255,9 @@ const WarehouseStore = defineStore("WarehouseStore", {
       try{
         await axios
         .post(`${import.meta.env.VITE_API}/warehouse/provide`, data)
-        .then((respond) => {})
+        .then((respond) => {
+          console.log('provide respond : ',respond );
+        })
         .catch((err) => {
           console.log("Provide Materials Error From Warehouse Store : ", err);
         });
