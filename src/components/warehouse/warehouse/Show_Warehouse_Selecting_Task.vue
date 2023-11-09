@@ -27,16 +27,44 @@
                         class="fa-regular fa-star"></i> <span class="text-xs">Set Star</span></button>
             </div>
         </div>
+        <Toast :cond = showToastval.cond :messages=showToastval.messages />
     </div>
 </template>
 
 <script setup>
 
+import { reactive } from 'vue';
 import WarehouseStore from '../../../store/store.warehouse';
+import UserStore from '../../../store/store.user_store';
+import Toast from '../../design/Toast.vue';
 const warehouse_store = WarehouseStore();
+const user_store = UserStore();
 
+const showToastval = reactive({
+    cond: false,
+    messages: ''
+})
 
-const provideSM = async () => warehouse_store.tab_num = 3;
+const provideSM = async () => {
+    if(user_store.user){
+        if(user_store.user.departmentId !== 3) {
+            // ... Only Procurement Users can create a new sms
+            showToastval.cond = true;
+            showToastval.messages = "You dont have authority for providing data";
+            setTimeout(()=>{
+                showToastval.cond = false
+            },1000)
+        }
+        else{
+            warehouse_store.tab_num = 3;
+        }
+    }
+    else{
+        // ... User Not Login Error Return
+        showToastval.cond = true;
+        showToastval.messages = "User Not Login";
+    }
+}
 
 const unselect = () => {
     warehouse_store.after_created = true

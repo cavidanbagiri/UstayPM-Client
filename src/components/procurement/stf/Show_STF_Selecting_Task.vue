@@ -1,5 +1,4 @@
 <template>
-    <Toast :cond = showToastval.cond :messages=showToastval.messages />
     <div v-if="selecting_rows.length >= 1" class="mtf-anim fixed left-1/4 bottom-10 flex flex-row mb-4 justify-center rounded-lg w-1/2">
         <div class="flex justify-between bg-white border rounded-md shadow-2xl w-full">
             <div class="flex items-center">
@@ -28,6 +27,7 @@
                         class="fa-regular fa-star"></i> <span class="text-xs">Set Star</span></button>
             </div>
         </div>
+        <Toast :cond = showToastval.cond :messages=showToastval.messages />
     </div>
 </template>
 
