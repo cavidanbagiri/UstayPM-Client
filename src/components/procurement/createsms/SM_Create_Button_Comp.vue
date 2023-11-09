@@ -23,7 +23,7 @@
                 </select>
             </div>
         </div>
-        <Toast :cond="procurement_store.msg_cond" messages="New STF Successfuly Created" />
+        <Toast :cond="procurement_store.after_created" messages="New STF Successfuly Created" />
     </div>
 </template>
 
@@ -105,12 +105,10 @@ const createSM = async () => {
         await procurement_store.createSM(procurement_store.GETCREATINGSTFDATA)
             .then((respond) => {
                 procurement_store.creating_STF_datas = [];
-                procurement_store.msg_cond = true;
                 procurement_store.after_created = true;
                 // Show Error Message and Return Back All STF Page
                 setTimeout(() => {
                     procurement_store.tab_num = 0;
-                    procurement_store.msg_cond = false;
                     procurement_store.checked_values = procurement_store.checked_values.filter((item) => item.stf_id === -1)
                     common_data.procurement_coming_date = '',
                     common_data.supplierName = 0,

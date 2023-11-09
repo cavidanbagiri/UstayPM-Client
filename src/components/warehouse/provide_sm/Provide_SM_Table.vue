@@ -25,6 +25,7 @@
             Provide
         </button>
 
+        <Toast :cond="warehouse_store.after_provide" messages="Material Successfully Provided" />
 
     </div>
 </template>
@@ -35,6 +36,7 @@ import { ref, onMounted } from 'vue';
 
 import Provide_SM_Table_Body from './Provide_SM_Table_Body.vue';
 import Provide_SM_Table_Header from './Provide_SM_Table_Header.vue';
+import Toast from '../../design/Toast.vue';
 
 import UserStore from '../../../store/store.user_store';
 import WarehouseStore from '../../../store/store.warehouse';

@@ -11,9 +11,6 @@ const ProcurementStore = defineStore("ProcurementStore",{
 
     // Create Listening FOr Changing STF Page Menu
     tab_num : 0, 
-
-    // Show Message After Creating New SMS
-    msg_cond : false,
   
     // For choosing STF and sending for creating SM
     checked_values: [],
