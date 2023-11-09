@@ -3,8 +3,6 @@
 <template>
     <div class="mt-1 shadow-md sm:rounded-lg w-screen overflow-x-scroll border-2 ">
 
-        <Accept_Received_Data_Message />
-
         <!-- Accept Button -->
         <!-- <button @click="acceptedByWarehouse" v-if="warehouse_store.processing_checked_values?.length"  -->
         <button @click="acceptedByWarehouse" v-if="warehouse_store.processing_checked_values?.length > 0"
@@ -25,6 +23,8 @@
 
         </table>
 
+        <Toast :cond="warehouse_store.accept_sms_msg" messages="SM Successfuly Received" />
+
     </div>
 </template>
 
@@ -37,7 +37,7 @@ import Accepting_data from './Accepting_data.vue';
 
 import WarehouseStore from '../../../store/store.warehouse';
 import UserStore from '../../../store/store.user_store';
-import Accept_Received_Data_Message from './Accept_Received_Data_Message.vue';
+import Toast from '../../design/Toast.vue';
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();
 
@@ -54,7 +54,6 @@ const table_data = ref([]);
 const acceptedByWarehouse = async () => {
 
     let check = true;
-    console.log('l am working');
     for( let [key, value] of Object.entries(sms_data) ){
         value = value.toString().trim();
         if(key === "doc_number" && value === '' ){
@@ -73,7 +72,13 @@ const acceptedByWarehouse = async () => {
             break;
         }
     }
-
+    for(let i = 0 ; i < table_data.value.length > 0; i++){
+        if(!table_data.value[i].delivery_unit){
+            check = false;
+            alert(`${i+1} Row, Delivery Unit Not Selected`)
+            break;
+        }
+    }
     if (check) {
         const data = {
             user: user_store.user,
@@ -83,11 +88,11 @@ const acceptedByWarehouse = async () => {
         }
         await warehouse_store.acceptWaitingSM(data)
             .then((respond) => {
-                warehouse_store.receive_success_show_message = true
+                warehouse_store.accept_sms_msg = true
                 warehouse_store.after_created = true;
                 warehouse_store.processing_checked_values = warehouse_store.processing_checked_values.filter((item) => item.id === -1)
                 setTimeout(async () => {
-                    warehouse_store.receive_success_show_message = false;
+                    warehouse_store.accept_sms_msg = false;
                     await warehouse_store.getProcessingSMS();
                     sms_data.doc_date = '';
                     sms_data.providing_date = '';

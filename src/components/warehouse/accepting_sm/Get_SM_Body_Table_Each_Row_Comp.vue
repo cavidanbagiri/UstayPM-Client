@@ -52,10 +52,10 @@
             {{ prop?.each_item?.sm_material_name }}
         </td>
         <td class="px-2 py-2   border-y text-start">
-            {{ prop?.each_item?.sm_material_amount }}
+            {{ prop?.each_item?.amount }}
         </td>
         <td class="px-2 py-2   border-y text-center">
-            {{ prop?.each_item?.sm_material_unit }}
+            {{ prop?.each_item?.unit }}
         </td>
         <td class="px-2 py-2   border-y text-center">
             {{ prop?.each_item?.price }}

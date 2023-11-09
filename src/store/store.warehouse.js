@@ -17,7 +17,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     If All Of The Rows entering values is true, this will be true and function will work
     */
     accepted_condition : true,
-    receive_success_show_message : false,
+    accept_sms_msg : false,
 
     // After Accepted SM 
     after_created: false,
