@@ -1,12 +1,12 @@
 <template>
-    <div v-if="selecting_rows?.length >= 1" class="mtf-anim fixed w-full bottom-10 flex flex-col mb-4 items-center rounded-lg">
+    <div v-if="warehouse_store.warehouse_data_checked_values?.length >= 1" class="mtf-anim fixed w-full bottom-10 flex flex-col mb-4 items-center rounded-lg">
         <div class="flex justify-between bg-white w-1/2 border rounded-md shadow-2xl">
             <div class="flex items-center">
-                <span class="bg-blue-600 py-4 px-6 text-white font-bold rounded-l-md text-3xl">{{ selecting_rows.length
+                <span class="bg-blue-600 py-4 px-6 text-white font-bold rounded-l-md text-3xl">{{ warehouse_store.warehouse_data_checked_values.length
                 }}</span>
                 <div class="ml-3">
                     <p>Task Selected</p>
-                    <span v-for="i in selecting_rows.length" class="text-blue-600">&#9679</span>
+                    <span v-for="i in warehouse_store.warehouse_data_checked_values.length" class="text-blue-600">&#9679</span>
                 </div>
             </div>
             <div class="flex items-center">
@@ -32,19 +32,11 @@
 
 <script setup>
 
-import { ref, watchEffect } from 'vue';
 import WarehouseStore from '../../../store/store.warehouse';
 const warehouse_store = WarehouseStore();
 
-const selecting_rows = ref([]);
 
-watchEffect(() => {
-    selecting_rows.value = warehouse_store.warehouse_data_checked_values
-})
-
-const provideSM = async () => {
-    warehouse_store.tab_num = 3;
-}
+const provideSM = async () => warehouse_store.tab_num = 3;
 
 const unselect = () => {
     warehouse_store.after_created = true
@@ -52,7 +44,6 @@ const unselect = () => {
     setTimeout(() => {
         warehouse_store.after_created = false;
     }, 1000)
-    console.log('processing list : ', warehouse_store.warehouse_data_checked_values);
 }
 
 </script>

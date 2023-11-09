@@ -51,28 +51,36 @@ onMounted(async()=>{
 // Provide Sm Call Backend
 const provideSM = async () => {
     const sending_data = {};
-    console.log('entering rows : ', entering_rows.value);
     if (user_store.user !== null ){
         sending_data.user = user_store.user.id;
         let check = true;
         for(let i = 0 ; i < entering_rows.value.length; i++){
+            if(entering_rows?.value[i]?.type === ''){
+                check = false;
+                alert(`${i+1} Row, Type Is Not Selected`);
+                break;
+            }
             if(entering_rows?.value[i]?.provide_amount <=0 ){
                 check = false;
                 alert(`${i+1} Row, Provided Amount Is Not True`);
+                break
             }
             let provided_user = entering_rows?.value[i]?.provide_user.toString().trim();
             if(provided_user === '' ){
                 check = false;
                 alert(`${i+1} Row, Provided User Name Is Not Included`);
+                break;
             }
-            let provided_card_number = entering_rows?.value[i]?.provide_card_number.toString().trim();
+            let provided_card_number = entering_rows?.value[i]?.provide_user_card_number.toString().trim();
             if(provided_card_number === '' ){
                 check = false;
                 alert(`${i+1} Row, Provided User Card Number Is Not Included`);
+                break;
             }
             if(entering_rows?.value[i]?.provide_department === ''){
                 check = false;
-                alert(`${i+1} Row, Department Is Not Selected`)
+                alert(`${i+1} Row, Department Is Not Selected`);
+                break;
             }
         }
 
@@ -80,15 +88,14 @@ const provideSM = async () => {
             sending_data.data = entering_rows.value;
             await warehouse_store.provideSM(sending_data)
             .then((respond)=>{
-                // warehouse_store.after_provide = true;
+                warehouse_store.after_provide = true;
                 setTimeout(()=>{
                     warehouse_store.warehouse_data_checked_values = warehouse_store.warehouse_data_checked_values.filter((item) => item.id === -1);
                     warehouse_store.tab_num=1;
-                    // warehouse_store.after_provide = false;
                 },1000)
                 setTimeout(()=>{
                     entering_rows.value = [];
-                    // warehouse_store.after_provide = false;
+                    warehouse_store.after_provide = false;
                 },2000)
             })
         }
