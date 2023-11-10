@@ -1,18 +1,16 @@
 
 <template>
-  <div class="flex flex-col p-1 w-96">
-    <div class="flex justify-center">
-      <span class="text-2xl font-bold text-gray-600">Procurement</span>
-    </div>
-    <div>
-      <Doughnut :data="chartData" />
-    </div>
+  <div class="col-span-3 p-1  border rounded-xl shadow-xl mx-1  bg-white" style="font-family: 'Roboto';">
+      <div class="flex flex-col items-center">
+        <span class="text-3xl font-bold text-start pl-5 text-gray-600 my-3">SM Balance</span>
+        <Doughnut :data="chartData" />
+      </div>
   </div>
 </template>
 
 <script setup>
 
-import { ref, watchEffect, reactive } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 

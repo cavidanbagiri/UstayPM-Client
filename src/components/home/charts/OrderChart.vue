@@ -1,16 +1,14 @@
 
 <template>
-  <div class="flex flex-col p-1 w-96">
-    <div class="flex justify-center">
-      <span class="text-2xl font-bold text-gray-600">Order</span>
-    </div>
-    <div>
-      <Doughnut :data="chartData" />
-    </div>
+  <div class="col-span-3 p-1  border rounded-xl shadow-xl mx-1 bg-white" style="font-family: 'Roboto';">
+      <div class="flex flex-col items-center">
+        <span class="text-3xl font-bold text-start pl-5 text-gray-600 my-3">STF Balance</span>
+        <Doughnut :data="chartData" />
+      </div>
   </div>
 </template>
 
-<script setup>
+<script setup>  
 
 import { ref, watchEffect } from 'vue';
 import { Doughnut } from 'vue-chartjs'
@@ -25,19 +23,19 @@ const chartData = ref();
 
 watchEffect(() => {
   chartData.value = {
-    labels: ['Attached', 'Working', 'Completed'],
+    labels: ['Canceled', 'Processing', 'Completed'],
     datasets: [
       {
         label: 'Data One',
         backgroundColor: [
-          'rgb(255, 99, 132)',
-          'rgb(54, 162, 235)',
-          'rgb(255, 205, 86)'
+          'rgb(59 130 246)',
+          'rgb(132 204 22)',
+          'rgb(239 68 68)'
         ],
         data: [
-          20,
-          15,
-          3
+          14,
+          43,
+          124
         ]
       }
     ]
