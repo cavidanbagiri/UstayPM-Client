@@ -2,11 +2,10 @@
 <template>
   <div class="col-span-6 p-1  border rounded-xl shadow-xl mx-1 bg-white"  style="font-family: 'Roboto';">
     <div class="flex flex-col">
-      <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-2">Common Information</span>
+      <span class="text-3xl font-bold text-center pl-5 text-gray-600 mt-1 mb-2">Common Information</span>
       <!-- Information Section -->
       <div class="flex flex-row justify-around  text-gray-500">
         
-        <!-- Total STF -->
         <div class="flex flex-col  justify-center w-full items-start pl-3">
           <span class="my-1 text-start rounded-full bg-blue-300 p-2 px-3">
             <i class="fa-solid fa-plus fa-lg  rounded-full text-black"></i>
@@ -15,16 +14,14 @@
           <span class="my-1 text-center text-lg font-bold text-gray-700">523</span>
         </div>
 
-        <!-- Total STF -->
         <div class="flex flex-col  justify-center w-full items-start pl-3">
           <span class="my-1 text-start rounded-full bg-yellow-300 p-2">
             <i class="fa-solid fa-handshake fa-lg  rounded-full text-black"></i>
           </span>
           <span class="text-center text-md font-bold">Total SM</span>
-          <span class="my-1 text-center text-lg font-bold text-gray-700">523</span>
+          <span class="my-1 text-center text- font-bold text-gray-700">523</span>
         </div>
         
-        <!-- Total STF -->
         <div class="flex flex-col  justify-center w-full items-start pl-3">
           <span class="my-1 text-start rounded-full bg-red-300 p-2 px-3">
             <i class="fa-solid fa-microchip fa-lg  rounded-full text-black"></i>
@@ -33,7 +30,6 @@
           <span class=" text-center text-lg font-bold text-gray-700">21</span>
         </div>
         
-        <!-- Total STF -->
         <div class="flex flex-col  justify-center w-full items-start pl-3">
           <span class="my-1 text-start rounded-full bg-orange-300 p-2">
             <i class="fa-solid fa-warehouse fa-lg  rounded-full text-black"></i>
