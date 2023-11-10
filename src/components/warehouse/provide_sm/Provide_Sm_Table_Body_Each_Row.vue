@@ -20,7 +20,7 @@
         </td>
         <td class="px-2  text-start border-y ">
             <div class="   py-1 px-2 rounded-xl ">
-                <span>{{ prop?.each_item?.amount }}</span>
+                <span>{{ prop?.each_item?.stock }}</span>
             </div>
         </td>
         <td class="px-2  text-start border-y ">
@@ -79,13 +79,15 @@
 
 <script setup>
 
-import { reactive, watchEffect, ref } from 'vue';
-
+import { reactive, watchEffect, ref, createElementBlock } from 'vue';
+import WarehouseStore from '../../../store/store.warehouse';
+const warehouse_store = WarehouseStore();
 const prop = defineProps(['each_item', 'index', 'entering_rows', 'store']);
 
 const entering_data = reactive({
     warehouse_id: prop?.each_item.warehouse_id,
     department_id: prop?.each_item.department_id,
+    stock: prop?.each_item?.stock,
     type: '',
     provide_amount: 0,
     serial_no: '',
@@ -99,14 +101,20 @@ const types = ref([]);
 const departments = ref([]);
 
 watchEffect(() => {
-
+    console.log('entering data : ', entering_data);
     if (types.value.length === 0) {
         types.value = prop?.store?.delivery_types
     }
     if (departments.value.length === 0) {
         departments.value = prop?.store?.departments
     }
-
+    if( entering_data.provide_amount > entering_data.stock){
+        warehouse_store.warehouse_data_stock_cond = false;
+        alert(`Stock ${entering_data.stock}, Provide Amount ${entering_data.provide_amount}.`)
+    }
+    else{
+        warehouse_store.warehouse_data_stock_cond = true;
+    }
     if (prop.entering_rows?.length === 0) {
         prop.entering_rows.push(entering_data);
     }

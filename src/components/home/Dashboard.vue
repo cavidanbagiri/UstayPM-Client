@@ -30,7 +30,7 @@
                     <router-link to="/">
                         <span
                             class=" mx-1 text-sm text-gray-200 px-8 py-2 cursor-pointer border font-bold rounded-full bg-gray-500">
-                            Dashboard2
+                            Dashboard
                         </span>
                     </router-link>
                     <router-link to="/">

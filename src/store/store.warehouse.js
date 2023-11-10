@@ -17,8 +17,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
     If All Of The Rows entering values is true, this will be true and function will work
     */
     accepted_condition : true,
-    accept_sms_msg : false,
-
     // After Accepted SM 
     after_created: false,
     // After Provide Material
@@ -30,6 +28,8 @@ const WarehouseStore = defineStore("WarehouseStore", {
 
     // Select Warehouse Items and Send Provide Page For Provide Area 
     warehouse_data_checked_values: [],
+    // Warehouse Data Check Provide amount and stock is true
+    warehouse_data_stock_cond: true,
 
     // Fetch Departments and show Provide Sm Page From Warehouse
     departments : [],

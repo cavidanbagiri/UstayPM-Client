@@ -22,7 +22,7 @@
             </th>
             <th scope="col" class="px-2 py-1  font-medium text-center border w-24">
                 <div class="flex flex-col w-24">
-                    Amount
+                    Stock
                 </div>
             </th>
             <th scope="col" class="px-2 py-1  font-medium text-center border w-24">

@@ -67,10 +67,10 @@ const provideSM = async () => {
 }
 
 const unselect = () => {
-    warehouse_store.after_created = true
+    warehouse_store.after_provide = true
     warehouse_store.warehouse_data_checked_values = warehouse_store.warehouse_data_checked_values.filter((item) => item.id === -1)
     setTimeout(() => {
-        warehouse_store.after_created = false;
+        warehouse_store.after_provide = false;
     }, 1000)
 }
 

@@ -100,7 +100,6 @@ const each_row_data = reactive({
 
 
 watchEffect(() => {
-
     if (each_row_data?.entering_delivery_amount < ((each_row_data?.delivery_amount) + (each_row_data?.delivery_amount * 10) / 100)) {
         if (warehouse_store.processing_checked_values.length > prop.table_data.length) {
             prop.table_data.push(each_row_data);

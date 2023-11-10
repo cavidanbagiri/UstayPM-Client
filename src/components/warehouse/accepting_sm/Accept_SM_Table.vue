@@ -23,7 +23,7 @@
 
         </table>
 
-        <Toast :cond="warehouse_store.accept_sms_msg" messages="SM Successfuly Received" />
+        <Toast :cond="warehouse_store.after_created" messages="SM Successfuly Received" />
 
     </div>
 </template>
@@ -88,11 +88,9 @@ const acceptedByWarehouse = async () => {
         }
         await warehouse_store.acceptWaitingSM(data)
             .then((respond) => {
-                warehouse_store.accept_sms_msg = true
                 warehouse_store.after_created = true;
                 warehouse_store.processing_checked_values = warehouse_store.processing_checked_values.filter((item) => item.id === -1)
                 setTimeout(async () => {
-                    warehouse_store.accept_sms_msg = false;
                     await warehouse_store.getProcessingSMS();
                     sms_data.doc_date = '';
                     sms_data.providing_date = '';
@@ -101,7 +99,7 @@ const acceptedByWarehouse = async () => {
                 }, 1000)
                 setTimeout(() => {
                     warehouse_store.after_created = false;
-                })
+                },2000)
             }).catch((err) => {
                 console.log('Received Material Error : ', err);
             })

@@ -21,7 +21,10 @@
 
         <!-- Accept Button -->
         <button @click="provideSM" v-if="warehouse_store.warehouse_data_checked_values?.length"
-            class="bg-red-600 p-2 px-3 text-white font-weight rounded-lg my-1">
+            :disabled="!warehouse_store.warehouse_data_stock_cond"
+            class="p-2 px-3 text-white font-weight rounded-lg my-1"
+            :class="warehouse_store.warehouse_data_stock_cond ? 'bg-red-600 cursor-pointer' : 'bg-red-200 cursor-default' "
+            >
             Provide
         </button>
 
