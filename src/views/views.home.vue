@@ -17,7 +17,7 @@
 
 <script setup>
 
-import Dashboard from '../components/home/dashboard.vue';
+import Dashboard from '../components/home/Dashboard.vue';
 import OrderChart from '../components/home/charts/OrderChart.vue';
 import ProcurementChart from '../components/home/charts/ProcurementChart.vue';
 import WarehouseChart from '../components/home/charts/WarehouseChart.vue';
