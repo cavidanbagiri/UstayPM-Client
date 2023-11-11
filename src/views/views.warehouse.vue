@@ -22,6 +22,9 @@
           <span :class="warehouse_store?.tab_num === 3 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(3)"
             class=" text-black px-3 pb-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-minus fa-md"></i>
             Provide SM</span>
+          <span :class="warehouse_store?.tab_num === 4 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(4)"
+            class=" text-black px-3 pb-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-minus fa-md"></i>
+            Provided</span>
           <!-- <span :class="warehouse_store?.tab_num === 4 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(4)"
             class=" text-black px-3 pb-2 mx-1 border-b-2  cursor-pointer"> <i class="fa-solid fa-upload fa-md"></i>
             Warehouse</span>
@@ -46,16 +49,11 @@
 
 <script setup>
 
-// import Received_SM_Table from '../components/warehouse/received_sm/Received_SM_Table.vue';
-// import Accept_SM_Table from '../components/warehouse/accepting_sm/Accept_SM_Table';
-// import Provide_SM_Table from '../components/warehouse/provide_sm/Provide_SM_Table.vue';
-// import Warehouse from '../components/warehouse/warehouse/Warehouse.vue';
-// import Provides from '../components/warehouse/provides_data/Provides.vue';
-
 import Show_SM_Table from '../components/warehouse/processing_sm/Show_SM_Table.vue';
 import Accept_SM_Table  from '../components/warehouse/accepting_sm/Accept_SM_Table.vue';
 import Warehouse_Table from '../components/warehouse/warehouse/Warehouse_Table.vue';
 import Provide_SM_Table from '../components/warehouse/provide_sm/Provide_SM_Table.vue';
+import Provided_Table from '../components/warehouse/provided/Provided_Table.vue';
 
 import WarehouseStore from '../store/store.warehouse';
 import UserStore from '../store/store.user_store';
@@ -65,7 +63,8 @@ const tabs = [
 Show_SM_Table,
 Warehouse_Table,
 Accept_SM_Table,
-Provide_SM_Table
+Provide_SM_Table,
+Provided_Table
   // Received_SM_Table,
   // Provide_SM_Table,
   // Warehouse,

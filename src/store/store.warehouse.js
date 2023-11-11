@@ -26,6 +26,10 @@ const WarehouseStore = defineStore("WarehouseStore", {
     warehouse_data: [],
     warehouse_data_headers: [],
 
+    // Fetch Data For Provides
+    provides_data: [],
+    provided_data_headers: [],
+
     // Select Warehouse Items and Send Provide Page For Provide Area 
     warehouse_data_checked_values: [],
     // Warehouse Data Check Provide amount and stock is true
@@ -250,9 +254,61 @@ const WarehouseStore = defineStore("WarehouseStore", {
       }
     },
 
+    // Fetch Provided Data and show in Provided Section
+    async fetchProvidedData() {
+      await axios
+      .get(`${import.meta.env.VITE_API}/provides`)
+      .then((respond) => {
+        this.provides_data = respond.data;
+        console.log('Get Provide Data and result is : ',this.provides_data);
+        })
+        .catch((err) => {
+          console.log("Provied Items Error : ", err);
+        });
+    },
+
+    // Get Filtered Data For Provided Section
+    // Functions ...
+
+    // Get Provided Data Headers
+    // Get Table Headers and show in STF
+    async getProvidedDataHeaders() {
+      if (this.provides_data?.length) {
+        for (let [key, value] of Object.entries(this.provides_data[0])) {
+          if (key !== "id") {
+            let header_cond = {};
+            let val = key.charAt(0).toUpperCase() + key.slice(1);
+            val = val.split("_").join(" ");
+            if (
+              key === "sm_num" ||
+              key === "provided_date" ||
+              key === "material_name" ||
+              key === "amount" ||
+              key === "unit" ||
+              key === "serial_no" ||
+              key === "unique_id" ||
+              key === "deliver_to" || 
+              key === "card_number"  
+            ) {
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = true;
+            } else {
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = false;
+            }
+            this.provided_data_headers.push(header_cond);
+          }
+        }
+        
+      console.log('provided data geaders : ', this.provided_data_headers);
+      }
+    },
+
+
     // Post Accepted waiting to Warehouse
     async provideSM(data) {
-      // console.log('provide data is : ', data);
       try{
         await axios
         .post(`${import.meta.env.VITE_API}/warehouse/provide`, data)

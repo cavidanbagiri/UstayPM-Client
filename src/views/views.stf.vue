@@ -52,6 +52,7 @@ import { onMounted } from 'vue';
 import ShowSTF from '../components/stf/show_stf/ShowSTF.vue';
 import CreateSTF from '../components/stf/create_stf/CreateSTF.vue';
 import WarehouseData from '../components/stf/warehouse/WarehouseData.vue';
+import ProvideData from '../components/stf/provides/ProvideData.vue';
 
 import UserStore from '../store/store.user_store';
 import STFStore from '../store/store.stf.js'
@@ -59,7 +60,7 @@ import STFStore from '../store/store.stf.js'
 const user_store = UserStore();
 const stf_store = STFStore();
 
-const tabs = [ShowSTF, CreateSTF, WarehouseData];
+const tabs = [ShowSTF, CreateSTF, WarehouseData, ProvideData];
 
 const changeTab = (num) => {
   stf_store.tab_num = num;
