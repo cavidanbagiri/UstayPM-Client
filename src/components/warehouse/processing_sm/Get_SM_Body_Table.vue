@@ -7,7 +7,7 @@
 <script setup>
 
 import { ref, watchEffect } from 'vue';
-import Get_SM_Body_Table_Each_Row_Comp from './Get_Sm_Body_Table_Each_Row_Comp.vue'
+import Get_SM_Body_Table_Each_Row_Comp from './Get_SM_Body_Table_Each_Row_Comp.vue';
 import WarehouseStore from '../../../store/store.warehouse';
 const warehouse_store = WarehouseStore();
 
