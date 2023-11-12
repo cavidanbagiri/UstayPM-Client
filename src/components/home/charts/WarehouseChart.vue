@@ -7,33 +7,21 @@
       <div class="flex flex-row justify-between items-between text-gray-500 w-full ">
         
         <div class="flex flex-col  justify-center w-full items-center pl-3">
-          <!-- <span class="my-1 text-start rounded-full bg-blue-300 p-2 px-3">
-            <i class="fa-solid fa-plus fa-lg  rounded-full text-black"></i>
-          </span> -->
           <span class="text-center text-md font-bold">Total STF</span>
           <span class="my-1 text-center text-lg font-bold text-gray-700">523</span>
         </div>
 
         <div class="flex flex-col  justify-center w-full items-center pl-3">
-          <!-- <span class="my-1 text-start rounded-full bg-yellow-300 p-2">
-            <i class="fa-solid fa-handshake fa-lg  rounded-full text-black"></i>
-          </span> -->
           <span class="text-center text-md font-bold">Total SM</span>
           <span class="my-1 text-center text- font-bold text-gray-700">523</span>
         </div>
         
         <div class="flex flex-col  justify-center w-full items-center pl-3">
-          <!-- <span class="my-1 text-start rounded-full bg-red-300 p-2 px-3">
-            <i class="fa-solid fa-microchip fa-lg  rounded-full text-black"></i>
-          </span> -->
-          <span class="my-1 text-center text-md font-bold">Total Processing</span>
-          <span class=" text-center text-lg font-bold text-gray-700">21</span>
+          <span class="text-center text-md font-bold">Total Processing</span>
+          <span class="my-1  text-center text-lg font-bold text-gray-700">21</span>
         </div>
         
         <div class="flex flex-col  justify-center w-full items-center pl-3">
-          <!-- <span class="my-1 text-start rounded-full bg-orange-300 p-2">
-            <i class="fa-solid fa-warehouse fa-lg  rounded-full text-black"></i>
-          </span> -->
           <span class="text-center text-md font-bold">Total Warehouse</span>
           <span class="my-1 text-center text-lg font-bold text-gray-700">414</span>
         </div>

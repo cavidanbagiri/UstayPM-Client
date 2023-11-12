@@ -6,30 +6,21 @@
       <!-- Inform -->
       <div class="flex flex-row justify-center items-center text-gray-500 w-full">
 
-        <div class="flex flex-col  justify-center w-full items-center">
-          <!-- <span class="my-1 text-start rounded-full bg-blue-300 p-2 px-3">
-    <i class="fa-solid fa-plus fa-lg  rounded-full text-black"></i>
-  </span> -->
+        <div class="flex flex-col  justify-center w-full items-center ">
+          <span class="text-center text-md font-bold">Canceled</span>
+          <span class="my-1 text-center text-lg font-bold text-gray-700">0</span>
+        </div>
+
+        <div class="flex flex-col  justify-center w-full items-center ">
+          <span class="text-center text-md font-bold">Processing</span>
+          <span class="my-1 text-center text-lg font-bold text-gray-700">{{ prop?.statistic_data?.sm_process }}</span>
+        </div>
+
+        <div class="flex flex-col  justify-center w-full items-center ">
           <span class="text-center text-md font-bold">Completed</span>
-          <span class="my-1 text-center text-lg font-bold text-gray-700">523</span>
+          <span class="my-1 text-center text-lg font-bold text-gray-700">{{ prop?.statistic_data?.sm_completed }}</span>
         </div>
-
-        <div class="flex flex-col  justify-center w-full items-center">
-          <!-- <span class="my-1 text-start rounded-full bg-yellow-300 p-2">
-    <i class="fa-solid fa-handshake fa-lg  rounded-full text-black"></i>
-  </span> -->
-          <span class="text-center text-md font-bold">Waiting</span>
-          <span class="my-1 text-center text- font-bold text-gray-700">523</span>
-        </div>
-
-        <div class="flex flex-col  justify-center w-full items-center">
-          <!-- <span class="my-1 text-start rounded-full bg-red-300 p-2 px-3">
-    <i class="fa-solid fa-microchip fa-lg  rounded-full text-black"></i>
-  </span> -->
-          <span class="my-1 text-center text-md font-bold">Canceled</span>
-          <span class=" text-center text-lg font-bold text-gray-700">21</span>
-        </div>
-
+        
       </div>
 
       <Doughnut :data="chartData" />
@@ -42,9 +33,10 @@
 import { ref, watchEffect } from 'vue';
 import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-
-
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+
+// Get Statistic Result
+const prop = defineProps(['statistic_data']);
 
 const data = ref();
 
@@ -52,7 +44,7 @@ const chartData = ref();
 
 watchEffect(() => {
   chartData.value = {
-    labels: ['Attached', 'Working', 'Completed'],
+    labels: ['Canceled', 'Processing', 'Completed'],
     datasets: [
       {
         label: 'Data One',
@@ -62,9 +54,9 @@ watchEffect(() => {
           'rgb(255, 205, 86)'
         ],
         data: [
-          20,
-          15,
-          3
+          2,
+          prop?.statistic_data?.sm_process,
+          prop?.statistic_data?.sm_completed
         ]
       }
     ]
