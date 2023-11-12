@@ -55,7 +55,7 @@ onMounted(async () => {
 
 // Get Filtered Data
 const filterFunction = async (filtered_objects) => {
-  // await warehouse_store.getFilteredDataWarehouse(filtered_objects);
+  await warehouse_store.getFilteredDataProvided(filtered_objects);
 }
 
 // Get Filtered Data

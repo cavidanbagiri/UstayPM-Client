@@ -268,7 +268,27 @@ const WarehouseStore = defineStore("WarehouseStore", {
     },
 
     // Get Filtered Data For Provided Section
-    // Functions ...
+    // Get Filtered Data For User STF
+    async getFilteredDataProvided(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      console.log('store is working');
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/common/filterprovided${queries}
+            `
+          )
+          .then((respond) => {
+            this.provides_data = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
+    },
 
     // Get Provided Data Headers
     // Get Table Headers and show in STF

@@ -25,6 +25,11 @@
           <DateFormat :time="prop.each[i.name]" />
       </div>
 
+       <!-- Date Time Design -->
+       <div v-else-if="i.name === 'provided_date'" class="w-26 text-center">
+          <DateFormat :time="prop.each[i.name]" />
+      </div>
+
       <!-- Situation Design -->
       <div v-else-if="i.name === 'situation'" class="w-20 text-start">
           <!-- <div v-if="prop.each[i.name] === 'Waiting'">

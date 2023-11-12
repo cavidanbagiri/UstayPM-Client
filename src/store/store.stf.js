@@ -11,8 +11,16 @@ const STFStore = defineStore("STFStore", {
     warehouse_selecting_rows: [], // Selecting Rows Will Ad To This Array
     order_list: [], // During Create New STF, The Rows will add inside of this list for checking
     fields: [], // Fecth ALl Field accroding to project, and show when new stf creating
+
+    // **** Warehouse 
     warehouse_data: [], // Fetch All Warehouse Data
     warehouse_headers: [], // Fetch All Warehouse Headers
+
+    // **** Provide
+    // Fetch Data For Provides
+    provides_data: [],
+    provided_data_headers: [],
+
     warehouse_selecting_rows: [], // Selected Warehouses Rows
     /*
       After Creating New STF
@@ -259,6 +267,72 @@ const STFStore = defineStore("STFStore", {
         console.log("Get Filtered Data Error : ", err);
       }
     },
+
+    // Fetch Provided Data and show in Provided Section
+    async fetchProvidedData(user) {
+      await axios
+      .get(`${import.meta.env.VITE_API}/stf/provided/${user.departmentId}`)
+      .then((respond) => {
+        this.provides_data = respond.data;
+        console.log('Get Provide Data and result is : ',this.provides_data);
+        })
+        .catch((err) => {
+          console.log("Provied Items Error : ", err);
+        });
+    },
+
+    // Get Filtered Data For Provided Section
+    async getFilteredDataProvided(filtered_object) {
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `${import.meta.env.VITE_API}/common/filterprovided${queries}`
+          )
+          .then((respond) => {
+            this.provides_data = respond.data;
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
+      }
+    },
+
+    // Get Provided Data Headers
+    async getProvidedDataHeaders() {
+      if (this.provides_data?.length) {
+        for (let [key, value] of Object.entries(this.provides_data[0])) {
+          if (key !== "id") {
+            let header_cond = {};
+            let val = key.charAt(0).toUpperCase() + key.slice(1);
+            val = val.split("_").join(" ");
+            if (
+              key === "sm_num" ||
+              key === "provided_date" ||
+              key === "material_name" ||
+              key === "amount" ||
+              key === "unit" ||
+              key === "serial_no" ||
+              key === "unique_id" ||
+              key === "deliver_to" || 
+              key === "card_number"  
+            ) {
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = true;
+            } else {
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = false;
+            }
+            this.provided_data_headers.push(header_cond);
+          }
+        }
+      }
+    },
+
 
     // Create URL query from table filter watcher
     createUrlQuery(filtered_object) {

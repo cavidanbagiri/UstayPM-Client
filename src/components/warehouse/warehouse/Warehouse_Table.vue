@@ -5,14 +5,9 @@
         <div class="sticky h-40 top-10 bg-white">
             <div class=" sticky left-16 flex flex-col w-max bg-white"
                 style="display:inline-block; width: calc(100vw - 5rem);">
-                <!-- <table-sm-statistics :statistic_result="warehouse_store.statistic_result" @fetchCurrentData="fetchCurrentData" />
-                <table-filter @filterFunction = "filterFunction">
-                    <table-expand v-if="true" :table_headers="warehouse_store.receiving_sm_headers" />
-                </table-filter> -->
+                
                 <STFStatistics />
 
-
-                <!-- <Filter_Section_Comp /> -->
                 <!-- <TableFilter @filterFunction="filterFunction"> -->
                 <TableFilterWarehouse @filterFunction="filterFunction">
                     <TableExpand v-if="true" :table_headers="warehouse_store.warehouse_data_headers" />
@@ -57,19 +52,12 @@ import Warehouse_Table_Body from './Warehouse_Table_Body.vue'
 import Show_Warehouse_Selecting_Task from './Show_Warehouse_Selecting_Task.vue';
 import TableCommonComp from '../../design/TableCommonComp.vue';
 import WarehouseStore from '../../../store/store.warehouse';
-// import IndexStore from '../../../store';
 
-// Create variable for importing data
-// const index_store = IndexStore();
 const warehouse_store = WarehouseStore();
 
 
 onMounted(async () => {
-    // Get All Waiting SMS
     await warehouse_store.fetchWarehouseData();
-    // Get \Warehouse Statistics Resukt just about SM
-    // await warehouse_store.getStatisticResult();
-    // Get Table Headers
     if(warehouse_store.warehouse_data_headers.length === 0){
         warehouse_store.getWarehouseDataHeaders();
     }
