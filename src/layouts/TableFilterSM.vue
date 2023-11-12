@@ -26,7 +26,7 @@
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search Type</span>
                     <select v-model="filtered_objects.material_type"
-                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
+                        class="border outline-none text-md rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
                         <option>All</option>
                         <option>Project</option>
                         <option>Consumables</option>
@@ -77,9 +77,9 @@
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search Username</span>
                     <select v-model="filtered_objects.usernames"
-                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
-                        <option value="All">All</option>
-                        <option v-for="i in procurement_store.created_stf_username" class="text-lg" :value="i.id"
+                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg" style="font-size: 16px;">
+                        <option value="All">-- All --</option>
+                        <option v-for="i in procurement_store.created_stf_username" :value="i.id"
                             style="font-family: 'Poppins', sans-serif;">
                             {{ i.ordered_name }}
                         </option>
