@@ -40,10 +40,11 @@
                     <select v-model="filtered_objects.usernames"
                         class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
                         >
+                        <option value="All" style="font-family:'Poppins', sans-serif;" class="text-lg" >-- All --</option>
                         <option v-for="i in procurement_store.created_stf_username" class="text-lg" 
                         :value="i.id"
                         style="font-family: 'Poppins', sans-serif;">
-                          {{ i.ordered_name }}
+                          {{ i.ordered_name }} - ({{ i.stf_data }})
                         </option>
                     </select>
                 </div>
