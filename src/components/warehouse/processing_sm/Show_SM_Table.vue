@@ -36,14 +36,7 @@
         </div>
 
         <Show_STF_Selecting_Task />
-
-        <!-- <table-row-inform 
-        :row_inform="index_store.row_detail_data" 
-        :row_inform_condition="index_store.row_inform_condition" 
-        @closeRowInform="closeRowInform"
-        /> -->
-
-
+        
     </div>
 </template>
 
@@ -61,6 +54,7 @@ import TableCommonComp from '../../design/TableCommonComp.vue';
 
 import UserStore from '../../../store/store.user_store';
 import WarehouseStore from '../../../store/store.warehouse';
+import ProcurementStore from '../../../store/store.procurement';
 // import IndexStore from '../../../store';
 
 import TableHeader from '../../../layouts/TableHeader.vue';
@@ -68,6 +62,7 @@ import TableHeader from '../../../layouts/TableHeader.vue';
 // Create variable for importing data
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();
+const procurement_store = ProcurementStore();
 // const index_store = IndexStore();
 
 onMounted(async () => {
@@ -80,8 +75,10 @@ onMounted(async () => {
         await warehouse_store.getProcessingSMS(user?.projectId);
         // Get All Companies Names For Filtering 
         await warehouse_store.getCompaniesNames();
+        await procurement_store.getCompaniesNames();
         // Get All Creating Users Names For Users
         await warehouse_store.fetchSTFCreateUsernames();
+        await procurement_store.fetchSTFCreateUsernames();
         // Get \Warehouse Statistics Resukt just about SM
         // await warehouse_store.getStatisticResult();
         // Get Table Headers
