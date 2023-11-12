@@ -274,7 +274,6 @@ const STFStore = defineStore("STFStore", {
       .get(`${import.meta.env.VITE_API}/stf/provided/${user.departmentId}`)
       .then((respond) => {
         this.provides_data = respond.data;
-        console.log('Get Provide Data and result is : ',this.provides_data);
         })
         .catch((err) => {
           console.log("Provied Items Error : ", err);

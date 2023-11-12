@@ -9,9 +9,9 @@
 
         <!-- <Filter_Section_Comp /> -->
         <!-- <TableFilter @filterFunction="filterFunction"> -->
-        <TableFilterWarehouse @filterFunction="filterFunction">
+        <TableFilterProvide @filterFunction="filterFunction">
           <TableExpand v-if="true" :table_headers="stf_store.provided_data_headers" />
-        </TableFilterWarehouse>
+        </TableFilterProvide>
 
       </div>
     </div>
@@ -37,7 +37,7 @@
 import { onMounted } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
-import TableFilterWarehouse from '../../../layouts/TableFilterWarehouse.vue';
+import TableFilterProvide from '../../../layouts/TableFilterProvide.vue';
 import TableExpand from '../../../layouts/TableExpand.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
 import Provided_Table_Body from './Provided_Table_Body.vue'
@@ -61,7 +61,10 @@ onMounted(async () => {
 
 // Get Filtered Data
 const filterFunction = async (filtered_objects) => {
-  await stf_store.getFilteredDataProvided(filtered_objects);
+  if(user_store.GETUSER !== undefined ){
+        filtered_objects.department = user_store?.GETUSER?.departmentId
+        await stf_store.getFilteredDataProvided(filtered_objects);
+    }
 }
 
 // Get Filtered Data
