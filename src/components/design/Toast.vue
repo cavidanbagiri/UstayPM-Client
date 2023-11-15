@@ -1,6 +1,6 @@
 
 <template>
-  <div v-if="prop.cond" class="fixed top-5 left-1/3 p-1  w-1/3  rounded-lg text-sm bg-green-500 text-white flex items-center justify-center anim">
+  <div v-if="prop.cond" class="fixed top-32 left-1/3 w-1/3 p-1 rounded-lg text-black shadow-xl font-bold border-4 bg-gray-100 flex items-center justify-center anim">
 
       <div>
           <span class=" text-xl " style="font-family: 'Roboto', sans-serif; ">

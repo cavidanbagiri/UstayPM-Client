@@ -59,7 +59,7 @@ const createSM = async () => {
             showToastval.messages = "You dont have authority for creating new SM";
             setTimeout(()=>{
                 showToastval.cond = false
-            },1000)
+            },3000)
         }
         else{
             procurement_store.tab_num = 2;
