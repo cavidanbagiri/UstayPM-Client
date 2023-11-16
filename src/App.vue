@@ -1,11 +1,6 @@
 
 <template>
   <div class="p-0 m-0 relative bg-white">
-
-    <button @click="sendsocket">
-      send socket 
-    </button>
-    {{ coming_data }}
     <div class="sticky top-0 left-0 float-left p-0 z-10 m-0">
 
       <NavbarLayout />
@@ -28,7 +23,7 @@
 
 <script setup>
 
-import { watchEffect, ref, computed } from 'vue';
+import { watchEffect, ref } from 'vue';
 import { io } from 'socket.io-client';
 
 
@@ -37,14 +32,28 @@ import MessageMain from './components/message/MessageMain.vue';
 import MenuCanvas from './layouts/MenuCanvas.vue';
 import STFInformBar from './layouts/STFInformBar.vue';
 
+import UserStore from './store/store.user_store';
+
+const user_store = UserStore();
+
+// Check If User Login, Create Socket Connection
+watchEffect(()=>{
+  if(user_store.user){
+    socket.on("connection");
+    // Send User Information With This emit and handle in server
+    socket.emit('setup', user_store.user);
+  }
+  else{
+    console.log('User Not Login');
+  }
+});
 
 const URL = import.meta.env.VITE_API
 
 const socket = io(URL);
 
-socket.on("connection", () => {
-  console.log('socket connected');
-});
+const some = {name:"cavidan"};
+
 
 import IndexStore from './store/store.index';
 import { ArcElement,Chart as ChartJS } from "chart.js";
@@ -62,18 +71,9 @@ const coming_data = ref('temp');
 
 watchEffect(()=>{
   socket.on("returnfirst", (data)=>{
-    console.log('Data is from server : ', data);
     coming_data.value = data
   })
 })
-
-// coming_data.value = computed(()=>{
-//   socket.on('HI', (data)=>{
-//     console.log('Data is from server : ', data);
-//     coming_data.value = data
-//   })
-//   // return coming_data;
-// })
 
 </script>
 

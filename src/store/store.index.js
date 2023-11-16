@@ -53,7 +53,6 @@ const IndexStore = defineStore("IndexStore", {
           .get(`${import.meta.env.VITE_API}/common/statisticdata`)
           .then((respond) => {
             this.statistic_data = respond.data;
-            console.log('static data is : ',this.statistic_data);
           })
           .catch((err) => {
             console.log("row detail respond Error : ", err);
