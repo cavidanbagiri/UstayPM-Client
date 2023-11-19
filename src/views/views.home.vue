@@ -23,12 +23,15 @@ import OrderChart from '../components/home/charts/OrderChart.vue';
 import ProcurementChart from '../components/home/charts/ProcurementChart.vue';
 import WarehouseChart from '../components/home/charts/WarehouseChart.vue';
 import UserTable from '../components/home/usertable/UserTable.vue';
+import UserStore from '../store/store.user_store';
 import IndexStore from '../store/store.index';
 const index_store = IndexStore();
-
+const user_store = UserStore();
 onMounted(async ()=>{
-
-  await index_store.fetchStatisticResult();
+  if(user_store.user){
+    console.log('yes user : ',user_store.user);
+    await index_store.fetchStatisticResult(user_store.user.id);
+  }
 
 })
 

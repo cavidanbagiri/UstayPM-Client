@@ -1,9 +1,10 @@
 
 <template>
   <div class="p-0 m-0 relative bg-white">
+
     <div class="sticky top-0 left-0 float-left p-0 z-10 m-0">
 
-      <NavbarLayout />
+      <NavbarLayout :socket="socket" />
     </div>
 
     <div class="p-0">
@@ -23,7 +24,7 @@
 
 <script setup>
 
-import { watchEffect, ref } from 'vue';
+import { watchEffect, ref, onMounted } from 'vue';
 import { io } from 'socket.io-client';
 
 
@@ -31,49 +32,33 @@ import NavbarLayout from './layouts/NavbarLayout.vue';
 import MessageMain from './components/message/MessageMain.vue';
 import MenuCanvas from './layouts/MenuCanvas.vue';
 import STFInformBar from './layouts/STFInformBar.vue';
+import { ArcElement,Chart as ChartJS } from "chart.js";
 
+import IndexStore from './store/store.index';
 import UserStore from './store/store.user_store';
 
+ChartJS.register(ArcElement);
 const user_store = UserStore();
+const index_store = IndexStore();
+
 
 // Check If User Login, Create Socket Connection
+const URL = import.meta.env.VITE_API
+const socket = io(URL);
 watchEffect(()=>{
   if(user_store.user){
+    // Create Connection Woth Backend with Socket IO
     socket.on("connection");
     // Send User Information With This emit and handle in server
     socket.emit('setup', user_store.user);
   }
-  else{
-    console.log('User Not Login');
-  }
 });
 
-const URL = import.meta.env.VITE_API
 
-const socket = io(URL);
+// onMounted(()=>{
+//     index_store.fetchNewSTFNotificationResult(2);
+// })
 
-const some = {name:"cavidan"};
-
-
-import IndexStore from './store/store.index';
-import { ArcElement,Chart as ChartJS } from "chart.js";
-
-const index_store = IndexStore();
-
-ChartJS.register(ArcElement);
-
-
-const sendsocket = () => {
-  socket.emit('first', {message:"this is my first socket"})
-}
-
-const coming_data = ref('temp');
-
-watchEffect(()=>{
-  socket.on("returnfirst", (data)=>{
-    coming_data.value = data
-  })
-})
 
 </script>
 

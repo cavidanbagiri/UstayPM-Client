@@ -14,6 +14,10 @@ const IndexStore = defineStore("IndexStore", {
 
     // Get STF, SM, Warehouse Common Statistic Data
     statistic_data: null,
+
+    // Get New STF Notification Data
+    // new_stf_notification: null,
+
   }),
 
   getters: {
@@ -47,20 +51,39 @@ const IndexStore = defineStore("IndexStore", {
     },
 
     // Get Statistic Data Result
-    async fetchStatisticResult() {
-      try {
-        await axios
-          .get(`${import.meta.env.VITE_API}/common/statisticdata`)
-          .then((respond) => {
-            this.statistic_data = respond.data;
-          })
-          .catch((err) => {
-            console.log("row detail respond Error : ", err);
-          });
-      } catch (err) {
-        console.log("Get Row Detail Error : ", err);
+    async fetchStatisticResult(user_id) {
+      if(user_id){
+        try {
+          await axios
+            .get(`${import.meta.env.VITE_API}/common/statisticdata/${user_id}`)
+            .then((respond) => {
+              this.statistic_data = respond.data;
+            })
+            .catch((err) => {
+              console.log("row detail respond Error : ", err);
+            });
+        } catch (err) {
+          console.log("Get Row Detail Error : ", err);
+        }
       }
     },
+
+    // Get New STF Notification Result
+    async fetchNewSTFNotificationResult(user_id) {
+      console.log('user id is : ',user_id);
+      if(user_id){
+        try{
+          await axios.get(`${import.meta.env.VITE_API}/common/newstfnotification/${user_id}`,)
+          .then((respond)=>{
+            // this.new_stf_notification = respond.data;
+          })
+        }catch(err){
+          console.log('Fetch New STF Notification Error : ',err);
+        }
+
+      }
+    }
+
   },
 });
 

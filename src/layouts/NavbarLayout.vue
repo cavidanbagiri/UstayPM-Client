@@ -41,7 +41,7 @@
 
       <div class="relative mt-4">
           <router-link to="/">
-            <div class="badge badge-primary badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">0</div>
+            <div class="badge badge-primary badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ notification_data.new_stf_notification }}</div>
               <span @mouseover="notification_tooltip = true" @mouseleave="notification_tooltip = false"
                   class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
                   <i class="fa-solid fa-bell fa-md " style="color:white"></i>
@@ -162,12 +162,14 @@
 
 <script setup>
 
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, reactive } from 'vue';
 import UserStore from '../store/store.user_store';
 import IndexStore from '../store/store.index';
 
 const user_store = UserStore();
 const index_store = IndexStore();
+
+const prop = defineProps(['socket']);
 
 // Show Tooltips
 const home_tooltip = ref(false)
@@ -184,11 +186,19 @@ const login_tooltip = ref(false);
 const logout_tooltip = ref(false);
 
 
+const notification_data = reactive({
+    new_stf_notification : ''
+});
 // Get User Inform
 const user = ref();
 watchEffect(() => {
     user.value = JSON.parse(sessionStorage?.getItem('user'));
     user_store.user = user.value;
+    if(user_store.user){
+        prop.socket.on("newstfnotification", (data)=>{
+            notification_data.new_stf_notification = data.length
+        })
+    }
 })
 
 const toggleCanvas = () => index_store.TOGGLECANVAS()
