@@ -68,19 +68,16 @@ const IndexStore = defineStore("IndexStore", {
       }
     },
 
-    // Get New STF Notification Result
-    async fetchNewSTFNotificationResult(user_id) {
-      console.log('user id is : ',user_id);
+    // Set Notification True
+    async readNotification(user_id){
       if(user_id){
         try{
-          await axios.get(`${import.meta.env.VITE_API}/common/newstfnotification/${user_id}`,)
-          .then((respond)=>{
-            // this.new_stf_notification = respond.data;
-          })
+          await axios
+          .post(`${import.meta.env.VITE_API}/common/readnotification/${user_id}`)
+          .then((respond)=>{})
         }catch(err){
-          console.log('Fetch New STF Notification Error : ',err);
+          console.log('Read Notification Error : ', err);
         }
-
       }
     }
 

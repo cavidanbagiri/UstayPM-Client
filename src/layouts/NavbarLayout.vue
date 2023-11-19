@@ -39,22 +39,20 @@
           </router-link>
       </div>
 
-      <div class="relative mt-4">
-          <router-link to="/">
-            <div class="badge badge-primary badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ notification_data.new_stf_notification }}</div>
-              <span @mouseover="notification_tooltip = true" @mouseleave="notification_tooltip = false"
-                  class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
-                  <i class="fa-solid fa-bell fa-md " style="color:white"></i>
-              </span>
-              <span v-if="notification_tooltip"
-                  class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
-                  Notification
-              </span>
-          </router-link>
+      <div class="relative mt-4" @click="showNotification">
+            <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ notification_data.new_stf_notification }}</div>
+            <span @mouseover="notification_tooltip = true" @mouseleave="notification_tooltip = false"
+                class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                <i class="fa-solid fa-bell fa-md " style="color:white"></i>
+            </span>
+            <span v-if="notification_tooltip"
+                class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
+                Notification
+            </span>
       </div>
       <div class="relative">
           <router-link to="/">
-            <div class="badge badge-primary badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">0</div>
+            <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">0</div>
               <span @mouseover="messages_tooltip = true" @mouseleave="messages_tooltip = false"
                   class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300"><i
                       class="fa-solid fa-message fa-md" style="color:white"></i></span>
@@ -186,11 +184,13 @@ const login_tooltip = ref(false);
 const logout_tooltip = ref(false);
 
 
+// Get User Inform
+const user = ref();
+
+// Get User Notification Inform
 const notification_data = reactive({
     new_stf_notification : ''
 });
-// Get User Inform
-const user = ref();
 watchEffect(() => {
     user.value = JSON.parse(sessionStorage?.getItem('user'));
     user_store.user = user.value;
@@ -200,6 +200,13 @@ watchEffect(() => {
         })
     }
 })
+
+const showNotification = () => {
+    if(user_store.user){
+        index_store.readNotification(user_store?.user?.id)
+        notification_data.new_stf_notification = 0;
+    }
+}
 
 const toggleCanvas = () => index_store.TOGGLECANVAS()
 

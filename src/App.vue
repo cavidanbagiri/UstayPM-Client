@@ -55,11 +55,6 @@ watchEffect(()=>{
 });
 
 
-// onMounted(()=>{
-//     index_store.fetchNewSTFNotificationResult(2);
-// })
-
-
 </script>
 
 <style lang="scss" scped>
