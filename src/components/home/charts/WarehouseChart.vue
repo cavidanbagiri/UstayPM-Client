@@ -3,30 +3,6 @@
   <div class="col-span-6 p-1  border rounded-xl shadow-xl mx-1 bg-white"  style="font-family: 'Roboto';">
     <div class="flex flex-col justify-center items-center">
       <span class="text-3xl font-bold text-center pl-5 text-gray-600 mt-1 mb-3">Common Information</span>
-      <!-- Information Section -->
-      <div class="flex flex-row justify-between items-between text-gray-500 w-full ">
-        
-        <div class="flex flex-col  justify-center w-full items-center pl-3">
-          <span class="text-center text-md font-bold">Total STF</span>
-          <span class="my-1 text-center text-lg font-bold text-gray-700">523</span>
-        </div>
-
-        <div class="flex flex-col  justify-center w-full items-center pl-3">
-          <span class="text-center text-md font-bold">Total SM</span>
-          <span class="my-1 text-center text- font-bold text-gray-700">523</span>
-        </div>
-        
-        <div class="flex flex-col  justify-center w-full items-center pl-3">
-          <span class="text-center text-md font-bold">Total Processing</span>
-          <span class="my-1  text-center text-lg font-bold text-gray-700">21</span>
-        </div>
-        
-        <div class="flex flex-col  justify-center w-full items-center pl-3">
-          <span class="text-center text-md font-bold">Total Warehouse</span>
-          <span class="my-1 text-center text-lg font-bold text-gray-700">414</span>
-        </div>
-        
-      </div>
       <!-- Chart Side -->
       <div class="w-full h-1/3">
         <Bar :data="chartData" />

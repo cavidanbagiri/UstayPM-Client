@@ -2,7 +2,7 @@
 <template>
     <thead class="text-gray-100 bg-slate-800 shadow-md table_header ">
         <tr>
-            <th class="px-2 py-3 text-center">
+            <th class="px-2 py-4 text-center rounded-l-lg">
                 <div class="flex flex-col font-thin">
                     S/S
                 </div>
@@ -20,27 +20,12 @@
             </th>
             <th class="px-2 py-1 text-center  font-thin">
                 <div class="">
-                    Email
-                </div>
-            </th>
-            <th class="px-2 py-1 text-center  font-thin">
-                <div class="">
                     Department
                 </div>
             </th>
-            <th class="px-2 py-1 text-center  font-thin">
+            <th class="px-2 py-1 text-center  font-thin  rounded-r-lg">
                 <div class="">
                     Status
-                </div>
-            </th>
-            <th class="px-2 py-1 text-center  font-thin">
-                <div class="">
-                    Raiting
-                </div>
-            </th>
-            <th class="px-2 py-1 text-center  font-thin">
-                <div class="">
-                    Links
                 </div>
             </th>
             <!-- <th v-for="i in prop?.table_headers" v-show="i.value" scope="col" class="px-2 py-1 text-center  font-thin">

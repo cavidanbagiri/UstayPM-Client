@@ -1,7 +1,6 @@
 <template>
-    <div class="flex flex-col mt-2">
-        <span class="text-start text-5xl font-bold text-gray-600 pl-10">Users</span>
-        <table class=" mt-3 border-2  bg-white">
+    <div class="col-span-5  h-96 overflow-hidden mx-1 rounded-lg shadow-2xl">
+        <table class="bg-white w-full rounded-2xl">
             <UserTableHeaders/>
             <UserTableRows/>
         </table>

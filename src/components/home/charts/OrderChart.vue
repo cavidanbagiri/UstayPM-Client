@@ -4,25 +4,6 @@
     <div class="flex flex-col items-center">
       <!-- Title -->
       <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">STF Balance</span>
-      <!-- Inform -->
-      <div class="flex flex-row justify-center items-center text-gray-500 w-full ">
-
-        <div class="flex flex-col  justify-center w-full items-center ">
-          <span class="text-center text-md font-bold">Canceled</span>
-          <span class="my-1 text-center text-lg font-bold text-gray-700">0</span>
-        </div>
-
-        <div class="flex flex-col  justify-center w-full items-center ">
-          <span class="text-center text-md font-bold">Waiting</span>
-          <span class="my-1 text-center text-lg font-bold text-gray-700">{{ prop?.statistic_data?.stf_false }}</span>
-        </div>
-
-        <div class="flex flex-col  justify-center w-full items-center ">
-          <span class="text-center text-md font-bold">Completed</span>
-          <span class="my-1 text-center text-lg font-bold text-gray-700">{{ prop?.statistic_data?.stf_true }}</span>
-        </div>
-
-      </div>
       <!-- Chart -->
       <Doughnut :data="chartData" />
     </div>
