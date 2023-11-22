@@ -15,7 +15,7 @@
 
     </div>
 
-    <MessageMain/>
+    <MessageImage/>
 
     <STFInformBar v-if="index_store.row_inform_condition"/>
 
@@ -29,7 +29,7 @@ import { io } from 'socket.io-client';
 
 
 import NavbarLayout from './layouts/NavbarLayout.vue';
-import MessageMain from './components/message/MessageMain.vue';
+import MessageImage from './components/message/MessageImage.vue';
 import MenuCanvas from './layouts/MenuCanvas.vue';
 import STFInformBar from './layouts/STFInformBar.vue';
 import { ArcElement,Chart as ChartJS } from "chart.js";
