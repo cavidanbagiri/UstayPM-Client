@@ -1,5 +1,5 @@
 <template>
-    <tr class="border border-bottom rounded-xl text-md" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+    <tr class=" rounded-xl text-md" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
         <td class="py-3 text-center">1</td>
         <td class="flex justify-center " >
             <img class="w-10 h-10 rounded-full"
@@ -10,7 +10,7 @@
         <td class="text-start" >Warehouse</td>
         <td class="text-start" >Specialist</td>
     </tr>
-    <tr class="border border-bottom rounded-xl text-md" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+    <tr class="rounded-xl text-md" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
         <td class="py-3 text-center">1</td>
         <td class="flex justify-center " >
             <img class="w-10 h-10 rounded-full"
@@ -21,7 +21,7 @@
         <td class="text-start" >Consturction</td>
         <td class="text-start" >Chief</td>
     </tr>
-    <tr class="border border-bottom rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+    <tr class=" rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
         <td class="py-3 text-center">1</td>
         <td class="flex justify-center " >
             <img class="w-10 h-10 rounded-full"
@@ -32,7 +32,7 @@
         <td class="text-start" >Warehouse</td>
         <td class="text-start" >Manager</td>
     </tr>
-    <tr class="border border-bottom rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+    <tr class=" rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
         <td class="py-3 text-center">1</td>
         <td class="flex justify-center " >
             <img class="w-10 h-10 rounded-full"
@@ -43,7 +43,7 @@
         <td class="text-start" >Steel Structure</td>
         <td class="text-start" >Specialist</td>
     </tr>
-    <tr class="border border-bottom rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+    <tr class=" rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
         <td class="py-3 text-center">1</td>
         <td class="flex justify-center " >
             <img class="w-10 h-10 rounded-full"
@@ -54,7 +54,7 @@
         <td class="text-start" >Warehouse</td>
         <td class="text-start" >Specialist</td>
     </tr>
-    <tr class="border border-bottom rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+    <tr class=" rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
         <td class="py-3 text-center">1</td>
         <td class="flex justify-center " >
             <img class="w-10 h-10 rounded-full"
@@ -65,7 +65,7 @@
         <td class="text-start" >Warehouse</td>
         <td class="text-start" >Manager</td>
     </tr>
-    <tr class="border border-bottom rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+    <tr class=" rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
         <td class="py-3 text-center">1</td>
         <td class="flex justify-center " >
             <img class="w-10 h-10 rounded-full"
@@ -76,7 +76,28 @@
         <td class="text-start" >Topograf</td>
         <td class="text-start" >Chief</td>
     </tr>
-    
+    <tr class=" rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+        <td class="py-3 text-center">1</td>
+        <td class="flex justify-center " >
+            <img class="w-10 h-10 rounded-full"
+                src="https://cdn6.f-cdn.com/files/download/38546484/28140e.jpg"
+                alt="">
+        </td>
+        <td class="text-start" >Kenan Aliyev</td>
+        <td class="text-start" >Topograf</td>
+        <td class="text-start" >Chief</td>
+    </tr>
+    <tr class=" rounded-xl" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+        <td class="py-3 text-center">1</td>
+        <td class="flex justify-center " >
+            <img class="w-10 h-10 rounded-full"
+                src="https://cdn6.f-cdn.com/files/download/38546484/28140e.jpg"
+                alt="">
+        </td>
+        <td class="text-start" >Kenan Aliyev</td>
+        <td class="text-start" >Topograf</td>
+        <td class="text-start" >Chief</td>
+    </tr>
     
 </template>
 

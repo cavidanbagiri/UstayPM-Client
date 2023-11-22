@@ -1,8 +1,8 @@
 
 <template>
-    <thead class="text-gray-100 bg-slate-800 shadow-md table_header ">
+    <thead class="text-black bg-white shadow-md " style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
         <tr>
-            <th class="px-2 py-4 text-center rounded-l-lg">
+            <th class="px-2 py-4 text-center rounded-tl-lg">
                 <div class="flex flex-col font-thin">
                     S/S
                 </div>
@@ -23,7 +23,7 @@
                     Department
                 </div>
             </th>
-            <th class="px-2 py-1 text-center  font-thin  rounded-r-lg">
+            <th class="px-2 py-1 text-center  font-thin  rounded-tr-lg">
                 <div class="">
                     Status
                 </div>

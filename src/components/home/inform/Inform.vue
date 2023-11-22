@@ -1,5 +1,6 @@
 <template>
     <div class="bg-white col-span-3 flex flex-col p-1 rounded-lg shadow-xl text-white" style="font-family: 'Poppins';">
+        <span class="text-3xl font-bold text-center pl-5 text-gray-600 mt-1 mb-3">Orders</span>
         <div class="flex m-1 h-full justify-between">
             <div class="flex flex-col justify-around border shadow-lg w-full mx-1 py-1 px-3 rounded-lg bg-green-400">
                 <span><i class="fa-solid fa-book fa-xl"></i></span>

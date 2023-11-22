@@ -1,26 +1,53 @@
+
 <template>
-    <div class="col-span-4 bg-white mr-1 rounded-xl p-1 flex flex-col h-96 overflow-hidden">
-        <span class="text-center text-3xl my-1 font-bold text-gray-600" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Top Companies</span>
-        <ul class="p-1">
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО ТД ЭЛЕКТРОТЕХМОНТАЖ</li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО ЙОТУН ПЭЙНТС</li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО СПАСИНЖИНИРИНГ</li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО ПРОМЫШЛЕННИЕ КОЛЕСА И РОЛИКИ</li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО ИРИДИУМ ГРУПП</li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО АНТИКОР КОМПОЗИТ </li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО КОМУС</li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">URTIM KALIP VE ISKELE SISTEMLERI</li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО ИРИДИУМ ГРУПП</li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО ИРИДИУМ ГРУПП</li>
-            <li class="text-md font-bold py-2 border-green-500 border-b text-gray-800">ООО ИРИДИУМ ГРУПП</li>
-        </ul>
+    <div class="col-span-3 p-1  border rounded-xl shadow-xl mx-1 bg-white" style="font-family: 'Roboto';">
+        <div class="flex flex-col items-center">
+            <!-- Title -->
+            <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">Companies</span>
+            <!-- Chart -->
+            <PolarArea :data="chartData" />
+        </div>
     </div>
 </template>
-
+  
 <script setup>
 
+import { ref, watchEffect } from 'vue';
+import { PolarArea } from 'vue-chartjs'
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, RadialLinearScale } from 'chart.js'
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale, RadialLinearScale)
+
+
+// Get Statistic Result
+const prop = defineProps(['statistic_data']);
+
+const data = ref();
+
+const chartData = ref();
+
+watchEffect(() => {
+    chartData.value = {
+        labels: [
+            'Red',
+            'Green',
+            'Yellow',
+            'Grey',
+            'Blue'
+        ],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [11, 16, 7, 3, 14],
+            backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(75, 192, 192)',
+                'rgb(255, 205, 86)',
+                'rgb(201, 203, 207)',
+                'rgb(54, 162, 235)'
+            ]
+        }]
+    }
+})
+
 </script>
-
-<style lang="scss" scoped>
-
-</style>
+  
+  

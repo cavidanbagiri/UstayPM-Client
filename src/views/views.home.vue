@@ -6,9 +6,9 @@
       <ProcurementChart :statistic_data = 'index_store.statistic_data' />
       <WarehouseChart/>
     </div>
-    <div class="grid grid-cols-12 mt-3 mb-5 px-3 gap-4">
-      <UserTable/>
+    <div class="grid grid-cols-12 mt-3 mb-5 px-3 gap-4 h-4/5 overflow-hidden">
       <Inform/>
+      <UserTable/>
       <Companies/>
     </div>
   </div>
