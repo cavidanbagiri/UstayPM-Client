@@ -1,6 +1,6 @@
 <template>
     <div style="font-family: 'Poppins';"
-        class="flex flex-col text-xl absolute top-0 left-12 w-[500px] h-[650px] overflow-auto bg-white py-2 px-3 border rounded-lg shadow-2xl">
+        class="flex flex-col text-xl absolute top-0 left-12 w-[500px] max-h-[650px] overflow-auto bg-white py-2 px-3 border rounded-lg shadow-2xl">
         <div class="flex justify-between">
             <div class="flex">
                 <span>
@@ -17,7 +17,7 @@
             </div>
         </div>
         <ul class="text-sm" style="font-family: 'Roboto';">
-            <li v-for="i in 10" class="border p-1 flex my-2 rounded-lg hover:cursor-pointer hover:bg-gray-100">
+            <li v-for="i in index_store?.new_stf_notification" class="border p-1 flex my-2 rounded-lg hover:cursor-pointer hover:bg-gray-100">
                 <!-- User Image -->
                 <div class="flex">
                     <img class="w-14 h-14 rounded-full"
@@ -25,25 +25,33 @@
                         alt="">
                     <div class="flex flex-col pl-2 justify-center">
                         <span class="text-lg font-bold">
-                            Bagirli Cavidan
+                            {{i.username}}
                             <span class="font-thin text-sm" style="font-family: 'Poppins';">
                                 <span class="text-red-500">&#9679</span>
-                                Create New STF SRU.RS.07.10445
+                                Create New STF {{ i.stfno }}
                             </span>
                         </span>
                         <div class=" flex items-center">
                             <span class="text-black" style="font-family: 'Poppins';">
-                                06-12-2023 14:45
+                                <DateFormat :time="i.createdAt" />
                             </span>
                         </div>
                     </div>
                 </div>
             </li>
+            
         </ul>
     </div>
 </template>
 
 <script setup>
+
+import DateFormat from '../../layouts/DateFormat.vue';
+
+import IndexStore from '../../store/store.index';
+
+const index_store = IndexStore();
+
 
 
 </script>

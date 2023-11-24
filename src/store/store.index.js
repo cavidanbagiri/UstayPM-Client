@@ -15,8 +15,8 @@ const IndexStore = defineStore("IndexStore", {
     // Get STF, SM, Warehouse Common Statistic Data
     statistic_data: null,
 
-    // Get New STF Notification Data
-    // new_stf_notification: null,
+    // Get SOCKET New STF Notification Data
+    new_stf_notification: null,
 
   }),
 

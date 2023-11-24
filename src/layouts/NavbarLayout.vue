@@ -40,7 +40,7 @@
       </div>
 
       <div class="relative mt-4">
-            <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ notification_data.new_stf_notification }}</div>
+            <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ index_store.new_stf_notification?.length }}</div>
             <span @click="showNotification" @mouseover="notification_tooltip = true" @mouseleave="notification_tooltip = false"
                 class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
                 <i class="fa-solid fa-bell fa-md " style="color:white"></i>
@@ -189,24 +189,25 @@ const user = ref();
 const notification_toggle = ref(false);
 
 // Get User Notification Inform
-const notification_data = reactive({
-    new_stf_notification : ''
-});
+// const notification_data = reactive({
+//     new_stf_notification : ''
+// });
 watchEffect(() => {
     user.value = JSON.parse(sessionStorage?.getItem('user'));
     user_store.user = user.value;
-    if(user_store.user){
-        prop.socket.on("newstfnotification", (data)=>{
-            notification_data.new_stf_notification = data.length
-        })
-    }
+    // if(user_store.user){
+    //     prop.socket.on("newstfnotification", (data)=>{
+    //         console.log('data is : ',data);
+    //         notification_data.new_stf_notification = data.length
+    //     })
+    // }
 })
 
 const showNotification = () => {
     if(user_store.user){
         notification_toggle.value = !notification_toggle.value 
-        index_store.readNotification(user_store?.user?.id)
-        notification_data.new_stf_notification = 0;
+        // index_store.readNotification(user_store?.user?.id)
+        // notification_data.new_stf_notification = 0;
     }
 }
 

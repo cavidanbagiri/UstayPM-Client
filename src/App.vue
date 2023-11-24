@@ -51,6 +51,12 @@ watchEffect(()=>{
     socket.on("connection");
     // Send User Information With This emit and handle in server
     socket.emit('setup', user_store.user);
+    // Check New Notification
+    socket.on("newstfnotification", (data)=>{
+      index_store.new_stf_notification = data;
+      console.log('data is : ',index_store.new_stf_notification);
+      // notification_data.new_stf_notification = data.length
+    })
   }
 });
 
