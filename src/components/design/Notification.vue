@@ -11,7 +11,7 @@
                 </span>
             </div>
             <div>
-                <span class="hover:cursor-pointer hover:text-gray-500">
+                <span @click="closeNotification" class="hover:cursor-pointer hover:text-gray-500">
                     <i class="fa-solid fa-xmark"></i>
                 </span>
             </div>
@@ -49,10 +49,15 @@
 import DateFormat from '../../layouts/DateFormat.vue';
 
 import IndexStore from '../../store/store.index';
-
 const index_store = IndexStore();
 
+const emit = defineEmits(['closeNotification']);
 
+const closeNotification = () => {
+
+    emit('closeNotification');
+
+}
 
 </script>
 

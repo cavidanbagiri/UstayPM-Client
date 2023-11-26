@@ -12,6 +12,7 @@
               Catalog
           </span>
       </div>
+
       <!-- Home Menu -->
       <div class="relative">
           <router-link to="/">
@@ -25,6 +26,7 @@
               </span>
           </router-link>
       </div>
+
       <!-- WorkSpace Menu -->
       <div class="relative">
           <router-link to="/">
@@ -39,6 +41,7 @@
           </router-link>
       </div>
 
+      <!-- Notification -->
       <div class="relative mt-4">
             <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ index_store.new_stf_notification?.length }}</div>
             <span @click="showNotification" @mouseover="notification_tooltip = true" @mouseleave="notification_tooltip = false"
@@ -49,8 +52,10 @@
                 class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
                 Notification
             </span>
-            <Notification v-if="notification_toggle" />
+            <Notification v-if="notification_toggle" @closeNotification="closeNotification" />
       </div>
+
+      <!-- Messages Notification -->
       <div class="relative">
           <router-link to="/">
             <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">0</div>
@@ -63,6 +68,8 @@
               </span>
           </router-link>
       </div>
+
+      <!-- Stars -->
       <div class="relative">
           <router-link to="/">
               <span @mouseover="star_tooltip = true" @mouseleave="star_tooltip = false"
@@ -88,6 +95,7 @@
               </span>
           </router-link>
       </div>
+
       <!-- Warehouse Menu -->
       <div class="relative">
           <router-link to="/procurement" class="no-underline ">
@@ -101,6 +109,7 @@
               </span>
           </router-link>
       </div>
+
       <!-- Procurement Menu -->
       <div class="relative">
           <router-link to="/warehouse" class="no-underline ">
@@ -115,6 +124,7 @@
           </router-link>
       </div>
 
+      <!-- User Profile -->
       <div class="relative">
           <router-link to="/">
               <span @mouseover="profile_tooltip = true" @mouseleave="profile_tooltip = false"
@@ -128,6 +138,7 @@
           </router-link>
       </div>
 
+      <!-- User Login and Logout -->
       <div v-if="!user_store.user" class="relative">
           <router-link to="/user/login">
               <span @mouseover="login_tooltip = true" @mouseleave="login_tooltip = false"
@@ -140,7 +151,6 @@
               </span>
           </router-link>
       </div>
-
       <div v-else class="relative" @click="logout">
           <router-link to="/user/login">
               <span @mouseover="logout_tooltip = true" @mouseleave="logout_tooltip = false"
@@ -154,6 +164,7 @@
           </router-link>
       </div>
 
+      
   </div>
 </template>
 
@@ -209,6 +220,10 @@ const showNotification = () => {
         // index_store.readNotification(user_store?.user?.id)
         // notification_data.new_stf_notification = 0;
     }
+}
+
+const closeNotification = () => {
+    notification_toggle.value = false;
 }
 
 const toggleCanvas = () => index_store.TOGGLECANVAS()
