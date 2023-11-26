@@ -40,29 +40,40 @@
             </div>
                 <!-- Text Input Area -->
             <div class="flex flex-row items-center justify-between py-2 px-1">
-                <input :disabled="!message_store.selected_user"
+                <input :disabled="!message_store.selected_user" v-model="message_text"
                     class="py-3 px-2 border-2 rounded-full w-full me-1 outline-none hover:orange-pink-500 text-gray-500 shadow-xl"
                     style="font-family: 'Poppins';" type="text" placeholder="Text ...">
-                <span class="p-3 bg-orange-500 rounded-full text-gray-100 shadow-xl">
+                <button :disabled="!message_store.selected_user" @click="sendMessage" 
+                class="p-3 bg-orange-500 rounded-full text-gray-100 shadow-xl">
                     <i class="fa-regular fa-paper-plane fa-xl"></i>
-                </span>
+                </button>
             </div>
         </div>
 </template>
 
 <script setup>
+
+import { ref } from 'vue';
+
+import UserStore from '../../store/store.user_store';
 import MessageStore from '../../store/store.message';
+const user_store = UserStore();
 const message_store = MessageStore();
 
+// Close Chat Bar
+const closeChat = () => { message_store.toggle_message = false;}
+// Close Users List
+const toggleUsers = () => {message_store.toggle_user = !message_store.toggle_user }
 
-const closeChat = () => {
-    message_store.toggle_message = false;
+
+
+// Send Message
+const message_text = ref('');
+const sendMessage = () => {
+    if(user_store.user){
+        message_store.sendMessage(user_store.user?.id, message_store.selected_user?.id, message_text.value)
+    }
 }
-
-const toggleUsers = () => {
-    message_store.toggle_user = !message_store.toggle_user 
-}
-
 
 </script>
 
