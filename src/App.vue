@@ -47,13 +47,17 @@ const URL = import.meta.env.VITE_API
 const socket = io(URL);
 watchEffect(()=>{
   if(user_store.user){
+    
     // Create Connection Woth Backend with Socket IO
     socket.on("connect",()=>{
       console.log("socket id : ",socket.id);
     })
     // Send User Information With This emit and handle in server
     socket.emit('setup', user_store.user);
-    
+
+    /*  
+      ----------------------------------------------------------- New STF Notification Socket
+    */
     // Send Notification emit and listen
     socket.emit("newstfnotification");
     // Cavidan EMit
@@ -64,6 +68,10 @@ watchEffect(()=>{
     socket.on("getstfnotification", (data)=>{
       index_store.new_stf_notification = data;
     })
+
+    /*
+      ---------------------------------------------------------- User Chats Sockets
+    */
 
   }
 });

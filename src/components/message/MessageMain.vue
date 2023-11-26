@@ -11,10 +11,16 @@
 
 <script setup>
 
+import { onMounted } from 'vue';
+
 import ChatSection from './ChatSection.vue';
 import UserSection from './UserSection.vue';
 import MessageStore from '../../store/store.message';
 const message_store = MessageStore();
+
+onMounted(async ()=>{
+    await message_store.fetchUsers();    
+})
 
 </script>
 
