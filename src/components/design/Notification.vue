@@ -17,7 +17,7 @@
             </div>
         </div>
         <ul class="text-sm" style="font-family: 'Roboto';">
-            <li v-for="i in index_store?.new_stf_notification" class="border p-1 flex my-2 rounded-lg hover:cursor-pointer hover:bg-gray-100">
+            <li v-for="i in index_store?.new_stf_notification" class="border p-1 flex my-2 rounded-lg hover:cursor-pointer hover:bg-gray-100 items-center">
                 <!-- User Image -->
                 <div class="flex">
                     <img class="w-14 h-14 rounded-full"
@@ -26,13 +26,13 @@
                     <div class="flex flex-col pl-2 justify-center">
                         <span class="text-lg font-bold">
                             {{i.username}}
-                            <span class="font-thin text-sm" style="font-family: 'Poppins';">
-                                <span class="text-red-500">&#9679</span>
-                                Create New STF {{ i.stfno }}
-                            </span>
                         </span>
-                        <div class=" flex items-center">
-                            <span class="text-black" style="font-family: 'Poppins';">
+                        <span class="font-thin text-sm text-gray-500 pl-2" style="font-family: 'Poppins';">
+                            <span class="text-red-500">&#9679</span>
+                            Create New STF {{ i.stfno }}
+                        </span>
+                        <div class=" flex items-center my-1">
+                            <span class="text-gray-400 text-xs font-bold" style="font-family: 'Poppins';">
                                 <DateFormat :time="i.createdAt" />
                             </span>
                         </div>

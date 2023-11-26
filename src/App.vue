@@ -48,15 +48,23 @@ const socket = io(URL);
 watchEffect(()=>{
   if(user_store.user){
     // Create Connection Woth Backend with Socket IO
-    socket.on("connection");
+    socket.on("connect",()=>{
+      console.log("socket id : ",socket.id);
+    })
     // Send User Information With This emit and handle in server
     socket.emit('setup', user_store.user);
-    // Check New Notification
-    socket.on("newstfnotification", (data)=>{
-      index_store.new_stf_notification = data;
-      console.log('data is : ',index_store.new_stf_notification);
-      // notification_data.new_stf_notification = data.length
+    
+    // Send Notification emit and listen
+    socket.emit("newstfnotification");
+    // Cavidan EMit
+    socket.on("createstf",()=>{
+      socket.emit("newstfnotification");
     })
+    // Check New Notification
+    socket.on("getstfnotification", (data)=>{
+      index_store.new_stf_notification = data;
+    })
+
   }
 });
 
