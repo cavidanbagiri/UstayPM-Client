@@ -9,7 +9,11 @@ const MessageStore = defineStore('MessageStore', {
     state: () => ({
         toggle_message: false,
         toggle_user: false,
-        users: []
+        // Fetch All Users
+        users: [],
+        // Selected User
+        selected_user: null,
+
     }),
     getters:{},
     actions:{

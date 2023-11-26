@@ -1,5 +1,5 @@
 <template>
-    <div v-if="message_store.toggle_user" class="flex flex-col w-1/2 p-2 overflow-auto">
+    <div v-if="message_store.toggle_user" class="flex flex-col w-1/2 p-2 overflow-auto border shadow-2xl">
             <!-- Text Section -->
             <div class="text-center">
                 <span class=" text-4xl" style="font-family: 'Poppins';">Users</span>
@@ -13,7 +13,7 @@
             <!-- User Liste Section -->
             <div>
                 <ul class="" style="font-family: 'Roboto';">
-                    <li v-for="user in message_store.users" class="bg-white my-2 p-2 py-3 flex items-center rounded-lg cursor-pointer hover:bg-gray-100" >
+                    <li @click="selectedUser(user)" v-for="user in message_store.users" class="bg-white my-2 p-2 py-3 flex items-center rounded-lg cursor-pointer hover:bg-gray-100" >
                         <img class="w-14 h-14 rounded-full"
                             src="https://static.wixstatic.com/media/033319_e0f92699ac1741baa4b84b6755734bb6~mv2.png/v1/crop/x_89,y_0,w_2601,h_1732/fill/w_480,h_486,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_0297_edited.png"
                             alt="">
@@ -34,6 +34,11 @@
 <script setup>
 import MessageStore from '../../store/store.message';
 const message_store = MessageStore();
+
+const selectedUser = (user) => {
+    message_store.selected_user = user;
+}
+
 </script>
 
 <style lang="scss" scoped>

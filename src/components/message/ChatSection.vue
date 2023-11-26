@@ -4,19 +4,19 @@
     class="justify-between p-1 shadow-2xl flex flex-col border rounded-xl ">
             <!-- Close Button Section -->
             <div class=" flex justify-between py-2 px-5">
-                <span class="cursor-pointer"  @click="toggleUsers" ><i class=" hover:text-blue-400 fa-regular fa-user fa-xl text-black"></i></span>
-                <span class="cursor-pointer"  @click="closeChat" ><i class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-500"></i></span>
+                <span class="cursor-pointer"  @click="toggleUsers" ><i class=" hover:text-blue-400 fa-solid fa-users fa-xl text-gray-500"></i></span>
+                <span class="cursor-pointer"  @click="closeChat" ><i class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-400"></i></span>
             </div>
             <!-- Sender Information Section -->
-            <div class="mx-2 bg-white" style="font-family: 'Poppins';">
+            <div v-if="message_store.selected_user" class="mx-2 bg-white" style="font-family: 'Poppins';">
                 <div class="flex flex-row items-center justify-start p-1">
                     <img class="w-10 h-10 rounded-full"
                         src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
-                    <span class="text-xl pl-5">Ibrahim Avsar</span>
+                    <span class="text-xl pl-5">{{ message_store.selected_user?.username }}</span>
                 </div>
             </div>
             <!-- Message Area -->
-            <div class="flex flex-col bg-white h-full p-2 rounded-xl mx-2 mt-2 overflow-scroll">
+            <div v-if="message_store.selected_user" class="flex flex-col bg-white h-full p-2 rounded-xl mx-2 mt-2 overflow-scroll">
                 <!-- Sender -->
                 <div class="flex flex-row justify-start p-1 items-center">
                     <img class="w-11 h-11 rounded-full"
@@ -30,9 +30,17 @@
                         src="https://pics.craiyon.com/2023-06-18/0136ddc42a664843ad7c509dd59c7d98.webp" alt="">
                 </div>
             </div>
+            <div v-else class="flex flex-col bg-white h-full p-2 rounded-xl mx-2 mt-2 justify-center items-center">
+                <span class="text-gray-500 text-5xl">
+                    User Not Selected
+                </span>
+                <span class="mt-10 text-gray-400 text-xl text-center">
+                    For Selecting User, Please Click Top Right Users Icon
+                </span>
+            </div>
                 <!-- Text Input Area -->
             <div class="flex flex-row items-center justify-between py-2 px-1">
-                <input
+                <input :disabled="!message_store.selected_user"
                     class="py-3 px-2 border-2 rounded-full w-full me-1 outline-none hover:orange-pink-500 text-gray-500 shadow-xl"
                     style="font-family: 'Poppins';" type="text" placeholder="Text ...">
                 <span class="p-3 bg-orange-500 rounded-full text-gray-100 shadow-xl">
