@@ -12,10 +12,11 @@ const MessageStore = defineStore("MessageStore", {
     users: [],
     // Selected User
     selected_user: null,
+    // Selected User Fetching Messages
+    selected_user_fetch_messages: null,
   }),
   getters: {},
   actions: {
-
     // Fetch All Users
     async fetchUsers() {
       try {
@@ -31,29 +32,48 @@ const MessageStore = defineStore("MessageStore", {
     },
 
     // Fetch Messages GET Method
-    // CODE ....
+    async fetchMessage(current_id, selected_id) {
+      console.log("current id: ", current_id);
+      console.log("selected id: ", selected_id);
+      try {
+        if (current_id) {
+          await axios
+            .get(
+              `${
+                import.meta.env.VITE_API
+              }/common/fetchmessage/${current_id}?selected_id=${selected_id}`
+            )
+            .then((respond) => {
+                this.selected_user_fetch_messages = respond.data
+            });
+        }
+      } catch (err) {
+        console.log("Fetch Message Error : ", err);
+      }
+    },
 
     // Send Message POST Method
-    async sendMessage(current_id, sender_id, message_text){
-        // console.log('current id : ', current_id);
-        // console.log('sender id : ', sender_id);
-        // console.log('message : ',message);
-        const message_inform = {
-            current_id: current_id,
-            sender_id: sender_id,
-            message_text: message_text
+    async sendMessage(current_id, sender_id, message_text) {
+      const message_inform = {
+        current_id: current_id,
+        sender_id: sender_id,
+        message_text: message_text,
+      };
+      try {
+        if (current_id) {
+          await axios
+            .post(
+              `${import.meta.env.VITE_API}/common/sendmessage`,
+              message_inform
+            )
+            .then((respond) => {
+              
+            });
         }
-        try{
-            if(current_id){
-                await axios.post(`${import.meta.env.VITE_API}/common/sendmessage`,message_inform)
-                .then((respond)=>{});
-            }
-        }   
-        catch(err){
-            console.log('Send Message Error');
-        }
-    }
-
+      } catch (err) {
+        console.log("Send Message Error");
+      }
+    },
   },
 });
 

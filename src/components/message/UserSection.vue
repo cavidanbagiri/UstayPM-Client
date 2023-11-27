@@ -32,11 +32,17 @@
 </template>
 
 <script setup>
+import UserStore from '../../store/store.user_store';
 import MessageStore from '../../store/store.message';
+const user_store = UserStore();
 const message_store = MessageStore();
 
 const selectedUser = (user) => {
-    message_store.selected_user = user;
+    if(user_store.user){
+        message_store.selected_user = user;
+        message_store.fetchMessage(user_store.user?.id, message_store.selected_user.id);
+    }
+
 }
 
 </script>
