@@ -87,9 +87,9 @@ const toggleUsers = () => { message_store.toggle_user = !message_store.toggle_us
 const socket = inject('socket');
 
 watchEffect(()=>{
-    // socket.on('fetch_messages', data=>{
-    //     message_store.selected_user_fetch_messages = data;
-    // });
+    socket.on('fetch_messages', data=>{
+        message_store.selected_user_fetch_messages = data;
+    });
 })
 
 
@@ -103,18 +103,20 @@ const message_data = reactive({
 const sendMessage = async () => {
     if (user_store.user) {
         message_data.sender_id = message_store.selected_user.id;
-        message_data.room_id = message_data.current_id;
-        // message_data.room1 = message_data.current_id + ' ' + message_data.sender_id;
-        // message_data.room2 = message_data.sender_id + ' ' + message_data.current_id;
-        // await socket.emit('send_message', message_data);
-        // await socket.on('')
-        await message_store.sendMessage(user_store.user?.id, message_store.selected_user?.id, message_data.message_text, message_store.selected_user_fetch_messages[0].roomId)
-        .then((respond)=>{
-            message_data.message_text = '';
-            //socket.emit('send_message', message_text.value);
-        }).catch((err)=>{
-            console.log('Send Message Error : ',err);
-        })
+        message_data.room_id = message_store.selected_user_fetch_messages[0].roomId;
+        await socket.emit('send_message', message_data);
+        // await socket.on('fetch_messages', )
+        // await message_store.sendMessage(
+        //     user_store.user?.id, 
+        //     message_store.selected_user?.id,
+        //     message_data.message_text,
+        //     message_store.selected_user_fetch_messages[0].roomId)
+        // .then((respond)=>{
+        //     message_data.message_text = '';
+        //     //socket.emit('send_message', message_text.value);
+        // }).catch((err)=>{
+        //     console.log('Send Message Error : ',err);
+        // })
     }
 }
 

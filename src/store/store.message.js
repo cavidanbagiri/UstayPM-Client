@@ -43,6 +43,7 @@ const MessageStore = defineStore("MessageStore", {
             )
             .then((respond) => {
               this.selected_user_fetch_messages = respond.data;
+              console.log('sel : ',this.selected_user_fetch_messages);
             });
         }
       } catch (err) {
