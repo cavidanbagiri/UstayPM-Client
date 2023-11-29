@@ -27,14 +27,14 @@
 
             <template v-for="i in message_store.selected_user_fetch_messages">
 
-                <!-- Receiver -->
+                <!-- Receiver Or Current -->
                 <div v-if="i.receiverId === user_store.user.id " class="flex flex-row justify-end p-1 items-center">
                     <span class="receiver">{{ i.message_text }}</span>
                     <img class="w-11 h-11 rounded-full"
                         src="https://pics.craiyon.com/2023-06-18/0136ddc42a664843ad7c509dd59c7d98.webp" alt="">
                 </div>
 
-                <!-- Sender -->
+                <!-- Sender or Selected -->
                 <div v-else class="flex flex-row justify-start p-1 items-center">
                     <img class="w-11 h-11 rounded-full"
                         src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
@@ -87,9 +87,9 @@ const toggleUsers = () => { message_store.toggle_user = !message_store.toggle_us
 const socket = inject('socket');
 
 watchEffect(()=>{
-    socket.on('fetch_messages', data=>{
-        message_store.selected_user_fetch_messages = data;
-    });
+    // socket.on('fetch_messages', data=>{
+    //     message_store.selected_user_fetch_messages = data;
+    // });
 })
 
 
@@ -97,23 +97,24 @@ watchEffect(()=>{
 const message_data = reactive({
     message_text: '',
     current_id: user_store.user?.id,
-    sender_id: ''
+    sender_id: '',
+    room_id: '',
 })
 const sendMessage = async () => {
     if (user_store.user) {
-        
-        console.log('use chat section  : ',message_store.selected_user);
         message_data.sender_id = message_store.selected_user.id;
-        console.log('message data : ',message_data);
-        await socket.emit('send_message', message_data);
+        message_data.room_id = message_data.current_id;
+        // message_data.room1 = message_data.current_id + ' ' + message_data.sender_id;
+        // message_data.room2 = message_data.sender_id + ' ' + message_data.current_id;
+        // await socket.emit('send_message', message_data);
         // await socket.on('')
-        // await message_store.sendMessage(user_store.user?.id, message_store.selected_user?.id, message_text.value)
-        // .then((respond)=>{
-        //     message_text.value = '';
-        //     socket.emit('send_message', message_text.value);
-        // }).catch((err)=>{
-        //     console.log('Send Message Error : ',err);
-        // })
+        await message_store.sendMessage(user_store.user?.id, message_store.selected_user?.id, message_data.message_text, message_store.selected_user_fetch_messages[0].roomId)
+        .then((respond)=>{
+            message_data.message_text = '';
+            //socket.emit('send_message', message_text.value);
+        }).catch((err)=>{
+            console.log('Send Message Error : ',err);
+        })
     }
 }
 

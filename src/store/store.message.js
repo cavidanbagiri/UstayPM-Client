@@ -33,8 +33,6 @@ const MessageStore = defineStore("MessageStore", {
 
     // Fetch Messages GET Method
     async fetchMessage(current_id, selected_id) {
-      console.log("current id: ", current_id);
-      console.log("selected id: ", selected_id);
       try {
         if (current_id) {
           await axios
@@ -53,12 +51,14 @@ const MessageStore = defineStore("MessageStore", {
     },
 
     // Send Message POST Method
-    async sendMessage(current_id, sender_id, message_text) {
+    async sendMessage(current_id, sender_id, message_text, room_id) {
       const message_inform = {
         current_id: current_id,
         sender_id: sender_id,
         message_text: message_text,
+        room_id: room_id
       };
+      console.log('message inform: ',message_inform);
       try {
         if (current_id) {
           await axios

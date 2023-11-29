@@ -44,10 +44,10 @@ const selectedUser = (user) => {
     if(user_store.user){
         // Inside the Message Store selected user will be equal to selected user after that, socket will send this user to back end for joining to room 
         message_store.selected_user = user;
-        console.log('use select section : ',message_store.selected_user);
-        socket.emit('join_room', user.id);
+        // console.log('use select section : ',message_store.selected_user);
+        // socket.emit('join_room', user_store.user.id, user.id);
         // console.log('socket is from : ', socket.id);
-        // message_store.fetchMessage(user_store.user?.id, message_store.selected_user.id);
+        message_store.fetchMessage(user_store.user?.id, message_store.selected_user.id);
     }
 
 }
