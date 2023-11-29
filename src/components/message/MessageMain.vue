@@ -1,5 +1,6 @@
 <template>
     <div v-if="message_store.toggle_message"
+        
         :class="message_store.toggle_user ? 'w-1/2' : 'w-3/12' "
         class="z-50 flex flex-row bg-gray-100 fixed bottom-10 right-10 rounded-xl h-5/6 shadow-2xl">
         <!-- User Section -->
@@ -19,7 +20,8 @@ import MessageStore from '../../store/store.message';
 const message_store = MessageStore();
 
 onMounted(async ()=>{
-    await message_store.fetchUsers();    
+    console.log('fetching user messages iw working');
+    await message_store.fetchUsers();
 })
 
 </script>

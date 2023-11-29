@@ -24,9 +24,9 @@
 
 <script setup>
 
-import { watchEffect, ref, onMounted } from 'vue';
+import { watchEffect, ref, onMounted, provide } from 'vue';
 import { io } from 'socket.io-client';
-
+// import { provide } from vue;
 
 import NavbarLayout from './layouts/NavbarLayout.vue';
 import MessageImage from './components/message/MessageImage.vue';
@@ -45,6 +45,7 @@ const index_store = IndexStore();
 // Check If User Login, Create Socket Connection
 const URL = import.meta.env.VITE_API
 const socket = io(URL);
+provide('socket', socket);
 watchEffect(()=>{
   if(user_store.user){
     

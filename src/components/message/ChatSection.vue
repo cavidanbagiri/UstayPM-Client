@@ -59,7 +59,7 @@
         </div>
         <!-- Text Input Area -->
         <div class="flex flex-row items-center justify-between py-2 px-1">
-            <input :disabled="!message_store.selected_user" v-model="message_text"
+            <input :disabled="!message_store.selected_user" v-model="message_data.message_text"
                 class="py-3 px-2 border-2 rounded-full w-full me-1 outline-none hover:orange-pink-500 text-gray-500 shadow-xl"
                 style="font-family: 'Poppins';" type="text" placeholder="Text ...">
             <button :disabled="!message_store.selected_user" @click="sendMessage"
@@ -72,7 +72,7 @@
 
 <script setup>
 
-import { ref } from 'vue';
+import { ref, inject, watchEffect, reactive } from 'vue';
 
 import UserStore from '../../store/store.user_store';
 import MessageStore from '../../store/store.message';
@@ -84,13 +84,36 @@ const closeChat = () => { message_store.toggle_message = false; }
 // Close Users List
 const toggleUsers = () => { message_store.toggle_user = !message_store.toggle_user }
 
+const socket = inject('socket');
+
+watchEffect(()=>{
+    socket.on('fetch_messages', data=>{
+        message_store.selected_user_fetch_messages = data;
+    });
+})
 
 
 // Send Message
-const message_text = ref('');
-const sendMessage = () => {
+const message_data = reactive({
+    message_text: '',
+    current_id: user_store.user?.id,
+    sender_id: ''
+})
+const sendMessage = async () => {
     if (user_store.user) {
-        message_store.sendMessage(user_store.user?.id, message_store.selected_user?.id, message_text.value)
+        
+        console.log('use chat section  : ',message_store.selected_user);
+        message_data.sender_id = message_store.selected_user.id;
+        console.log('message data : ',message_data);
+        await socket.emit('send_message', message_data);
+        // await socket.on('')
+        // await message_store.sendMessage(user_store.user?.id, message_store.selected_user?.id, message_text.value)
+        // .then((respond)=>{
+        //     message_text.value = '';
+        //     socket.emit('send_message', message_text.value);
+        // }).catch((err)=>{
+        //     console.log('Send Message Error : ',err);
+        // })
     }
 }
 

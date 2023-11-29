@@ -44,7 +44,7 @@ const MessageStore = defineStore("MessageStore", {
               }/common/fetchmessage/${current_id}?selected_id=${selected_id}`
             )
             .then((respond) => {
-                this.selected_user_fetch_messages = respond.data
+              this.selected_user_fetch_messages = respond.data;
             });
         }
       } catch (err) {
@@ -66,14 +66,13 @@ const MessageStore = defineStore("MessageStore", {
               `${import.meta.env.VITE_API}/common/sendmessage`,
               message_inform
             )
-            .then((respond) => {
-              
-            });
+            .then((respond) => {});
         }
       } catch (err) {
         console.log("Send Message Error");
       }
     },
+    
   },
 });
 
