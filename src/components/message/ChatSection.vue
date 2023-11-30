@@ -72,7 +72,7 @@
 
 <script setup>
 
-import { ref, inject, watchEffect, reactive } from 'vue';
+import { inject, watchEffect, reactive } from 'vue';
 
 import UserStore from '../../store/store.user_store';
 import MessageStore from '../../store/store.message';
@@ -103,20 +103,25 @@ const message_data = reactive({
 const sendMessage = async () => {
     if (user_store.user) {
         message_data.sender_id = message_store.selected_user.id;
-        message_data.room_id = message_store.selected_user_fetch_messages[0].roomId;
-        await socket.emit('send_message', message_data);
+        if(message_store.selected_user_fetch_messages){
+            if(message_store.selected_user_fetch_messages.length){
+                message_data.room_id = message_store.selected_user_fetch_messages[0].roomId;
+            }
+            else{
+                message_data.room_id = message_store.selected_user_fetch_messages.roomId
+            }
+        }
+        // await socket.emit('send_message', message_data);
         // await socket.on('fetch_messages', )
-        // await message_store.sendMessage(
-        //     user_store.user?.id, 
-        //     message_store.selected_user?.id,
-        //     message_data.message_text,
-        //     message_store.selected_user_fetch_messages[0].roomId)
-        // .then((respond)=>{
-        //     message_data.message_text = '';
-        //     //socket.emit('send_message', message_text.value);
-        // }).catch((err)=>{
-        //     console.log('Send Message Error : ',err);
-        // })
+        await message_store.sendMessage(
+            message_data
+        ).then((respond)=>{
+            message_data.message_text = '';
+            //socket.emit('send_message', message_text.value);
+            socket.emit('new_messages', message_data)
+        }).catch((err)=>{
+            console.log('Send Message Error : ',err);
+        })
     }
 }
 

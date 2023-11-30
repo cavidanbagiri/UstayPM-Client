@@ -52,25 +52,25 @@ const MessageStore = defineStore("MessageStore", {
     },
 
     // Send Message POST Method
-    async sendMessage(current_id, sender_id, message_text, room_id) {
-      const message_inform = {
-        current_id: current_id,
-        sender_id: sender_id,
-        message_text: message_text,
-        room_id: room_id
-      };
-      console.log('message inform: ',message_inform);
+    async sendMessage(message_data) {
+      // const message_inform = {
+      //   current_id: current_id,
+      //   sender_id: sender_id,
+      //   message_text: message_text,
+      //   room_id: room_id
+      // };
+      console.log('message inform: ',message_data);
       try {
-        if (current_id) {
+        if (message_data.current_id) {
           await axios
             .post(
               `${import.meta.env.VITE_API}/common/sendmessage`,
-              message_inform
+              message_data
             )
             .then((respond) => {});
         }
       } catch (err) {
-        console.log("Send Message Error");
+        console.log("Send Message Error : ",err);
       }
     },
     

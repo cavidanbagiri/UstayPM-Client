@@ -20,7 +20,6 @@ import MessageStore from '../../store/store.message';
 const message_store = MessageStore();
 
 onMounted(async ()=>{
-    console.log('fetching user messages iw working');
     await message_store.fetchUsers();
 })
 
