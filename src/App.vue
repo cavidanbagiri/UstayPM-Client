@@ -49,12 +49,12 @@ provide('socket', socket);
 watchEffect(()=>{
   if(user_store.user){
     
-    // Create Connection Woth Backend with Socket IO
-    socket.on("connect",()=>{
-      console.log("socket id : ",socket.id);
-    })
     // Send User Information With This emit and handle in server
     socket.emit('setup', user_store.user);
+
+    // Create Connection Woth Backend with Socket IO
+    socket.on("connected",()=>{
+    })
 
     /*  
       ----------------------------------------------------------- New STF Notification Socket

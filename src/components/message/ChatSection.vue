@@ -21,14 +21,14 @@
 
         <!-- Message Area -->
         <div v-if="message_store.selected_user"
-            class="flex flex-col bg-white h-full p-2 rounded-xl mx-2 mt-2 overflow-scroll">
+            class="flex flex-col bg-white h-full p-2 rounded-xl mx-2 mt-2 overflow-y-scroll">
 
             <!-- {{ message_store.selected_user_fetch_messages }} -->
 
             <template v-for="i in message_store.selected_user_fetch_messages">
 
                 <!-- Receiver Or Current -->
-                <div v-if="i.receiverId === user_store.user.id " class="flex flex-row justify-end p-1 items-center">
+                <div v-if="i.receiverId === user_store.user.id" class="flex flex-row justify-end p-1 items-center">
                     <span class="receiver">{{ i.message_text }}</span>
                     <img class="w-11 h-11 rounded-full"
                         src="https://pics.craiyon.com/2023-06-18/0136ddc42a664843ad7c509dd59c7d98.webp" alt="">
@@ -57,9 +57,11 @@
                 For Selecting User, Please Click Top Right Users Icon
             </span>
         </div>
+        <span v-if="selected_typing" class="loading loading-dots loading-sm"></span>
         <!-- Text Input Area -->
         <div class="flex flex-row items-center justify-between py-2 px-1">
             <input @keyup.enter="sendMessage" :disabled="!message_store.selected_user" v-model="message_data.message_text"
+                @input="msgTyping"
                 class="py-3 px-2 border-2 rounded-full w-full me-1 outline-none hover:orange-pink-500 text-gray-500 shadow-xl"
                 style="font-family: 'Poppins';" type="text" placeholder="Text ...">
             <button :disabled="!message_store.selected_user" @click="sendMessage"
@@ -72,7 +74,7 @@
 
 <script setup>
 
-import { inject, watchEffect, reactive } from 'vue';
+import { ref, inject, watchEffect, reactive } from 'vue';
 
 import UserStore from '../../store/store.user_store';
 import MessageStore from '../../store/store.message';
@@ -86,12 +88,26 @@ const toggleUsers = () => { message_store.toggle_user = !message_store.toggle_us
 
 const socket = inject('socket');
 
-watchEffect(()=>{
-    socket.on('fetch_messages', data=>{
+//***************************************************** Typing Events ***************/
+// When Selected User Typing, writing spinner will shown 
+const selected_typing = ref(false);
+
+const msgTyping = () => {
+    socket.emit('typing', message_store.selected_user_fetch_messages[0].roomId);
+}
+//********************************************************************************* */
+
+watchEffect(() => {
+    socket.on('fetch_messages', data => {
         message_store.selected_user_fetch_messages = data;
     });
+    socket.on('typing', (room_id) => {
+        selected_typing.value = true;
+        setTimeout(() => {
+            selected_typing.value = false;
+        }, 2000)
+    })
 })
-
 
 // Send Message
 const message_data = reactive({
@@ -103,32 +119,25 @@ const message_data = reactive({
     senderId: '',
 })
 const sendMessage = async () => {
-    if (user_store.user) {
+    if (user_store.user && message_data.message_text.trim().length > 0 ) {
         message_data.sender_id = message_store.selected_user.id;
-        if(message_store.selected_user_fetch_messages){
-            if(message_store.selected_user_fetch_messages.length){
+        if (message_store.selected_user_fetch_messages) {
+            if (message_store.selected_user_fetch_messages.length) {
                 message_data.room_id = message_store.selected_user_fetch_messages[0].roomId;
             }
-            else{
+            else {
                 message_data.room_id = message_store.selected_user_fetch_messages.roomId
             }
         }
-        // await socket.emit('send_message', message_data);
-        // await socket.on('fetch_messages', )
         await message_store.sendMessage(
             message_data
-        ).then(async (respond)=>{
-            console.log('fetch messages is : ', message_store.selected_user_fetch_messages);
-            //socket.emit('send_message', message_text.value);
+        ).then(async (respond) => {
             message_data.receiverId = message_data.current_id;
-            // const temp_text =  message_data.message_text;
-            // message_data.message_text = temp_text;
-            // message_store.selected_user_fetch_messages.push(message_data)
             await message_store.fetchMessage(message_data.current_id, message_data.sender_id);
             message_data.message_text = '';
             socket.emit('new_messages', message_data)
-        }).catch((err)=>{
-            console.log('Send Message Error : ',err);
+        }).catch((err) => {
+            console.log('Send Message Error : ', err);
         })
     }
 }
