@@ -59,7 +59,7 @@
         </div>
         <!-- Text Input Area -->
         <div class="flex flex-row items-center justify-between py-2 px-1">
-            <input :disabled="!message_store.selected_user" v-model="message_data.message_text"
+            <input @keyup.enter="sendMessage" :disabled="!message_store.selected_user" v-model="message_data.message_text"
                 class="py-3 px-2 border-2 rounded-full w-full me-1 outline-none hover:orange-pink-500 text-gray-500 shadow-xl"
                 style="font-family: 'Poppins';" type="text" placeholder="Text ...">
             <button :disabled="!message_store.selected_user" @click="sendMessage"
@@ -99,6 +99,8 @@ const message_data = reactive({
     current_id: user_store.user?.id,
     sender_id: '',
     room_id: '',
+    receiverId: '',
+    senderId: '',
 })
 const sendMessage = async () => {
     if (user_store.user) {
@@ -115,9 +117,15 @@ const sendMessage = async () => {
         // await socket.on('fetch_messages', )
         await message_store.sendMessage(
             message_data
-        ).then((respond)=>{
-            message_data.message_text = '';
+        ).then(async (respond)=>{
+            console.log('fetch messages is : ', message_store.selected_user_fetch_messages);
             //socket.emit('send_message', message_text.value);
+            message_data.receiverId = message_data.current_id;
+            // const temp_text =  message_data.message_text;
+            // message_data.message_text = temp_text;
+            // message_store.selected_user_fetch_messages.push(message_data)
+            await message_store.fetchMessage(message_data.current_id, message_data.sender_id);
+            message_data.message_text = '';
             socket.emit('new_messages', message_data)
         }).catch((err)=>{
             console.log('Send Message Error : ',err);
