@@ -86,11 +86,14 @@
 <script setup>
 
 import { ref, inject, watchEffect, reactive } from 'vue';
+import sendringtone from '../../assets/sendringtone.mp3';
 
 import UserStore from '../../store/store.user_store';
 import MessageStore from '../../store/store.message';
 const user_store = UserStore();
 const message_store = MessageStore();
+
+const send_ringtone = new Audio(sendringtone);
 
 // Close Chat Bar
 const closeChat = () => { message_store.toggle_message = false; }
@@ -145,6 +148,7 @@ const sendMessage = async () => {
         ).then(async (respond) => {
             message_data.receiverId = message_data.current_id;
             await message_store.fetchMessage(message_data.current_id, message_data.sender_id);
+            send_ringtone.play();
             message_data.message_text = '';
             socket.emit('new_messages', message_data)
         }).catch((err) => {
