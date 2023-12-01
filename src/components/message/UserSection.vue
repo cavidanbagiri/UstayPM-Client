@@ -1,5 +1,5 @@
 <template>
-    <div v-if="message_store.toggle_user" class="flex flex-col w-1/2 p-2 overflow-auto border shadow-2xl">
+    <div v-if="message_store.toggle_user" class="flex flex-col w-1/2 py-2 px-3 overflow-auto border shadow-2xl rounded-xl">
             <!-- Text Section -->
             <div class="text-center">
                 <span class=" text-4xl" style="font-family: 'Poppins';">Users</span>
@@ -18,11 +18,11 @@
                             src="https://static.wixstatic.com/media/033319_e0f92699ac1741baa4b84b6755734bb6~mv2.png/v1/crop/x_89,y_0,w_2601,h_1732/fill/w_480,h_486,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_0297_edited.png"
                             alt="">
                         <div class="flex flex-col pl-2">
-                            <span class="text-lg">
+                            <span class="text-md text-gray-800 font-bold">
                                 {{ user.username }}
                             </span>
                             <span class="text-sm text-gray-400" style="font-family:'Poppins'">
-                                {{ user.status_name }}
+                                {{ user.department_name }} {{ user.status_name }}
                             </span>
                         </div>
                     </li>

@@ -4,18 +4,26 @@
 
         <!-- Close Button and Userlist Toggle Section -->
         <div class=" flex justify-between py-2 px-5">
-            <span class="cursor-pointer" @click="toggleUsers"><i
-                    class=" hover:text-blue-400 fa-solid fa-users fa-xl text-gray-500"></i></span>
+            <span class="cursor-pointer " @click="toggleUsers"><i
+                    class=" hover:text-blue-400 fa-solid fa-users fa-lg text-gray-500"></i>
+                    <span class="text-xl pl-2">Users</span>
+                </span>
             <span class="cursor-pointer" @click="closeChat"><i
                     class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-400"></i></span>
         </div>
 
         <!-- Sender Information Section -->
-        <div v-if="message_store.selected_user" class="mx-2 bg-white" style="font-family: 'Poppins';">
+        <div v-if="message_store.selected_user" class="mx-2 flex justify-between items-end bg-white" style="font-family: 'Poppins';">
             <div class="flex flex-row items-center justify-start p-1">
                 <img class="w-10 h-10 rounded-full"
                     src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
-                <span class="text-xl pl-5">{{ message_store.selected_user?.username }}</span>
+                <div class="flex flex-col">
+                    <span class="text-md pl-5">{{ message_store.selected_user?.username }}</span>
+                    <span class="text-sm pl-5">{{ message_store.selected_user?.department_name }}</span>
+                </div>
+            </div>
+            <div>
+                <span v-if="selected_typing" class="loading loading-dots loading-sm">write</span>
             </div>
         </div>
 
@@ -28,23 +36,26 @@
             <template v-for="i in message_store.selected_user_fetch_messages">
 
                 <!-- Receiver Or Current -->
-                <div v-if="i.receiverId === user_store.user.id" class="flex flex-row justify-end p-1 items-center">
-                    <span class="receiver">{{ i.message_text }}</span>
+                <div v-if="i.receiverId === user_store.user.id" class="flex flex-row justify-end p-1 items-end">
+                    <!-- <span class="receiver">{{ i.message_text }}</span> -->
+                    <div class="chat chat-end w-full">
+                        <div class="chat-bubble bg-purple-500 text-white">{{ i.message_text }}</div>
+                    </div>
                     <img class="w-11 h-11 rounded-full"
                         src="https://pics.craiyon.com/2023-06-18/0136ddc42a664843ad7c509dd59c7d98.webp" alt="">
                 </div>
 
                 <!-- Sender or Selected -->
-                <div v-else class="flex flex-row justify-start p-1 items-center">
+                <div v-else class="flex flex-row justify-start p-1 items-end ">
                     <img class="w-11 h-11 rounded-full"
                         src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
-                    <span class="sender">{{ i.message_text }}</span>
+                    <!-- <span class="sender">{{ i.message_text }}</span> -->
+                    <div class="chat chat-start w-full">
+                        <div class="chat-bubble chat-bubble-primary text-white">{{ i.message_text }}</div>
+                    </div>
                 </div>
 
-
             </template>
-
-
 
         </div>
 
@@ -57,7 +68,7 @@
                 For Selecting User, Please Click Top Right Users Icon
             </span>
         </div>
-        <span v-if="selected_typing" class="loading loading-dots loading-sm"></span>
+        <!-- <span v-if="selected_typing" class="loading loading-dots loading-sm"></span> -->
         <!-- Text Input Area -->
         <div class="flex flex-row items-center justify-between py-2 px-1">
             <input @keyup.enter="sendMessage" :disabled="!message_store.selected_user" v-model="message_data.message_text"
