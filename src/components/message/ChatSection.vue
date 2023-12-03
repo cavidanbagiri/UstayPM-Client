@@ -31,12 +31,14 @@
         <div v-if="message_store.selected_user"
             class="flex flex-col bg-white h-full p-2 rounded-xl mx-2 mt-2 overflow-y-scroll">
 
-            <!-- {{ message_store.selected_user_fetch_messages }} -->
-
             <template v-for="i in message_store.selected_user_fetch_messages">
 
+                <!-- If Message Text Is Empty Down Show -->
+
+                <span v-if="i.message_text === '' "></span>
+
                 <!-- Receiver Or Current -->
-                <div v-if="i.receiverId === user_store.user.id" class="flex flex-row justify-end p-1 items-end">
+                <div v-else-if="i.receiverId === user_store.user.id" class="flex flex-row justify-end p-1 items-end">
                     <!-- <span class="receiver">{{ i.message_text }}</span> -->
                     <div class="chat chat-end w-full">
                         <div class="chat-bubble bg-purple-500 text-white">{{ i.message_text }}</div>
@@ -93,6 +95,7 @@ import MessageStore from '../../store/store.message';
 const user_store = UserStore();
 const message_store = MessageStore();
 
+// After Send Message, This Send Sound Will Play
 const send_ringtone = new Audio(sendringtone);
 
 // Close Chat Bar
@@ -107,7 +110,7 @@ const socket = inject('socket');
 const selected_typing = ref(false);
 
 const msgTyping = () => {
-    socket.emit('typing', message_store.selected_user_fetch_messages[0].roomId);
+    socket.emit('typing', message_store.selected_user_fetch_messages[0]?.roomId);
 }
 //********************************************************************************* */
 
@@ -129,7 +132,6 @@ const message_data = reactive({
     current_id: user_store.user?.id,
     sender_id: '',
     room_id: '',
-    receiverId: '',
     senderId: '',
 })
 const sendMessage = async () => {
@@ -147,7 +149,14 @@ const sendMessage = async () => {
             message_data
         ).then(async (respond) => {
             message_data.receiverId = message_data.current_id;
-            await message_store.fetchMessage(message_data.current_id, message_data.sender_id);
+            const temp_message_data = {
+                createdAt: new Date().getDate(),
+                message_text: message_data.message_text,
+                receiverId: message_data.current_id,
+                roomId: message_data.room_id,
+                senderId: message_data.senderId
+            }
+            message_store.selected_user_fetch_messages?.push(temp_message_data);
             send_ringtone.play();
             message_data.message_text = '';
             socket.emit('new_messages', message_data)

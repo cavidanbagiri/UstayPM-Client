@@ -44,6 +44,7 @@ const selectedUser = async (user) => {
     if(user_store.user){
         message_store.selected_user = user;
         await message_store.fetchMessage(user_store.user?.id, message_store.selected_user.id);
+        console.log('here : ', message_store.selected_user_fetch_messages);
         if(message_store.selected_user_fetch_messages.length){
             socket.emit('join_room', user_store.user.id, user.id, message_store.selected_user_fetch_messages[0]?.roomId);
         }
