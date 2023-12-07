@@ -60,8 +60,8 @@ watchEffect(()=>{
       ----------------------------------------------------------- New STF Notification Socket
     */
     // Send Notification emit and listen
-    socket.emit("newstfnotification");
-    // Cavidan EMit
+    socket.emit("newstfnotification", user_store.user);
+    // create stf emit
     socket.on("createstf",()=>{
       socket.emit("newstfnotification");
     })
@@ -70,9 +70,6 @@ watchEffect(()=>{
       index_store.new_stf_notification = data;
     })
 
-    /*
-      ---------------------------------------------------------- User Chats Sockets
-    */
 
   }
 });

@@ -68,7 +68,7 @@ import UserStore from '../../../store/store.user_store';
 import ProcurementStore from '../../../store/store.procurement';
 const procurement_store = ProcurementStore();
 const user_store = UserStore();
-// const index_store = IndexStore();
+// const index_store = IndexStore();    
 
 
 onMounted(async () => {
