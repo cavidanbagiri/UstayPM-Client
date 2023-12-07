@@ -7,6 +7,8 @@ const STFStore = defineStore("STFStore", {
   state: () => ({
     tab_num: 0, // Create Listening FOr Changing STF Page Menu
     all_stf: null, // Fetch All User STF
+    all_stf_loading: true,
+    all_stf_cond_text: false,
     all_stf_headers: [], // Get All fetching Data Headers
     warehouse_selecting_rows: [], // Selecting Rows Will Ad To This Array
     order_list: [], // During Create New STF, The Rows will add inside of this list for checking
@@ -53,6 +55,7 @@ const STFStore = defineStore("STFStore", {
 
     // Fetch All User STF -> Checked
     async fetchUserSTFAll(user) {
+      this.all_stf_loading = true;
       if (user?.id) {
         try {
           // await axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
@@ -61,6 +64,12 @@ const STFStore = defineStore("STFStore", {
             .then((respond) => {
               if(respond.data.length !== 0){
                 this.all_stf = respond.data;
+                this.all_stf_loading = false;
+                this.all_stf_cond_text = false;
+              }
+              else{
+                this.all_stf_loading = false;
+                this.all_stf_cond_text = true;
               }
             })
             .catch((err) => {
@@ -75,16 +84,23 @@ const STFStore = defineStore("STFStore", {
 
     // Get Filtered Data For User STF
     async getFilteredData(filtered_object) {
+      this.all_stf_loading = true;
       const queries = this.createUrlQuery(filtered_object);
       try {
         await axios
-          .get(
-            // `${import.meta.env.VITE_API}/stf/filter${queries}`
-            `${import.meta.env.VITE_API}/common/filterstf${queries}`
+        .get(
+          // `${import.meta.env.VITE_API}/stf/filter${queries}`
+          `${import.meta.env.VITE_API}/common/filterstf${queries}`
           )
           .then((respond) => {
-            if(respond.data){
+            if(respond.data.length !== 0){
               this.all_stf = respond.data;
+              this.all_stf_loading = false;
+              this.all_stf_cond_text = false;
+            }
+            else{
+              this.all_stf_loading = false;
+              this.all_stf_cond_text = true;
             }
           })
           .catch((err) => {

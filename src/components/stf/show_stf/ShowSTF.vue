@@ -21,11 +21,11 @@
       <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
     </table>
 
-    <div v-else class="flex flex-row justify-center items-center w-full h-96">
+    <div v-if="stf_store.all_stf_loading" class="flex flex-row justify-center items-center w-full h-96">
       <span class="loading loading-dots loading-lg"></span>
     </div>
     
-    <div v-if="stf_store.all_stf?.length === 0" class="flex flex-row justify-center items-center w-full h-96">
+    <div v-if="stf_store.all_stf_cond_text" class="flex flex-row justify-center items-center w-full h-96">
       <span class="text-3xl">
         There is not any Orders for showing
       </span>
