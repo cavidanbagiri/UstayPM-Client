@@ -16,11 +16,15 @@ const STFStore = defineStore("STFStore", {
 
     // **** Warehouse 
     warehouse_data: [], // Fetch All Warehouse Data
+    warehouse_data_loading: true,
+    warehouse_data_cond_text: false,
     warehouse_headers: [], // Fetch All Warehouse Headers
 
     // **** Provide
     // Fetch Data For Provides
     provides_data: [],
+    provide_data_loading: true,
+    provide_data_cond_text: false,
     provided_data_headers: [],
 
     warehouse_selecting_rows: [], // Selected Warehouses Rows
@@ -191,11 +195,19 @@ const STFStore = defineStore("STFStore", {
     // Fetch Warehouse Data
     async fetchWarehouseData(user) {
       if (user?.id) {
+        this.warehouse_data_loading = true;
         try {
           await axios
             .get(`${import.meta.env.VITE_API}/stf/warehouse/${user.id}`)
             .then((respond) => {
-              this.warehouse_data = respond.data;
+              if(respond.data?.length!==0){
+                this.warehouse_data = respond.data;
+                this.warehouse_data_loading = false;
+                this.warehouse_data_cond_text = false;
+              }else{
+                this.warehouse_data_loading = false;
+                this.warehouse_data_cond_text = true;
+              }
             })
             .catch((err) => {
               console.log("Fetch User Catch Error : ", err);
@@ -204,6 +216,35 @@ const STFStore = defineStore("STFStore", {
           console.log("Fetch User STF Error : ", err);
           return err;
         }
+      }
+    },
+
+    // Get Filtered Data For User Warehouse
+    async getFilteredWarehouseData(filtered_object) {
+      this.warehouse_data_loading = true;
+      const queries = this.createUrlQuery(filtered_object);
+      try {
+        await axios
+          .get(
+            `
+                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
+            `
+          )
+          .then((respond) => {
+            if(respond.data?.length!==0){
+              this.warehouse_data = respond.data;
+              this.warehouse_data_loading = false;
+              this.warehouse_data_cond_text = false;
+            }else{
+              this.warehouse_data_loading = false;
+              this.warehouse_data_cond_text = true;
+            }
+          })
+          .catch((err) => {
+            console.log("Error Is : ", err);
+          });
+      } catch (err) {
+        console.log("Get Filtered Data Error : ", err);
       }
     },
 
@@ -263,33 +304,19 @@ const STFStore = defineStore("STFStore", {
       }
     },
 
-    // Get Filtered Data For User Warehouse
-    async getFilteredWarehouseData(filtered_object) {
-      const queries = this.createUrlQuery(filtered_object);
-      try {
-        await axios
-          .get(
-            `
-                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
-            `
-          )
-          .then((respond) => {
-            this.warehouse_data = respond.data;
-          })
-          .catch((err) => {
-            console.log("Error Is : ", err);
-          });
-      } catch (err) {
-        console.log("Get Filtered Data Error : ", err);
-      }
-    },
-
     // Fetch Provided Data and show in Provided Section
     async fetchProvidedData(user) {
       await axios
       .get(`${import.meta.env.VITE_API}/stf/provided/${user.departmentId}`)
       .then((respond) => {
-        this.provides_data = respond.data;
+        if(respond.data?.length!==0){
+          this.provides_data = respond.data;
+          this.provide_data_loading = false;
+          this.provide_data_cond_text = false;
+        }else{
+          this.provide_data_loading = false;
+          this.provide_data_cond_text = true;
+        }
         })
         .catch((err) => {
           console.log("Provied Items Error : ", err);
@@ -305,7 +332,14 @@ const STFStore = defineStore("STFStore", {
             `${import.meta.env.VITE_API}/common/filterprovided${queries}`
           )
           .then((respond) => {
-            this.provides_data = respond.data;
+            if(respond.data?.length!==0){
+              this.provides_data = respond.data;
+              this.provide_data_loading = false;
+              this.provide_data_cond_text = false;
+            }else{
+              this.provide_data_loading = false;
+              this.provide_data_cond_text = true;
+            }
           })
           .catch((err) => {
             console.log("Error Is : ", err);

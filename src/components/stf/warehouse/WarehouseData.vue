@@ -21,11 +21,11 @@
       <ShowWarehouseEachRow v-for="(i, index) in stf_store.warehouse_data" :each="i" :index="index" />
     </table>
 
-    <div v-else class="flex flex-row justify-center items-center w-full h-96">
+    <div v-if="stf_store.warehouse_data_loading" class="flex flex-row justify-center items-center w-full h-96">
       <span class="loading loading-dots loading-lg"></span>
     </div>
 
-    <div v-if="stf_store.warehouse_data?.length === 0" class="flex flex-row justify-center items-center w-full h-96">
+    <div v-if="stf_store.warehouse_data_cond_text" class="flex flex-row justify-center items-center w-full h-96">
       <span class="text-3xl">
           There is not any data in warehouse which created by <span class="font-bold">{{user_store.user.name}} {{user_store.user.surname}}</span>
         </span>

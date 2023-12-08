@@ -23,9 +23,14 @@
         <TableHeader :table_headers="stf_store.provided_data_headers" />
         <Provided_Table_Body />
       </table>
-      <div v-else class="flex flex-row justify-center items-center w-full h-96">
+      <div v-if="stf_store.provide_data_loading" class="flex flex-row justify-center items-center w-full h-96">
         <span class="loading loading-dots loading-lg"></span>
       </div>
+      <div v-if="stf_store.provide_data_cond_text" class="flex flex-row justify-center items-center w-full h-96">
+      <span class="text-3xl">
+        There is not any provide data which created by <span class="font-bold">{{user_store.user.name}} {{user_store.user.surname}}</span>
+      </span>
+    </div>
     </div>
 
   </div>

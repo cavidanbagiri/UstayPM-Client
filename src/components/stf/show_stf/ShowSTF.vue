@@ -27,7 +27,7 @@
     
     <div v-if="stf_store.all_stf_cond_text" class="flex flex-row justify-center items-center w-full h-96">
       <span class="text-3xl">
-        There is not any Orders for showing
+        There is not any data in warehouse which created by <span class="font-bold">{{user_store.user.name}} {{user_store.user.surname}}</span>
       </span>
     </div>
 
