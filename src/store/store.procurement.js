@@ -51,7 +51,12 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Fetch Warehouse Headers
     warehouse_headers: [],
 
+    // Warehouse Section, Selected Items
     warehouse_selecting_rows : [], // Selecting Rows Will Ad To This Array
+
+    // Filter Vendor Names
+    filtered_vendor_names : [],
+
 
   }),
   getters:{
@@ -278,6 +283,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
         .get(`${import.meta.env.VITE_API}/common/fetchcompanies`)
         .then((respond) => {
           this.companies_names = respond.data;
+          this.filtered_vendor_names = respond.data;
         })
         .catch((err) => {
           console.log("Getting Companies Names Errors : ", err);
@@ -285,6 +291,36 @@ const ProcurementStore = defineStore("ProcurementStore",{
       }
       catch(err){
         console.log('Get Companies Name Error : ',err);
+      }
+    },
+
+    async filterVendorName (selected_text){
+      if(selected_text.toString().trim()===''){
+        this.filtered_vendor_names = this.companies_names;
+      }
+      else{
+        try {
+          await axios
+            .get(
+              `
+                  ${import.meta.env.VITE_API}/common/filtervendornames?selected_text=${selected_text}
+              `
+            )
+            .then((respond) => {
+              // if(respond.data.length!==0){
+                this.filtered_vendor_names = respond.data;
+                // console.log('if : ');
+              // }
+              // else{
+              //   this.filtered_vendor_names = this.companies_names;
+              // }
+            })
+            .catch((err) => {
+              console.log("Error Is : ", err);
+            });
+        } catch (err) {
+          console.log("Get Filtered Data Error : ", err);
+        }
       }
     },
 

@@ -53,7 +53,7 @@ watchEffect(()=>{
 
 // Get All Vendors and Show in vendors List
 const vendor_list = computed(() => {
-    return procurement_store.GETCOMPANIESNAMES;
+    return procurement_store.filtered_vendor_names;
 })
 // Get All Suppliers and show in supplier List
 const supplier_list = computed(() => {

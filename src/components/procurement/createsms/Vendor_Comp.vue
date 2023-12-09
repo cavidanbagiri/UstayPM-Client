@@ -2,7 +2,7 @@
 <template>
     <div class="flex flex-col relative">
         <div class="p-0 flex items-center">
-            <span v-if="selecting_vendor != '' " class="text-sm max-w-[500px]">
+            <span v-if="selecting_vendor != '' " class="text-sm max-w-[200px]">
                 <span class="font-bold">
                     Selecting Vendor
                 </span> 
@@ -23,14 +23,19 @@
                     </div>
                 </div>
                 <!-- Search Company Name Section -->
-                <div class=" sticky top-[36px] p-2 bg-white">
-                    <input class="border-2 border-indigo-600 my-2 w-full p-2 rounded-lg text-sm outline-none " type="text" name="" id="" placeholder="Company Name..." style="font-style: italic;">
+                <div class=" sticky top-[36px] p-2 bg-white border-2 border-indigo-600 m-2 rounded-lg ">
+                    <div class="flex items-center">
+                        <span>
+                            <i class="fa-solid fa-magnifying-glass text-xl text-gray-500"></i>
+                        </span>
+                        <input v-model="selected_vendor_name" class="w-full p-2 text-sm outline-none " type="text" name="" id="" placeholder="Company Name...">
+                    </div>
                 </div>
                 <!-- Companies Names Section -->
                 <ul class="">
                     <li v-for="i in prop.vendor_list" @click="selectVendor(i)" style="font-family:'Lato', sans-serif;"
                         class="m-1 p-1 px-2 hover:bg-gray-100  cursor-pointer rounded-md ">
-                        {{ i.vendor_name }}
+                       {{ i.vendor_name }}
                     </li>
                 </ul>
             </div>
@@ -40,7 +45,8 @@
 
 <script setup>
 
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
+import ProcurementStore from '../../../store/store.procurement';
 
 const show = ref(false);
 const selecting_vendor = ref('');
@@ -48,13 +54,23 @@ const selecting_vendor = ref('');
 const prop = defineProps(['vendor_list']);
 const emit = defineEmits(['selectVendor']);
 
-const closeComp = () => {
-    show.value = false
-}
+const procurement_store = ProcurementStore();
 
+// Search Vendor Comp
+const selected_vendor_name = ref('');
+watchEffect(async ()=>{
+    // if(selected_vendor_name.value.toString().trim()!=''){
+        // console.log(selected_vendor_name.value);
+        await procurement_store.filterVendorName(selected_vendor_name.value)
+    // }
+})
+
+// Close Vendor Comp
+const closeComp = () => {show.value = false}
+
+// Select Vendor
 const selectVendor = (vendor) => {
     selecting_vendor.value = vendor.vendor_name;
-    emit("selectVendor", vendor);
     show.value = false;
 }
 
