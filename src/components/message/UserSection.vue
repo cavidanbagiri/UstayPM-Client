@@ -2,11 +2,11 @@
     <div v-if="message_store.toggle_user"
         class="flex flex-col w-1/2 py-2 px-3 overflow-auto  rounded-s-xl bg-white ">
         <!-- Text Section -->
-        <div class="text-center">
+        <!-- <div class="text-center">
             <span class=" text-4xl" style="font-family: 'Poppins';">Users</span>
-        </div>
+        </div> -->
         <!-- Search Bar -->
-        <div class="flex items-center border-2 rounded-xl py-2 px-2 mb-2">
+        <div class="flex items-center border-2 rounded-full py-2 px-2 my-5 bg-white">
             <span class="pl-2 pr-3 text-gray-500">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </span>
@@ -19,13 +19,13 @@
             <ul class="" style="font-family: 'Roboto';">
                 <!-- Each User -->
                 <li @click="selectedUser(user)" v-for="user in message_store.users" :key="user.id"
-                    class="bg-white my-2 p-2 relative py-1 flex justify-between items-center rounded-lg cursor-pointer hover:bg-gray-200 duration-300  ">
+                    class=" my-4 p-2 py-3 relative  flex justify-between border-b items-center rounded-lg cursor-pointer hover:bg-slate-100 duration-300  ">
                     <div class="flex justify-start items-center">
                         <img class="w-12 h-12 rounded-full"
                             src="https://static.wixstatic.com/media/033319_e0f92699ac1741baa4b84b6755734bb6~mv2.png/v1/crop/x_89,y_0,w_2601,h_1732/fill/w_480,h_486,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_0297_edited.png"
                             alt="">
-                        <div class="flex flex-col pl-2">
-                            <span class="text-md text-gray-800 ">
+                        <div class="flex flex-col pl-2 font-bold">
+                            <span class="text-md text-gray-600 ">
                                 {{ user.username }}
                             </span>
                             <span class="text-sm text-gray-400" style="font-family:'Poppins'">

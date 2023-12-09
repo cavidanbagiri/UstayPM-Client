@@ -63,7 +63,7 @@ watchEffect(()=>{
     socket.emit("newstfnotification", user_store.user);
     // create stf emit
     socket.on("createstf",()=>{
-      socket.emit("newstfnotification");
+      socket.emit("newstfnotification", user_store.user);
     })
     // Check New Notification
     socket.on("getstfnotification", (data)=>{
