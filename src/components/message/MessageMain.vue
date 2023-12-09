@@ -1,8 +1,8 @@
 <template>
     <div v-if="message_store.toggle_message"
         
-        :class="message_store.toggle_user ? 'w-1/2' : 'w-3/12' "
-        class="z-50 flex flex-row bg-gray-100 fixed bottom-10 right-10 rounded-xl h-5/6 shadow-2xl">
+        :class="message_store.toggle_user ? 'w-[55rem]' : 'w-3/12' "
+        class="z-50 flex flex-row bg-white fixed bottom-10 right-10 rounded-xl h-5/6 shadow-2xl">
         <!-- User Section -->
         <UserSection/>
         <!-- Chat Section -->
