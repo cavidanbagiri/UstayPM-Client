@@ -9,27 +9,70 @@ const MessageStore = defineStore("MessageStore", {
     toggle_message: false,
     toggle_user: false,
     // Fetch All Users
-    users: [],
+    // users: [],
     // Selected User
     selected_user: null,
     // Selected User Fetching Messages
     selected_user_fetch_messages: null,
     // Unread Messages
     unread_messages : null,
+    // Fetch Unread Messages and Users
+    unread_messages_and_users: null
   }),
   getters: {},
   actions: {
+
     // Fetch All Users
-    async fetchUsers() {
-      try {
-        await axios
-          .get(`${import.meta.env.VITE_API}/common/fetchallusers`)
-          .then((respond) => {
-            this.users = respond.data;
-          });
-      } catch (err) {
-        console.log("Message Section fetching Users Error : ", err);
+    // async fetchUsers() {
+    //   try {
+    //     await axios
+    //       .get(`${import.meta.env.VITE_API}/common/fetchallusers`)
+    //       .then((respond) => {
+    //         this.users = respond.data;
+    //       });
+    //   } catch (err) {
+    //     console.log("Message Section fetching Users Error : ", err);
+    //   }
+    // },
+
+    // Fetch Unread Messages, This function will use inside of Navbar Notification
+    async fetchUnreadMessages(user_id){
+      if(user_id){
+        try{
+          await axios
+            .get(
+              `${import.meta.env.VITE_API}/common/fetchunreadmessages/${user_id}`,
+            )
+            .then((respond) => {
+              this.unread_messages = respond.data;
+            });
+        }
+        catch(err){
+          console.log('Fetch Unread Message Error : ', err);
+        }
       }
+    },
+
+    // Fetch Users and Unread Messages
+    async fetchUnreadMessagesAndUsers(user_id){
+
+      if(user_id){
+        try{
+          await axios
+            .get(
+              `${import.meta.env.VITE_API}/common/fetchunreadmessagesandusers/${user_id}`,
+            )
+            .then((respond) => {
+              this.unread_messages_and_users = respond.data;
+              console.log('Unread Messages : ', this.unread_messages_and_users);
+            });
+        }
+        catch(err){
+          console.log('fetchUnreadMessagesAndUsers error : ',err);
+        }
+
+      }
+
     },
 
     // Fetch Messages GET Method
@@ -67,24 +110,7 @@ const MessageStore = defineStore("MessageStore", {
       }
     },
   
-    // Fetch Unread Messages
-    async fetchUnreadMessages(user_id){
-      if(user_id){
-        try{
-          await axios
-            .get(
-              `${import.meta.env.VITE_API}/common/fetchunreadmessages/${user_id}`,
-            )
-            .then((respond) => {
-              this.unread_messages = respond.data;
-              console.log('Unread Messages : ', this.unread_messages);
-            });
-        }
-        catch(err){
-          console.log('Fetch Unread Message Error : ', err);
-        }
-      }
-    }
+    
 
   },
 

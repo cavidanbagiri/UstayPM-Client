@@ -17,10 +17,14 @@ import { onMounted } from 'vue';
 import ChatSection from './ChatSection.vue';
 import UserSection from './UserSection.vue';
 import MessageStore from '../../store/store.message';
+import UserStore from '../../store/store.user_store';
+
+const user_store = UserStore();
 const message_store = MessageStore();
 
 onMounted(async ()=>{
-    await message_store.fetchUsers();
+    // await message_store.fetchUsers();
+    await message_store.fetchUnreadMessagesAndUsers(user_store.user?.id)    
 })
 
 </script>

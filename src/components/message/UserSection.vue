@@ -18,7 +18,7 @@
         <div>
             <ul class="" style="font-family: 'Roboto';">
                 <!-- Each User -->
-                <li @click="selectedUser(user)" v-for="user in message_store.users" :key="user.id"
+                <li @click="selectedUser(user)" v-for="user in message_store.unread_messages_and_users" :key="user.id"
                     class=" my-4 p-2 py-3 relative  flex justify-between border-b items-center rounded-lg cursor-pointer hover:bg-slate-100 duration-300  ">
                     <div class="flex justify-start items-center">
                         <img class="w-12 h-12 rounded-full"
@@ -33,43 +33,53 @@
                             </span>
                         </div>
                     </div>
-                    <!-- User Dialog Inform -->
-                    <div class="px-1 mr-1 hover:text-black" @click="toggleDialog(user)">
-                        <i class="fa-solid fa-ellipsis-vertical text-gray-500 text-2xl"></i>
-                        <ul v-if="show_dialog && user_key === user.id " class="bg-white absolute z-10 top-8 right-5 p-2 border-2 shadow-lg rounded-lg">
-                            <li class="text-lg my-1 hover:bg-gray-200 border-b px-4 py-1 rounded-md flex items-center">
-                                <span class="pr-6 w-8 h-8">
-                                    <i class="fa-regular fa-user"></i>
+                    <div v-if="user.count" class="flex items-center">
+                        <!-- Unread Messages Length -->
+                        <div class="flex items-center">
+                            <div class="badge bg-red-500 badge-md text-white rounded-full  w-5 h-5 font-bold p-[11px]">
+                                <span style="font-size:;">
+                                    {{ user.count }}
                                 </span>
-                                <span class="" @click="userInform(user)">
-                                    Get User profile
-                                </span>
-                            </li>
-                            <li class="text-lg my-1 hover:bg-gray-200 border-b px-4 py-1 rounded-md flex items-center">
-                                <span class="pr-6 w-8 h-8">
-                                    <i class="fa-regular fa-eye-slash"></i>
-                                </span>
-                                <span class="" @click="userInform(user)">
-                                    Hide User
-                                </span>
-                            </li>
-                            <li class="text-lg my-1 hover:bg-gray-200 border-b px-4 py-1 rounded-md flex items-center">
-                                <span class="pr-6 w-8 h-8">
-                                    <i class="fa-regular fa-bell-slash"></i>
-                                </span>
-                                <span class="" @click="userInform(user)">
-                                    Mute User
-                                </span>
-                            </li>
-                            <li class="text-lg my-1 hover:bg-gray-200 border-b px-4 py-1 rounded-md flex items-center">
-                                <span class="pr-6 w-8 h-8">
-                                    <i class="fa-solid fa-user-plus"></i>
-                                </span>
-                                <span class="" @click="userInform(user)">
-                                    Add Favorites
-                                </span>
-                            </li>
-                        </ul>
+                            </div>
+                        </div>
+                        <!-- User Dialog Inform -->
+                        <div class="px-1 mr-1 hover:text-black" @click="toggleDialog(user)">
+                            <i class="fa-solid fa-ellipsis-vertical text-gray-500 text-2xl"></i>
+                            <ul v-if="show_dialog && user_key === user.id " class="bg-white absolute z-10 top-8 right-5 p-2 border-2 shadow-lg rounded-lg">
+                                <li class="text-lg my-1 hover:bg-gray-200 border-b px-4 py-1 rounded-md flex items-center">
+                                    <span class="pr-6 w-8 h-8">
+                                        <i class="fa-regular fa-user"></i>
+                                    </span>
+                                    <span class="" @click="userInform(user)">
+                                        Get User profile
+                                    </span>
+                                </li>
+                                <li class="text-lg my-1 hover:bg-gray-200 border-b px-4 py-1 rounded-md flex items-center">
+                                    <span class="pr-6 w-8 h-8">
+                                        <i class="fa-regular fa-eye-slash"></i>
+                                    </span>
+                                    <span class="" @click="userInform(user)">
+                                        Hide User
+                                    </span>
+                                </li>
+                                <li class="text-lg my-1 hover:bg-gray-200 border-b px-4 py-1 rounded-md flex items-center">
+                                    <span class="pr-6 w-8 h-8">
+                                        <i class="fa-regular fa-bell-slash"></i>
+                                    </span>
+                                    <span class="" @click="userInform(user)">
+                                        Mute User
+                                    </span>
+                                </li>
+                                <li class="text-lg my-1 hover:bg-gray-200 border-b px-4 py-1 rounded-md flex items-center">
+                                    <span class="pr-6 w-8 h-8">
+                                        <i class="fa-solid fa-user-plus"></i>
+                                    </span>
+                                    <span class="" @click="userInform(user)">
+                                        Add Favorites
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </li>
             </ul>
