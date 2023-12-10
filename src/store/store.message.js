@@ -55,7 +55,6 @@ const MessageStore = defineStore("MessageStore", {
 
     // Fetch Users and Unread Messages
     async fetchUnreadMessagesAndUsers(user_id){
-
       if(user_id){
         try{
           await axios
@@ -70,7 +69,21 @@ const MessageStore = defineStore("MessageStore", {
         catch(err){
           console.log('fetchUnreadMessagesAndUsers error : ',err);
         }
+      }
+    },
 
+    // Set reading True if user selected 
+    async setTrueReadingMessages(current_id, room_id){
+
+      if(current_id){
+        try{
+          await axios.post(
+            `${import.meta.env.VITE_API}/common/settruemessages/${room_id}`
+          )
+        }
+        catch(err){
+          console.log('Set True doesnt work correctly');
+        }
       }
 
     },

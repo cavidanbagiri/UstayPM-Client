@@ -114,6 +114,7 @@ const selectedUser = async (user) => {
         await message_store.fetchMessage(user_store.user?.id, message_store.selected_user.id);
         if (message_store.selected_user_fetch_messages.length) {
             socket.emit('join_room', user_store.user.id, user.id, message_store.selected_user_fetch_messages[0]?.roomId);
+            // message_store.setTrueReadingMessages(user_store.user?.id, message_store.selected_user_fetch_messages[0]?.roomId)
         }
         else {
             console.log('there is not');
