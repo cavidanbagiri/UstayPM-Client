@@ -14,6 +14,8 @@ const MessageStore = defineStore("MessageStore", {
     selected_user: null,
     // Selected User Fetching Messages
     selected_user_fetch_messages: null,
+    // Unread Messages
+    unread_messages : null,
   }),
   getters: {},
   actions: {
@@ -24,7 +26,6 @@ const MessageStore = defineStore("MessageStore", {
           .get(`${import.meta.env.VITE_API}/common/fetchallusers`)
           .then((respond) => {
             this.users = respond.data;
-            console.log("messages users is : ", this.users);
           });
       } catch (err) {
         console.log("Message Section fetching Users Error : ", err);
@@ -43,7 +44,6 @@ const MessageStore = defineStore("MessageStore", {
             )
             .then((respond) => {
               this.selected_user_fetch_messages = respond.data;
-              console.log('sel : ',this.selected_user_fetch_messages);
             });
         }
       } catch (err) {
@@ -53,13 +53,6 @@ const MessageStore = defineStore("MessageStore", {
 
     // Send Message POST Method
     async sendMessage(message_data) {
-      // const message_inform = {
-      //   current_id: current_id,
-      //   sender_id: sender_id,
-      //   message_text: message_text,
-      //   room_id: room_id
-      // };
-      console.log('message inform: ',message_data);
       try {
         if (message_data.current_id) {
           await axios
@@ -73,8 +66,29 @@ const MessageStore = defineStore("MessageStore", {
         console.log("Send Message Error : ",err);
       }
     },
-    
+  
+    // Fetch Unread Messages
+    async fetchUnreadMessages(user_id){
+      if(user_id){
+        try{
+          await axios
+            .get(
+              `${import.meta.env.VITE_API}/common/fetchunreadmessages/${user_id}`,
+              message_data
+            )
+            .then((respond) => {
+              this.unread_messages = respond.data;
+              console.log('Unread Messages : ', this.unread_messages);
+            });
+        }
+        catch(err){
+          console.log('Fetch Unread Message Error');
+        }
+      }
+    }
+
   },
+
 });
 
 export default MessageStore;
