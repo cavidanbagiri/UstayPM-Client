@@ -36,10 +36,13 @@ import { ArcElement,Chart as ChartJS } from "chart.js";
 
 import IndexStore from './store/store.index';
 import UserStore from './store/store.user_store';
+import MessageStore from './store/store.message';
 
-ChartJS.register(ArcElement);
 const user_store = UserStore();
 const index_store = IndexStore();
+const message_store = MessageStore();
+
+ChartJS.register(ArcElement);
 
 
 // Check If User Login, Create Socket Connection
@@ -70,6 +73,10 @@ watchEffect(()=>{
       index_store.new_stf_notification = data;
     })
 
+    /*
+      ---------------------------------------------------------- Unread Messages Notification
+    */
+    message_store.fetchUnreadMessages(user_store.user?.id);
 
   }
 });

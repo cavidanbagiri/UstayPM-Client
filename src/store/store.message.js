@@ -74,7 +74,6 @@ const MessageStore = defineStore("MessageStore", {
           await axios
             .get(
               `${import.meta.env.VITE_API}/common/fetchunreadmessages/${user_id}`,
-              message_data
             )
             .then((respond) => {
               this.unread_messages = respond.data;
@@ -82,7 +81,7 @@ const MessageStore = defineStore("MessageStore", {
             });
         }
         catch(err){
-          console.log('Fetch Unread Message Error');
+          console.log('Fetch Unread Message Error : ', err);
         }
       }
     }

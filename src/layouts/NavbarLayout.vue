@@ -58,7 +58,9 @@
       <!-- Messages Notification -->
       <div class="relative">
           <router-link to="/">
-            <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">0</div>
+            <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">
+                {{ message_store.unread_messages?.length }}
+            </div>
               <span @mouseover="messages_tooltip = true" @mouseleave="messages_tooltip = false"
                   class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300"><i
                       class="fa-solid fa-message fa-md" style="color:white"></i></span>
@@ -174,9 +176,11 @@ import { ref, watchEffect, reactive } from 'vue';
 import Notification from '../components/design/Notification.vue';
 import UserStore from '../store/store.user_store';
 import IndexStore from '../store/store.index';
+import MessageStore from '../store/store.message';
 
 const user_store = UserStore();
 const index_store = IndexStore();
+const message_store = MessageStore();
 
 const prop = defineProps(['socket']);
 
@@ -199,39 +203,27 @@ const logout_tooltip = ref(false);
 const user = ref();
 const notification_toggle = ref(false);
 
-// Get User Notification Inform
-// const notification_data = reactive({
-//     new_stf_notification : ''
-// });
+
 watchEffect(() => {
     user.value = JSON.parse(sessionStorage?.getItem('user'));
     user_store.user = user.value;
-    // if(user_store.user){
-    //     prop.socket.on("newstfnotification", (data)=>{
-    //         console.log('data is : ',data);
-    //         notification_data.new_stf_notification = data.length
-    //     })
-    // }
 })
 
+// After Clicking, Notification Model Will Open
 const showNotification = () => {
     if(user_store.user){
-        notification_toggle.value = !notification_toggle.value 
-        // index_store.readNotification(user_store?.user?.id)
-        // notification_data.new_stf_notification = 0;
+        notification_toggle.value = !notification_toggle.value
     }
 }
 
-const closeNotification = () => {
-    notification_toggle.value = false;
-}
+// After Clicking New STF Notification, Close That Window
+const closeNotification = () => notification_toggle.value = false;
 
+// Expand Navbar
 const toggleCanvas = () => index_store.TOGGLECANVAS()
 
 // User logout
-const logout = () => {
-    user_store.LOGOUTUSER();
-}
+const logout = () => user_store.LOGOUTUSER();
 
 </script>
 
