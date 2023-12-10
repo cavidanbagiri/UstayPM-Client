@@ -98,7 +98,6 @@ each.total=computed(()=>{
 
 watchEffect(()=>{
     procurement_store.creating_STF_datas.push(each);
-    console.log('from watch : ',procurement_store.creating_STF_datas);
     // each.total = (each.price * prop?.each?.count).toFixed(2)
 })
 

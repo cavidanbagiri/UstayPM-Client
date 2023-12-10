@@ -72,6 +72,7 @@ const closeComp = () => {show.value = false}
 const selectVendor = (vendor) => {
     selecting_vendor.value = vendor.vendor_name;
     show.value = false;
+    emit("selectVendor", vendor);
 }
 
 </script>

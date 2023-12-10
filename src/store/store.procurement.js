@@ -307,13 +307,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
               `
             )
             .then((respond) => {
-              // if(respond.data.length!==0){
                 this.filtered_vendor_names = respond.data;
-                // console.log('if : ');
-              // }
-              // else{
-              //   this.filtered_vendor_names = this.companies_names;
-              // }
             })
             .catch((err) => {
               console.log("Error Is : ", err);
