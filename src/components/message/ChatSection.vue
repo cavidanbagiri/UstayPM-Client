@@ -149,7 +149,6 @@ const sendMessage = async () => {
                 message_data.room_id = message_store.selected_user_fetch_messages.roomId
             }
         }
-        console.log('message data : ', message_data);
         await message_store.sendMessage(
             message_data
         ).then(async (respond) => {
