@@ -116,13 +116,17 @@ const msgTyping = () => {
 
 watchEffect(() => {
     socket.on('fetch_messages', data => {
-        message_store.selected_user_fetch_messages = data;
+        if(message_store.selected_user.roomid === data[0].roomId){
+            message_store.selected_user_fetch_messages = data;
+        }
     });
     socket.on('typing', (room_id) => {
-        selected_typing.value = true;
-        setTimeout(() => {
-            selected_typing.value = false;
-        }, 2000)
+        if(message_store.selected_user.roomid === room_id){
+            selected_typing.value = true;
+            setTimeout(() => {
+                selected_typing.value = false;
+            }, 2000)
+        }
     })
 })
 
@@ -145,6 +149,7 @@ const sendMessage = async () => {
                 message_data.room_id = message_store.selected_user_fetch_messages.roomId
             }
         }
+        console.log('message data : ', message_data);
         await message_store.sendMessage(
             message_data
         ).then(async (respond) => {
