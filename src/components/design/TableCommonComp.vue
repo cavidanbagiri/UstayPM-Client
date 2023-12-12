@@ -35,9 +35,7 @@
 
   const openAnim = () => {
     anim_toggle.value = true;
-    // setTimeout(()=>{
       toggle.value = true;
-    // }, 500)
   }
   
   const closeAnim = () => {

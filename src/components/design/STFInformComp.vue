@@ -54,6 +54,7 @@ const close = () => {emit('closeInform')}
 
 // Get STF Information
 const getSTFInform = () => {
+  console.log('each stf id : ', prop?.each?.stf_id);
   index_store.fetchSTFRowInform(prop?.each?.stf_id)
   index_store.row_inform_condition = true;
 }

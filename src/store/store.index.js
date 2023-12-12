@@ -17,7 +17,6 @@ const IndexStore = defineStore("IndexStore", {
 
     // Get SOCKET New STF Notification Data
     new_stf_notification: null,
-
   }),
 
   getters: {
@@ -52,7 +51,7 @@ const IndexStore = defineStore("IndexStore", {
 
     // Get Statistic Data Result
     async fetchStatisticResult(user_id) {
-      if(user_id){
+      if (user_id) {
         try {
           await axios
             .get(`${import.meta.env.VITE_API}/common/statisticdata/${user_id}`)
@@ -69,18 +68,19 @@ const IndexStore = defineStore("IndexStore", {
     },
 
     // Set Notification True
-    async readNotification(user_id){
-      if(user_id){
-        try{
+    async readNotification(user_id) {
+      if (user_id) {
+        try {
           await axios
-          .post(`${import.meta.env.VITE_API}/common/readnotification/${user_id}`)
-          .then((respond)=>{})
-        }catch(err){
-          console.log('Read Notification Error : ', err);
+            .post(
+              `${import.meta.env.VITE_API}/common/readnotification/${user_id}`
+            )
+            .then((respond) => {});
+        } catch (err) {
+          console.log("Read Notification Error : ", err);
         }
       }
-    }
-
+    },
   },
 });
 
