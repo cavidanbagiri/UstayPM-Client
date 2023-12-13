@@ -79,7 +79,7 @@
 
 <script setup>
 
-import { reactive, watchEffect, ref, createElementBlock } from 'vue';
+import { reactive, watchEffect, ref } from 'vue';
 import WarehouseStore from '../../../store/store.warehouse';
 const warehouse_store = WarehouseStore();
 const prop = defineProps(['each_item', 'index', 'entering_rows', 'store']);
@@ -101,7 +101,6 @@ const types = ref([]);
 const departments = ref([]);
 
 watchEffect(() => {
-    console.log('entering data : ', entering_data);
     if (types.value.length === 0) {
         types.value = prop?.store?.delivery_types
     }

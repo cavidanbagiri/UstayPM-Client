@@ -19,7 +19,7 @@
                     src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
                 <div class="flex flex-col">
                     <span class="text-md pl-5">{{ message_store.selected_user?.username }}</span>
-                    <span class="text-sm pl-5 text-gray-400">{{ message_store.selected_user?.department_name }}</span>
+                    <span class="text-sm pl-5 text-gray-400">{{ message_store.selected_user?.status_name }}</span>
                 </div>
             </div>
             <div>
