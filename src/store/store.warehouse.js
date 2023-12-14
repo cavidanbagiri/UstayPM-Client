@@ -205,7 +205,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     async getWarehouseDataHeaders() {
       if (this.warehouse_data?.length) {
         for (let [key, value] of Object.entries(this.warehouse_data[0])) {
-          if (key !== "id") {
+          if (key !== "id" && key.slice(-2) !== "id" ) {
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);
             val = val.split("_").join(" ");
