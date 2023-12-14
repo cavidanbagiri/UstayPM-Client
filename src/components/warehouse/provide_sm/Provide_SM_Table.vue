@@ -20,12 +20,18 @@
         <!-- <Accept_Received_Data_Message /> -->
 
         <!-- Accept Button -->
-        <button @click="provideSM" v-if="warehouse_store.warehouse_data_checked_values?.length"
+        <button v-show="btn_toggle" @click="provideSM" v-if="warehouse_store.warehouse_data_checked_values?.length"
             :disabled="!warehouse_store.warehouse_data_stock_cond"
             class="p-2 px-3 text-white font-weight rounded-lg my-1"
             :class="warehouse_store.warehouse_data_stock_cond ? 'bg-red-600 cursor-pointer' : 'bg-red-200 cursor-default' "
             >
             Provide
+        </button>
+        <button v-show="!btn_toggle" 
+            class="p-2 px-3 text-white font-weight rounded-lg my-1 bg-red-600"
+            >
+            <span class="loading loading-spinner"></span>
+            Loading
         </button>
 
         <Toast :cond="warehouse_store.after_provide" messages="Material Successfully Provided" />
@@ -46,6 +52,8 @@ import WarehouseStore from '../../../store/store.warehouse';
 const user_store = UserStore(); 
 const warehouse_store = WarehouseStore();
 
+const btn_toggle = ref(true);
+
 const entering_rows = ref([]);
 
 onMounted(async()=>{
@@ -55,6 +63,7 @@ onMounted(async()=>{
 
 // Provide Sm Call Backend
 const provideSM = async () => {
+    btn_toggle.value = false;
     const sending_data = {};
     if (user_store.user !== null ){
         sending_data.user = user_store.user.id;
@@ -95,6 +104,7 @@ const provideSM = async () => {
             .then((respond)=>{
                 warehouse_store.after_provide = true;
                 setTimeout(()=>{
+                    btn_toggle.value = true;
                     warehouse_store.warehouse_data_checked_values = warehouse_store.warehouse_data_checked_values.filter((item) => item.id === -1);
                     warehouse_store.tab_num=1;
                 },1000)
@@ -105,7 +115,7 @@ const provideSM = async () => {
             })
         }
         else{
-            console.log('Importing Information Is Not True, Please Check It');
+            btn_toggle.value = true;
         }
 
     }

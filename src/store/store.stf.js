@@ -117,7 +117,7 @@ const STFStore = defineStore("STFStore", {
 
     // Fetch All User STF Headers
     async getHeaders() {
-      if (this.all_stf?.length > 1) {
+      if (this.all_stf?.length >= 1) {
         // Add Header To Header List
         for (let [key, value] of Object.entries(this?.all_stf[0])) {
           // Handle If Header name contain id or Id

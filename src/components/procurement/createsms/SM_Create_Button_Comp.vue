@@ -1,8 +1,12 @@
 
 <template>
     <div class="mb-1 mt-3 flex justify-between ">
-        <button v-if="procurement_store.GETCHECKEDVALUES.length >= 1" @click="createSM" class="btn btn-outline btn-primary">
+        <button v-show="btn_toggle" v-if="procurement_store.GETCHECKEDVALUES.length >= 1" @click="createSM" class="btn btn-outline btn-primary">
             Create SM
+        </button>
+        <button v-show="!btn_toggle" class="btn btn-outline btn-primary">
+            <span class="loading loading-spinner"></span>
+            Loading
         </button>
         <!-- <button 
             class="bg-red-600 font-medium text-xs py-1 px-3 rounded-md text-white">
@@ -29,14 +33,17 @@
 
 <script setup>
 
-import { reactive, computed, watchEffect} from 'vue';
+import { reactive, computed, watchEffect, ref } from 'vue';
 import Toast from '../../design/Toast.vue';
 
+import Vendor_Comp from './Vendor_Comp.vue';
 import ProcurementStore from '../../../store/store.procurement.js';
 import UserStore from '../../../store/store.user_store';
-import Vendor_Comp from './Vendor_Comp.vue';
+
 const procurement_store = ProcurementStore();
 const user_store = UserStore();
+
+const btn_toggle = ref(true);
 
 const common_data = reactive({
     procurement_coming_date: '',
@@ -66,6 +73,7 @@ const selectVendor = (vendor) => {
 }
 
 const createSM = async () => {
+    btn_toggle.value = false;
     let check_valid = true;
     if (common_data.VendorModelId === 0) {
         check_valid = false;
@@ -108,6 +116,7 @@ const createSM = async () => {
                 procurement_store.after_created = true;
                 // Show Error Message and Return Back All STF Page
                 setTimeout(() => {
+                    btn_toggle.value = true;
                     procurement_store.tab_num = 0;
                     procurement_store.checked_values = procurement_store.checked_values.filter((item) => item.stf_id === -1)
                     common_data.procurement_coming_date = '',
@@ -128,7 +137,7 @@ const createSM = async () => {
             })
     }
     else{
-        console.log('not valied');
+        btn_toggle.value = true;
     }
 
 }

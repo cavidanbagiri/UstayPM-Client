@@ -5,10 +5,15 @@
 
         <!-- Accept Button -->
         <!-- <button @click="acceptedByWarehouse" v-if="warehouse_store.processing_checked_values?.length"  -->
-        <button @click="acceptedByWarehouse" v-if="warehouse_store.processing_checked_values?.length > 0"
+        <button v-show = "btn_toggle" @click="acceptedByWarehouse" v-if="warehouse_store.processing_checked_values?.length > 0"
             :disabled="!warehouse_store.accepted_condition" class="p-2 px-3 text-white font-weight rounded-lg my-1"
             :class="warehouse_store?.accepted_condition ? 'bg-red-600 ' : 'bg-red-200'">
             Accept
+        </button>
+
+        <button v-show = "!btn_toggle"  class="p-2 px-3 text-white font-weight rounded-lg my-1 bg-red-600">
+        <span class="loading loading-spinner"></span>
+            Loading
         </button>
 
         <!-- Accepting Data Inform -->
@@ -41,6 +46,8 @@ import Toast from '../../design/Toast.vue';
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();
 
+const btn_toggle = ref(true);
+
 // Accepting Data Information
 const sms_data = reactive({
     doc_date: '',
@@ -52,7 +59,7 @@ const table_data = ref([]);
 
 // Checked Values;
 const acceptedByWarehouse = async () => {
-
+    btn_toggle.value = false;
     let check = true;
     for( let [key, value] of Object.entries(sms_data) ){
         value = value.toString().trim();
@@ -92,6 +99,7 @@ const acceptedByWarehouse = async () => {
                 warehouse_store.processing_checked_values = warehouse_store.processing_checked_values.filter((item) => item.id === -1)
                 setTimeout(async () => {
                     await warehouse_store.getProcessingSMS();
+                    btn_toggle.value = true;
                     sms_data.doc_date = '';
                     sms_data.providing_date = '';
                     sms_data.doc_number = '';
@@ -103,6 +111,9 @@ const acceptedByWarehouse = async () => {
             }).catch((err) => {
                 console.log('Received Material Error : ', err);
             })
+    }
+    else{
+        btn_toggle.value = true;
     }
 
 }
