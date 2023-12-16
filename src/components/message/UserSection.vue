@@ -1,6 +1,6 @@
 <template>
     <div v-if="message_store.toggle_user"
-        class="flex flex-col w-1/2 py-2 px-3 overflow-auto  rounded-s-xl bg-white ">
+        class="flex flex-col w-4/12 py-2 px-3 m-2 overflow-auto  rounded-2xl bg-white ">
         <!-- Text Section -->
         <!-- <div class="text-center">
             <span class=" text-4xl" style="font-family: 'Poppins';">Users</span>

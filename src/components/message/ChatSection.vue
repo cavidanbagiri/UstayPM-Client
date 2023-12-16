@@ -1,24 +1,19 @@
 <template>
-    <div :class="message_store.toggle_user ? 'w-3/5' : 'w-full'"
-        class="justify-between p-1 flex flex-col rounded-xl ">
+    <div class="justify-between p-1 flex flex-col rounded-lg w-9/12">
 
         <!-- Close Button and Userlist Toggle Section -->
-        <div class=" flex justify-between py-2 px-5">
-            <span class="cursor-pointer " @click="toggleUsers"><i
-                    class=" hover:text-blue-400 fa-solid fa-users fa-lg text-gray-500"></i>
-                    <span class="text-xl pl-2">Users</span>
-                </span>
+        <div class=" flex justify-end py-2 px-5">
             <span class="cursor-pointer" @click="closeChat"><i
                     class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-400"></i></span>
         </div>
 
         <!-- Sender Information Section -->
-        <div v-if="message_store.selected_user" class="mx-2 flex justify-between items-end bg-white hover:bg-gray-100 cursor-pointer" style="font-family: 'Roboto';">
+        <div v-if="message_store.selected_user" class="mx-2 flex justify-between items-end bg-slate-100 hover:bg-gray-100 cursor-pointer" style="font-family: 'Roboto';">
             <div class="flex flex-row items-center justify-start p-1">
                 <img class="w-10 h-10 rounded-full"
                     src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
                 <div class="flex flex-col">
-                    <span class="text-md pl-5">{{ message_store.selected_user?.username }}</span>
+                    <span class="text-lg pl-5">{{ message_store.selected_user?.username }}</span>
                     <span class="text-sm pl-5 text-gray-400">{{ message_store.selected_user?.status_name }}</span>
                 </div>
             </div>
@@ -29,7 +24,7 @@
 
         <!-- Message Area -->
         <div v-if="message_store.selected_user"
-            class="flex flex-col bg-orange-50 h-full p-2 rounded-2xl mx-2 mt-2 overflow-y-scroll">
+            class="flex flex-col bg-white h-full p-2 rounded-2xl mx-2 mt-2 overflow-y-scroll">
 
             <template v-for="i in message_store.selected_user_fetch_messages">
 

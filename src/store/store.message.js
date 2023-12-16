@@ -7,7 +7,7 @@ axios.defaults.withCredentials = true;
 const MessageStore = defineStore("MessageStore", {
   state: () => ({
     toggle_message: false,
-    toggle_user: false,
+    toggle_user: true,
     // Fetch All Users
     // users: [],
     // Selected User
