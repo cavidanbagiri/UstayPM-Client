@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen bg-gradient-to-r from-slate-800 to-slate-900 w-[4.5rem] items-center justify-start p-0 m-0 rounded-r-md 
+  <div class="flex flex-col h-screen bg-gradient-to-r from-slate-700 to-slate-900 w-[4.5rem] items-center justify-start p-0 m-0 rounded-r-md 
   border-r-2 ">
       <!-- Open Toggle Canvas -->
       <div class="relative" @click="toggleCanvas">
