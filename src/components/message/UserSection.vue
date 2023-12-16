@@ -1,17 +1,17 @@
 <template>
     <div v-if="message_store.toggle_user"
-        class="flex flex-col w-4/12 py-2 px-3 m-2 overflow-auto  rounded-2xl bg-white ">
+        class="flex flex-col w-4/12 py-2 px-3 my-2 ml-6 hover:overflow-auto duration-300 rounded-s-sm bg-white border-r">
         <!-- Text Section -->
-        <!-- <div class="text-center">
+        <div class="text-center mt-2">
             <span class=" text-4xl" style="font-family: 'Poppins';">Users</span>
-        </div> -->
+        </div>
         <!-- Search Bar -->
-        <div class="flex items-center border-2 rounded-full py-2 px-2 my-5 bg-white">
+        <div class="flex items-center border-2 rounded-xs py-2 px-2 my-5 bg-gray-200 ">
             <span class="pl-2 pr-3 text-gray-500">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-magnifying-glass text-xl"></i>
             </span>
             <input
-                class="  w-full me-1 outline-none hover:orange-pink-500 text-gray-500 "
+                class="  w-full me-1 outline-none hover:orange-pink-500 text-gray-600 bg-gray-200 py-1 "
                 style="font-family: 'Poppins';" type="text" placeholder="Search Contact ...">
         </div>
         <!-- User Liste Section -->
@@ -19,13 +19,13 @@
             <ul class="" style="font-family: 'Roboto';">
                 <!-- Each User -->
                 <li @click="selectedUser(user)" v-for="user in message_store.unread_messages_and_users" :key="user.id"
-                    class=" my-4 p-2 py-3 relative  flex justify-between border-b items-center rounded-lg cursor-pointer hover:bg-slate-100 duration-300  ">
+                    class=" my-1 p-2 py-3 relative  flex justify-between  items-center rounded-lg cursor-pointer hover:bg-slate-100 duration-300  ">
                     <div class="flex justify-start items-center">
                         <img class="w-12 h-12 rounded-full"
                             src="https://static.wixstatic.com/media/033319_e0f92699ac1741baa4b84b6755734bb6~mv2.png/v1/crop/x_89,y_0,w_2601,h_1732/fill/w_480,h_486,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_0297_edited.png"
                             alt="">
-                        <div class="flex flex-col pl-2 font-bold">
-                            <span class="text-md text-gray-600 ">
+                        <div class="flex flex-col pl-2 ">
+                            <span class="text-lg text-gray-700 ">
                                 {{ user.username }}
                             </span>
                             <span class="text-sm text-gray-400" style="font-family:'Poppins'">

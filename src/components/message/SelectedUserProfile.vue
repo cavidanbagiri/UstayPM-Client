@@ -1,57 +1,103 @@
 <template>
-    <div class="flex flex-col items-center bg-white w-4/12 py-2 px-3 m-2 rounded-2xl" style="font-family: 'Roboto';">
-        <!-- Title Section -->
-        <div class="text-[2.5rem] my-10 w-full text-center" style="font-family: 'Poppins';">
-            <span>Profile Information</span>
-        </div>
-        <!-- Image Section -->
-        <div class=" mt-5 flex flex-col items-center w-full py-2">
-            <div class="avatar">
-                <div class="w-64 rounded-full">
-                <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+
+    <div class="flex flex-row w-4/12  justify-around">
+
+        <div class="flex flex-col items-center my-2  rounded-sm w-full" style="font-family: 'Roboto';">
+            <!-- Profile Section -->
+            <div class="bg-white w-full flex flex-col pt-2">
+                <!-- Title Section -->
+                <div class="text-4xl w-full text-center p-1 py-2 " style="font-family: 'Poppins';">
+                    <span class="">Profile</span>
+                </div>
+                <!-- Image Section -->
+                <div class=" mt-1 flex flex-col items-center w-full py-1">
+                    <div class="avatar">
+                        <div class="w-64 rounded-full">
+                            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        </div>
+                    </div>
+                    <div class="text-2xl mt-3 font-bold ">
+                        Mehmet Ugur Dogan
+                    </div>
+                    <span class="text-red-500 mt-3 text-xl font-bold">
+                        Ustay
+                        <span class="text-black font-medium text-lg">
+                            Moscow SRU Project
+                        </span>
+                    </span>
+                </div>
             </div>
-            </div>
-            <div class="text-4xl mt-5 font-bold ">
-                Mehmet Ugur Dogan
-            </div>
-            <span class="text-red-500 mt-4 text-2xl font-bold">
-                Ustay
-                <span class="text-gray-600 font-medium text-lg">
-                    Moscow SRU Project
+            <!-- Contact Section -->
+            <div class="flex mt-6 flex-col pt-2 px-3 items-end-start w-full text-lg bg-white h-full">
+                <div class="text-4xl my-1 w-full text-center py-3 " style="font-family: 'Poppins';">
+                    <span>Work From</span>
+                </div>
+                <span class=" text-xl mt-3 mb-3 text-black" style="font-family: 'Poppins';">
+                    Department Information
                 </span>
-            </span>
-        </div>
-        <!-- Contact Section -->
-        <div class="flex flex-col items-end-start w-full text-lg mt-5">
-            <span class=" text-2xl mt-5 mb-3" style="font-family: 'Poppins';">
-                Department Information
-            </span>
-            <span class="text-gray-400 mt-1"><span class="text-gray-500">
-                </span> Procurement, Specialist
-            </span>
-            <span class=" text-2xl mt-5 mb-3" style="font-family: 'Poppins';">
-                Contact Information
-            </span>
-            <div class="flex mt-1">
-                <img src="../../assets/icons/call.png" alt="">
-                <span class="mt-1 ml-4">
+                <span class="text-gray-400 mt-1 flex justify-between p-1 border-b text-md">
+                    Location
+                    <span class="text-gray-900">
+                        Russia, Moscow
+                    </span>
+                </span>
+                <span class="text-gray-400 mt-1 flex justify-between p-1 border-b">
+                    Experience
+                    <span class="text-gray-900">
+                        4+ Years
+                    </span>
+                </span>
+                <span class="text-gray-400 mt-1 flex justify-between p-1 border-b">
+                    Department
+                    <span class="text-gray-900">
+                        Procurement
+                    </span>
+                </span>
+                <span class="text-gray-400 mt-1 flex justify-between p-1 border-b">
+                    Position
+                    <span class="text-gray-900">
+                        Specialist
+                    </span>
+                </span>
+                <span class=" text-xl mt-5 mb-3 text-black" style="font-family: 'Poppins';">
+                    Contact Information
+                </span>
+                <div class="flex mt-1">
+                    <img src="../../assets/icons/call.png" alt="">
+                    <span class="mt-1 ml-4">
                         +8 965-167-34-13
-                    
-                </span>
-            </div>
-            <div class="flex mt-3">
-                <img src="../../assets/icons/mail.png" alt="">
-                <span class="mt-1 ml-4">
+                    </span>
+                </div>
+                <div class="flex mt-3">
+                    <img src="../../assets/icons/mail.png" alt="">
+                    <span class="mt-1 ml-4">
                         sdemirel@ustay.com
-                    
-                </span>
+                    </span>
+                </div>
             </div>
+    
         </div>
-        <div></div>
+
+        <div class=" flex justify-around pt-2  px-2">
+            <span class="cursor-pointer" @click="closeChat"><i
+                    class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-500"></i></span>
+        </div>
+
     </div>
+
 </template>
 
 <script setup>
+import MessageStore from '../../store/store.message';
+
+const message_store = MessageStore();
+
+
+// Close Chat Bar
+const closeChat = () => { message_store.toggle_message = false; }
+
+
+
 </script>
 
 <style lang="scss" scoped></style>
