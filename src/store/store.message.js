@@ -73,12 +73,12 @@ const MessageStore = defineStore("MessageStore", {
     },
 
     // Set reading True if user selected 
-    async setTrueReadingMessages(current_id, room_id){
-
-      if(current_id){
+    async setTrueReadingMessages(obj){
+      console.log('obj : ', obj);
+      if(obj.current_id){
         try{
           await axios.post(
-            `${import.meta.env.VITE_API}/common/settruemessages/${room_id}`
+            `${import.meta.env.VITE_API}/common/settruemessages`, obj
           )
         }
         catch(err){

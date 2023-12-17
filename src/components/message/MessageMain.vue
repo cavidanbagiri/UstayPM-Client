@@ -33,13 +33,13 @@ onMounted(async () => {
 })
 
 watchEffect(() => {
-    socket.on('fetch_messages', data => {
-        for (let user of message_store.unread_messages_and_users) {
-            if (user.roomid === data[0].roomId) {
-                user.count = Number(user.count) + 1;
-            }
-        }
-    });
+    // socket.on('fetch_messages', data => {
+    //     for (let user of message_store.unread_messages_and_users) {
+    //         if (user.roomid === data[0].roomId) {
+    //             user.count = Number(user.count) + 1;
+    //         }
+    //     }
+    // });
 })
 
 </script>

@@ -164,6 +164,7 @@ const sendMessage = async () => {
             send_ringtone.play();
             message_data.message_text = '';
             socket.emit('new_messages', message_data)
+            // await message_store.setTrueReadingMessages({current_id: user_store.user?.id, room_id: selected_user_fetch_messages.roomId});
         }).catch((err) => {
             console.log('Send Message Error : ', err);
         })
