@@ -45,6 +45,7 @@ const MessageStore = defineStore("MessageStore", {
             )
             .then((respond) => {
               this.unread_messages = respond.data;
+              console.log('unread messages from first : ', this.unread_messages);
             });
         }
         catch(err){

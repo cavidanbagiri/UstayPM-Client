@@ -78,6 +78,27 @@ watchEffect(()=>{
     */
     message_store.fetchUnreadMessages(user_store.user?.id);
 
+
+    /*
+      ---------------------------------------------------------- Unread Real Comin Messages
+    */
+    socket.on('broadcastmessage', data => {
+        // if(message_store.selected_user.roomid === data[0].roomId){
+        //     message_store.selected_user_fetch_messages = data;
+        // }
+        console.log('user store : ', user_store.user.id);
+
+        console.log('broad cast work : ', data.senderId);
+        
+        if(data[data.length - 1].senderId == user_store.user?.id){
+          message_store.fetchUnreadMessages(user_store.user?.id);
+          console.log('cavidan serkana gonderdi');
+        }
+        else{
+          console.log('not');
+        }
+    });
+
   }
 });
 

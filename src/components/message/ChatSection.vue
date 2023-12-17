@@ -28,7 +28,7 @@
 
         <!-- Message Area -->
         <div v-if="message_store.selected_user"
-            class="flex flex-col bg-white h-full p-2 rounded-sm  mx-2 mt-2 hover:overflow-y-scroll">
+            class="flex flex-col bg-white h-full p-2 rounded-sm  mx-2 mt-2 hover:overflow-y-scroll overflow-hidden ">
 
             <template v-for="i in message_store.selected_user_fetch_messages">
 
@@ -115,6 +115,7 @@ const msgTyping = () => {
 
 watchEffect(() => {
     socket.on('fetch_messages', data => {
+        console.log('fetch message work for ');
         if(message_store.selected_user.roomid === data[0].roomId){
             message_store.selected_user_fetch_messages = data;
         }
