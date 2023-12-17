@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col">
         <!-- Chart Pie Sides -->
-        <div class="flex flex-col h-44 bg-gradient-to-r from-slate-800 to-slate-900 mr-1 p-4 justify-between">
+        <div class="flex flex-col h-44 bg-gradient-to-r from-slate-700 to-slate-900 mr-1 p-4 justify-between">
             <!-- Name and Dashboard Text Section -->
             <div class="flex flex-row justify-between items-center ">
                 <div class="flex flex-col ">

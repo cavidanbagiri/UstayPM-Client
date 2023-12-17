@@ -1,24 +1,23 @@
 <template>
-    <div :class="message_store.toggle_user ? 'w-3/5' : 'w-full'"
-        class="justify-between p-1 flex flex-col rounded-xl ">
+    <div class="justify-between px-1 py-2 flex flex-col bg-white w-9/12 mt-2 mx-6 mb-2 border-r">
 
         <!-- Close Button and Userlist Toggle Section -->
-        <div class=" flex justify-between py-2 px-5">
-            <span class="cursor-pointer " @click="toggleUsers"><i
-                    class=" hover:text-blue-400 fa-solid fa-users fa-lg text-gray-500"></i>
-                    <span class="text-xl pl-2">Users</span>
-                </span>
+        <!-- <div class=" flex justify-end py-2 px-5">
             <span class="cursor-pointer" @click="closeChat"><i
                     class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-400"></i></span>
+        </div> -->
+
+        <div class="flex justify-center text-4xl mt-2" style="font-family: 'Poppins';">
+            Chats
         </div>
 
         <!-- Sender Information Section -->
-        <div v-if="message_store.selected_user" class="mx-2 flex justify-between items-end bg-white hover:bg-gray-100 cursor-pointer" style="font-family: 'Roboto';">
+        <div v-if="message_store.selected_user" class="mx-1 flex justify-between items-end border-b hover:bg-gray-100 cursor-pointer" style="font-family: 'Roboto';">
             <div class="flex flex-row items-center justify-start p-1">
                 <img class="w-10 h-10 rounded-full"
                     src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
                 <div class="flex flex-col">
-                    <span class="text-md pl-5">{{ message_store.selected_user?.username }}</span>
+                    <span class="text-lg pl-5">{{ message_store.selected_user?.username }}</span>
                     <span class="text-sm pl-5 text-gray-400">{{ message_store.selected_user?.status_name }}</span>
                 </div>
             </div>
@@ -29,7 +28,7 @@
 
         <!-- Message Area -->
         <div v-if="message_store.selected_user"
-            class="flex flex-col bg-orange-50 h-full p-2 rounded-2xl mx-2 mt-2 overflow-y-scroll">
+            class="flex flex-col bg-white h-full p-2 rounded-sm  mx-2 mt-2 hover:overflow-y-scroll">
 
             <template v-for="i in message_store.selected_user_fetch_messages">
 
@@ -41,7 +40,7 @@
                 <div v-else-if="i.receiverId === user_store.user.id" class="flex flex-row justify-end p-1 items-end">
                     <!-- <span class="receiver">{{ i.message_text }}</span> -->
                     <div class="chat chat-end w-full">
-                        <div class="chat-bubble bg-purple-500 text-white">{{ i.message_text }}</div>
+                        <div class="chat-bubble bg-gray-400 text-white">{{ i.message_text }}</div>
                     </div>
                     <img class="w-11 h-11 rounded-full"
                         src="https://pics.craiyon.com/2023-06-18/0136ddc42a664843ad7c509dd59c7d98.webp" alt="">
@@ -62,7 +61,7 @@
         </div>
 
         <!-- If User Not Selected -->
-        <div v-else class="flex flex-col bg-white h-full p-2 rounded-xl mx-2 mt-2 justify-center items-center">
+        <div v-else class="flex flex-col bg-white h-full p-2 rounded-sm mx-1 mt-1 justify-center items-center">
             <span class="text-gray-500 text-5xl">
                 User Not Selected
             </span>
@@ -75,10 +74,10 @@
         <div class="flex flex-row items-center justify-between py-2 px-1">
             <input @keyup.enter="sendMessage" :disabled="!message_store.selected_user" v-model="message_data.message_text"
                 @input="msgTyping"
-                class="py-3 px-2 border-2 rounded-full w-full me-1 outline-none hover:orange-pink-500 text-gray-500 shadow-xl"
+                class="py-3 px-2 border-2 rounded-sm w-full me-1 outline-none hover:orange-pink-500 text-gray-500 "
                 style="font-family: 'Poppins';" type="text" placeholder="Text ...">
             <button :disabled="!message_store.selected_user" @click="sendMessage"
-                class="p-3 bg-orange-500 rounded-full text-gray-100 shadow-xl">
+                class="p-3 bg-blue-500 rounded-full text-gray-100 shadow-xl">
                 <i class="fa-regular fa-paper-plane fa-xl"></i>
             </button>
         </div>
@@ -99,7 +98,7 @@ const message_store = MessageStore();
 const send_ringtone = new Audio(sendringtone);
 
 // Close Chat Bar
-const closeChat = () => { message_store.toggle_message = false; }
+//const closeChat = () => { message_store.toggle_message = false; }
 // Close Users List
 const toggleUsers = () => { message_store.toggle_user = !message_store.toggle_user }
 

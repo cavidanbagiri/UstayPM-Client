@@ -1,11 +1,12 @@
 <template>
-  <div class="flex flex-col h-screen bg-gradient-to-r from-slate-800 to-slate-900 w-16 items-center justify-start p-0 m-0 rounded-r-md 
+  <div class="flex flex-col h-screen bg-gradient-to-r from-slate-700 to-slate-900 w-[4.5rem] items-center justify-start p-0 m-0 rounded-r-md 
   border-r-2 ">
       <!-- Open Toggle Canvas -->
       <div class="relative" @click="toggleCanvas">
           <span
-              class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300"><i
-                  class="fa-solid fa-bars fa-md" style="color:white;"></i>
+              class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+              <!-- <i class="fa-solid fa-bars fa-md" style="color:white;"></i> -->
+              <img src="../assets/icons/menu.png" alt="">
           </span>
           <span v-if="menu_tooltip" 
               class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
@@ -17,8 +18,8 @@
       <div class="relative">
           <router-link to="/">
               <span @mouseover="home_tooltip = true" @mouseleave="home_tooltip = false"
-                  class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300"><i
-                      class="fa-solid fa-house fa-md" style="color:white"></i>
+                  class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <img src="../assets/icons/home.png" alt="">
               </span>
               <span v-if="home_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
@@ -27,26 +28,13 @@
           </router-link>
       </div>
 
-      <!-- WorkSpace Menu -->
-      <div class="relative">
-          <router-link to="/">
-              <span @mouseover="workspace_tooltip = true" @mouseleave="workspace_tooltip = false"
-                  class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300"><i
-                      class="fa-solid fa-briefcase fa-md" style="color:white"></i>
-              </span>
-              <span v-if="workspace_tooltip"
-                  class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
-                  Workspace
-              </span>
-          </router-link>
-      </div>
-
       <!-- Notification -->
-      <div class="relative mt-4">
-            <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ index_store.new_stf_notification?.length }}</div>
+      <div class="relative mt-3">
+            <div v-if="index_store.new_stf_notification?.length" class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ index_store.new_stf_notification?.length }}</div>
             <span @click="showNotification" @mouseover="notification_tooltip = true" @mouseleave="notification_tooltip = false"
                 class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
-                <i class="fa-solid fa-bell fa-md " style="color:white"></i>
+                <!-- <i class="fa-solid fa-bell fa-md " style="color:white"></i> -->
+                <img src="../assets/icons/bell.png" alt="">
             </span>
             <span v-if="notification_tooltip"
                 class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
@@ -56,14 +44,16 @@
       </div>
 
       <!-- Messages Notification -->
-      <div class="relative">
+      <div class="relative mt-3">
           <router-link to="/">
-            <div class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">
+            <div v-if="index_store.unread_messages?.length" class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">
                 {{ message_store.unread_messages?.length }}
             </div>
               <span @mouseover="messages_tooltip = true" @mouseleave="messages_tooltip = false"
-                  class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300"><i
-                      class="fa-solid fa-message fa-md" style="color:white"></i></span>
+                  class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <!-- <i class="fa-solid fa-message fa-md" style="color:white"></i> -->
+                  <img src="../assets/icons/email.png" alt="">
+                </span>
               <span v-if="messages_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
                   Messages
@@ -75,8 +65,10 @@
       <div class="relative">
           <router-link to="/">
               <span @mouseover="star_tooltip = true" @mouseleave="star_tooltip = false"
-                  class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300"><i
-                      class="fa-solid fa-star fa-md" style="color:white"></i></span>
+                  class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <!-- <i class="fa-solid fa-star fa-md" style="color:white"></i> -->
+                  <img src="../assets/icons/star.png" alt="">
+                </span>
               <span v-if="star_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
                   Stars
@@ -88,12 +80,13 @@
       <div class="relative">
           <router-link to="/stf" class="no-underline ">
               <span @mouseover="stf_tooltip = true" @mouseleave="stf_tooltip = false"
-                  class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-green-500 duration-300"><i
-                      class="fa-solid fa-plus fa-md" style="color:white"></i>
-              </span>
+                  class=" rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <!-- <i class="fa-solid fa-plus fa-md" style="color:white"></i> -->
+                  <img src="../assets/icons/tab.png" alt="">
+            </span>
               <span v-if="stf_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
-                  STF
+                  Orders
               </span>
           </router-link>
       </div>
@@ -102,8 +95,8 @@
       <div class="relative">
           <router-link to="/procurement" class="no-underline ">
               <span @mouseover="procurement_tooltip = true" @mouseleave="procurement_tooltip = false"
-                  class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
-                  <i class="fa-regular fa-handshake fa-sm" style="color:white;"></i>
+                  class=" rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <img src="../assets/icons/cart.png" alt="">
               </span>
               <span v-if="procurement_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md">
@@ -116,8 +109,9 @@
       <div class="relative">
           <router-link to="/warehouse" class="no-underline ">
               <span @mouseover="warehouse_tooltip = true" @mouseleave="warehouse_tooltip = false"
-                  class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
-                  <i class="fa-solid fa-warehouse fa-sm" style="color:white;"></i>
+                  class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <!-- <i class="fa-solid fa-warehouse fa-sm" style="color:white;"></i> -->
+                  <img src="../assets/icons/warehouse.png" alt="">
               </span>
               <span v-if="warehouse_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md">
@@ -126,12 +120,27 @@
           </router-link>
       </div>
 
-      <!-- User Profile -->
+      <!-- WorkSpace Menu -->
       <div class="relative">
           <router-link to="/">
+              <span @mouseover="workspace_tooltip = true" @mouseleave="workspace_tooltip = false"
+                  class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <img src="../assets/icons/clipboard.png" alt="">
+                </span>
+              <span v-if="workspace_tooltip"
+                  class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md flex">
+                  Workspace
+              </span>
+          </router-link>
+      </div>
+
+      <!-- User Profile -->
+      <div class="relative">
+          <router-link to="/profile">
               <span @mouseover="profile_tooltip = true" @mouseleave="profile_tooltip = false"
-                  class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
-                  <i class="fa-solid fa-user fa-sm" style="color:white;"></i>
+                  class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <!-- <i class="fa-solid fa-user fa-sm" style="color:white;"></i> -->
+                  <img src="../assets/icons/user.png" alt="">
               </span>
               <span v-if="profile_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md">
@@ -144,8 +153,9 @@
       <div v-if="!user_store.user" class="relative">
           <router-link to="/user/login">
               <span @mouseover="login_tooltip = true" @mouseleave="login_tooltip = false"
-                  class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
-                  <i class="fa-solid fa-right-to-bracket fa-sm" style="color:white;"></i>
+                  class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <!-- <i class="fa-solid fa-right-to-bracket fa-sm" style="color:white;"></i> -->
+                  <img src="../assets/icons/logout.png" alt="">
               </span>
               <span v-if="login_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md">
@@ -156,9 +166,10 @@
       <div v-else class="relative" @click="logout">
           <router-link to="/user/login">
               <span @mouseover="logout_tooltip = true" @mouseleave="logout_tooltip = false"
-                  class="py-2 px-4 rounded-md cursor-pointer  mt-5 w-8  h-8 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
-                  <i class="fa-solid fa-right-from-bracket fa-sm" style="color:white;"></i>
-              </span>
+                  class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                  <!-- <i class="fa-solid fa-right-from-bracket fa-sm" style="color:white;"></i> -->
+                  <img src="../assets/icons/log-in.png" alt="">
+                </span>
               <span v-if="logout_tooltip"
                   class="duration-150 absolute top-5 left-10 ml-1 bg-slate-800 py-2 px-4 text-white text-md rounded-md">
                   Logout

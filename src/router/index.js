@@ -6,6 +6,7 @@ const AuthView  = () => import('../views/views.login.vue');
 const STFView  = () => import('../views/views.stf.vue');
 const ProcurementViews  = () => import('../views/views.procurement.vue');
 const WarehouseView  = () => import('../views/views.warehouse.vue');
+const ProfileView = () => import('../views/views.profile.vue');
 
 const routes = [
 
@@ -14,6 +15,7 @@ const routes = [
   {path:'/user/login', name:"Loginview", component: AuthView},
   {path:'/procurement',name:"ProcurementView", component: ProcurementViews},
   {path:'/warehouse',name:"WarehouseView", component: WarehouseView},
+  {path:'/profile',name:"ProfileView", component: ProfileView},
 
 ]
 
