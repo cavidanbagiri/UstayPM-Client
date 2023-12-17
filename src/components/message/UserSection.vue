@@ -88,7 +88,7 @@
 </template>
 
 <script setup>
-import { inject, ref } from 'vue';
+import { inject, ref, watchEffect } from 'vue';
 import UserStore from '../../store/store.user_store';
 import MessageStore from '../../store/store.message';
 const user_store = UserStore();
@@ -107,7 +107,6 @@ const userInform = (user) => {
     console.log('clicked user btn : ',user);
 }
 
-
 const selectedUser = async (user) => {
     if (user_store.user) {
         message_store.selected_user = user;
@@ -117,15 +116,27 @@ const selectedUser = async (user) => {
                 message_store.selected_user.roomid = message_store.selected_user_fetch_messages[0]?.roomId;
             }
             socket.emit('join_room', user_store.user.id, user.id, message_store.selected_user_fetch_messages[0]?.roomId);
-            // message_store.setTrueReadingMessages(user_store.user?.id, message_store.selected_user_fetch_messages[0]?.roomId)
-        }
-        else {
-            console.log('there is not');
         }
     }
-
 }
 
+watchEffect(()=>{
+    
+    socket.on('broadcastunreadcountingmessages', data => {
+        if(data[data.length - 1].senderId == user_store.user?.id){
+            // Iterate All User and find it
+            for(let user of message_store.unread_messages_and_users){
+                if(user.id == data[data.length-1].receiverId ){
+                    // Replace finding user with sending message user
+                    user.roomid = data[0].roomId;
+                    user.count = data[0].count;
+                }
+            }
+            message_store.unread_messages_and_users
+        }
+    });
+
+})
 
 </script>
 
