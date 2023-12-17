@@ -11,6 +11,8 @@
 
 import { ref } from 'vue';
 import STFInformComp from '../components/design/STFInformComp.vue';
+
+
 const prop = defineProps(['each']);
 
 const cond = ref(false);

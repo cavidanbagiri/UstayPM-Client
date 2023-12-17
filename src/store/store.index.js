@@ -81,6 +81,22 @@ const IndexStore = defineStore("IndexStore", {
         }
       }
     },
+
+    // Set STF Status
+    async setStfStatus(status){
+        if(status.user){
+          try{
+            await axios.post(`${import.meta.env.VITE_API}/common/changestatus`,status)
+            .then((respond)=>{
+              console.log('Change Status from axios : ', respond);
+            })
+          } 
+          catch(err){
+            console.log('Change Status Error : ',err);
+          }
+        }
+    }
+
   },
 });
 

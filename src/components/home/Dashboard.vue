@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col">
+    <div class="flex flex-col shadow-xl">
         <!-- Chart Pie Sides -->
         <div class="flex flex-col h-44 bg-gradient-to-r from-slate-700 to-slate-900 mr-1 p-4 justify-between">
             <!-- Name and Dashboard Text Section -->
