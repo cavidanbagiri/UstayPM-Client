@@ -1,0 +1,1 @@
+import{_ as a,o as t,c as o,a as e}from"./index-66df4bc9.js";const c={},r=e("label",{for:"avatar"},"Choose a profile picture:",-1),s=e("input",{type:"file",id:"avatar",name:"avatar",accept:"image/png, image/jpeg"},null,-1),n=[r,s];function i(_,l){return t(),o("div",null,n)}const f=a(c,[["render",i]]);export{f as default};
