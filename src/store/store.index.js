@@ -95,6 +95,22 @@ const IndexStore = defineStore("IndexStore", {
             console.log('Change Status Error : ',err);
           }
         }
+    },
+
+    // Cancel STF
+    async cancelSTF(data){
+      // console.log('data : ', data);
+      if(data.user_id){
+        try{
+          await axios.post(`${import.meta.env.VITE_API}/common/cancelstf`, data)
+          .then((respond)=>{
+            console.log('stf canceled successfully executed');
+          })
+        }
+        catch(err){
+          console.log('Canceled STF Error : ', err);
+        }
+      }
     }
 
   },
