@@ -29,37 +29,42 @@
         </div>
 
         <!-- STF Inform Title -->
-        <div class="ml-2 pl-2 text-xl mt-4 text-gray-400">
+        <div class="ml-2 pl-2 text-2xl mt-4 text-gray-500">
           <span>STF Information</span>
         </div>
 
         <!-- STF Information Section -->
-        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-2">
+        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4 pb-1 text-lg">
           <span>STF No: </span>
           <span class="font-bold bg-orange-100 text-orange-500 py-1 px-2 rounded-lg">{{ prop.stf.stf_num }}</span>
         </div>
 
+        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4 text-lg">
+          <span>Created At: </span>
+          <DateFormat :time="prop.stf?.createdAt" />
+        </div>
+
         <!-- STF Information Section -->
-        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4">
+        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4  text-lg">
           <span>Orderer: </span>
           <span class="text-lg">{{ prop.stf.username }}</span>
         </div>
 
         <!-- STF Information Section -->
-        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4">
+        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4 text-lg">
           <span>Material Name: </span>
-          <span class="">{{ prop.stf.material_name }}</span>
+          <span class="pl-4 text-lg">{{ prop.stf.material_name }}</span>
         </div>
 
         <!-- STF Information Section -->
-        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4">
+        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4  text-lg">
           <span>Amount: </span>
           <span class="text-lg">{{ prop.stf.amount }} {{ prop.stf.unit }} </span>
         </div>
 
         <!-- Cancel STF Comment -->
         <div class="flex flex-col mt-10 mx-2">
-          <span class="text-xl px-2 text-gray-400">Comment</span>
+          <span class="text-xl px-2 text-gray-500">Comment</span>
           <textarea
             class="h-48 py-3 px-2 border w-full mb-5 text-lg outline-none text-gray-400 hover:shadow-lg duration-300"
             type="area" name="" id="" placeholder="Comment Cant Be Empty" v-model="comment"></textarea>
@@ -83,6 +88,7 @@
 import { ref } from 'vue';
 
 import IndexStore from '../../store/store.index';
+import DateFormat from '../../layouts/DateFormat.vue';
 
 const index_store = IndexStore();
 

@@ -1,45 +1,45 @@
 <template>
   <div v-if="prop.cond"
-    class="border flex flex-col bg-white absolute top-5 left-5 shadow-2xl p-2 px-4 rounded-2xl w-80">
+    class="border flex flex-col bg-white absolute top-5 left-5 shadow-2xl p-2 px-6 rounded-2xl w-96">
     <div class="flex justify-end items-center">
-      <span class="text-xl" @click="close">
+      <span class="text-4xl" @click="close">
         <i class="fa-solid fa-xmark text-gray-400 hover:text-black"></i>
       </span>
     </div>
-    <div class="flex my-2 font-bold w-full text-lg ">
-      <span v-if="prop?.each?.completed" class="px-2 py-2  text-green-500 bg-green-100 w-full rounded-lg text-center">
+    <div class="flex my-2 font-bold w-full text-[13px] ">
+      <span v-if="prop?.each?.completed" class="px-2 py-2  text-green-500 bg-green-100 w-full rounded-lg">
         Completed : {{ prop?.each?.completed }}
       </span>
-      <span v-else class="px-2 py-2 text-red-500 bg-red-100 w-full rounded-lg  text-center">
+      <span v-else class="px-2 py-2 text-red-500 bg-red-100 w-full rounded-lg">
         Completed : {{ prop?.each?.completed }}
       </span>
     </div>
     <div class="flex flex-col">
-      <span @click="getSTFInform" class=" py-2  text-gray-900 row_item">
-          <i class="fa-brands fa-joget px-1 text-gray-500"></i>
-        Get STF Information</span>
-      <span class=" py-2  text-gray-900 row_item">
-          <i class="fa-regular fa-circle-question px-1 text-gray-500"></i>
-        Get SM Information</span>
-      <span class=" py-2  text-gray-900 row_item">
-          <i class="fa-regular fa-eye-slash px-1 text-gray-500"></i>
+      <span @click="getSTFInform" class="flex py-2 text-gray-900 row_item">
+        <img class="pr-3" src="../../assets/icons/information.png" alt="">
+        STF Information</span>
+        <span @click="getSTFInform" class="flex py-2 text-gray-900 row_item">
+        <img class="pr-3" src="../../assets/icons/info.png" alt="">
+        SM Information</span>
+      <span class="flex py-2 text-gray-900 row_item">
+        <img class="pr-3" src="../../assets/icons/hide.png" alt="">
         Set Hide</span>
-      <span class=" py-2  text-gray-900 row_item">
-          <i class="fa-regular fa-star px-1 text-gray-500"></i>
+      <span class="flex py-2 text-gray-900 row_item">
+        <img class="pr-3" src="../../assets/icons/starblack.png" alt="">
         Set Star</span>
-      <span class=" py-2  text-gray-900 row_item">
-          <i class="fa-regular fa-pen-to-square px-1 text-gray-500"></i>
-        Update Row</span>
-      <span class=" py-2  text-gray-900 row_item">
-          <i class="fa-regular fa-trash-can px-1 text-gray-500"></i>
-        Remove Row</span>
-      <span @click="cancelSTF"  class=" py-2  text-red-500 font-bold row_item">
-          <i class="fa-solid fa-xmark px-1 text-red-500"></i>
+      <span class="flex py-2 text-gray-900 row_item">
+        <img class="pr-3" src="../../assets/icons/refresh.png" alt="">
+        Update</span>
+      <span class="flex py-2 text-gray-900 row_item">
+        <img class="pr-3" src="../../assets/icons/trash.png" alt="">
+        Remove</span>
+      <span @click="cancelSTF" class="flex py-2 text-gray-900 row_item">
+        <img class="pr-3" src="../../assets/icons/multiply.png" alt="">
         Cancel STF</span>
     </div>
 
-    <div class="my-3 flex flex-col justify-between ">
-      <span class="p-1 hover:bg-none text-lg"> Change STF Status</span>
+    <div class="my-3 flex flex-col justify-between text-gray-500">
+      <span class="p-1 hover:bg-none text-lg text-center"> Change STF Status</span>
       <div class="text-lg px-1">
         <select class="select select-bordered w-full max-w-xs" v-model="stf_status.completed" 
         @change="changeStatus">
@@ -122,8 +122,9 @@ const changeStatus = async () => {
 <style scoped>
 
   .row_item {
-    font-family: 'Roboto', sans-serif;
-    font-size: 17px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+    font-size: 19px;
   }
   .row_item:hover{
     background-color: rgb(22, 233, 110);
