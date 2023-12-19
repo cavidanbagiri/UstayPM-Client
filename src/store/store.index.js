@@ -99,7 +99,6 @@ const IndexStore = defineStore("IndexStore", {
 
     // Cancel STF
     async cancelSTF(data){
-      // console.log('data : ', data);
       if(data.user_id){
         try{
           await axios.post(`${import.meta.env.VITE_API}/common/cancelstf`, data)

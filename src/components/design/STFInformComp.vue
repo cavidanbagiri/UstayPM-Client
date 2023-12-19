@@ -49,15 +49,16 @@
       </div>
     </div>
 
-    <CancelSTF :toggle_cancelstf = "toggle_cancelstf" :user_id="user_store.user?.id" :stf_id="prop?.each?.stf_id"
+    <CancelSTF :toggle_cancelstf = "toggle_cancelstf" :user_id="user_store.user?.id" :stf="prop?.each"
      @closeCanceledSTF = "closeCanceledSTF" />
 
-  </div>
+    </div>
+
 </template>
 
 <script setup>
 
-import { reactive, ref, watchEffect } from 'vue'; 
+import { reactive, ref } from 'vue'; 
 import CancelSTF  from './CancelSTF.vue';
 
 import IndexStore from '../../store/store.index';
@@ -68,6 +69,7 @@ const user_store = UserStore();
 
 const prop = defineProps(['cond', 'each'])
 const emit = defineEmits(['closeInform'])
+
 
 // Show Or Hide Cancel STF Component
 const toggle_cancelstf = ref(false);
