@@ -33,26 +33,17 @@
 
 <script setup>
 
-import { onMounted } from 'vue';
-
 import Dashboard from '../components/home/Dashboard.vue';
 import OrderChart from '../components/home/charts/OrderChart.vue';
 import ProcurementChart from '../components/home/charts/ProcurementChart.vue';
 import WarehouseChart from '../components/home/charts/WarehouseChart.vue';
 import UserTable from '../components/home/usertable/UserTable.vue';
 import Inform from '../components/home/inform/Inform.vue';
-import UserStore from '../store/store.user_store';
+// import UserStore from '../store/store.user_store';
 import IndexStore from '../store/store.index';
 import Companies from '../components/home/companies/Companies.vue';
 const index_store = IndexStore();
-const user_store = UserStore();
-onMounted(async () => {
-  if (user_store.user) {
-    console.log('yes user : ', user_store.user);
-    await index_store.fetchStatisticResult(user_store.user.id);
-  }
 
-})
 
 </script>
 

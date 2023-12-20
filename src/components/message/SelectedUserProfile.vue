@@ -17,12 +17,16 @@
                         </div>
                     </div>
                     <div class="text-2xl mt-3 font-bold ">
-                        Mehmet Ugur Dogan
+                        <span v-if="message_store.selected_user">{{ message_store.selected_user.username }}</span>
+                        <span v-else>{{ user_store.user.name }} {{ user_store.user.surname }}</span>
                     </div>
                     <span class="text-red-500 mt-3 text-xl font-bold">
                         Ustay
-                        <span class="text-black font-medium text-lg">
-                            Moscow SRU Project
+                        <span v-if="message_store.selected_user" class="text-black font-medium text-lg">
+                            {{ message_store.selected_user.projectId }}
+                        </span>
+                        <span v-else class="text-black font-medium text-lg">
+                            {{ user_store.user.projectId }}
                         </span>
                     </span>
                 </div>
@@ -49,8 +53,11 @@
                 </span>
                 <span class="text-gray-400 mt-1 flex justify-between p-1 border-b">
                     Department
-                    <span class="text-gray-900">
-                        Procurement
+                    <span v-if="message_store.selected_user" class="text-gray-900">
+                        {{ message_store.selected_user.department_name }}
+                    </span>
+                    <span v-else class="text-gray-900">
+                        {{ user_store.user.departmentId }}
                     </span>
                 </span>
                 <span class="text-gray-400 mt-1 flex justify-between p-1 border-b">
@@ -70,8 +77,11 @@
                 </div>
                 <div class="flex mt-3">
                     <img src="../../assets/icons/mail.png" alt="">
-                    <span class="mt-1 ml-4">
-                        sdemirel@ustay.com
+                    <span v-if="message_store.selected_user" class="mt-1 ml-4">
+                        {{ message_store.selected_user.email }}
+                    </span>
+                    <span velse class="mt-1 ml-4">
+                    {{ user_store.user.email }}
                     </span>
                 </div>
             </div>
@@ -89,9 +99,10 @@
 
 <script setup>
 import MessageStore from '../../store/store.message';
+import UserStore from '../../store/store.user_store';
 
 const message_store = MessageStore();
-
+const user_store = UserStore();
 
 // Close Chat Bar
 const closeChat = () => { message_store.toggle_message = false; }

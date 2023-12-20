@@ -49,6 +49,15 @@ ChartJS.register(ArcElement);
 const URL = import.meta.env.VITE_API
 const socket = io(URL);
 provide('socket', socket);
+
+
+onMounted(()=>{
+  if (user_store.user) {
+    index_store.fetchStatisticResult(user_store.user.id);
+  }
+})
+
+
 watchEffect(()=>{
   if(user_store.user){
     

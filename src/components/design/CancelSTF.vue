@@ -64,6 +64,9 @@
 
         <!-- Cancel STF Comment -->
         <div class="flex flex-col mt-10 mx-2">
+          <span v-if="empty_comment_error" class="bg-red-400 text-white text-end py-2 text-lg px-2 rounded-md">
+            Comment Side Cant be Empty, Please Fill It
+          </span>
           <span class="text-xl px-2 text-gray-500">Comment</span>
           <textarea
             class="h-48 py-3 px-2 border w-full mb-5 text-lg outline-none text-gray-400 hover:shadow-lg duration-300"
@@ -74,7 +77,7 @@
       <div class="flex  w-full">
         <!-- Post Cancel STF -->
         <button @click="postCancelSTF"
-          class="w-full text-white btn bg-red-500 hover:bg-red-300 duration-300">Confirm</button>
+          class="w-full text-white btn bg-red-500 hover:bg-red-300 duration-300 shadow-xl">Confirm</button>
       </div>
 
     </div>
@@ -96,7 +99,9 @@ const prop = defineProps(['toggle_cancelstf', 'user_id', 'stf' ]);
 const emit = defineEmits(['closeCanceledSTF']);
 
 // After Canceled STF, THis Message will show
-const inform_message = ref(false)
+const inform_message = ref(false);
+// Empty Commecnt Error
+const empty_comment_error = ref(false);
 
 const comment = ref('');
 
@@ -105,14 +110,21 @@ const closeCanceledSTF = () => {
 }
 
 const postCancelSTF = async () => {
-  await index_store.cancelSTF({ user_id: prop.user_id, stf_id: prop.stf.stf_id, comment: comment.value })
+
+  if(comment.value.toString().trim() === ''){
+    empty_comment_error.value = true;
+  }
+  else{
+    await index_store.cancelSTF({ user_id: prop.user_id, stf_id: prop.stf.stf_id, comment: comment.value })
     .then((respond) => {
       inform_message.value = true;
       setTimeout(()=>{
         inform_message.value = false;
+        empty_comment_error.value = false;
         closeCanceledSTF();
       },2000)
     })
+  }
 }
 
 </script>
