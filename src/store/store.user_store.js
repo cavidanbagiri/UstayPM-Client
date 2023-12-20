@@ -12,6 +12,16 @@ const UserStore = defineStore('User Store',{
 
   actions: {
 
+    async uploadImage(data){
+      axios.post(`${import.meta.env.VITE_API}/user/upload`,data)
+      .then((respond)=>{
+        console.log('image add successfully');
+      })
+      .catch((err)=>{
+        console.log('image cant add : ', err);
+      })
+    },
+
     async LOGINSER (user_data) {
       try{ 
         await axios.post(`${import.meta.env.VITE_API}/user/login`,
