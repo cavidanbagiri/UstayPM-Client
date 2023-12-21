@@ -5,14 +5,12 @@
             <!-- Name and Dashboard Text Section -->
             <div class="flex flex-row justify-between items-center ">
                 <div class="flex flex-col ">
-                    <div class="flex flex-row">
-                        <img class="w-14 h-14 rounded-full"
-                src="https://img.freepik.com/free-photo/the-beautiful-girl-stands-near-walll-with-leaves_8353-5377.jpg?w=2000"
-                alt="">
-                <span class="text-gray-200 text-4xl p-1 "
-                    style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
-                    Welcome Back, {{ user_store.user?.name }}
-                </span>
+                    <div class="flex flex-row items-center">
+                        <img class="w-14 h-14 rounded-full bg-green-600" v-bind:src="user_store.user?.image_url" alt="">
+                        <span class="text-gray-200 text-4xl p-1 "
+                            style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                            Welcome Back, {{ user_store.user?.name }}
+                        </span>
                     </div>
                     <span class="text-gray-300 text-xs mt-3 p-1">For Showing an Orders, Click + Button</span>
                 </div>
@@ -63,7 +61,6 @@
 
 import UserStore from '../../store/store.user_store';
 const user_store = UserStore();
-
 
 </script>
 

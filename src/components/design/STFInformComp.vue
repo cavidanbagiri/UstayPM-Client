@@ -15,7 +15,7 @@
     </div>
     <div class="flex flex-col pb-2">
       <div class="my-3 flex flex-col justify-between text-gray-500">
-        <span class="p-1 hover:bg-none text-[15px] text-center"> Change STF Status</span>
+        <span class="p-1 hover:bg-none text-[15px] text-start"> Change STF Status</span>
         <div class="text-lg ">
           <select class="select select-bordered w-full max-w-xs" v-model="stf_status.completed" @change="changeStatus">
             <option class="my-2 py-2 text-lg" value=false>Wait</option>
