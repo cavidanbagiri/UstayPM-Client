@@ -1,11 +1,11 @@
 <template>
-  <div v-if="prop.cond" class="border flex flex-col bg-white absolute top-5 left-5 shadow-2xl p-2 px-6 rounded-2xl w-96">
+  <div v-if="prop.cond" class="border flex flex-col bg-white absolute top-5 left-6 shadow-2xl p-2 px-6 rounded-2xl w-80">
     <div class="flex justify-end items-center">
-      <span class="text-4xl" @click="close">
+      <span class="text-3xl my-1" @click="close">
         <i class="fa-solid fa-xmark text-gray-400 hover:text-black"></i>
       </span>
     </div>
-    <div class="flex my-2 font-bold w-full text-[13px] ">
+    <div class="flex font-bold w-full text-[13px] " style="font-family: 'Roboto';">
       <span v-if="prop?.each?.completed" class="px-2 py-2  text-green-500 bg-green-100 w-full rounded-lg">
         Completed : {{ prop?.each?.completed }}
       </span>
@@ -13,38 +13,38 @@
         Completed : {{ prop?.each?.completed }}
       </span>
     </div>
-    <div class="flex flex-col">
-      <span @click="getSTFInform" class="flex py-2 text-gray-900 row_item">
-        <img class="pr-3" src="../../assets/icons/information.png" alt="">
-        STF Information</span>
-      <span @click="getSTFInform" class="flex py-2 text-gray-900 row_item">
-        <img class="pr-3" src="../../assets/icons/info.png" alt="">
-        SM Information</span>
-      <span class="flex py-2 text-gray-900 row_item">
-        <img class="pr-3" src="../../assets/icons/hide.png" alt="">
-        Set Hide</span>
-      <span class="flex py-2 text-gray-900 row_item">
-        <img class="pr-3" src="../../assets/icons/starblack.png" alt="">
-        Set Star</span>
-      <span class="flex py-2 text-gray-900 row_item">
-        <img class="pr-3" src="../../assets/icons/refresh.png" alt="">
-        Update</span>
-      <span class="flex py-2 text-gray-900 row_item">
-        <img class="pr-3" src="../../assets/icons/trash.png" alt="">
-        Remove</span>
-      <span @click="cancelSTF" class="flex py-2 text-gray-900 row_item">
-        <img class="pr-3" src="../../assets/icons/multiply.png" alt="">
-        Cancel STF</span>
-    </div>
-
-    <div class="my-3 flex flex-col justify-between text-gray-500">
-      <span class="p-1 hover:bg-none text-lg text-center"> Change STF Status</span>
-      <div class="text-lg px-1">
-        <select class="select select-bordered w-full max-w-xs" v-model="stf_status.completed" @change="changeStatus">
-          <option class="my-2 py-2 text-lg" value=false>Wait</option>
-          <option class="my-2 py-2 text-lg" value="true">Complete</option>
-        </select>
+    <div class="flex flex-col pb-2">
+      <div class="my-3 flex flex-col justify-between text-gray-500">
+        <span class="p-1 hover:bg-none text-[15px] text-center"> Change STF Status</span>
+        <div class="text-lg ">
+          <select class="select select-bordered w-full max-w-xs" v-model="stf_status.completed" @change="changeStatus">
+            <option class="my-2 py-2 text-lg" value=false>Wait</option>
+            <option class="my-2 py-2 text-lg" value="true">Complete</option>
+          </select>
+        </div>
       </div>
+      <span @click="getSTFInform" class="flex items-center py-2 text-gray-900 row_item">
+        <img class="mr-3 w-5 h-5" src="../../assets/icons/information.png" alt="">
+        STF Information</span>
+      <span @click="getSTFInform" class="flex py-2 items-center text-gray-900 row_item">
+        <img class="mr-3 w-5 h-5" src="../../assets/icons/info.png" alt="">
+        SM Information</span>
+      <span class="flex py-2  items-center text-gray-900 row_item">
+        <img class="mr-3 w-5 h-5" src="../../assets/icons/hide.png" alt="">
+        Set Hide</span>
+      <span class="flex py-2  items-center text-gray-900 row_item">
+        <img class="mr-3 w-5 h-5" src="../../assets/icons/starblack.png" alt="">
+        Set Star</span>
+      <span class="flex py-2  items-center text-gray-900 row_item">
+        <img class="mr-3 w-5 h-5" src="../../assets/icons/refresh.png" alt="">
+        Update</span>
+      <span class="flex  py-2  items-center text-gray-900 row_item">
+        <img class="mr-3 w-5 h-5" src="../../assets/icons/trash.png" alt="">
+        Remove</span>
+      <span @click="cancelSTF"
+        class="flex py-2 items-center text-red-500 font-bold text-[16px] hover:bg-gray-100 duration-300">
+        <img class="mr-4 w-4 h-4" src="../../assets/icons/close.png" alt="">
+        Cancel STF</span>
     </div>
 
     <CancelSTF :toggle_cancelstf="toggle_cancelstf" :user_id="user_store.user?.id" :stf="prop?.each"
@@ -100,17 +100,17 @@ const cancelSTF = async () => {
   if (user_store.user.departmentId === 2 || user_store.user.departmentId === 3) {
     toggle_cancelstf.value = true;
   }
-  else{
+  else {
     cancelstf_authority.value = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       cancelstf_authority.value = false;
-    },2000)
+    }, 2000)
   }
   // await index_store.cancelSTF({user_id: user_store.user?.id, stf_id: prop?.each?.stf_id, comment: 'just cancel'});
 }
 
 const changeStatus = async () => {
-  if (user_store.user.departmentId === 2 || user_store.user.departmentId === 3) {
+  if (user_store.user.departmentId === 2) {
     if (user_store.user && user_store.user.departmentId === 2) {
       await index_store.setStfStatus(stf_status)
         .then((respond) => {
@@ -127,11 +127,11 @@ const changeStatus = async () => {
       console.log('Authorization Error ');
     }
   }
-  else{
+  else {
     cancelstf_authority.value = true;
-    setTimeout(()=>{
+    setTimeout(() => {
       cancelstf_authority.value = false;
-    },2000)
+    }, 2000)
   }
 }
 
@@ -139,9 +139,9 @@ const changeStatus = async () => {
 
 <style scoped>
 .row_item {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  font-size: 19px;
+  font-family: 'Figtree', sans-serif;
+  font-weight: 400;
+  font-size: 17px;
 }
 
 .row_item:hover {

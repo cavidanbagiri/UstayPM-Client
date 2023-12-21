@@ -1,9 +1,9 @@
 
 <template>
-  <div v-if="prop.cond" class="fixed top-32 left-1/3 w-1/3 p-1 rounded-lg text-black shadow-xl font-bold border-4 bg-gray-100 flex items-center justify-center anim">
+  <div v-if="prop.cond" class="fixed top-28 left-1/3 w-1/3 p-4  text-white shadow-2xl font-bold border-1 bg-gradient-to-r from-green-400 to-green-500 flex items-center justify-center anim">
 
       <div>
-          <span class=" text-xl " style="font-family: 'Roboto', sans-serif; ">
+          <span class=" text-xl " style="font-family: 'Figtree', sans-serif; ">
               {{ prop.messages }}
           </span>
       </div>

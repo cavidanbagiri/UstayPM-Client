@@ -2,7 +2,7 @@
   <!-- Cancel STF -->
   <div v-if="prop.toggle_cancelstf"
     class="fixed top-0 left-0 w-full h-full bg-black bg-opacity-40 flex justify-center items-center text-gray-500"
-    style="font-family: 'Poppins';">
+    style="font-family: 'Figtree', sans-serif;">
 
     
     <div
@@ -16,16 +16,27 @@
           </span>
         </div>
 
-        <span v-if="inform_message" class="bg-green-100 text-end text-lg text-green-500 py-2 px-2">
+        <span v-if="inform_message" class="bg-green-100 text-end  text-green-500 py-2 px-2">
           STF Successfully Canceled 
         </span>
 
 
         <!-- Cancel STF Title -->
         <div class="flex justify-center items-center mb-2">
-          <span class="text-4xl py-2 text-center text-gray-700 font-bold">
+          <span class="text-4xl  text-center text-gray-700 font-bold">
             Canceled STF
           </span>
+        </div>
+
+        <!-- Cancel STF Comment -->
+        <div class="flex flex-col mt-8 mx-2">
+          <span v-if="empty_comment_error" class="bg-red-400 text-white text-end py-2  px-2 rounded-md">
+            Comment Side Cant be Empty, Please Fill It
+          </span>
+          <span class="text-2xl px-2 py-2 text-gray-500">Comment</span>
+          <textarea
+            class="h-48 py-3 px-2 border w-full mb-5 text-[16px] outline-none text-gray-400 hover:shadow-lg duration-300"
+            type="area" name="" id="" placeholder="Comment Cant Be Empty" v-model="comment"></textarea>
         </div>
 
         <!-- STF Inform Title -->
@@ -34,44 +45,40 @@
         </div>
 
         <!-- STF Information Section -->
-        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4 pb-1 text-lg">
+        <div class="px-2 mx-2 text-[16px] flex justify-between items-center border-b mt-4 pb-1 ">
           <span>STF No: </span>
-          <span class="font-bold bg-orange-100 text-orange-500 py-1 px-2 rounded-lg">{{ prop.stf.stf_num }}</span>
+          <span class=" bg-orange-100 text-orange-500 py-1 px-2 rounded-lg">{{ prop.stf.stf_num }}</span>
         </div>
 
-        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4 text-lg">
+        <div class="px-2 mx-2 text-[16px] flex justify-between items-center border-b mt-4">
           <span>Created At: </span>
           <DateFormat :time="prop.stf?.createdAt" />
         </div>
 
         <!-- STF Information Section -->
-        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4  text-lg">
+        <div class="px-2 mx-2 text-[16px] flex justify-between items-center border-b mt-4  ">
           <span>Orderer: </span>
-          <span class="text-lg">{{ prop.stf.username }}</span>
+          <span class="">{{ prop.stf.username }}</span>
         </div>
 
         <!-- STF Information Section -->
-        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4 text-lg">
-          <span>Material Name: </span>
-          <span class="pl-4 text-lg">{{ prop.stf.material_name }}</span>
+        <div class="px-2 mx-2 text-[16px] flex justify-between items-center border-b mt-4 ">
+          <span>Material Type: </span>
+          <span class="pl-4 ">{{ prop.stf.material_type }}</span>
         </div>
 
         <!-- STF Information Section -->
-        <div class="px-2 mx-2 text-[13px] flex justify-between items-center border-b mt-4  text-lg">
+        <div class="px-2 mx-2 text-[16px] flex justify-between items-center border-b mt-4  ">
           <span>Amount: </span>
-          <span class="text-lg">{{ prop.stf.amount }} {{ prop.stf.unit }} </span>
+          <span class="">{{ prop.stf.amount }} {{ prop.stf.unit }} </span>
         </div>
 
-        <!-- Cancel STF Comment -->
-        <div class="flex flex-col mt-10 mx-2">
-          <span v-if="empty_comment_error" class="bg-red-400 text-white text-end py-2 text-lg px-2 rounded-md">
-            Comment Side Cant be Empty, Please Fill It
-          </span>
-          <span class="text-xl px-2 text-gray-500">Comment</span>
-          <textarea
-            class="h-48 py-3 px-2 border w-full mb-5 text-lg outline-none text-gray-400 hover:shadow-lg duration-300"
-            type="area" name="" id="" placeholder="Comment Cant Be Empty" v-model="comment"></textarea>
+        <!-- STF Information Section -->
+        <div class="px-2 mx-2 text-[16px] flex justify-between items-center border-b my-4 ">
+          <span>Material Name: </span>
+          <span class="pl-10 ">{{ prop.stf.material_name }}</span>
         </div>
+
       </div>
 
       <div class="flex  w-full">
