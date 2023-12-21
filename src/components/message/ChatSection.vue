@@ -104,6 +104,9 @@ const toggleUsers = () => { message_store.toggle_user = !message_store.toggle_us
 
 const socket = inject('socket');
 
+// Message Controleer for one time sending to one message
+const now_message_sending = ref(true);
+
 //***************************************************** Typing Events ***************/
 // When Selected User Typing, writing spinner will shown 
 const selected_typing = ref(false);
@@ -149,25 +152,29 @@ const sendMessage = async () => {
                 message_data.room_id = message_store.selected_user_fetch_messages.roomId
             }
         }
-        await message_store.sendMessage(
-            message_data
-        ).then(async (respond) => {
-            message_data.receiverId = message_data.current_id;
-            const temp_message_data = {
-                createdAt: new Date().getDate(),
-                message_text: message_data.message_text,
-                receiverId: message_data.current_id,
-                roomId: message_data.room_id,
-                senderId: message_data.senderId
-            }
-            message_store.selected_user_fetch_messages?.push(temp_message_data);
-            send_ringtone.play();
-            message_data.message_text = '';
-            socket.emit('new_messages', message_data)
-            // await message_store.setTrueReadingMessages({current_id: user_store.user?.id, room_id: selected_user_fetch_messages.roomId});
-        }).catch((err) => {
-            console.log('Send Message Error : ', err);
-        })
+        if(now_message_sending.value){
+            now_message_sending.value = false;
+            await message_store.sendMessage(
+                message_data
+            ).then(async (respond) => {
+                message_data.receiverId = message_data.current_id;
+                const temp_message_data = {
+                    createdAt: new Date().getDate(),
+                    message_text: message_data.message_text,
+                    receiverId: message_data.current_id,
+                    roomId: message_data.room_id,
+                    senderId: message_data.senderId
+                }
+                message_store.selected_user_fetch_messages?.push(temp_message_data);
+                now_message_sending.value = true;
+                send_ringtone.play();
+                message_data.message_text = '';
+                socket.emit('new_messages', message_data)
+                // await message_store.setTrueReadingMessages({current_id: user_store.user?.id, room_id: selected_user_fetch_messages.roomId});
+            }).catch((err) => {
+                console.log('Send Message Error : ', err);
+            })
+        }
     }
 }
 
