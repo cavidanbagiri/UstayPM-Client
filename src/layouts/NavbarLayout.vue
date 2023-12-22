@@ -30,7 +30,7 @@
 
       <!-- Notification -->
       <div class="relative mt-3">
-            <div v-if="index_store.new_stf_notification?.length" class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ index_store.new_stf_notification?.length }}</div>
+            <div v-if="index_store.new_stf_notification?.length || index_store.accept_sms_notification?.length" class="badge bg-red-500 border-none text-white badge-md absolute top-0 right-0 w-5 h-5 font-bold p-[11px]">{{ index_store.new_stf_notification?.length + index_store.accept_sms_notification?.length }}</div>
             <span @click="showNotification" @mouseover="notification_tooltip = true" @mouseleave="notification_tooltip = false"
                 class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
                 <!-- <i class="fa-solid fa-bell fa-md " style="color:white"></i> -->

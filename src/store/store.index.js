@@ -17,6 +17,10 @@ const IndexStore = defineStore("IndexStore", {
 
     // Get SOCKET New STF Notification Data
     new_stf_notification: null,
+
+    // Accept New SMS Notification
+    accept_sms_notification: [],
+
   }),
 
   getters: {

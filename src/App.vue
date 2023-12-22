@@ -81,6 +81,13 @@ watchEffect(()=>{
     socket.on("getstfnotification", (data)=>{
       index_store.new_stf_notification = data;
     })
+    // Check Accept SM Notification
+    socket.on("accept_sms", (data)=>{
+      if(data?.orderer_id === user_store.user?.id || user_store.user.departmentId === 2 ){
+        console.log('coming data to you : ', data);
+        index_store.accept_sms_notification.push(data);
+      }
+    })
 
     /*
       ---------------------------------------------------------- Unread Messages Notification

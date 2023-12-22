@@ -17,6 +17,7 @@
             </div>
         </div>
         <ul class="text-sm" style="font-family: 'Roboto';">
+            <!-- This Is For New STF Notification -->
             <li v-for="i in index_store?.new_stf_notification" class="border p-1 flex my-2 rounded-lg hover:cursor-pointer hover:bg-gray-100 items-center">
                 <!-- User Image -->
                 <div class="flex  w-full">
@@ -39,7 +40,29 @@
                     </div>
                 </div>
             </li>
-            
+            <!-- This Is For Accept SMS Notification -->
+            <li v-for="i in index_store?.accept_sms_notification" class="border p-1 flex my-2 rounded-lg hover:cursor-pointer hover:bg-gray-100 items-center">
+                <!-- User Image -->
+                <div class="flex  w-full">
+                    <img class="w-14 h-14 rounded-full"
+                        src="https://static.wixstatic.com/media/033319_e0f92699ac1741baa4b84b6755734bb6~mv2.png/v1/crop/x_89,y_0,w_2601,h_1732/fill/w_480,h_486,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_0297_edited.png"
+                        alt="">
+                    <div class="flex flex-col pl-2 justify-center w-full">
+                        <span class="text-lg font-bold">
+                            {{i?.orderer_name}}
+                        </span>
+                        <span class="font-thin text-sm text-gray-500 pl-2" style="font-family: 'Poppins';">
+                            <span class="text-red-500">&#9679</span>
+                            Accepted New SMS {{ i?.sm_num }}
+                        </span>
+                        <!-- <div class=" flex items-center my-1 justify-end">
+                            <span class="text-gray-400 text-xs font-bold" style="font-family: 'Poppins';">
+                                <DateFormatMonth :time="i.createdAt" />
+                            </span>
+                        </div> -->
+                    </div>
+                </div>
+            </li>
         </ul>
     </div>
 </template>
@@ -48,7 +71,9 @@
 
 import DateFormatMonth from '../../layouts/DateFormatMonth.vue';
 
+import UserStore from '../../store/store.user_store';
 import IndexStore from '../../store/store.index';
+const user_store = UserStore();
 const index_store = IndexStore();
 
 const emit = defineEmits(['closeNotification']);
