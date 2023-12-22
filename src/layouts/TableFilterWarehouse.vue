@@ -165,6 +165,7 @@ const filtered_objects = reactive({
     usernames: '',
     stf_num: '',
     sm_num: '',
+    material_type: '',
     date_order: '',
 })
 
