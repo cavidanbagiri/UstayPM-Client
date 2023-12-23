@@ -1,6 +1,6 @@
 <template>
     <div v-if="message_store.toggle_message" >
-        <div class="z-50 flex flex-row bg-slate-100 fixed bottom-0 right-0 w-full h-full rounded-lg px-2 pt-2 pb-4 shadow-2xl">
+        <div class="z-50 flex flex-row bg-white fixed bottom-0 right-0 w-full h-full rounded-md px-2 pt-1 pb-1 shadow-2xl">
             <UserSection />
             <!-- Chat Section -->
             <ChatSection />

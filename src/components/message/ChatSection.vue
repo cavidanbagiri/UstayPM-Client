@@ -1,5 +1,5 @@
 <template>
-    <div class="justify-between px-1 py-2 flex flex-col bg-white w-9/12 mt-2 mx-6 mb-2 border-r">
+    <div class="justify-between px-1 my-1 flex flex-col bg-white w-9/12 mt-2 mb-2 border-r">
 
         <!-- Close Button and Userlist Toggle Section -->
         <!-- <div class=" flex justify-end py-2 px-5">
@@ -12,7 +12,9 @@
         </div>
 
         <!-- Sender Information Section -->
-        <div v-if="message_store.selected_user" class="mx-1 flex justify-between items-end border-b hover:bg-gray-100 cursor-pointer" style="font-family: 'Roboto';">
+        <div v-if="message_store.selected_user"
+            class="mx-1 flex justify-between items-end border-b hover:bg-gray-100 cursor-pointer"
+            style="font-family: 'Roboto';">
             <div class="flex flex-row items-center justify-start p-1">
                 <img class="w-10 h-10 rounded-full"
                     src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
@@ -34,25 +36,48 @@
 
                 <!-- If Message Text Is Empty Down Show -->
 
-                <span v-if="i.message_text === '' "></span>
+                <span v-if="i.message_text === ''"></span>
 
                 <!-- Receiver Or Current -->
-                <div v-else-if="i.receiverId === user_store.user.id" class="flex flex-row justify-end p-1 items-end">
-                    <!-- <span class="receiver">{{ i.message_text }}</span> -->
-                    <div class="chat chat-end w-full">
-                        <div class="chat-bubble bg-gray-400 text-white">{{ i.message_text }}</div>
+                <div v-else-if="i.receiverId === user_store.user.id" class="flex flex-col text-end">
+                    <!-- Show User Image and Message Section -->
+                    <div class="flex flex-row justify-end p-1 items-end">
+                        <div class="chat chat-end w-full">
+                            <div class="chat-bubble pr-1 bg-pink-500 text-white">
+                                <span class="pr-3">
+                                    {{ i.message_text }}
+                                </span>
+                                <span class="flex justify-end">
+                                    <i class="fa-solid fa-check-double fa-xs text-gray-50"></i>
+                                    <!-- <i class="fa-solid fa-check fa-xs text-gray-50"></i> -->
+                                </span>
+                            </div>
+                        </div>
+                        <img class="w-11 h-11 rounded-full"
+                            src="https://pics.craiyon.com/2023-06-18/0136ddc42a664843ad7c509dd59c7d98.webp" alt="">
                     </div>
-                    <img class="w-11 h-11 rounded-full"
-                        src="https://pics.craiyon.com/2023-06-18/0136ddc42a664843ad7c509dd59c7d98.webp" alt="">
+                    <!-- Show Date and time -->
+                    <div class="px-2 text-sm">
+                        <DateFormatTime :time="i.createdAt" />
+                    </div>
                 </div>
 
                 <!-- Sender or Selected -->
-                <div v-else class="flex flex-row justify-start p-1 items-end ">
-                    <img class="w-11 h-11 rounded-full"
-                        src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
-                    <!-- <span class="sender">{{ i.message_text }}</span> -->
-                    <div class="chat chat-start w-full">
-                        <div class="chat-bubble chat-bubble-primary text-white">{{ i.message_text }}</div>
+                <div v-else class="flex flex-col text-start">
+                    <div class="flex flex-row justify-start p-1 items-end ">
+                        <img class="w-11 h-11 rounded-full"
+                           src="https://imgv3.fotor.com/images/gallery/Realistic-Male-Profile-Picture.jpg" alt="">
+                        <div class="chat chat-start w-full">
+                            <div class="chat-bubble chat-bubble-primary text-white">
+                                <span class="">
+                                    {{ i.message_text }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Show Date and time -->
+                    <div class="px-2 text-sm">
+                        <DateFormatTime :time="i.createdAt" />  
                     </div>
                 </div>
 
@@ -74,11 +99,11 @@
         <div class="flex flex-row items-center justify-between py-2 px-1">
             <input @keyup.enter="sendMessage" :disabled="!message_store.selected_user" v-model="message_data.message_text"
                 @input="msgTyping"
-                class="py-3 px-2 border-2 rounded-sm w-full me-1 outline-none hover:orange-pink-500 text-gray-500 "
-                style="font-family: 'Poppins';" type="text" placeholder="Text ...">
-            <button :disabled="!message_store.selected_user" @click="sendMessage"
-                class="p-3 bg-blue-500 rounded-full text-gray-100 shadow-xl">
-                <i class="fa-regular fa-paper-plane fa-xl"></i>
+                class="py-3 px-2 bg-gray-100 rounded-sm w-full me-1 outline-none hover:orange-pink-500 text-gray-500 "
+                style="font-family: 'Poppins';" type="text" placeholder="Type a message ...">
+            <button :disabled="!message_store.selected_user " @click="sendMessage"
+                class="p-3 bg-blue-500 rounded-xl text-gray-100 shadow-xl">
+                <i class="fa-regular fa-paper-plane fa-xl "></i>
             </button>
         </div>
     </div>
@@ -88,6 +113,7 @@
 
 import { ref, inject, watchEffect, reactive } from 'vue';
 import sendringtone from '../../assets/sendringtone.mp3';
+import DateFormatTime from '../../layouts/DateFormatTime.vue';
 
 import UserStore from '../../store/store.user_store';
 import MessageStore from '../../store/store.message';
@@ -119,12 +145,12 @@ const msgTyping = () => {
 watchEffect(() => {
     socket.on('fetch_messages', data => {
         console.log('fetch message work for ');
-        if(message_store.selected_user.roomid === data[0].roomId){
+        if (message_store.selected_user.roomid === data[0].roomId) {
             message_store.selected_user_fetch_messages = data;
         }
     });
     socket.on('typing', (room_id) => {
-        if(message_store.selected_user.roomid === room_id){
+        if (message_store.selected_user.roomid === room_id) {
             selected_typing.value = true;
             setTimeout(() => {
                 selected_typing.value = false;
@@ -142,7 +168,7 @@ const message_data = reactive({
     senderId: '',
 })
 const sendMessage = async () => {
-    if (user_store.user && message_data.message_text.trim().length > 0 ) {
+    if (user_store.user && message_data.message_text.trim().length > 0) {
         message_data.sender_id = message_store.selected_user.id;
         if (message_store.selected_user_fetch_messages) {
             if (message_store.selected_user_fetch_messages.length) {
@@ -152,7 +178,7 @@ const sendMessage = async () => {
                 message_data.room_id = message_store.selected_user_fetch_messages.roomId
             }
         }
-        if(now_message_sending.value){
+        if (now_message_sending.value) {
             now_message_sending.value = false;
             await message_store.sendMessage(
                 message_data

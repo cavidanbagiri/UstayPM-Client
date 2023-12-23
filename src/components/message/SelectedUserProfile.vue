@@ -1,13 +1,18 @@
 <template>
-
     <div class="flex flex-row w-4/12  justify-around">
 
-        <div class="flex flex-col items-center my-2  rounded-sm w-full" style="font-family: 'Roboto';">
+        <div class="flex flex-col items-center my-2  rounded-sm w-full" style="font-family: 'Figtree';">
             <!-- Profile Section -->
-            <div class="bg-white w-full flex flex-col pt-2">
+            <div class="bg-white w-full h-full flex flex-col pt-2 px-2">
+                <!-- Close Chat Section -->
+                <span class="cursor-pointer text-end" @click="closeChat"><i
+                    class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-500"></i></span>
+                    
                 <!-- Title Section -->
-                <div class="text-4xl w-full text-center p-1 py-2 " style="font-family: 'Poppins';">
+                <div class="flex justify-center text-4xl w-full text-center p-1  py-2 " style="font-family: 'Figtree';">
                     <span class="">Profile</span>
+                    <div class="bg-red-400">
+                    </div>
                 </div>
                 <!-- Image Section -->
                 <div class=" mt-1 flex flex-col items-center w-full py-1">
@@ -18,25 +23,19 @@
                     </div>
                     <div class="text-2xl mt-3 font-bold ">
                         <span v-if="message_store.selected_user">{{ message_store.selected_user.username }}</span>
-                        <span v-else>{{ user_store.user.name }} {{ user_store.user.surname }}</span>
+                        <span v-else>{{ user_store.user?.name }} {{ user_store.user?.surname }}</span>
                     </div>
                     <span class="text-red-500 mt-3 text-xl font-bold">
                         Ustay
                         <span v-if="message_store.selected_user" class="text-black font-medium text-lg">
-                            {{ message_store.selected_user.projectId }}
+                            {{ message_store.selected_user?.projectId }}
                         </span>
                         <span v-else class="text-black font-medium text-lg">
-                            {{ user_store.user.projectId }}
+                            {{ user_store.user?.projectId }}
                         </span>
                     </span>
                 </div>
-            </div>
-            <!-- Contact Section -->
-            <div class="flex mt-6 flex-col pt-2 px-3 items-end-start w-full text-lg bg-white h-full">
-                <div class="text-4xl my-1 w-full text-center py-3 " style="font-family: 'Poppins';">
-                    <span>Work From</span>
-                </div>
-                <span class=" text-xl mt-3 mb-3 text-black" style="font-family: 'Poppins';">
+                <span class=" text-xl mt-3 mb-3 text-black" style="font-family: 'Figtree';">
                     Department Information
                 </span>
                 <span class="text-gray-400 mt-1 flex justify-between p-1 border-b text-md">
@@ -66,7 +65,7 @@
                         Specialist
                     </span>
                 </span>
-                <span class=" text-xl mt-5 mb-3 text-black" style="font-family: 'Poppins';">
+                <span class=" text-xl mt-5 mb-3 text-black" style="font-family: 'Figtree';">
                     Contact Information
                 </span>
                 <div class="flex mt-1">
@@ -77,24 +76,22 @@
                 </div>
                 <div class="flex mt-3">
                     <img src="../../assets/icons/mail.png" alt="">
-                    <span v-if="message_store.selected_user" class="mt-1 ml-4">
+                    <span v-if="message_store.selected_user" class="mt-1">
                         {{ message_store.selected_user.email }}
                     </span>
                     <span velse class="mt-1 ml-4">
-                    {{ user_store.user.email }}
+                        {{ user_store.user.email }}
                     </span>
                 </div>
             </div>
-    
+
         </div>
 
         <div class=" flex justify-around pt-2  px-2">
-            <span class="cursor-pointer" @click="closeChat"><i
-                    class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-500"></i></span>
+
         </div>
 
     </div>
-
 </template>
 
 <script setup>

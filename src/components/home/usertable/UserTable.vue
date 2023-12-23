@@ -1,5 +1,5 @@
 <template>
-    <div class="col-span-6 overflow-hidden mx-1 rounded-lg shadow-2xl">
+    <div class="col-span-6 overflow-hidden h-3/12 mx-1 rounded-lg shadow-2xl">
         <table class="bg-white w-full rounded-2xl">
             <UserTableHeaders/>
             <UserTableRows/>
