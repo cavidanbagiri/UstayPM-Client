@@ -112,6 +112,7 @@ const userInform = (user) => {
 }
 
 const selectedUser = async (user) => {
+    console.log('from selected : ', user);
     if (user_store.user) {
         message_store.selected_user = user;
         await message_store.fetchMessage(user_store.user?.id, message_store.selected_user.id);
@@ -126,28 +127,7 @@ const selectedUser = async (user) => {
     }
 }
 
-// watchEffect(()=>{
-    // socket.on('broadcastunreadcountingmessages', data => {
-    //     if(data[data.length - 1].senderId == user_store.user?.id){
-    //         // Iterate All User and find it
-    //         for(let user of message_store.unread_messages_and_users){
-    //             if(user.id == data[data.length-1].receiverId ){
-    //                 // Replace finding user with sending message user
-    //                 user.roomid = data[0].roomId;
-    //                 if(message_store.selected_user?.id == data[data.length-1].receiverId ){
-    //                     user.count = 0;
-    //                     message_store.setTrueReadingMessages({current_id: user_store.user?.id, room_id: message_store.selected_user_fetch_messages[0]?.roomId});
-    //                 }
-    //                 else{
-    //                     user.count = data[0].count;
-    //                 }
-    //             }
-    //         }
-    //         message_store.unread_messages_and_users
-    //     }
-    // });
 
-// })
 
 </script>
 

@@ -4,7 +4,7 @@
     <div class="relative">
       <img @click="openChatArea" @mouseover="showItem" @mouseleave="closeItem" class="cursor-pointer w-[55px] h-[55px]"
         src="../../assets/messagenewicon.png" alt="">
-      <span v-if="show_online_chat"
+      <span v-if="show_hover_online_chat"
         class="absolute -top-6 right-12 p-2 bg-purple-500 text-white flex justify-center items-center rounded-lg font-bold shadow-xl show_online_chat_anim">
         Online Chat
       </span>
@@ -23,7 +23,7 @@ import MessageMain from './MessageMain.vue';
 
 const message_store = MessageStore();
 
-const show_online_chat = ref(false);
+const show_hover_online_chat = ref(false);
 
 const openChatArea = () => {
   message_store.toggle_message = true;
@@ -32,14 +32,14 @@ const openChatArea = () => {
 const showItem = () => {
 
   setTimeout(() => {
-    show_online_chat.value = true;
+    show_hover_online_chat.value = true;
   }, 200)
 
 }
 
 const closeItem = () => {
 
-  show_online_chat.value = false;
+  show_hover_online_chat.value = false;
 
 }
 
