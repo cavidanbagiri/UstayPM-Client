@@ -48,9 +48,9 @@
         </div>
 
         <!-- Messages Notification -->
-        <div class=" relative mt-3 hover:bg-green-500 duration-300 rounded-lg py-1">
+        <div  class=" relative mt-3 hover:bg-green-500 duration-300 rounded-lg py-1">
             <router-link to="/" class="flex items-center">
-                <div
+                <div v-if="message_store.unread_messages?.length"
                     class="badge bg-red-500 border-none text-gray-100 badge-md absolute top-1 right-0 w-5 h-5 font-bold p-[11px]">
                     {{ message_store.unread_messages?.length }}
                 </div>

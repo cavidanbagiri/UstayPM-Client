@@ -211,14 +211,14 @@ const logout_tooltip = ref(false);
 
 
 // Get User Inform
-const user = ref();
+// const user = ref();
 const notification_toggle = ref(false);
 const messages_notification_toggle = ref(false);
 
 
 watchEffect(() => {
-    user.value = JSON.parse(sessionStorage?.getItem('user'));
-    user_store.user = user.value;
+    // user.value = JSON.parse(sessionStorage?.getItem('user'));
+    // user_store.user = user.value;
 })
 
 // After Clicking, Notification Model Will Open

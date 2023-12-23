@@ -1,25 +1,24 @@
 
 <template>
-  <div class="p-0 m-0 relative bg-white">
 
+  <!-- If User Login -->
+  <div v-if="user_login" class="p-0 m-0 relative bg-white">
     <div class="sticky top-0 left-0 float-left p-0 z-10 m-0">
-
       <NavbarLayout :socket="socket" />
     </div>
-
     <div class="p-0">
-
       <MenuCanvas v-if="index_store.canvas_toggle"/>
-
       <router-view></router-view>
-
     </div>
-
     <MessageImage/>
-
     <STFInformBar v-if="index_store.row_inform_condition"/>
-
   </div>
+
+  <!-- If Not, Go To Login Page -->
+  <div v-else>
+    <Login/>
+  </div>
+
 </template>
 
 <script setup>
@@ -32,6 +31,7 @@ import NavbarLayout from './layouts/NavbarLayout.vue';
 import MessageImage from './components/message/MessageImage.vue';
 import MenuCanvas from './layouts/MenuCanvas.vue';
 import STFInformBar from './layouts/STFInformBar.vue';
+import Login from './components/auth/Login.vue';
 import { ArcElement,Chart as ChartJS } from "chart.js";
 
 import IndexStore from './store/store.index';
@@ -44,6 +44,8 @@ const message_store = MessageStore();
 
 ChartJS.register(ArcElement);
 
+// User Login or Not Value
+const user_login = ref(false);
 
 // Check If User Login, Create Socket Connection
 const URL = import.meta.env.VITE_API
@@ -59,6 +61,14 @@ onMounted(()=>{
 
 
 watchEffect(()=>{
+  // If User Not Login, Redirect To User Login Page
+  if(JSON.parse(sessionStorage?.getItem('user'))){
+      user_store.user = JSON.parse(sessionStorage?.getItem('user'))
+      user_login.value = true;
+    }
+    else{
+      user_login.value = false;
+    }
   if(user_store.user){
     
     // Send User Information With This emit and handle in server
@@ -125,6 +135,9 @@ watchEffect(()=>{
     });
 
 
+  }
+  else{
+    
   }
 });
 
