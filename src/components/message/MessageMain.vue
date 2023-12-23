@@ -1,6 +1,6 @@
 <template>
     <div v-if="message_store.toggle_message" >
-        <div class="z-50 flex flex-row bg-white fixed bottom-0 right-0 w-full h-full rounded-md px-2 pt-1 pb-1 shadow-2xl">
+        <div class="z-50 flex flex-row bg-white fixed bottom-0 right-0 rounded-md px-2 pt-1 pb-1 shadow-2xl message_main">
             <UserSection />
             <!-- Chat Section -->
             <ChatSection />
@@ -44,4 +44,19 @@ watchEffect(() => {
 
 </script>
 
-<style lang="scss" scoped></style>
+<style scoped>
+
+.message_main {
+    width: 100%;
+    height: 100%;
+    animation: message_main_anim 0.4s;
+}
+
+@keyframes message_main_anim {
+    0%{
+        width: 0px;
+        height: 0px;
+    }
+}
+
+</style>
