@@ -11,9 +11,9 @@
         <div
             class="p-2 rounded-xl cursor-pointer mt-10 hover:bg-green-500 hover:duration-300 flex flex-row items-center hover:text-gray-100 border border-green-500">
             <img class="w-10 h-10 rounded-full"
-                src="https://img.freepik.com/free-photo/the-beautiful-girl-stands-near-walll-with-leaves_8353-5377.jpg?w=2000"
+                :src="user_store.user?.image_url"
                 alt="">
-            <span style="font-family: 'Poppins', sans-serif; font-size: 1.1rem;" class=" pl-1 text-gray-100 ">{{
+            <span style="font-family: 'Poppins', sans-serif; font-size: 1.1rem;" class=" pl-2 text-gray-100 ">{{
                 user_store?.user?.name }} {{ user_store?.user?.surname }} </span>
         </div>
 

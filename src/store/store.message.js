@@ -63,6 +63,7 @@ const MessageStore = defineStore("MessageStore", {
             )
             .then((respond) => {
               this.unread_messages_and_users = respond.data;
+              console.log('come : ', this.unread_messages_and_users);
             });
         }
         catch(err){
@@ -73,7 +74,6 @@ const MessageStore = defineStore("MessageStore", {
 
     // Set reading True if user selected 
     async setTrueReadingMessages(obj){
-      console.log('obj : ', obj);
       if(obj.current_id){
         try{
           await axios.post(

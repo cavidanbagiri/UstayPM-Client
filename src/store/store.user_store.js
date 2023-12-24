@@ -3,7 +3,7 @@ import axios from 'axios';
 axios.defaults.withCredentials = true;
 const UserStore = defineStore('User Store',{
   state: () => ({
-    user: null
+    user: null,
   }),
 
   getters: {

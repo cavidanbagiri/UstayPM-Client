@@ -3,7 +3,7 @@
 
         <div class="flex flex-col items-center my-2  rounded-sm w-full" style="font-family: 'Figtree';">
             <!-- Profile Section -->
-            <div class="bg-white w-full h-full flex flex-col pt-2 px-2">
+            <div class="bg-white w-full h-full flex flex-col pt-2 px-4">
                 <!-- Close Chat Section -->
                 <span class="cursor-pointer text-end" @click="closeChat"><i
                     class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-500"></i></span>
@@ -11,14 +11,15 @@
                 <!-- Title Section -->
                 <div class="flex justify-center text-4xl w-full text-center p-1  py-2 " style="font-family: 'Figtree';">
                     <span class="">Profile</span>
-                    <div class="bg-red-400">
-                    </div>
                 </div>
                 <!-- Image Section -->
                 <div class=" mt-1 flex flex-col items-center w-full py-1">
                     <div class="avatar">
-                        <div class="w-64 rounded-full">
-                            <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <div v-if="message_store.selected_user" class="w-64 rounded-full">
+                            <img :src="vite_url+message_store.selected_user?.image_url" />
+                        </div>
+                        <div v-else class="w-64 rounded-full">
+                            <img :src="user_store.user?.image_url" />
                         </div>
                     </div>
                     <div class="text-2xl mt-3 font-bold ">
@@ -28,10 +29,10 @@
                     <span class="text-red-500 mt-3 text-xl font-bold">
                         Ustay
                         <span v-if="message_store.selected_user" class="text-black font-medium text-lg">
-                            {{ message_store.selected_user?.projectId }}
+                            {{ message_store.selected_user?.project_name }}
                         </span>
                         <span v-else class="text-black font-medium text-lg">
-                            {{ user_store.user?.projectId }}
+                            {{ user_store.user?.ProjectModel?.project_name }}
                         </span>
                     </span>
                 </div>
@@ -53,16 +54,19 @@
                 <span class="text-gray-400 mt-1 flex justify-between p-1 border-b">
                     Department
                     <span v-if="message_store.selected_user" class="text-gray-900">
-                        {{ message_store.selected_user.department_name }}
+                        {{ message_store.selected_user?.department_name }}
                     </span>
                     <span v-else class="text-gray-900">
-                        {{ user_store.user.departmentId }}
+                        {{ user_store.user?.DepartmentModel?.department_name }}
                     </span>
                 </span>
                 <span class="text-gray-400 mt-1 flex justify-between p-1 border-b">
                     Position
-                    <span class="text-gray-900">
-                        Specialist
+                    <span v-if="message_store.selected_user" class="text-gray-900">
+                        {{ message_store.selected_user?.status_name }}
+                    </span>
+                    <span v-else class="text-gray-900">
+                        {{ user_store.user?.StatusModel?.status_name }}
                     </span>
                 </span>
                 <span class=" text-xl mt-5 mb-3 text-black" style="font-family: 'Figtree';">
@@ -77,17 +81,13 @@
                 <div class="flex mt-3">
                     <img src="../../assets/icons/mail.png" alt="">
                     <span v-if="message_store.selected_user" class="mt-1">
-                        {{ message_store.selected_user.email }}
+                        {{ message_store.selected_user?.email }}
                     </span>
                     <span velse class="mt-1 ml-4">
                         {{ user_store.user.email }}
                     </span>
                 </div>
             </div>
-
-        </div>
-
-        <div class=" flex justify-around pt-2  px-2">
 
         </div>
 
@@ -100,6 +100,8 @@ import UserStore from '../../store/store.user_store';
 
 const message_store = MessageStore();
 const user_store = UserStore();
+
+const vite_url = `${import.meta.env.VITE_API}`
 
 // Close Chat Bar
 const closeChat = () => { 

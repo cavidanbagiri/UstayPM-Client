@@ -22,7 +22,7 @@
                     class=" my-1 p-2 py-3 relative  flex justify-between  items-center rounded-lg cursor-pointer hover:bg-slate-100 duration-300  ">
                     <div class="flex justify-start items-center">
                         <img class="w-12 h-12 rounded-full"
-                            src="https://static.wixstatic.com/media/033319_e0f92699ac1741baa4b84b6755734bb6~mv2.png/v1/crop/x_89,y_0,w_2601,h_1732/fill/w_480,h_486,al_c,q_85,usm_0.66_1.00_0.01,enc_auto/IMG_0297_edited.png"
+                            :src="vite_url+user.image_url"
                             alt="">
                         <div class="flex flex-col pl-2 ">
                             <span class="text-md text-gray-700 ">
@@ -110,6 +110,8 @@ const toggleDialog = (user) => {
 const userInform = (user) => {
     console.log('clicked user btn : ',user);
 }
+
+const vite_url = `${import.meta.env.VITE_API}`
 
 const selectedUser = async (user) => {
     if (user_store.user) {
