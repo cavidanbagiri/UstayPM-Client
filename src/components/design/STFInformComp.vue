@@ -5,16 +5,21 @@
         <i class="fa-solid fa-xmark text-gray-400 hover:text-black"></i>
       </span>
     </div>
-    <div class="flex font-bold w-full text-[13px] " style="font-family: 'Roboto';">
-      <span v-if="prop?.each?.completed" class="px-2 py-2  text-green-500 bg-green-100 w-full rounded-lg">
-        Completed : {{ prop?.each?.completed }}
-      </span>
-      <span v-else class="px-2 py-2 text-red-500 bg-red-100 w-full rounded-lg">
-        Completed : {{ prop?.each?.completed }}
+    <div v-if="prop.each?.canceled_id" class="flex text-lg bg-red-400 text-white rounded-md py-1 mb-1">
+      <span class="text-center  w-full">
+        STF Canceled
       </span>
     </div>
+    <div v-else class="flex font-bold w-full text-[13px] " style="font-family: 'Roboto';">
+        <span v-if="prop?.each?.completed" class="px-2 py-2  text-green-500 bg-green-100 w-full rounded-lg">
+          Completed : {{ prop?.each?.completed }}
+        </span>
+        <span v-else class="px-2 py-2 text-red-500 bg-red-100 w-full rounded-lg">
+          Completed : {{ prop?.each?.completed }}
+        </span>
+    </div>
     <div class="flex flex-col pb-2">
-      <div class="my-3 flex flex-col justify-between text-gray-500">
+      <div v-if="!prop.each?.canceled_id"  class="my-3 flex flex-col justify-between text-gray-500">
         <span class="p-1 hover:bg-none text-[15px] text-start"> Change STF Status</span>
         <div class="text-lg ">
           <select class="select select-bordered w-full max-w-xs" v-model="stf_status.completed" @change="changeStatus">
@@ -41,7 +46,7 @@
       <span class="flex  py-2  items-center text-gray-900 row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/trash.png" alt="">
         Remove</span>
-      <span @click="cancelSTF"
+      <span v-if="!prop.each?.canceled_id" @click="cancelSTF"
         class="flex py-2 items-center text-red-500 font-bold text-[16px] hover:bg-gray-100 duration-300">
         <img class="mr-4 w-4 h-4" src="../../assets/icons/close.png" alt="">
         Cancel STF</span>

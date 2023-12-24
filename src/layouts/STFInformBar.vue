@@ -2,7 +2,7 @@
 <template>
     <div v-if="index_store.row_inform_condition"
         class="flex justify-end fixed right-0 top-0 w-screen h-screen z-50 border bg-opacity-80 bg-gray-300"
-        style="font-family: 'Poppins', sans-serif;">
+        style="font-family: 'Figtree', sans-serif;">
         <div class="flex flex-col w-1/2 bg-gray-100 rounded-lg">
             <div class="flex justify-end mx-5 text-xl font-bold px-2 py-1">
                 <span @click="closeInformBar" class="cursor-pointer">
@@ -10,7 +10,8 @@
                 </span>
             </div>
             <div v-if="index_store.row_detail_data" class="flex flex-col  overflow-auto">
-                <div v-if="index_store.row_detail_data[0].canceled_id" class="flex flex-col border-2 border-red-400 mx-1 p-4  text-black">
+                <!-- If STF Canceled -->
+                <div v-if="index_store.row_detail_data[0].canceled_id" class="flex flex-col bg-white mx-2 p-4  text-black">
                     <span class="text-center text-xl bg-red-400 py-2">
                         This STF Canceled
                     </span>
@@ -37,7 +38,7 @@
                     </span>
                 </div>
                 <!-- STF Information Section -->
-                <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
+                <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white" style="font-family: 'Figtree';">
                     <span class="text-header">STF Information</span>
                     <div class="flex justify-start items-center ">
                         <div class="w-64 column-header column-header">STF Num</div>
@@ -67,10 +68,15 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">STF Status</div>
-                        <div class="column-value w-6 h-6">
-                            <div v-if="index_store.row_detail_data[0]?.completed"><img src="../assets/trueicon.png" alt="">
+                        <div class="column-value w-6 h-6" style="font-family: 'Roboto';">
+                            <div v-if="index_store.row_detail_data[0]?.completed">
+                                <!-- <img src="../assets/trueicon.png" alt=""> -->
+                                <span class="text-green-500 font-bold text-lg">Waiting</span>
                             </div>
-                            <div v-else><img src="../assets/falseicon.png" alt=""> </div>
+                            <div v-else>
+                                <!-- <img src="../assets/falseicon.png" alt=""> -->
+                                <span class="text-red-500 font-bold text-lg">Waiting</span>
+                            </div>
                         </div>
                     </div>
                     <div class="flex justify-start items-center">
