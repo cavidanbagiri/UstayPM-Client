@@ -112,7 +112,6 @@ const userInform = (user) => {
 }
 
 const selectedUser = async (user) => {
-    console.log('from selected : ', user);
     if (user_store.user) {
         message_store.selected_user = user;
         await message_store.fetchMessage(user_store.user?.id, message_store.selected_user.id);
@@ -124,7 +123,18 @@ const selectedUser = async (user) => {
             await message_store.setTrueReadingMessages({current_id: user_store.user?.id, room_id: message_store.selected_user_fetch_messages[0]?.roomId});
             message_store.selected_user.count = 0;
         }
+        // Set Unread Message 0 in Selected User Side
+        for(let i of message_store.unread_messages_and_users){
+            if(message_store.selected_user.id === i.id){
+                i.count = 0;
+            }
+        }
+        // Set Unread Message read in message notification side
+        message_store.unread_messages = message_store.unread_messages.filter((item)=>{
+            return message_store.selected_user?.id !== item.id 
+        })
     }
+
 }
 
 

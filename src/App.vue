@@ -109,7 +109,7 @@ watchEffect(()=>{
       ---------------------------------------------------------- Unread Real Comin Messages
     */
     socket.on('broadcastmessage', data => {
-        if(data[data.length - 1].senderId == user_store.user?.id){
+        if(data[data.length - 1].senderId == user_store.user?.id && data[data.length - 1].receiverId != message_store.selected_user?.id ){
           message_store.fetchUnreadMessages(user_store.user?.id);
         }
     });

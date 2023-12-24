@@ -144,13 +144,12 @@ const msgTyping = () => {
 
 watchEffect(() => {
     socket.on('fetch_messages', data => {
-        console.log('fetch message work for ');
-        if (message_store.selected_user.roomid === data[0].roomId) {
+        if (message_store.selected_user?.roomid === data[0].roomId) {
             message_store.selected_user_fetch_messages = data;
         }
     });
     socket.on('typing', (room_id) => {
-        if (message_store.selected_user.roomid === room_id) {
+        if (message_store.selected_user?.roomid === room_id) {
             selected_typing.value = true;
             setTimeout(() => {
                 selected_typing.value = false;

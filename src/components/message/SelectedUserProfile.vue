@@ -102,7 +102,11 @@ const message_store = MessageStore();
 const user_store = UserStore();
 
 // Close Chat Bar
-const closeChat = () => { message_store.toggle_message = false; }
+const closeChat = () => { 
+    message_store.toggle_message = false;
+    message_store.selected_user = null;
+    console.log('message store selected user is : ', message_store.selected_user);
+}
 
 
 

@@ -65,7 +65,6 @@ const closeMessagesNotification = () => {
 }
 
 const openChatArea = async (user) => {
-    console.log('from noti : ', user);
   message_store.toggle_message = true;
   if (user_store.user) {
         message_store.selected_user = user;
@@ -86,22 +85,9 @@ const openChatArea = async (user) => {
             }
         }
         // Set Unread Message read in message notification side
-        for(let i of message_store.unread_messages_and_users){
-            if(message_store.selected_user.id === i.id){
-                i.count = 0;
-            }
-        }
-        // Set Unread Message read in message notification side
         message_store.unread_messages = message_store.unread_messages.filter((item)=>{
             return message_store.selected_user?.id !== item.id 
         })
-        // for(let i of message_store.unread_messages){
-        //     if(message_store.selected_user.id === i.id){
-        //         message_store.unread_messages = message_store.unread_messages.filter((item)=>{
-        //             return me
-        //         })
-        //     }
-        // }
         emit('closeMessagesNotification');
     }
 }
