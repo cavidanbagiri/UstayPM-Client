@@ -63,7 +63,6 @@ const MessageStore = defineStore("MessageStore", {
             )
             .then((respond) => {
               this.unread_messages_and_users = respond.data;
-              console.log('Unread Messages : ', this.unread_messages_and_users);
             });
         }
         catch(err){

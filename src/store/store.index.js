@@ -35,6 +35,7 @@ const IndexStore = defineStore("IndexStore", {
 
     // Get Row Information
     async fetchSTFRowInform(stfid) {
+      this.row_detail_data = null;
       try {
         await axios
           .get(
@@ -43,7 +44,7 @@ const IndexStore = defineStore("IndexStore", {
           `
           )
           .then((respond) => {
-            this.row_detail_data = respond.data;
+              this.row_detail_data = respond.data;
           })
           .catch((err) => {
             console.log("row detail respond Error : ", err);

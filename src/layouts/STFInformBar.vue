@@ -10,6 +10,32 @@
                 </span>
             </div>
             <div v-if="index_store.row_detail_data" class="flex flex-col  overflow-auto">
+                <div v-if="index_store.row_detail_data[0].canceled_id" class="flex flex-col border-2 border-red-400 mx-1 p-4  text-black">
+                    <span class="text-center text-xl bg-red-400 py-2">
+                        This STF Canceled
+                    </span>
+                    <br>
+                    <span class="text-left text-lg">
+                        Canceled Date
+                    </span>
+                    <span class="text-md border rounded-lg p-2 text-start">
+                        <DateFormat :time="index_store.row_detail_data[0].canceled_date"/>
+                        <!-- {{ index_store.row_detail_data[0].canceled_date }} -->
+                    </span>
+                    <span class="text-left text-lg">
+                        Canceled By
+                    </span>
+                    <span class="text-lg border rounded-lg p-2 text-center">
+                        <!-- <DateFormat :time="index_store.row_detail_data[0].canceled_by"/> -->
+                        {{ index_store.row_detail_data[0].canceled_by }}
+                    </span>
+                    <span class="text-left text-lg">
+                        Comment
+                    </span>
+                    <span class="text-md border bg-white  rounded-lg p-2">
+                        {{ index_store.row_detail_data[0].canceled_comment }}
+                    </span>
+                </div>
                 <!-- STF Information Section -->
                 <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
                     <span class="text-header">STF Information</span>
@@ -238,6 +264,9 @@
                             </div>
                         </div>
                 </template>
+            </div>
+            <div v-else class="flex justify-center items-center h-full">
+                <span class="loading loading-bars loading-lg"></span>
             </div>
         </div>
     </div>
