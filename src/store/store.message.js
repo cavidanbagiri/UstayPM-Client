@@ -93,9 +93,7 @@ const MessageStore = defineStore("MessageStore", {
         if (current_id) {
           await axios
             .get(
-              `${
-                import.meta.env.VITE_API
-              }api/common/fetchmessage/${current_id}?selected_id=${selected_id}`
+              `${import.meta.env.VITE_API}api/common/fetchmessage/${current_id}?selected_id=${selected_id}`
             )
             .then((respond) => {
               this.selected_user_fetch_messages = respond.data;
