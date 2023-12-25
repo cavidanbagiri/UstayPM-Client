@@ -56,7 +56,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
       if(projectModelId){
         try{
           await axios
-          .get(`${import.meta.env.VITE_API}/procurement/fetchsm/${projectModelId}`) 
+          .get(`${import.meta.env.VITE_API}api/procurement/fetchsm/${projectModelId}`) 
           .then((respond) => {
             this.processing_sms = respond.data;
           })
@@ -77,7 +77,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/common/filtersm${queries}
+                ${import.meta.env.VITE_API}api/common/filtersm${queries}
             `
           )
           .then((respond) => {
@@ -155,7 +155,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     async acceptWaitingSM(data) {
       try{
         await axios
-        .post(`${import.meta.env.VITE_API}/warehouse/accept`, data)
+        .post(`${import.meta.env.VITE_API}api/warehouse/accept`, data)
         .then((respond) => {
           this.accepted_sms = respond;
         })
@@ -171,7 +171,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     // Fetch Received Items and Show In Warehouse/received
     async fetchWarehouseData() {
       await axios
-        .get(`${import.meta.env.VITE_API}/warehouse`)
+        .get(`${import.meta.env.VITE_API}api/warehouse`)
         .then((respond) => {
           this.warehouse_data = respond.data;
         })
@@ -187,7 +187,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
+                ${import.meta.env.VITE_API}api/common/filterwarehouse${queries}
             `
           )
           .then((respond) => {
@@ -257,7 +257,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     // Fetch Provided Data and show in Provided Section
     async fetchProvidedData() {
       await axios
-      .get(`${import.meta.env.VITE_API}/provides`)
+      .get(`${import.meta.env.VITE_API}api/provides`)
       .then((respond) => {
         this.provides_data = respond.data;
         console.log('Get Provide Data and result is : ',this.provides_data);
@@ -276,7 +276,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/common/filterprovided${queries}
+                ${import.meta.env.VITE_API}api/common/filterprovided${queries}
             `
           )
           .then((respond) => {
@@ -331,7 +331,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     async provideSM(data) {
       try{
         await axios
-        .post(`${import.meta.env.VITE_API}/warehouse/provide`, data)
+        .post(`${import.meta.env.VITE_API}api/warehouse/provide`, data)
         .then((respond) => {
           console.log('provide respond : ',respond );
         })
@@ -347,7 +347,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     // Fetch Departments
     async fetchDepartments (){
       try{
-        await axios.get(`${import.meta.env.VITE_API}/common/fetchdepartments`)
+        await axios.get(`${import.meta.env.VITE_API}api/common/fetchdepartments`)
         .then((respond)=>{
           this.departments = respond.data;
         }).catch((err)=>{
@@ -363,7 +363,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     async getCompaniesNames() {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/common/fetchcompanies`)
+        .get(`${import.meta.env.VITE_API}api/common/fetchcompanies`)
         .then((respond) => {
           this.companies_names = respond.data;
         })
@@ -380,7 +380,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     async fetchSTFCreateUsernames() {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/common/createdstfusers`)
+        .get(`${import.meta.env.VITE_API}api/common/createdstfusers`)
         .then((respond) => {
           this.created_stf_username = respond.data;
         })

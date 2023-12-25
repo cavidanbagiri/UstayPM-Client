@@ -40,7 +40,7 @@ const IndexStore = defineStore("IndexStore", {
         await axios
           .get(
             `
-            ${import.meta.env.VITE_API}/common/fetchstfrowinform/${stfid}
+            ${import.meta.env.VITE_API}api/common/fetchstfrowinform/${stfid}
           `
           )
           .then((respond) => {
@@ -59,7 +59,7 @@ const IndexStore = defineStore("IndexStore", {
       if (user_id) {
         try {
           await axios
-            .get(`${import.meta.env.VITE_API}/common/statisticdata/${user_id}`)
+            .get(`${import.meta.env.VITE_API}api/common/statisticdata/${user_id}`)
             .then((respond) => {
               this.statistic_data = respond.data;
             })
@@ -78,7 +78,7 @@ const IndexStore = defineStore("IndexStore", {
         try {
           await axios
             .post(
-              `${import.meta.env.VITE_API}/common/readnotification/${user_id}`
+              `${import.meta.env.VITE_API}api/common/readnotification/${user_id}`
             )
             .then((respond) => {});
         } catch (err) {
@@ -91,7 +91,7 @@ const IndexStore = defineStore("IndexStore", {
     async setStfStatus(status){
         if(status.user){
           try{
-            await axios.post(`${import.meta.env.VITE_API}/common/changestatus`,status)
+            await axios.post(`${import.meta.env.VITE_API}api/common/changestatus`,status)
             .then((respond)=>{
               console.log('Change Status from axios : ', respond);
             })
@@ -106,7 +106,7 @@ const IndexStore = defineStore("IndexStore", {
     async cancelSTF(data){
       if(data.user_id){
         try{
-          await axios.post(`${import.meta.env.VITE_API}/common/cancelstf`, data)
+          await axios.post(`${import.meta.env.VITE_API}api/common/cancelstf`, data)
           .then((respond)=>{
             console.log('stf canceled successfully executed');
           })

@@ -72,7 +72,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     async createSM(orders) {
       try {
         await axios
-          .post(`${import.meta.env.VITE_API}/procurement/createsm`, orders)
+          .post(`${import.meta.env.VITE_API}api/procurement/createsm`, orders)
           .then((respond) => {
             return respond;
           });
@@ -83,10 +83,10 @@ const ProcurementStore = defineStore("ProcurementStore",{
 
     // Fetch All STF
     async fetchSTF(){
-      // await axios.get(`${import.meta.env.VITE_API}/procurement/allstf`)
+      // await axios.get(`${import.meta.env.VITE_API}api/procurement/allstf`)
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/procurement/fetchstf`)
+        .get(`${import.meta.env.VITE_API}api/procurement/fetchstf`)
         .then((respond) => {
           this.all_stf = respond.data;
         })
@@ -105,7 +105,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
       try {
         await axios
           .get(
-            `${import.meta.env.VITE_API}/common/filterstf${queries}`
+            `${import.meta.env.VITE_API}api/common/filterstf${queries}`
           )
           .then((respond) => {
             this.all_stf = respond.data;
@@ -181,7 +181,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
      if(projectId){
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/procurement/fetchsm/${projectId}`)
+        .get(`${import.meta.env.VITE_API}api/procurement/fetchsm/${projectId}`)
         .then((respond) => {
           this.all_sms = respond.data;
         })
@@ -202,7 +202,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/common/filtersm${queries}
+                ${import.meta.env.VITE_API}api/common/filtersm${queries}
             `
           )
           .then((respond) => {
@@ -280,7 +280,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     async getCompaniesNames() {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/common/fetchcompanies`)
+        .get(`${import.meta.env.VITE_API}api/common/fetchcompanies`)
         .then((respond) => {
           this.companies_names = respond.data;
           this.filtered_vendor_names = respond.data;
@@ -303,7 +303,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
           await axios
             .get(
               `
-                  ${import.meta.env.VITE_API}/common/filtervendornames?selected_text=${selected_text}
+                  ${import.meta.env.VITE_API}api/common/filtervendornames?selected_text=${selected_text}
               `
             )
             .then((respond) => {
@@ -322,7 +322,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     async getProcurementUsersNames() {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/common/procurementusers`)
+        .get(`${import.meta.env.VITE_API}api/common/procurementusers`)
         .then((respond) => {
           this.procurement_users_names = respond.data;
         })
@@ -339,7 +339,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
     async fetchSTFCreateUsernames() {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}/common/createdstfusers`)
+        .get(`${import.meta.env.VITE_API}api/common/createdstfusers`)
         .then((respond) => {
           this.created_stf_username = respond.data;
         })
@@ -355,8 +355,8 @@ const ProcurementStore = defineStore("ProcurementStore",{
     // Fetch Warehouse Data
     async fetchWarehouseData() {
         try{
-          // await axios.get(`${import.meta.env.VITE_API}/procurement/warehouse`)
-          await axios.get(`${import.meta.env.VITE_API}/warehouse`)
+          // await axios.get(`${import.meta.env.VITE_API}api/procurement/warehouse`)
+          await axios.get(`${import.meta.env.VITE_API}api/warehouse`)
           .then((respond)=>{
             this.warehouse_data = respond.data;
           })
@@ -430,7 +430,7 @@ const ProcurementStore = defineStore("ProcurementStore",{
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
+                ${import.meta.env.VITE_API}api/common/filterwarehouse${queries}
             `
           )
           .then((respond) => {

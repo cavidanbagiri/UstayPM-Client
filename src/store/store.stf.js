@@ -48,7 +48,7 @@ const STFStore = defineStore("STFStore", {
     async createSTF(data) {
       try {
         await axios
-          .post(`${import.meta.env.VITE_API}/stf/createstf`, data)
+          .post(`${import.meta.env.VITE_API}api/stf/createstf`, data)
           .then((respond) => {
             return respond;
           });
@@ -62,9 +62,9 @@ const STFStore = defineStore("STFStore", {
       this.all_stf_loading = true;
       if (user?.id) {
         try {
-          // await axios.get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
+          // await axios.get(`${import.meta.env.VITE_API}api/stf/getuserstfall/${user.id}`)
           await axios
-            .get(`${import.meta.env.VITE_API}/stf/getuserstfall/${user.id}`)
+            .get(`${import.meta.env.VITE_API}api/stf/getuserstfall/${user.id}`)
             .then((respond) => {
               if(respond.data.length !== 0){
                 this.all_stf = respond.data;
@@ -93,8 +93,8 @@ const STFStore = defineStore("STFStore", {
       try {
         await axios
         .get(
-          // `${import.meta.env.VITE_API}/stf/filter${queries}`
-          `${import.meta.env.VITE_API}/common/filterstf${queries}`
+          // `${import.meta.env.VITE_API}api/stf/filter${queries}`
+          `${import.meta.env.VITE_API}api/common/filterstf${queries}`
           )
           .then((respond) => {
             if(respond.data.length !== 0){
@@ -178,7 +178,7 @@ const STFStore = defineStore("STFStore", {
         try {
           await axios
             .get(
-              `${import.meta.env.VITE_API}/common/fetchfields/${ProjectModelId}`
+              `${import.meta.env.VITE_API}api/common/fetchfields/${ProjectModelId}`
             )
             .then((respond) => {
               this.fields = respond.data;
@@ -198,7 +198,7 @@ const STFStore = defineStore("STFStore", {
         this.warehouse_data_loading = true;
         try {
           await axios
-            .get(`${import.meta.env.VITE_API}/stf/warehouse/${user.id}`)
+            .get(`${import.meta.env.VITE_API}api/stf/warehouse/${user.id}`)
             .then((respond) => {
               if(respond.data?.length!==0){
                 this.warehouse_data = respond.data;
@@ -227,7 +227,7 @@ const STFStore = defineStore("STFStore", {
         await axios
           .get(
             `
-                ${import.meta.env.VITE_API}/common/filterwarehouse${queries}
+                ${import.meta.env.VITE_API}api/common/filterwarehouse${queries}
             `
           )
           .then((respond) => {
@@ -307,7 +307,7 @@ const STFStore = defineStore("STFStore", {
     // Fetch Provided Data and show in Provided Section
     async fetchProvidedData(user) {
       await axios
-      .get(`${import.meta.env.VITE_API}/stf/provided/${user.departmentId}`)
+      .get(`${import.meta.env.VITE_API}api/stf/provided/${user.departmentId}`)
       .then((respond) => {
         if(respond.data?.length!==0){
           this.provides_data = respond.data;
@@ -329,7 +329,7 @@ const STFStore = defineStore("STFStore", {
       try {
         await axios
           .get(
-            `${import.meta.env.VITE_API}/common/filterprovided${queries}`
+            `${import.meta.env.VITE_API}api/common/filterprovided${queries}`
           )
           .then((respond) => {
             if(respond.data?.length!==0){

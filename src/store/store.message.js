@@ -26,7 +26,7 @@ const MessageStore = defineStore("MessageStore", {
     // async fetchUsers() {
     //   try {
     //     await axios
-    //       .get(`${import.meta.env.VITE_API}/common/fetchallusers`)
+    //       .get(`${import.meta.env.VITE_API}api/common/fetchallusers`)
     //       .then((respond) => {
     //         this.users = respond.data;
     //       });
@@ -41,7 +41,7 @@ const MessageStore = defineStore("MessageStore", {
         try{
           await axios
             .get(
-              `${import.meta.env.VITE_API}/common/fetchunreadmessages/${user_id}`,
+              `${import.meta.env.VITE_API}api/common/fetchunreadmessages/${user_id}`,
             )
             .then((respond) => {
               this.unread_messages = respond.data;
@@ -59,7 +59,7 @@ const MessageStore = defineStore("MessageStore", {
         try{
           await axios
             .get(
-              `${import.meta.env.VITE_API}/common/fetchunreadmessagesandusers/${user_id}`,
+              `${import.meta.env.VITE_API}api/common/fetchunreadmessagesandusers/${user_id}`,
             )
             .then((respond) => {
               this.unread_messages_and_users = respond.data;
@@ -77,7 +77,7 @@ const MessageStore = defineStore("MessageStore", {
       if(obj.current_id){
         try{
           await axios.post(
-            `${import.meta.env.VITE_API}/common/settruemessages`, obj
+            `${import.meta.env.VITE_API}api/common/settruemessages`, obj
           )
         }
         catch(err){
@@ -113,7 +113,7 @@ const MessageStore = defineStore("MessageStore", {
         if (message_data.current_id) {
           await axios
             .post(
-              `${import.meta.env.VITE_API}/common/sendmessage`,
+              `${import.meta.env.VITE_API}api/common/sendmessage`,
               message_data
             )
             .then((respond) => {});
