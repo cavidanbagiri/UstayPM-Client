@@ -95,7 +95,7 @@ const MessageStore = defineStore("MessageStore", {
             .get(
               `${
                 import.meta.env.VITE_API
-              }/common/fetchmessage/${current_id}?selected_id=${selected_id}`
+              }api/common/fetchmessage/${current_id}?selected_id=${selected_id}`
             )
             .then((respond) => {
               this.selected_user_fetch_messages = respond.data;
