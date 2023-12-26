@@ -29,6 +29,9 @@
     </div>
 
   </div>
+
+  <Show_STF_Selecting_Task/>
+
 </template>
 
 <script setup>
@@ -43,6 +46,7 @@ import TableHeader from '../../../layouts/TableHeader.vue';
 import Provided_Table_Body from './Provided_Table_Body.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';
 import WarehouseStore from '../../../store/store.warehouse';
+import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
 const warehouse_store = WarehouseStore();
 
 

@@ -12,16 +12,16 @@ import WarehouseStore from '../../../store/store.warehouse';
 const warehouse_store = WarehouseStore();
 
 const addChecked = (item) => {
-  warehouse_store.warehouse_data_checked_values.push(item);
-  console.log('item ius : ', warehouse_store.warehouse_data_checked_values);
+  warehouse_store.return_checked_values.push(item);
+  console.log('return item ius : ', warehouse_store.return_checked_values);
 }
 
 // Remove Operation FIx Needed
 const removeChecked = (selected_item) => {
-  warehouse_store.warehouse_data_checked_values = warehouse_store.warehouse_data_checked_values.filter((each) => each.sm_id !== selected_item.sm_id)
-  for(let i=0; i<warehouse_store.warehouse_data_checked_values.length; i ++){
-      if(warehouse_store.warehouse_data_checked_values[i].sm_id===selected_item.sm_id){
-          warehouse_store.warehouse_data_checked_values.splice(i,1);
+  warehouse_store.return_checked_values = warehouse_store.return_checked_values.filter((each) => each.sm_id !== selected_item.sm_id)
+  for(let i=0; i<warehouse_store.return_checked_values.length; i ++){
+      if(warehouse_store.return_checked_values[i].sm_id===selected_item.sm_id){
+          warehouse_store.return_checked_values.splice(i,1);
       }
   }
 }

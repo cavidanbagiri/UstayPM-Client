@@ -1,6 +1,6 @@
 <template>
-    <div v-if="warehouse_store.return_checked_values?.length >= 1" class="mtf-anim fixed w-full bottom-10 flex flex-col mb-4 items-center rounded-lg">
-        <div class="flex justify-between bg-white w-1/2 border rounded-md shadow-2xl">
+    <div v-if="warehouse_store.return_checked_values.length >= 1" class="mtf-anim fixed left-1/4 bottom-10 flex flex-row mb-4 justify-center rounded-lg w-1/2">
+        <div class="flex justify-between bg-white w-full border rounded-md shadow-2xl">
             <div class="flex items-center">
                 <span class="bg-blue-600 py-4 px-6 text-white font-bold rounded-l-md text-3xl">{{ warehouse_store.return_checked_values.length
                 }}</span>
@@ -18,10 +18,9 @@
                 <!-- <button v-font-family class="flex flex-col items-center mx-3 cursor-pointer p-1 hover:bg-gray-100 "> <i
                         class="fa-regular fa-file-zipper"></i> <span class="text-xs">Add Archieve</span></button> -->
                 <!-- Create SM -->        
-                <button @click="provideSM()" :disabled="warehouse_store.toggle_received_sm"
-                    :class="warehouse_store.toggle_received_sm ? 'text-gray-400 hover:bg-white cursor-default ' : ''"
+                <button @click="returnMaterial()"
                     class="flex flex-col items-center mx-3 cursor-pointer p-1 hover:bg-gray-100 "> <i
-                        class="fa-regular fa-handshake"></i> <span class="text-xs">Provide SM</span></button>
+                        class="fa-regular fa-handshake"></i> <span class="text-xs">Return</span></button>
                 <!-- Set Star -->        
                 <button class="flex flex-col items-center mx-3 cursor-pointer p-1 hover:bg-gray-100 "> <i
                         class="fa-regular fa-star"></i> <span class="text-xs">Set Star</span></button>
@@ -33,10 +32,10 @@
 
 <script setup>
 
-import { reactive } from 'vue';
+import { ref, watchEffect, reactive } from 'vue';
+import Toast from '../../design/Toast.vue';
 import WarehouseStore from '../../../store/store.warehouse';
 import UserStore from '../../../store/store.user_store';
-import Toast from '../../design/Toast.vue';
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();
 
@@ -45,20 +44,21 @@ const showToastval = reactive({
     messages: ''
 })
 
-const provideSM = async () => {
+
+const returnMaterial = async () => {
+    console.log('retur material is : ', warehouse_store.return_checked_values);
     if(user_store.user){
         if(user_store.user.departmentId !== 3) {
             // ... Only Procurement Users can create a new sms
             showToastval.cond = true;
-            showToastval.messages = "You dont have authority for providing data";
+            showToastval.messages = "You dont have authority for Accepting SM";
             setTimeout(()=>{
                 showToastval.cond = false
             },1000)
         }
-        else{
-            warehouse_store.tab_num = 3;
+        else{                                               
         }
-    }
+    }                                                          
     else{
         // ... User Not Login Error Return
         showToastval.cond = true;
@@ -67,11 +67,8 @@ const provideSM = async () => {
 }
 
 const unselect = () => {
-    warehouse_store.after_provide = true
     warehouse_store.return_checked_values = warehouse_store.return_checked_values.filter((item) => item.id === -1)
-    setTimeout(() => {
-        warehouse_store.after_provide = false;
-    }, 1000)
+    console.log('warehouse return checked values : ', warehouse_store.return_checked_values);
 }
 
 </script>

@@ -20,7 +20,7 @@
         <!-- <Accept_Received_Data_Message /> -->
 
         <!-- Accept Button -->
-        <button v-show="btn_toggle" @click="provideSM" v-if="warehouse_store.warehouse_data_checked_values?.length"
+        <button v-show="btn_toggle" @click="provideSM" v-if="warehouse_store.return_checked_values?.length"
             :disabled="!warehouse_store.warehouse_data_stock_cond"
             class="p-2 px-3 text-white font-weight rounded-lg my-1"
             :class="warehouse_store.warehouse_data_stock_cond ? 'bg-red-600 cursor-pointer' : 'bg-red-200 cursor-default' "
@@ -105,7 +105,7 @@ const provideSM = async () => {
                 warehouse_store.after_provide = true;
                 setTimeout(()=>{
                     btn_toggle.value = true;
-                    warehouse_store.warehouse_data_checked_values = warehouse_store.warehouse_data_checked_values.filter((item) => item.id === -1);
+                    warehouse_store.return_checked_values = warehouse_store.return_checked_values.filter((item) => item.id === -1);
                     warehouse_store.tab_num=1;
                 },1000)
                 setTimeout(()=>{

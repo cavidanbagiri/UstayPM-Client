@@ -12,6 +12,9 @@ const WarehouseStore = defineStore("WarehouseStore", {
     processing_sms: [],
     processing_sm_headers: [],
     processing_checked_values: [],
+    // For Returning Material To Warehouse
+    return_checked_values: [],
+    
     toggle_accept_sm: false,
     /*
     If All Of The Rows entering values is true, this will be true and function will work
@@ -31,7 +34,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     provided_data_headers: [],
 
     // Select Warehouse Items and Send Provide Page For Provide Area 
-    warehouse_data_checked_values: [],
+    return_checked_values: [],
     // Warehouse Data Check Provide amount and stock is true
     warehouse_data_stock_cond: true,
 
