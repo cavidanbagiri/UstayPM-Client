@@ -52,6 +52,9 @@
       <div v-else-if="i.name === 'material_type'" class="text-start w-24">
           <span>{{ prop.each[i.name] }}</span>
       </div>
+      <div v-else-if="i.name === 'type_name'" class="text-center w-24">
+          <span>{{ prop.each[i.name] }}</span>
+      </div>
       <div v-else-if="i.name === 'material_name' || i.name === 'sm_material_name' || i.name === 'delivery_material_name' " class="text-start min-w-[600px] ">
           <span class="">{{ prop.each[i.name] }}</span>
       </div>

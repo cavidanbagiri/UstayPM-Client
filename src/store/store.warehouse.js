@@ -297,7 +297,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     async getProvidedDataHeaders() {
       if (this.provides_data?.length) {
         for (let [key, value] of Object.entries(this.provides_data[0])) {
-          if (key !== "id") {
+          if (key !== "id" && key.slice(-2) !== "id" ) {
             let header_cond = {};
             let val = key.charAt(0).toUpperCase() + key.slice(1);
             val = val.split("_").join(" ");
@@ -307,6 +307,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
               key === "material_name" ||
               key === "amount" ||
               key === "unit" ||
+              key === "type_name" ||
               key === "serial_no" ||
               key === "unique_id" ||
               key === "deliver_to" || 

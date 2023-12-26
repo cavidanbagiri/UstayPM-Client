@@ -17,7 +17,17 @@
                         <option>Fixture</option>
                     </select>
                 </div>
-                
+                <!-- Search With Delivery Type-->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Delivery Type</span>
+                    <select v-model="filtered_objects.delivery_type"
+                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
+                        <option>All</option>
+                        <option value="1" >Temporary</option>
+                        <option value="2" >Debit</option>
+                        <option value="3" >Daily Debit</option>
+                    </select>
+                </div>
                 <!-- Search With SM -->
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search SM</span>
@@ -171,6 +181,7 @@ const filtered_objects = reactive({
     sm_material_name: '',
     sm_num: '',
     material_type: '',
+    delivery_type: '',
     providing_type: '',
     serial_no: '',
     unique_id: '',
