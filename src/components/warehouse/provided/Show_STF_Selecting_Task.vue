@@ -26,49 +26,52 @@
                         class="fa-regular fa-star"></i> <span class="text-xs">Set Star</span></button>
             </div>
         </div>
-        <Toast :cond = showToastval.cond :messages=showToastval.messages />
+        <Toast :cond="toast_condition.cond" :messages="toast_condition.message" />
     </div>
 </template>
 
 <script setup>
 
-import { ref, watchEffect, reactive } from 'vue';
+import { reactive } from 'vue';
 import Toast from '../../design/Toast.vue';
 import WarehouseStore from '../../../store/store.warehouse';
 import UserStore from '../../../store/store.user_store';
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();
 
-const showToastval = reactive({
+
+// Toast Condition
+const toast_condition = reactive({
     cond: false,
-    messages: ''
+    message: ''
 })
 
-
 const returnMaterial = async () => {
-    console.log('retur material is : ', warehouse_store.return_checked_values);
-    if(user_store.user){
-        if(user_store.user.departmentId !== 3) {
-            // ... Only Procurement Users can create a new sms
-            showToastval.cond = true;
-            showToastval.messages = "You dont have authority for Accepting SM";
-            setTimeout(()=>{
-                showToastval.cond = false
-            },1000)
-        }
-        else{                                               
-        }
-    }                                                          
-    else{
-        // ... User Not Login Error Return
-        showToastval.cond = true;
-        showToastval.messages = "User Not Login";
+    if (user_store.user && user_store.user.departmentId === 3) {
+        await warehouse_store.returnMaterial(user_store.user.id)
+            .then((respond) => {
+                toast_condition.cond = true;
+                toast_condition.message = 'Material Successfully Returned';
+                setTimeout(() => {
+                    toast_condition.cond = false;
+                }, 1000)
+            })
+            .catch((err) => {
+                console.log('return material from provide to warehouse error : ', err);
+            })
+    }
+    else {
+        // Import Show Toast and show Message Inside Of That Toast
+        toast_condition.cond = true;
+        toast_condition.message = 'Material Cant Returned';
+        setTimeout(() => {
+            toast_condition.cond = false;
+        }, 1000)
     }
 }
 
 const unselect = () => {
     warehouse_store.return_checked_values = warehouse_store.return_checked_values.filter((item) => item.id === -1)
-    console.log('warehouse return checked values : ', warehouse_store.return_checked_values);
 }
 
 </script>

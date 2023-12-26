@@ -28,12 +28,19 @@
           </select>
         </div>
       </div>
+
+      <!-- Return Material To Warehouse -->
+      <slot name="return_material"></slot>
+
+      <!-- Get STF Information -->
       <span @click="getSTFInform" class="flex items-center py-2 text-gray-900 row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/information.png" alt="">
         STF Information</span>
+      <!-- Get SM Information -->
       <span @click="getSTFInform" class="flex py-2 items-center text-gray-900 row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/info.png" alt="">
         SM Information</span>
+      <!-- Set Hide -->
       <span class="flex py-2  items-center text-gray-900 row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/hide.png" alt="">
         Set Hide</span>
@@ -144,7 +151,7 @@ const changeStatus = async () => {
 
 <style scoped>
 .row_item {
-  font-family: 'Figtree', sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-size: 17px;
 }

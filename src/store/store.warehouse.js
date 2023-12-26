@@ -284,6 +284,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
           )
           .then((respond) => {
             this.provides_data = respond.data;
+            console.log('provided data : ', this.provides_data);
           })
           .catch((err) => {
             console.log("Error Is : ", err);
@@ -409,6 +410,29 @@ const WarehouseStore = defineStore("WarehouseStore", {
       catch(err){
         console.log('Fetch Departments Error : ',err);
       }
+    },
+
+    // Return Material From Provided To Warehouse
+    async returnMaterial (user_id) {
+      const data = {
+        user : user_id,
+        materials : this.return_checked_values
+      }
+      try{
+        await axios.post(`${import.meta.env.VITE_API}api/warehouse/return`, data)
+        .then((respond)=>{
+          console.log('materials returned : ', respond);  
+          this.return_checked_values = [];
+          console.log('now checked values : ', this.return_checked_values);
+        })
+        .catch((err)=>{
+            console.log('return material from provide to warehouse error : ', err);
+        })
+      }
+      catch(err){
+        console.log('return material from provide to warehouse error : ', err);
+      }
+
     },
 
     // Create URL query from table filter watcher             
