@@ -274,7 +274,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
     // Get Filtered Data For User STF
     async getFilteredDataProvided(filtered_object) {
       const queries = this.createUrlQuery(filtered_object);
-      console.log('store is working');
       try {
         await axios
           .get(
@@ -284,7 +283,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
           )
           .then((respond) => {
             this.provides_data = respond.data;
-            console.log('provided data : ', this.provides_data);
           })
           .catch((err) => {
             console.log("Error Is : ", err);

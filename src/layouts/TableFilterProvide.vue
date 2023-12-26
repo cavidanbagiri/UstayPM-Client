@@ -6,22 +6,6 @@
         <div class="relative flex flex-row items-center justify-between filter_headers">
             <!-- Common Filter Keys -->
             <div class="flex flex-row start">
-                <!-- Date Order -->
-                <div class="flex flex-col my-1 mr-3" style="font-size: x-small;">
-                    <span class="m-1">Date Order</span>
-                    <select
-                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
-                        v-model="filtered_objects.date_order">
-                        <option value="Descending">Descendig</option>
-                        <option>Ascending</option>
-                    </select>
-                </div>
-                <!-- Search With Date -->
-                <div class="flex flex-col m-1">
-                    <span class="m-1">Search Date</span>
-                    <input class="border outline-none rounded-md border-gray-300 p-2" type="date" name="" id=""
-                        placeholder="Date" v-model="filtered_objects.createdAt" />
-                </div>
                 <!-- Search With Material Type-->
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search Type</span>
@@ -33,24 +17,7 @@
                         <option>Fixture</option>
                     </select>
                 </div>
-                <!-- Search With STF -->
-                <div class="flex flex-col m-1">
-                    <span class="m-1">Search STF</span>
-                    <label for="search"
-                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                    <div class="relative">
-                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                            <svg aria-hidden="true" class="w-4 h-4 text-gray-500 " fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                            </svg>
-                        </div>
-                        <input type="text" id="search"
-                            class="block w-full p-2 pl-10 outline-none text-gray-900 border border-blue-300 rounded-lg  hover:border-blue-600  shadow-lg"
-                            placeholder="STF..." v-model="filtered_objects.stf_num">
-                    </div>
-                </div>
+                
                 <!-- Search With SM -->
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search SM</span>
@@ -69,74 +36,77 @@
                             placeholder="SM..." v-model="filtered_objects.sm_num">
                     </div>
                 </div>
-                <!-- Search Vendor Name -->
-                <!-- <div class="flex flex-col m-1">
-                    <span class="m-1">Search Vendor Name</span>
-                    <select v-model="filtered_objects.vendor_name"
-                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
-                        >
-                        <option v-for="i in procurement_store.companies_names" class="text-lg" 
-                        :value="i.company_id"
-                        style="font-family: 'Poppins', sans-serif;">
-                          {{ i.vendor_name }}
-                        </option>
-                    </select>
-                </div> -->
-                <!-- Vendor Name -->
-                <div class="flex flex-col m-1 relative  justify-start items-start">
-                    <span class="m-1">Search Vendor Name</span>
-                    <div class="p-0 flex items-start">
-                        <button class="border border-blue-300 py-2  rounded-lg text-sm px-3" @click="show = !show">
-                            Select Vendor
-                        </button>
-                    </div>
-                    <Transition name="show">
-                        <div v-if="show"
-                            class="flex flex-col bg-white border rounded-xl shadow-2xl absolute top-10 right-10 p-0 min-w-[700px] max-h-[600px] overflow-auto">
-                            <!-- Title Section -->
-                            <div class="sticky top-0 bg-white p-2 height-[30px]">
-                                <div class="flex justify-between text-gray-600">
-                                    <span class="font-bold text-2xl"
-                                        style="font-family: 'Poppins', sans-serif ;">Companies</span>
-                                    <button @click=closeComp
-                                        class="font-bold text-lg hover:bg-gray-100 py-1 px-2 rounded-md">
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- Search Company Name Section -->
-                            <div class=" sticky top-[36px] p-2 bg-white">
-                                <input class="border-2 border-indigo-600 my-2 w-full p-2 rounded-lg text-sm outline-none "
-                                    type="text" name="" id="" placeholder="Company Name..." style="">
-                            </div>
-                            <!-- Companies Names Section -->
-                            <ul class="">
-                                <li style="font-family:'Poppins', sans-serif;" 
-                                    class="m-1 p-1 px-2 hover:bg-gray-100  cursor-pointer rounded-md ">
-                                    <span @click="selectedComp('All')" style="font-family:'Poppins', sans-serif;">
-                                        All
-                                    </span>
-                                </li>
-                                <li v-for="i in warehouse_store.companies_names" @click="selectedComp(i)"
-                                    style="font-family:'Poppins', sans-serif;"
-                                    class="m-1 p-1 px-2 hover:bg-gray-100  cursor-pointer rounded-md ">
-                                    {{ i.vendor_name }}
-                                </li>
-                            </ul>
-                        </div>
-                    </Transition>
-                </div>
                 <!-- Search With Username -->
                 <div class="flex flex-col m-1">
-                    <span class="m-1">Search Username</span>
-                    <select v-model="filtered_objects.usernames"
-                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
-                        <option value="All" style="font-family:'Poppins', sans-serif;" class="text-lg" >All</option>
-                        <option v-for="i in warehouse_store.created_stf_username" class="text-lg" :value="i.id"
-                            style="font-family: 'Poppins', sans-serif;">
-                            {{ i.ordered_name }}
-                        </option>
-                    </select>
+                    <span class="m-1">Name and Surname</span>
+                    <label for="search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-4 h-4 text-gray-500 " fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="search"
+                            class="block w-full p-2 pl-10 outline-none text-gray-900 border border-blue-300 rounded-lg  hover:border-blue-600  shadow-lg"
+                            placeholder="Name Surname" v-model="filtered_objects.deliver_to">
+                    </div>
+                </div>
+                <!-- Search With Card Number -->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Card Number</span>
+                    <label for="search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-4 h-4 text-gray-500 " fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="search"
+                            class="block w-full p-2 pl-10 outline-none text-gray-900 border border-blue-300 rounded-lg  hover:border-blue-600  shadow-lg"
+                            placeholder="Name Surname" v-model="filtered_objects.card_number">
+                    </div>
+                </div>
+                <!-- Search With Serial No -->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Serial No</span>
+                    <label for="search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-4 h-4 text-gray-500 " fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="search"
+                            class="block w-full p-2 pl-10 outline-none text-gray-900 border border-blue-300 rounded-lg  hover:border-blue-600  shadow-lg"
+                            placeholder="SN/123..." v-model="filtered_objects.serial_no">
+                    </div>
+                </div>
+                <!-- Search With Serial No -->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Unique Id</span>
+                    <label for="search"
+                        class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                            <svg aria-hidden="true" class="w-4 h-4 text-gray-500 " fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </div>
+                        <input type="text" id="search"
+                            class="block w-full p-2 pl-10 outline-none text-gray-900 border border-blue-300 rounded-lg  hover:border-blue-600  shadow-lg"
+                            placeholder="KM-18" v-model="filtered_objects.unique_id">
+                    </div>
                 </div>
             </div>
             <div class="flex flex-row justify-end">
@@ -198,14 +168,14 @@ const selectedComp = (val) => {
 
 // Create Filtered Object
 const filtered_objects = reactive({
-    createdAt: '',
     sm_material_name: '',
-    vendor_name: '',
-    usernames: '',
-    stf_num: '',
     sm_num: '',
     material_type: '',
-    date_order: '',
+    providing_type: '',
+    serial_no: '',
+    unique_id: '',
+    deliver_to: '',
+    card_number: '',
 })
 
 watchEffect(() => {
