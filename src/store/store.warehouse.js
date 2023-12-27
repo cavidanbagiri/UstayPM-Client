@@ -415,6 +415,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
 
     // Return Material From Provided To Warehouse
     async returnMaterial (user_id) {
+      console.log('user id : ', user_id);
       const data = {
         user : user_id,
         materials : this.return_checked_values
@@ -422,7 +423,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
       try{
         await axios.post(`${import.meta.env.VITE_API}api/warehouse/return`, data)
         .then((respond)=>{
-          console.log('materials returned : ', respond);  
           this.return_checked_values = [];
           console.log('now checked values : ', this.return_checked_values);
         })

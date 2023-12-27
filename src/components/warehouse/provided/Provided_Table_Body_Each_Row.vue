@@ -69,7 +69,7 @@
 
         <TableRow :each="prop?.each" :table_headers="warehouse_store.provided_data_headers" />
 
-        <Toast :cond="toast_condition.cond" :messages="toast_condition.message" />
+        <UpdateProvidedMaterial :cond="toggle_update_provide_material" :each="prop?.each" @closeProvidedUpdateComp="closeProvidedUpdateComp" />
 
     </tr>
 </template>
@@ -77,15 +77,15 @@
 <script setup>
 
 import { ref, watchEffect, reactive } from 'vue';
-import Toast from '../../design/Toast.vue';
 import TableRow from '../../../layouts/TableRow.vue';
 import TableRowInform from '../../../layouts/TableRowInform.vue'
+import UpdateProvidedMaterial from './UpdateProvidedMaterial.vue';
 
 import WarehouseStore from '../../../store/store.warehouse';
-import UserStore from '../../../store/store.user_store';
+// import UserStore from '../../../store/store.user_store';
 
 const warehouse_store = WarehouseStore();
-const user_store = UserStore();
+// const user_store = UserStore();
 
 // Get Each Item from parent
 const prop = defineProps(['each', 'index']);
@@ -93,41 +93,44 @@ const prop = defineProps(['each', 'index']);
 // Create an Emit for clicking checkbox
 const emit = defineEmits(['addChecked', 'removeChecked']);
 
+// Toggle Update Return Component
+const toggle_update_provide_material = ref(false);
+const closeProvidedUpdateComp = () => {
+    toggle_update_provide_material.value = false;
+}
 
 //  Row Selected
 const checked = ref(false);
 const checkboxCond = () => checked.value === true ? emit('addChecked', prop?.each) : emit('removeChecked', prop?.each);
 
-// Toast Condition
-const toast_condition = reactive({
-    cond: false,
-    message: ''
-})
 
 // Return material from provided to warehouse
 const returnMaterial = async () => {
-    if (user_store.user && user_store.user.departmentId === 3) {
-        warehouse_store.return_checked_values.push(prop.each);
-        await warehouse_store.returnMaterial(user_store.user.id)
-            .then((respond) => {
-                toast_condition.cond = true;
-                toast_condition.message = 'Material Successfully Returned';
-                setTimeout(() => {
-                    toast_condition.cond = false;
-                }, 1000)
-            })
-            .catch((err) => {
-                console.log('return material from provide to warehouse error : ', err);
-            })
-    }
-    else {
-        // Import Show Toast and show Message Inside Of That Toast
-        toast_condition.cond = true;
-        toast_condition.message = 'Material Cant Returned';
-        setTimeout(() => {
-            toast_condition.cond = false;
-        }, 1000)
-    }
+
+    toggle_update_provide_material.value = true;
+
+    // if (user_store.user && user_store.user.departmentId === 3) {
+    //     warehouse_store.return_checked_values.push(prop.each);
+    //     await warehouse_store.returnMaterial(user_store.user.id)
+    //         .then((respond) => {
+    //             toast_condition.cond = true;
+    //             toast_condition.message = 'Material Successfully Returned';
+    //             setTimeout(() => {
+    //                 toast_condition.cond = false;
+    //             }, 1000)
+    //         })
+    //         .catch((err) => {
+    //             console.log('return material from provide to warehouse error : ', err);
+    //         })
+    // }
+    // else {
+    //     // Import Show Toast and show Message Inside Of That Toast
+    //     toast_condition.cond = true;
+    //     toast_condition.message = 'Material Cant Returned';
+    //     setTimeout(() => {
+    //         toast_condition.cond = false;
+    //     }, 1000)
+    // }
 
 }
 

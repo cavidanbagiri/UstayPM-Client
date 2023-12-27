@@ -39,7 +39,6 @@
                     </span>
                 </div>
 
-
                 <!-- STF Information Section -->
                 <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white" style="font-family: 'Figtree';">
                     <span class="text-header">STF Information</span>
@@ -114,7 +113,7 @@
                     </div>
                 </div>
 
-                <!-- Sm Information Section -->
+                <!-- SM Information Section -->
                 <template v-for="i in index_store?.row_detail_data?.sm_result">
                     <div class="flex flex-col  p-2 m-2 rounded-sm shadow-md my-3 bg-white">
                         <span class="text-header ">SM Information</span>
@@ -179,7 +178,7 @@
                                     <div class="flex flex-col">
                                         <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
                                             class=" pl-2 text-gray-600 ">
-                                            {{ i?.UserModel?.supplier_name }}
+                                            {{ i?.UserModel?.name }} {{ i?.UserModel?.surname }}
                                         </span>
                                         <span style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;"
                                             class="pl-2 text-gray-500">Warehouse Worker</span>
@@ -268,7 +267,7 @@
                                     <div class="flex flex-col">
                                         <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
                                             class=" pl-2 text-gray-600 ">
-                                            {{ i?.UserModel?.name }} {{ i?.UserModel?.name }}
+                                            {{ i?.UserModel?.name }} {{ i?.UserModel?.surname }}
                                         </span>
                                         <span style="font-family: 'Poppins', sans-serif; font-size: 0.8rem;"
                                             class="pl-2 text-gray-500">Warehouse Worker</span>

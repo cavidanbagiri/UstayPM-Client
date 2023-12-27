@@ -47,14 +47,21 @@ const toast_condition = reactive({
 })
 
 const returnMaterial = async () => {
+    toast_condition.cond = true;
+    toast_condition.message = 'Somes';
+
     if (user_store.user && user_store.user.departmentId === 3) {
+
         await warehouse_store.returnMaterial(user_store.user.id)
             .then((respond) => {
                 toast_condition.cond = true;
-                toast_condition.message = 'Material Successfully Returned';
-                setTimeout(() => {
+                toast_condition.message = 'Somes';
+                setTimeout(()=>{
+                    console.log('timeout work');
                     toast_condition.cond = false;
-                }, 1000)
+                    toast_condition.message = 'False';
+                },10000)
+                console.log('toast_condition : ', toast_condition);
             })
             .catch((err) => {
                 console.log('return material from provide to warehouse error : ', err);
@@ -66,7 +73,7 @@ const returnMaterial = async () => {
         toast_condition.message = 'Material Cant Returned';
         setTimeout(() => {
             toast_condition.cond = false;
-        }, 1000)
+        }, 3000)
     }
 }
 

@@ -45,6 +45,7 @@ const IndexStore = defineStore("IndexStore", {
           )
           .then((respond) => {
               this.row_detail_data = respond.data;
+              console.log('row detail data : ', this.row_detail_data);
           })
           .catch((err) => {
             console.log("row detail respond Error : ", err);
