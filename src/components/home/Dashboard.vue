@@ -6,7 +6,7 @@
             <div class="flex flex-row justify-between items-center ">
                 <div class="flex flex-col ">
                     <div class="flex flex-row items-center">
-                        <img class="w-14 h-14 rounded-full bg-green-600" :src="user_store.user?.image_url" alt="">
+                        <img class="w-14 h-14 rounded-full " :src="user_store.user?.image_url" alt="">
                         <span class="text-gray-200 text-4xl p-1 "
                             style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
                             Welcome Back, {{ user_store.user?.name }}

@@ -22,7 +22,7 @@
                     class=" my-1 p-2 py-3 relative  flex justify-between  items-center rounded-lg cursor-pointer hover:bg-slate-100 duration-300  ">
                     <div class="flex justify-start items-center">
                         <img class="w-12 h-12 rounded-full"
-                            :src="vite_url+user.image_url"
+                            :src=" user.image_url "
                             alt="">
                         <div class="flex flex-col pl-2 ">
                             <span class="text-md text-gray-700 ">
@@ -110,8 +110,6 @@ const toggleDialog = (user) => {
 const userInform = (user) => {
     console.log('clicked user btn : ',user);
 }
-
-const vite_url = `${import.meta.env.VITE_API}`
 
 const selectedUser = async (user) => {
     if (user_store.user) {
