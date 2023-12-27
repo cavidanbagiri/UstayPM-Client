@@ -24,9 +24,48 @@
                     class="checkbox checkbox-xs checkbox-primary" />
             </div>
         </td>
-        <th class="px-2 py-3  text-center">
+        <td class="px-2 py-3  text-center">
             {{ prop?.index + 1 }}
-        </th>
+        </td>
+        <td class="px-2 py-3  text-center">
+
+            <span v-if="prop?.each?.type_name === 'Temporary'" class="relative flex h-3 w-3">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+            </span>
+
+            <div v-if="prop?.each?.type_name === 'Daily Debit'">
+                <span v-if="prop?.each?.type_name === 'Daily Debit'" class="relative flex h-3 w-3">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+
+                <span v-else class="relative flex h-3 w-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-200 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-red-300"></span>
+                </span>
+            </div>
+
+            <div v-if="prop?.each?.type_name === 'Debit' ">
+                <span v-if="prop?.each?.type_name === 'Debit' && prop?.each?.return_date" class="relative flex h-3 w-3">
+                    <!-- <span>{{ prop?.each }}</span> -->
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                </span>
+
+                <span v-else class="relative flex h-3 w-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-200 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-green-300"></span>
+                </span>
+            </div>
+
+
+
+
+        </td>
 
         <TableRow :each="prop?.each" :table_headers="warehouse_store.provided_data_headers" />
 
@@ -114,5 +153,4 @@ watchEffect(() => {
     border-radius: 10px;
     padding-left: 5px;
     transition: 0.3s;
-}
-</style>
+}</style>

@@ -13,7 +13,6 @@ const warehouse_store = WarehouseStore();
 
 const addChecked = (item) => {
   warehouse_store.return_checked_values.push(item);
-  console.log('return item ius : ', warehouse_store.return_checked_values);
 }
 
 // Remove Operation FIx Needed

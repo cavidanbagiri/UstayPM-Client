@@ -311,7 +311,9 @@ const WarehouseStore = defineStore("WarehouseStore", {
               key === "serial_no" ||
               key === "unique_id" ||
               key === "deliver_to" || 
-              key === "card_number"  
+              key === "card_number" ||
+              key === "return_date" ||
+              key === "returned_by" 
             ) {
               header_cond["showname"] = `${val}`;
               header_cond["name"] = `${key}`;

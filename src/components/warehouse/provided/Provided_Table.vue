@@ -20,7 +20,15 @@
     <div class="">
       <table v-if="warehouse_store.provided_data_headers.length"
         class=" mx-2 text-gray-800 dark:text-gray-400 w-full shadow-xl bg-white mt-1" style="font-size: xx-small;">
-        <TableHeader :table_headers="warehouse_store.provided_data_headers" />
+        <TableHeader :table_headers="warehouse_store.provided_data_headers" >
+          <template #RC>
+            <th class="px-2 py-3 text-center">
+              <div class="flex flex-col items-center font-thin ">
+                  RC
+              </div>
+          </th>
+          </template>
+        </TableHeader>
         <Provided_Table_Body />
       </table>
       <div v-else class="flex flex-row justify-center items-center w-full h-96">
