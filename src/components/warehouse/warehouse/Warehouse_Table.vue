@@ -2,7 +2,7 @@
 <template>
     <div class="flex flex-col" style="display:inline-block">
         <TableCommonComp/>
-        <div class="sticky h-40 top-10 bg-white">
+        <div class="sticky h-40 top-10 bg-white z-10">
             <div class=" sticky left-16 flex flex-col w-max bg-white"
                 style="display:inline-block; width: calc(100vw - 5rem);">
                 

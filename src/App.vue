@@ -3,7 +3,7 @@
 
   <!-- If User Login -->
   <div v-if="user_login" class="p-0 m-0 relative bg-white">
-    <div class="sticky top-0 left-0 float-left p-0 z-10 m-0">
+    <div class="sticky top-0 left-0 float-left p-0 z-20 m-0">
       <NavbarLayout :socket="socket" />
     </div>
     <div class="p-0">

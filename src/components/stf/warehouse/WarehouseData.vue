@@ -2,7 +2,7 @@
   <div class="flex flex-col" style="display: inline-block;">
     <TableCommonComp/>
     <!-- Filter Statistic Section-->
-    <div class="sticky top-10 px-1 ">
+    <div class="sticky top-10 px-1 z-10">
       <div class=" sticky left-16 flex flex-col bg-white" style="display: inline-block; width: calc(100vw - 5rem);">
 
         <STFStatistics />

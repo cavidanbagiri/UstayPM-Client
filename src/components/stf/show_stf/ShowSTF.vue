@@ -2,9 +2,8 @@
   <div class="flex flex-col " style="display: inline-block;">
     <TableCommonComp />
     <!-- Filter Statistic Section-->
-    <div class="sticky top-10 px-1 ">
-      <div class=" sticky left-16 flex flex-col bg-white" style="display: inline-block; width: calc(100vw - 5rem);">
-
+    <div class="sticky top-10 px-1 z-10">
+      <div class=" sticky left-16 flex flex-col bg-white " style="display: inline-block; width: calc(100vw - 5rem);">
         <STFStatistics />
 
 
@@ -16,7 +15,7 @@
       </div>
     </div>
 
-    <table v-if="stf_store.GETALLSTFHEADERS.length" class=" mx-2   w-full shadow-xl  mt-1">
+    <table v-if="stf_store.GETALLSTFHEADERS.length" class=" mx-2 w-full shadow-xl  mt-1">
       <TableHeader :table_headers="stf_store.GETALLSTFHEADERS" />
       <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
     </table>

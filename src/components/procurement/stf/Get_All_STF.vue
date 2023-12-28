@@ -2,7 +2,7 @@
 <template>
   <div class="flex flex-col" style="display: inline-block;">
     <TableCommonComp/>
-    <div class="h-40 sticky top-10 bg-white w-full">
+    <div class="h-40 sticky top-10 bg-white w-full z-10">
       <div class=" sticky left-16 flex flex-col bg-white" style="display: inline-block; width: calc(100vw - 5rem);">
         <!-- <table-stf-statistics :statistic_result="procurement_store.statistic_result"
           @fetchCurrentData="fetchCurrentData" /> -->

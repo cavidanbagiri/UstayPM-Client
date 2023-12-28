@@ -1,13 +1,21 @@
 <template>
-    <div class="flex flex-col border shadow-xl p-2 absolute w-96 h-96 top-14 right-0 bg-white overflow-hidden overflow-y-scroll">
-        <div class="mt-12 sticky top-10">
-            <input class="border-2 border-indigo-600 my-2 w-full p-2 rounded-lg text-sm outline-none " type="text" name="" id="" placeholder="Column Name..." style="font-style: italic;">
+    <div class="flex flex-col  shadow-2xl px-2 absolute w-96 h-96 top-16 right-4 bg-white hover:overflow-y-scroll overflow-hidden rounded-s-xl rounded-ee-xl"
+        style="font-family: 'Figtree';">
+        <div class="mt-1 sticky top-0 px-1 bg-white">
+            <input class=" border my-2 w-full p-3 rounded-lg text-[1rem] outline-none shadow-md " type="text" name="" id=""
+                placeholder="Column Name...">
         </div>
         <ul class="">
             <li v-for="key in prop?.table_headers">
-                <div class="flex flex-row items-center hover:bg-gray-100 p-2 rounded-md text-xs">
+                <!-- <div class="flex flex-row items-center hover:bg-gray-100 p-2 rounded-md text-sm">
                     <input type="checkbox" name="" :checked="key.value" @change="changeHeaderCond(key)" class="checkbox checkbox-xs checkbox-primary">
-                    <label :for="key.name" class="ml-2">{{ key.showname }} </label>
+                    <label :for="key.name" class="ml-3">{{ key.showname }} </label>
+                </div> -->
+                <div class="form-control flex justify-center px-2 w-full ">
+                    <label class="cursor-pointer flex my-2 ">
+                        <input type="checkbox" name="" :checked="key.value" @change="changeHeaderCond(key)"  class="toggle toggle-primary" >
+                        <span class="label-text ml-3 text-[1rem]">{{ key.showname }}</span>
+                    </label>
                 </div>
             </li>
         </ul>
@@ -24,6 +32,4 @@ const changeHeaderCond = (obj) => {
 
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>
