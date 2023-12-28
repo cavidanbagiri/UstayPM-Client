@@ -13,8 +13,8 @@
                 </div> -->
                 <div class="form-control flex justify-center px-2 w-full ">
                     <label class="cursor-pointer flex my-2 ">
-                        <input type="checkbox" name="" :checked="key.value" @change="changeHeaderCond(key)"  class="toggle toggle-primary" >
-                        <span class="label-text ml-3 text-[1rem]">{{ key.showname }}</span>
+                        <input type="checkbox" name="" :checked="key.value" @change="changeHeaderCond(key)"  class="toggle toggle-primary toggle-md" >
+                        <span class="label-text ml-3 text-[1.0rem] ">{{ key.showname }}</span>
                     </label>
                 </div>
             </li>
