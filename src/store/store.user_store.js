@@ -15,7 +15,9 @@ const UserStore = defineStore('User Store',{
     async uploadImage(data){
       axios.post(`${import.meta.env.VITE_API}api/user/upload`,data)
       .then((respond)=>{
+        this.user = JSON.parse(sessionStorage?.getItem('user'))
         this.user.image_url = respond.data
+        sessionStorage.setItem("user", JSON.stringify(this.user));  
       })
       .catch((err)=>{
         console.log('image cant add : ', err);
@@ -23,7 +25,6 @@ const UserStore = defineStore('User Store',{
     },
 
     async LOGINSER (user_data) {
-      console.log('user login : ', import.meta.env.VITE_API);
       try{ 
         await axios.post(`${import.meta.env.VITE_API}api/user/login`,
         user_data)
