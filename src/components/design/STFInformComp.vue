@@ -1,5 +1,5 @@
 <template>
-  <div v-if="prop.cond" class="border flex flex-col bg-white absolute top-5 left-6 shadow-2xl p-2 px-6 rounded-2xl w-80">
+  <div v-if="prop.cond" class="border flex flex-col bg-white absolute top-5 left-6 shadow-2xl p-2 px-6 rounded-2xl w-80" style="font-family: 'Figtree';">
     <div class="flex justify-end items-center">
       <span class="text-3xl my-1" @click="close">
         <i class="fa-solid fa-xmark text-gray-400 hover:text-black"></i>
@@ -10,7 +10,7 @@
         STF Canceled
       </span>
     </div>
-    <div v-else class="flex font-bold w-full text-[13px] " style="font-family: 'Roboto';">
+    <div v-else class="flex font-bold w-full text-[1.0rem] " >
         <span v-if="prop?.each?.completed" class="px-2 py-2  text-green-500 bg-green-100 w-full rounded-lg">
           Completed : {{ prop?.each?.completed }}
         </span>
@@ -18,20 +18,21 @@
           Completed : {{ prop?.each?.completed }}
         </span>
     </div>
-    <div class="flex flex-col pb-2">
-      <div v-if="!prop.each?.canceled_id"  class="my-3 flex flex-col justify-between text-gray-500">
+    <div class="flex flex-col pb-2 text-[16px] ">
+      
+      <!-- Change STF Status -->
+      <div v-if="!prop.each?.canceled_id"  class="my-3 flex flex-col justify-between text-gray-500" style="font-family: 'Figtree';">
         <span class="p-1 hover:bg-none text-[15px] text-start"> Change STF Status</span>
-        <div class="text-lg ">
+        <div class="text-[0.8rem] ">
           <select class="select select-bordered w-full max-w-xs" v-model="stf_status.completed" @change="changeStatus">
-            <option class="my-2 py-2 text-lg" value=false>Wait</option>
-            <option class="my-2 py-2 text-lg" value="true">Complete</option>
+            <option class="my-2 py-2 text-[15px]" value=false>Wait</option>
+            <option class="my-2 py-2 text-[15px]" value="true">Complete</option>
           </select>
         </div>
       </div>
 
       <!-- Return Material To Warehouse -->
       <slot name="return_material"></slot>
-
       <!-- Get STF Information -->
       <span @click="getSTFInform" class="flex items-center py-2 text-gray-900 row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/information.png" alt="">
@@ -54,7 +55,7 @@
         <img class="mr-3 w-5 h-5" src="../../assets/icons/trash.png" alt="">
         Remove</span>
       <span v-if="!prop.each?.canceled_id" @click="cancelSTF"
-        class="flex py-2 items-center text-red-500 font-bold text-[16px] hover:bg-gray-100 duration-300">
+        class="flex py-2 items-center text-red-500 text-[1.1rem] hover:bg-gray-100 duration-300">
         <img class="mr-4 w-4 h-4" src="../../assets/icons/close.png" alt="">
         Cancel STF</span>
     </div>
@@ -151,9 +152,9 @@ const changeStatus = async () => {
 
 <style scoped>
 .row_item {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Figtree', sans-serif;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 1.0rem;
 }
 
 .row_item:hover {

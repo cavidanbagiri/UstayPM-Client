@@ -54,7 +54,7 @@
                   {{ i.showname }}
               </div>
 
-              <div v-else-if="i.name==='amount' " class="min-w-[120px]">
+              <div v-else-if="i.name==='amount' " class="min-w-[100px]">
                   {{ i.showname }}
               </div>
 
@@ -62,8 +62,15 @@
                   {{ i.showname }}
               </div>
 
-
               <div v-else-if="i.name==='vendor_name'" class="w-96">
+                  {{ i.showname }}
+              </div>
+
+              <div v-else-if="i.name==='supplier'" class="w-80">
+                  {{ i.showname }}
+              </div>
+
+              <div v-else-if="i.name==='orderer'" class="w-80">
                   {{ i.showname }}
               </div>
 

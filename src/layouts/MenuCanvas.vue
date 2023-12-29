@@ -1,6 +1,6 @@
 <template>
     <div :class="anim_toggle ? 'mtf-anim-open' : 'mtf-anim-close'"
-        class=" fixed shadow-2xl z-20 px-2 py-1 h-screen bg-gradient-to-r from-slate-700 to-slate-900 w-80 rounded-xl " style="font-family: 'Roboto', sans-serif;">
+        class=" fixed shadow-2xl z-20 px-2 py-1 h-screen bg-gradient-to-r from-slate-700 to-slate-900 w-80 rounded-xl " style="font-family: 'Figtree', sans-serif;">
         <!-- <div class="flex justify-end "> -->
         <span
             class="  bg-green-500 hover:bg-green-400 p-1 w-8 h-8  rounded-full cursor-pointer absolute top-1 -right-3 flex items-center justify-center"

@@ -3,15 +3,11 @@
 <template>
     <div>
         <label for="avatar">Choose a profile picture:</label>
-
         <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" @change="onFileChange" />
-
         <button @click="onUploadFile">
             Add
         </button>
-
         <Toast :cond="show_toast_cond" messages="Image Added Succesfully" />
-
     </div>
 </template>
 
@@ -42,13 +38,13 @@ const onUploadFile = async () => {
         formData.append("id", user_store.user?.id);
         formData.append("file", selected_file);
         await user_store.uploadImage(formData)
-        .then((respond)=>{
-            show_toast_cond.value = true;
-            setTimeout(()=>{
-                show_toast_cond.value = false;
-                router.push({ path: '/' });
-            },1000)
-        })
+            .then((respond) => {
+                show_toast_cond.value = true;
+                setTimeout(() => {
+                    show_toast_cond.value = false;
+                    router.push({ path: '/' });
+                }, 1000)
+            })
     }
 
 }
