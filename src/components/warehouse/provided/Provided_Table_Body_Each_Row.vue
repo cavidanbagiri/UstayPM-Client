@@ -69,7 +69,7 @@
 
         <TableRow :each="prop?.each" :table_headers="warehouse_store.provided_data_headers" />
 
-        <UpdateProvidedMaterial :cond="toggle_update_provide_material" :each="prop?.each" @closeProvidedUpdateComp="closeProvidedUpdateComp" />
+        <UpdateProvidedMaterial v-if="toggle_update_provide_material" @closeProvidedUpdateComp="closeProvidedUpdateComp" />
 
     </tr>
 </template>
@@ -106,6 +106,8 @@ const checkboxCond = () => checked.value === true ? emit('addChecked', prop?.eac
 
 // Return material from provided to warehouse
 const returnMaterial = async () => {
+
+    warehouse_store.return_checked_values.push(prop.each);
 
     toggle_update_provide_material.value = true;
 
