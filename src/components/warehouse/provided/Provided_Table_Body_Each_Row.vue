@@ -4,7 +4,6 @@
         'bg-white hover:bg-blue-600 hover:text-white hover:duration-200'"
         class="border-b table_row hover:cursor-pointer">
 
-
         <TableRowInform :each="prop?.each">
 
             <!-- Return Material Slot -->
@@ -17,6 +16,7 @@
 
         </TableRowInform>
 
+        <!-- Checkbox Section -->
         <td class="w-1 p-4 py-2 ">
             <div class="flex items-center">
                 <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
@@ -24,16 +24,21 @@
                     class="checkbox checkbox-xs checkbox-primary" />
             </div>
         </td>
+        <!-- Show Index No -->
         <td class="px-2 py-3  text-center">
             {{ prop?.index + 1 }}
         </td>
+
+        <!-- Show Providing Material Condition Ping Animaton -->
         <td class="px-2 py-3  text-center">
 
+            <!-- If Processing Material Provide To Area -->
             <span v-if="prop?.each?.type_name === 'Temporary'" class="relative flex h-3 w-3">
                 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75"></span>
                 <span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
             </span>
 
+            <!-- If Debit Material Provide To Area -->
             <div v-if="prop?.each?.type_name === 'Daily Debit'">
                 <span v-if="prop?.each?.type_name === 'Daily Debit'" class="relative flex h-3 w-3">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -47,9 +52,9 @@
                 </span>
             </div>
 
+            <!-- If Daily Debit Material Provide To Area -->
             <div v-if="prop?.each?.type_name === 'Debit' ">
                 <span v-if="prop?.each?.type_name === 'Debit' && prop?.each?.return_date" class="relative flex h-3 w-3">
-                    <!-- <span>{{ prop?.each }}</span> -->
                     <span
                         class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
@@ -61,9 +66,6 @@
                     <span class="relative inline-flex rounded-full h-3 w-3 bg-green-300"></span>
                 </span>
             </div>
-
-
-
 
         </td>
 
@@ -106,40 +108,14 @@ const checkboxCond = () => checked.value === true ? emit('addChecked', prop?.eac
 
 // Return material from provided to warehouse
 const returnMaterial = async () => {
-
     warehouse_store.return_checked_values.push(prop.each);
-
     toggle_update_provide_material.value = true;
-
-    // if (user_store.user && user_store.user.departmentId === 3) {
-    //     warehouse_store.return_checked_values.push(prop.each);
-    //     await warehouse_store.returnMaterial(user_store.user.id)
-    //         .then((respond) => {
-    //             toast_condition.cond = true;
-    //             toast_condition.message = 'Material Successfully Returned';
-    //             setTimeout(() => {
-    //                 toast_condition.cond = false;
-    //             }, 1000)
-    //         })
-    //         .catch((err) => {
-    //             console.log('return material from provide to warehouse error : ', err);
-    //         })
-    // }
-    // else {
-    //     // Import Show Toast and show Message Inside Of That Toast
-    //     toast_condition.cond = true;
-    //     toast_condition.message = 'Material Cant Returned';
-    //     setTimeout(() => {
-    //         toast_condition.cond = false;
-    //     }, 1000)
-    // }
-
 }
 
 
 // If Unselect Clicked, checked row will be false
 watchEffect(() => {
-    if (warehouse_store.after_provide) {
+    if (warehouse_store.after_returning) {
         checked.value = false;
     }
 })

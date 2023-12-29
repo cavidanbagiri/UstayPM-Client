@@ -25,6 +25,8 @@ const WarehouseStore = defineStore("WarehouseStore", {
     after_created: false,
     // After Provide Material
     after_provide: false,
+    // After Returning
+    after_returning: false,
     
     // Fetch Received SMS and SHow 
     warehouse_data: [],

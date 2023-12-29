@@ -142,12 +142,14 @@ const returnMaterial = async () => {
     if (user_store.user && user_store.user.departmentId === 3) {
       await warehouse_store.returnMaterial(user_store.user.id)
         .then((respond) => {
+          warehouse_store.after_returning = true;
           success_cond.value = true;
           success_message.value = 'Successfuly Update'
           setTimeout(() => {
             button_loading.value = false;
             warehouse_store.return_checked_values = warehouse_store.return_checked_values.filter((item) => item.id === -1)
             success_cond.value = false;
+            warehouse_store.after_returning = false;
             closeUpdateProvidedMaterialComp();
           }, 1000)
         })

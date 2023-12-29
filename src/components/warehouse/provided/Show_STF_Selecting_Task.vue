@@ -28,26 +28,16 @@
         </div>
         
         <UpdateProvidedMaterial v-if="toggle_update_provide_material" @closeProvidedUpdateComp="closeProvidedUpdateComp" />
-        <Toast :cond="toast_condition.cond" :messages="toast_condition.message" />
+
     </div>
 </template>
 
 <script setup>
 
 import { reactive, ref } from 'vue';
-import Toast from '../../design/Toast.vue';
 import UpdateProvidedMaterial from './UpdateProvidedMaterial.vue';
 import WarehouseStore from '../../../store/store.warehouse';
-import UserStore from '../../../store/store.user_store';
 const warehouse_store = WarehouseStore();
-const user_store = UserStore();
-
-
-// Toast Condition
-const toast_condition = reactive({
-    cond: false,
-    message: ''
-})
 
 
 // Toggle Update Return Component
@@ -58,42 +48,15 @@ const closeProvidedUpdateComp = () => {
 
 
 const returnMaterial = async () => {
-    // toast_condition.cond = true;
-    // toast_condition.message = 'Somes';
-
-    
     toggle_update_provide_material.value = true;
-
-    // if (user_store.user && user_store.user.departmentId === 3) {
-
-    //     await warehouse_store.returnMaterial(user_store.user.id)
-    //         .then((respond) => {
-    //             toast_condition.cond = true;
-    //             toast_condition.message = 'Somes';
-    //             setTimeout(()=>{
-    //                 console.log('timeout work');
-    //                 toast_condition.cond = false;
-    //                 toast_condition.message = 'False';
-    //             },10000)
-    //             console.log('toast_condition : ', toast_condition);
-    //         })
-    //         .catch((err) => {
-    //             console.log('return material from provide to warehouse error : ', err);
-    //         })
-    // }
-    // else {
-    //     // Import Show Toast and show Message Inside Of That Toast
-    //     toast_condition.cond = true;
-    //     toast_condition.message = 'Material Cant Returned';
-    //     setTimeout(() => {
-    //         toast_condition.cond = false;
-    //     }, 3000)
-    // }
-
 }
 
 const unselect = () => {
-    // warehouse_store.return_checked_values = warehouse_store.return_checked_values.filter((item) => item.id === -1)
+    warehouse_store.after_returning = true;
+    warehouse_store.return_checked_values = warehouse_store.return_checked_values.filter((item) => item.provide_id === -1)
+    setTimeout(()=>{
+        warehouse_store.after_returning = false;
+    })
 }
 
 </script>
