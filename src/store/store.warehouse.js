@@ -314,9 +314,9 @@ const WarehouseStore = defineStore("WarehouseStore", {
               key === "serial_no" ||
               key === "unique_id" ||
               key === "deliver_to" || 
-              key === "card_number" ||
-              key === "return_date" ||
-              key === "returned_by" 
+              key === "card_number" 
+              // key === "return_date" ||
+              // key === "returned_by" 
             ) {
               header_cond["showname"] = `${val}`;
               header_cond["name"] = `${key}`;
@@ -422,12 +422,11 @@ const WarehouseStore = defineStore("WarehouseStore", {
         user : user_id,
         materials : this.return_checked_values
       }
-      console.log('data is : ', data);
+      console.log(data);
       try{
         await axios.post(`${import.meta.env.VITE_API}api/warehouse/return`, data)
         .then((respond)=>{
           this.return_checked_values = [];
-          console.log('now checked values : ', this.return_checked_values);
         })
         .catch((err)=>{
             console.log('return material from provide to warehouse error : ', err);

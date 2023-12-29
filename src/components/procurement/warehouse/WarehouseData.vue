@@ -46,10 +46,10 @@ import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
 import ShowWarehouseEachRow from './ShowWarehouseEachRow.vue';
 import SelectingRows from './SelectingRows.vue';
-import UserStore from '../../../store/store.user_store';
 import TableFilterWarehouse from '../../../layouts/TableFilterWarehouse.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';
+import UserStore from '../../../store/store.user_store';
 import WarehouseStore from '../../../store/store.warehouse';
 
 const procurement_store = ProcurementStore();

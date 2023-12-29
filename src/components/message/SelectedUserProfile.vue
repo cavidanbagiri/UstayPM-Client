@@ -1,6 +1,5 @@
 <template>
     <div class="flex flex-row w-4/12  justify-around">
-
         <div class="flex flex-col items-center my-2  rounded-sm w-full" style="font-family: 'Figtree';">
             <!-- Profile Section -->
             <div class="bg-white w-full h-full flex flex-col pt-2 px-4">
@@ -16,7 +15,7 @@
                 <div class=" mt-1 flex flex-col items-center w-full py-1">
                     <div class="avatar">
                         <div v-if="message_store.selected_user" class="w-64 rounded-full">
-                            <img :src="vite_url+message_store.selected_user?.image_url" />
+                            <img :src="message_store.selected_user.image_url" />
                         </div>
                         <div v-else class="w-64 rounded-full">
                             <img :src="user_store.user?.image_url" />
@@ -101,7 +100,6 @@ import UserStore from '../../store/store.user_store';
 const message_store = MessageStore();
 const user_store = UserStore();
 
-const vite_url = `${import.meta.env.VITE_API}`
 
 // Close Chat Bar
 const closeChat = () => { 
