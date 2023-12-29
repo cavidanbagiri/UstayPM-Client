@@ -35,7 +35,7 @@
         </span>
 
         <!-- Show error message for entering new amount -->
-        <div v-if="amount_error.error && amount_error.id == index " class="mt-3 text-lg">
+        <div v-if="amount_error.error && amount_error.id == index" class="mt-3 text-lg">
           <span class="text-red-500">Entering Amount cant be greater than current amount</span>
         </div>
 
@@ -51,10 +51,19 @@
       </div>
 
       <div class=" flex justify-end mr-10 py-1">
-        <button class="btn btn-active btn-secondary" @click="returnMaterial">
+        
+        <button v-if="!button_loading" class="btn btn-active btn-secondary" @click="returnMaterial">
           Update
         </button>
+
+
+        <button v-else class="btn">
+          <span class="loading loading-spinner"></span>
+          loading
+        </button>
+
       </div>
+
 
       {{ warehouse_store.return_checked_values }}
       {{ provide_values }}
@@ -82,6 +91,9 @@ const closeUpdateProvidedMaterialComp = () => emits('closeProvidedUpdateComp');
 
 // Create Permanent Amount
 const provide_values = []
+
+// Create Button Loading After Clicking post button
+const button_loading = ref(false);
 
 watchEffect(() => {
   // Write All Values Inside Of Permanent Array
@@ -111,13 +123,14 @@ const amount_error = reactive({
 const returnMaterial = async () => {
 
   let cond = true;
+  button_loading.value = true;
 
   for (let i in warehouse_store.return_checked_values) {
 
-    if(warehouse_store.return_checked_values[i].amount > provide_values[i].amount
+    if (warehouse_store.return_checked_values[i].amount > provide_values[i].amount
       ||
       warehouse_store.return_checked_values[i].amount < 0
-    ){
+    ) {
       amount_error.id = i;
       amount_error.error = true
       cond = false;
@@ -132,6 +145,7 @@ const returnMaterial = async () => {
           success_cond.value = true;
           success_message.value = 'Successfuly Update'
           setTimeout(() => {
+            button_loading.value = false;
             warehouse_store.return_checked_values = warehouse_store.return_checked_values.filter((item) => item.id === -1)
             success_cond.value = false;
             closeUpdateProvidedMaterialComp();
@@ -149,7 +163,7 @@ const returnMaterial = async () => {
       }, 1000)
     }
   }
-  else{
+  else {
     console.log('cond false -> ', cond);
   }
 
