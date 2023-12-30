@@ -13,11 +13,8 @@
                 <!-- Un Selected Selecting Rows -->
                 <button @click="unselect()"
                     class="flex flex-col items-center mx-3 cursor-pointer p-1 hover:bg-gray-100 "> <i
-                        class="fa-regular fa-trash-can"></i> <span class="text-xs">Unselect</span></button>
-                <!-- Add Archieve -->
-                <!-- <button v-font-family class="flex flex-col items-center mx-3 cursor-pointer p-1 hover:bg-gray-100 "> <i
-                        class="fa-regular fa-file-zipper"></i> <span class="text-xs">Add Archieve</span></button> -->
-                <!-- Create SM -->        
+                        class="fa-regular fa-trash-can"></i> <span class="text-xs">Unselect</span></button>    
+                <!-- Return Provided Material -->
                 <button @click="returnMaterial()"
                     class="flex flex-col items-center mx-3 cursor-pointer p-1 hover:bg-gray-100 "> <i
                         class="fa-regular fa-handshake"></i> <span class="text-xs">Return</span></button>
@@ -27,29 +24,21 @@
             </div>
         </div>
         
-        <UpdateProvidedMaterial v-if="toggle_update_provide_material" @closeProvidedUpdateComp="closeProvidedUpdateComp" />
+        
 
     </div>
 </template>
 
 <script setup>
 
-import { reactive, ref } from 'vue';
-import UpdateProvidedMaterial from './UpdateProvidedMaterial.vue';
 import WarehouseStore from '../../../store/store.warehouse';
 const warehouse_store = WarehouseStore();
 
-
-// Toggle Update Return Component
-const toggle_update_provide_material = ref(false);
-const closeProvidedUpdateComp = () => {
-    toggle_update_provide_material.value = false;
-}
-
+const emit = defineEmits(['openUpdateProvidedMaterial']);
 
 const returnMaterial = async () => {
-    toggle_update_provide_material.value = true;
-}
+    emit('openUpdateProvidedMaterial');
+}   
 
 const unselect = () => {
     warehouse_store.after_returning = true;

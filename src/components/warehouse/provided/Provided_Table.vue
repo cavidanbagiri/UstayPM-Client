@@ -38,14 +38,15 @@
 
   </div>
 
-  <Show_STF_Selecting_Task/>
+  <UpdateProvidedMaterial v-if="toggle_update_provide_material" @closeProvidedUpdateComp="closeProvidedUpdateComp" />
+  <Show_STF_Selecting_Task @openUpdateProvidedMaterial="openUpdateProvidedMaterial" />
 
 </template>
 
 <script setup>
 
 // Import Section
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilterProvide from '../../../layouts/TableFilterProvide.vue';
@@ -53,6 +54,7 @@ import TableExpand from '../../../layouts/TableExpand.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
 import Provided_Table_Body from './Provided_Table_Body.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';
+import UpdateProvidedMaterial from './UpdateProvidedMaterial.vue';
 import WarehouseStore from '../../../store/store.warehouse';
 import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
 const warehouse_store = WarehouseStore();
@@ -69,6 +71,17 @@ onMounted(async () => {
 const filterFunction = async (filtered_objects) => {
   await warehouse_store.getFilteredDataProvided(filtered_objects);
 }
+
+// Toggle Update Return Component
+const toggle_update_provide_material = ref(false);
+const closeProvidedUpdateComp = () => {
+    toggle_update_provide_material.value = false;
+}
+const openUpdateProvidedMaterial = () => {
+  toggle_update_provide_material.value = true;
+}
+
+
 
 // Get Filtered Data
 // const filterFunction = async (filtered_objects)=>{

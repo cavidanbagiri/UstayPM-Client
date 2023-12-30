@@ -1,5 +1,5 @@
 <template>
-  <div v-if="prop.cond" class="border flex flex-col bg-white absolute top-5 left-6 shadow-2xl p-2 px-6 rounded-2xl w-80" style="font-family: 'Figtree';">
+  <div v-if="prop.cond" class="border flex flex-col bg-white absolute top-5 left-6 shadow-2xl p-2 px-6 rounded-2xl w-80 text-black" style="font-family: 'Figtree';">
     <div class="flex justify-end items-center">
       <span class="text-3xl my-1" @click="close">
         <i class="fa-solid fa-xmark text-gray-400 hover:text-black"></i>
@@ -34,7 +34,7 @@
       <!-- Return Material To Warehouse -->
       <slot name="return_material"></slot>
       <!-- Get STF Information -->
-      <span @click="getSTFInform" class="flex items-center py-2 text-gray-900 row_item">
+      <span @click="getSTFInform" class="flex items-center py-2 row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/information.png" alt="">
         STF Information</span>
       <!-- Get SM Information -->
@@ -42,20 +42,20 @@
         <img class="mr-3 w-5 h-5" src="../../assets/icons/info.png" alt="">
         SM Information</span>
       <!-- Set Hide -->
-      <span class="flex py-2  items-center text-gray-900 row_item">
+      <span class="flex py-2  items-center row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/hide.png" alt="">
         Set Hide</span>
-      <span class="flex py-2  items-center text-gray-900 row_item">
+      <span class="flex py-2  items-center row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/starblack.png" alt="">
         Set Star</span>
-      <span class="flex py-2  items-center text-gray-900 row_item">
+      <span class="flex py-2  items-center row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/refresh.png" alt="">
         Update</span>
-      <span class="flex  py-2  items-center text-gray-900 row_item">
+      <span class="flex  py-2  items-center row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/trash.png" alt="">
         Remove</span>
       <span v-if="!prop.each?.canceled_id" @click="cancelSTF"
-        class="flex py-2 items-center text-red-500 text-[1.1rem] hover:bg-gray-100 duration-300">
+        class="flex py-2 items-center row_item text-[1.1rem] duration-300">
         <img class="mr-4 w-4 h-4" src="../../assets/icons/close.png" alt="">
         Cancel STF</span>
     </div>

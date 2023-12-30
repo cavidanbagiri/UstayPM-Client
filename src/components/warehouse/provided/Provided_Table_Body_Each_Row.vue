@@ -84,10 +84,8 @@ import TableRowInform from '../../../layouts/TableRowInform.vue'
 import UpdateProvidedMaterial from './UpdateProvidedMaterial.vue';
 
 import WarehouseStore from '../../../store/store.warehouse';
-// import UserStore from '../../../store/store.user_store';
 
 const warehouse_store = WarehouseStore();
-// const user_store = UserStore();
 
 // Get Each Item from parent
 const prop = defineProps(['each', 'index']);

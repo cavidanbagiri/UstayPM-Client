@@ -1,6 +1,6 @@
 
 <template>
-  <thead class="text-gray-100 bg-slate-800  sticky top-48  border-b-4 shadow-md table_header ">
+  <thead class="text-gray-100 bg-slate-800  sticky top-[12.4rem]  border-b-4 shadow-md table_header ">
       <tr>
           <th scope="col-4" class=" pl-1">
               <div class="flex flex-col items-center">
