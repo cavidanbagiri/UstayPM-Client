@@ -1,5 +1,5 @@
 <template>
-  <div v-if="prop.cond" class="border flex flex-col bg-white absolute top-5 left-6 shadow-2xl p-2 px-6 rounded-2xl w-80 text-black" style="font-family: 'Figtree';">
+  <div v-if="prop.cond" class="border flex flex-col bg-white absolute top-5 left-6 shadow-2xl p-2 px-6 rounded-2xl w-80 text-black z-10" style="font-family: 'Figtree';">
     <div class="flex justify-end items-center">
       <span class="text-3xl my-1" @click="close">
         <i class="fa-solid fa-xmark text-gray-400 hover:text-black"></i>

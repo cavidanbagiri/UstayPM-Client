@@ -10,7 +10,6 @@
                 </span>
             </div>
             <div v-if="index_store.row_detail_data" class="flex flex-col  overflow-auto">
-
                 <!-- If STF Canceled -->
                 <div v-if="index_store.row_detail_data?.canceled_stf?.length" class="flex flex-col bg-white mx-2 p-4  text-black">
                     <span class="text-center text-xl bg-red-400 py-2">
@@ -58,7 +57,7 @@
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Amount</div>
                         <div class="column-value">{{ index_store.row_detail_data?.stf_result?.material_amount }} {{
-                            index_store.row_detail_data[0]?.material_unit }}</div>
+                            index_store.row_detail_data?.stf_result?.material_unit }}</div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Link</div>
@@ -84,7 +83,7 @@
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">STF Created Date</div>
                         <div class="column-value">
-                            <DateFormat :time="index_store.row_detail_data[0]?.stf_createdat" />
+                            <DateFormat :time="index_store.row_detail_data?.stf_result?.createdAt" />
                         </div>
                     </div>
                     <div class="flex justify-start items-center">
@@ -92,7 +91,7 @@
                         <div class="column-value">
                             <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
                                 <img class="w-12 h-12 rounded-full border"
-                                    src="https://img.freepik.com/free-photo/the-beautiful-girl-stands-near-walll-with-leaves_8353-5377.jpg?w=2000"
+                                    :src="index_store.row_detail_data?.stf_result?.UserModel?.image_url"
                                     alt="">
                                 <div class="flex flex-col">
                                     <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
@@ -165,7 +164,7 @@
                         <div class="flex justify-start items-center">
                             <div class="w-64 column-header">SM Created Date</div>
                             <div class="column-value">
-                                <DateFormat :time="i?.sm_createdat" />
+                                <DateFormat :time="i?.createdAt" />
                             </div>
                         </div>
                         <div class="flex justify-start items-center">
@@ -173,7 +172,7 @@
                             <div class="column-value">
                                 <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
                                     <img class="w-12 h-12 rounded-full border"
-                                        src="https://previews.123rf.com/images/mimagephotography/mimagephotography1403/mimagephotography140300170/26465271-close-up-horizontal-portrait-of-a-handsome-young-man-laughing-on-isolated-white-background.jpg"
+                                        :src=" i?.UserModel?.image_url"
                                         alt="">
                                     <div class="flex flex-col">
                                         <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"
@@ -254,7 +253,7 @@
                         <div class="flex justify-start items-center">
                             <div class="w-64 column-header">Warehouse Created Date</div>
                             <div class="column-value">
-                                <DateFormat :time="i?.warehouse_createdat" />
+                                <DateFormat :time="i?.createdAt" />
                             </div>
                         </div>
                         <div class="flex justify-start items-center">
@@ -262,7 +261,7 @@
                             <div class="column-value">
                                 <div class="flex items-center justify-start p-2 px-4 border rounded-lg shadow-md">
                                     <img class="w-12 h-12 rounded-full border"
-                                        src="https://previews.123rf.com/images/mimagephotography/mimagephotography1403/mimagephotography140300170/26465271-close-up-horizontal-portrait-of-a-handsome-young-man-laughing-on-isolated-white-background.jpg"
+                                        :src="i?.UserModel?.image_url"
                                         alt="">
                                     <div class="flex flex-col">
                                         <span style="font-family: 'Poppins', sans-serif; font-size: 0.9rem;"

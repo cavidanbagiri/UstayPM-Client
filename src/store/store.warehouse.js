@@ -334,7 +334,6 @@ const WarehouseStore = defineStore("WarehouseStore", {
       }
     },
 
-
     // Post Accepted waiting to Warehouse
     async provideSM(data) {
       try{
