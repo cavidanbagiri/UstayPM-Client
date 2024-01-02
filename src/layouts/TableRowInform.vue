@@ -4,10 +4,17 @@
       <span @click="getRowDetail"><i class="fa-solid fa-ellipsis-vertical fa-2xl text-green-500 "></i></span>
 
       <STFInformComp :cond="cond" :each="prop?.each" @close-inform="closeRowDetail">
+
         <!-- Return Material Slot -->
         <template #return_material>        
           <slot name="return_material"></slot>
         </template>
+
+        <!-- Return Material Slot -->
+        <template #cancel_stf>        
+          <slot name="cancel_stf"></slot>
+        </template>
+
       </STFInformComp>
 
     </div>

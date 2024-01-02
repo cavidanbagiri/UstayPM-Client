@@ -33,6 +33,8 @@
 
       <!-- Return Material To Warehouse -->
       <slot name="return_material"></slot>
+
+
       <!-- Get STF Information -->
       <span @click="getSTFInform" class="flex items-center py-2 row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/information.png" alt="">
@@ -54,14 +56,10 @@
       <span class="flex  py-2  items-center row_item">
         <img class="mr-3 w-5 h-5" src="../../assets/icons/trash.png" alt="">
         Remove</span>
-      <span v-if="!prop.each?.canceled_id" @click="cancelSTF"
-        class="flex py-2 items-center row_item text-[1.1rem] duration-300">
-        <img class="mr-4 w-4 h-4" src="../../assets/icons/close.png" alt="">
-        Cancel STF</span>
-    </div>
 
-    <CancelSTF :toggle_cancelstf="toggle_cancelstf" :user_id="user_store.user?.id" :stf="prop?.each"
-      @closeCanceledSTF="closeCanceledSTF" />
+      <slot name="cancel_stf"></slot>
+
+    </div>
 
   </div>
 
@@ -72,7 +70,6 @@
 
 import { reactive, ref } from 'vue';
 import Toast from './Toast.vue';
-import CancelSTF from './CancelSTF.vue';
 
 import IndexStore from '../../store/store.index';
 import UserStore from '../../store/store.user_store';
@@ -85,12 +82,6 @@ const emit = defineEmits(['closeInform'])
 
 // Cancelstf Authority Error
 const cancelstf_authority = ref(false);
-
-// Show Or Hide Cancel STF Component
-const toggle_cancelstf = ref(false);
-const closeCanceledSTF = () => {
-  toggle_cancelstf.value = false;
-}
 
 
 // Close Inform Button 
@@ -109,18 +100,6 @@ const stf_status = reactive({
   user: user_store.user.id,
 })
 
-const cancelSTF = async () => {
-  if (user_store.user.departmentId === 2 || user_store.user.departmentId === 3) {
-    toggle_cancelstf.value = true;
-  }
-  else {
-    cancelstf_authority.value = true;
-    setTimeout(() => {
-      cancelstf_authority.value = false;
-    }, 2000)
-  }
-  // await index_store.cancelSTF({user_id: user_store.user?.id, stf_id: prop?.each?.stf_id, comment: 'just cancel'});
-}
 
 const changeStatus = async () => {
   if (user_store.user.departmentId === 2) {

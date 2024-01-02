@@ -2,9 +2,21 @@
 <template>
     <tr :class="checked ? 'text-white  bg-blue-600 hover:bg-blue-500 ' : 'bg-white  hover:bg-blue-600 hover:text-white hover:duration-200'"
         class="border-b  hover:cursor-pointer table_row ">
-        <TableRowInform :each="prop?.each" />
-        <td class="w-1 p-4 py-2 ">
 
+        <TableRowInform :each="prop?.each" >
+
+            <!-- Cancel STF Only Work Inside Of Procurement Section -->
+            <template #cancel_stf>
+                <span @click="cancelSTF" class="flex items-center py-2 text-gray-900 row_item">
+                    <img class="mr-4 w-4 h-4" src="../../../assets/icons/close.png" alt="">
+                    Cancel STF
+                </span>
+            </template>
+
+        </TableRowInform>
+
+        <!-- Show Checked or Not Section -->
+        <td class="w-1 p-4 py-2 ">
             <div class="flex items-center">
                 <label class="flex cursor-pointer items-center rounded-sm p-1" for="selected_row"
                     data-ripple-dark="true">
@@ -22,13 +34,18 @@
                     </div>
                 </label>
             </div>
-
         </td>
+        <!-- Show Index Num -->
         <th class="px-2 py-2  font-bold text-center">
             {{ prop?.index + 1 }}
         </th>
 
         <TableRow :each = "prop?.each" :table_headers="procurement_store.stf_table_headers" />
+
+        <CancelSTF :toggle_cancelstf="toggle_cancelstf" :user_id="user_store.user?.id" :stf="prop?.each"
+        @closeCanceledSTF="closeCanceledSTF" />
+
+        <Toast :cond="cancelstf_authority" messages="You Dont Have Authority For Cancel STF" />
 
     </tr>
 </template>
@@ -38,9 +55,13 @@
 import { ref, watchEffect } from 'vue';
 import TableRow from '../../../layouts/TableRow.vue';
 import TableRowInform from '../../../layouts/TableRowInform.vue';
+import CancelSTF from '../../design/Cancelstf.vue';
+import Toast from '../../design/toast.vue';
 import ProcurementStore from '../../../store/store.procurement';
+import UserStore from '../../../store/store.user_store'
 
 const procurement_store = ProcurementStore();
+const user_store = UserStore();
 
 // Get Each Item from parent
 const prop = defineProps(['each', 'index', 'checked_style']);
@@ -48,8 +69,8 @@ const prop = defineProps(['each', 'index', 'checked_style']);
 // Create an Emit for clicking checkbox
 const emit = defineEmits(['addChecked', 'removeChecked']);
 
+// Check Row Checkbox selected or not
 const checked = ref(false);
-
 const checkboxCond = () => {
     if (checked.value === true) {
         emit('addChecked', prop?.each)
@@ -59,7 +80,27 @@ const checkboxCond = () => {
     }
 }
 
+// Cancelstf Authority Error
+const cancelstf_authority = ref(false);
+// Show Or Hide Cancel STF Component
+const toggle_cancelstf = ref(false);
+const closeCanceledSTF = () => {
+  toggle_cancelstf.value = false;
+}
+const cancelSTF = async () => {
+  if (user_store.user.departmentId === 2 || user_store.user.departmentId === 3) {
+    toggle_cancelstf.value = true;
+  }
+  else {
+    cancelstf_authority.value = true;
+    setTimeout(() => {
+      cancelstf_authority.value = false;
+    }, 2000)
+  }
+}
 
+
+// After Createting New SMS, Set checkbox false
 watchEffect(() => {
     if (procurement_store.after_created) {
         checked.value = false;
