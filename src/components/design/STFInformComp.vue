@@ -31,7 +31,7 @@
         </div>
       </div> -->
 
-      <!-- Return Change STF Status For SHowing Only In Procurement Side -->
+      <!-- Show STF Complete Or Not In User and Procurement Side -->
       <slot name="stf_complete"></slot>
 
       <!-- Return Change STF Status For SHowing Only In Procurement Side -->
