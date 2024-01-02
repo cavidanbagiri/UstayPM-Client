@@ -61,18 +61,26 @@
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Link</div>
-                        <div class="column-value">{{ index_store.row_detail_data?.stf_result?.material_link }}</div>
+                        <div v-if="index_store.row_detail_data?.stf_result?.material_link"  
+                        class="column-value">{{ index_store.row_detail_data?.stf_result?.material_link }}</div>
+                        <div v-else>
+                            -
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
                         <div class="w-64 column-header">Material Comment</div>
-                        <div class="column-value">{{ index_store.row_detail_data?.stf_result?.material_comment }}</div>
+                        <div  v-if="index_store.row_detail_data?.stf_result?.material_comment"   
+                        class="column-value">{{ index_store.row_detail_data?.stf_result?.material_comment }}</div>
+                        <div v-else>
+                            -
+                        </div>
                     </div>
                     <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">STF Status</div>
-                        <div class="column-value w-6 h-6" style="font-family: 'Roboto';">
+                        <div class="w-64 column-header">Status</div>
+                        <div class="column-value w-6 h-6" >
                             <div v-if="index_store.row_detail_data?.stf_result?.completed">
                                 <!-- <img src="../assets/trueicon.png" alt=""> -->
-                                <span class="text-green-500 font-bold text-lg">Waiting</span>
+                                <span class="text-green-500 font-bold text-lg">Complete</span>
                             </div>
                             <div v-else>
                                 <!-- <img src="../assets/falseicon.png" alt=""> -->
@@ -81,9 +89,14 @@
                         </div>
                     </div>
                     <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">STF Created Date</div>
+                        <div class="w-64 column-header">Created Date</div>
                         <div class="column-value">
                             <DateFormat :time="index_store.row_detail_data?.stf_result?.createdAt" />
+                        </div>
+                    </div>
+                    <div class="flex justify-start items-center">
+                        <div class="w-64 column-header">Field Name</div>
+                        <div class="column-value">{{ index_store.row_detail_data?.stf_result?.FieldsModel?.field_name }}
                         </div>
                     </div>
                     <div class="flex justify-start items-center">
@@ -103,11 +116,6 @@
                                         class="pl-2 text-gray-500">Warehouse Worker</span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="flex justify-start items-center">
-                        <div class="w-64 column-header">Field Name</div>
-                        <div class="column-value">{{ index_store.row_detail_data?.stf_result?.FieldsModel?.field_name }}
                         </div>
                     </div>
                 </div>
@@ -148,7 +156,7 @@
                         </div>
                         <div class="flex justify-start items-center">
                             <div class="w-64 column-header">Left Over</div>
-                            <div class="column-value">{{ i.left_over }}</div>
+                            <div class="column-value">{{ i.left_over }} {{ i.sm_material_unit }}</div>
                         </div>
                         <div class="flex justify-start items-center">
                             <div class="w-64 column-header">Approximate Date</div>
@@ -161,12 +169,21 @@
                             <div class="column-value font-bold text-red-500" style="font-size: 18px;">{{
                                 i?.VendorModel?.vendor_name }}</div>
                         </div>
+                        <!-- SM Status -->
                         <div class="flex justify-start items-center">
-                            <div class="w-64 column-header">SM Created Date</div>
+                            <div class="w-64 column-header">Status</div>
+                            <div v-if="i?.ConditionModel?.situationId == 1"
+                             class="column-value font-bold bg-blue-100  text-blue-500 px-2 rounded-lg" style="font-size: 18px;">Processing</div>
+                            <div v-else
+                             class="column-value font-bold bg-green-100 text-green-500 px-2 rounded-lg" style="font-size: 18px;">Complete</div>
+                        </div>
+                        <div class="flex justify-start items-center">
+                            <div class="w-64 column-header">Created Date</div>
                             <div class="column-value">
                                 <DateFormat :time="i?.createdAt" />
                             </div>
                         </div>
+                        <!-- Supplier Name -->
                         <div class="flex justify-start items-center">
                             <div class="w-64 column-header">Supplier Name</div>
                             <div class="column-value">
@@ -308,7 +325,7 @@ const closeInformBar = () => {
 
 .column-header {
     font-size: 17px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Figtree', sans-serif;
     color: #334155;
     margin-top: 5px;
 }
