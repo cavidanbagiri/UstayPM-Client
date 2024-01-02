@@ -20,6 +20,11 @@
         <template #change_stf_status>        
           <slot name="change_stf_status"></slot>
         </template>
+
+        <!-- Cancel STF Slot -->
+        <template #stf_complete>        
+          <slot name="stf_complete"></slot>
+        </template>
         
 
       </STFInformComp>

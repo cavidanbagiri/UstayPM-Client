@@ -5,7 +5,7 @@
         <i class="fa-solid fa-xmark text-gray-400 hover:text-black"></i>
       </span>
     </div>
-    <div v-if="prop.each?.canceled_id" class="flex text-lg bg-red-400 text-white rounded-md py-1 mb-1">
+    <!-- <div v-if="prop.each?.canceled_id" class="flex text-lg bg-red-400 text-white rounded-md py-1 mb-1">
       <span class="text-center  w-full">
         STF Canceled
       </span>
@@ -17,7 +17,7 @@
         <span v-else class="px-2 py-2 text-red-500 bg-red-100 w-full rounded-lg">
           Completed : {{ prop?.each?.completed }}
         </span>
-    </div>
+    </div> -->
     <div class="flex flex-col pb-2 text-[16px] ">
       
       <!-- Change STF Status -->
@@ -30,6 +30,9 @@
           </select>
         </div>
       </div> -->
+
+      <!-- Return Change STF Status For SHowing Only In Procurement Side -->
+      <slot name="stf_complete"></slot>
 
       <!-- Return Change STF Status For SHowing Only In Procurement Side -->
       <slot name="change_stf_status"></slot>

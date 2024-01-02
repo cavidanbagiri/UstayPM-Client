@@ -7,7 +7,8 @@
 
             <!-- Cancel STF Only Work Inside Of Procurement Section -->
             <template #cancel_stf>
-                <span v-if="!prop.each?.canceled_id" @click="cancelSTF" class="flex items-center py-2 text-gray-900 row_item">
+                <span v-if="!prop.each?.canceled_id" @click="cancelSTF"
+                    class="flex items-center py-2 text-gray-900 row_item">
                     <img class="mr-4 w-4 h-4" src="../../../assets/icons/close.png" alt="">
                     Cancel STF
                 </span>
@@ -26,6 +27,23 @@
                             <option class="my-2 py-2 text-[15px]" value="true">Complete</option>
                         </select>
                     </div>
+                </div>
+            </template>
+
+            <!-- Check STF Complete Or Not Section -->
+            <template #stf_complete>
+                <div v-if="prop.each?.canceled_id" class="flex text-lg bg-red-400 text-white rounded-md py-1 mb-1">
+                    <span class="text-center  w-full">
+                        STF Canceled
+                    </span>
+                </div>
+                <div v-else class="flex font-bold w-full text-[1.0rem] ">
+                    <span v-if="prop?.each?.completed" class="px-2 py-2  text-green-500 bg-green-100 w-full rounded-lg">
+                        Completed : {{ prop?.each?.completed }}
+                    </span>
+                    <span v-else class="px-2 py-2 text-red-500 bg-red-100 w-full rounded-lg">
+                        Completed : {{ prop?.each?.completed }}
+                    </span>
                 </div>
             </template>
 
@@ -118,33 +136,33 @@ const cancelSTF = async () => {
 // ------------------------------------------------------- Cahnge STf Status
 // STF Informm
 const stf_status = reactive({
-  stf_id: prop?.each?.stf_id,
-  completed: prop?.each?.completed,
-  user: user_store.user.id,
+    stf_id: prop?.each?.stf_id,
+    completed: prop?.each?.completed,
+    user: user_store.user.id,
 })
 const changeStatus = async () => {
-  if (user_store.user.departmentId === 2) {
-    if (user_store.user && user_store.user.departmentId === 2) {
-      await index_store.setStfStatus(stf_status)
-        .then((respond) => {
-          if (stf_status.completed === 'true') {
-            prop.each.completed = true
-          }
-          else {
-            prop.each.completed = false
-          }
-        })
+    if (user_store.user.departmentId === 2) {
+        if (user_store.user && user_store.user.departmentId === 2) {
+            await index_store.setStfStatus(stf_status)
+                .then((respond) => {
+                    if (stf_status.completed === 'true') {
+                        prop.each.completed = true
+                    }
+                    else {
+                        prop.each.completed = false
+                    }
+                })
+        }
+        else {
+            console.log('Authorization Error ');
+        }
     }
     else {
-      console.log('Authorization Error ');
+        cancelstf_authority.value = true;
+        setTimeout(() => {
+            cancelstf_authority.value = false;
+        }, 2000)
     }
-  }
-  else {
-    cancelstf_authority.value = true;
-    setTimeout(() => {
-      cancelstf_authority.value = false;
-    }, 2000)
-  }
 }
 
 
