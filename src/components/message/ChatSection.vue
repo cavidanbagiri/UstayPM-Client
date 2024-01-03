@@ -30,7 +30,7 @@
 
         <!-- Message Area -->
         <div v-if="message_store.selected_user"
-            class="flex flex-col bg-white h-full p-2 rounded-sm  mx-2 mt-2 hover:overflow-y-scroll overflow-hidden ">
+            class="flex flex-col-reverse bg-white h-full p-2 rounded-sm  mx-2 mt-2 hover:overflow-y-scroll overflow-hidden ">
 
             <template v-for="i in message_store.selected_user_fetch_messages">
 
@@ -144,6 +144,7 @@ const msgTyping = () => {
 
 watchEffect(() => {
     socket.on('fetch_messages', data => {
+        data = data.reverse();
         if (message_store.selected_user?.roomid === data[0].roomId) {
             message_store.selected_user_fetch_messages = data;
         }
@@ -190,7 +191,7 @@ const sendMessage = async () => {
                     roomId: message_data.room_id,
                     senderId: message_data.senderId
                 }
-                message_store.selected_user_fetch_messages?.push(temp_message_data);
+                message_store.selected_user_fetch_messages?.unshift(temp_message_data);
                 now_message_sending.value = true;
                 send_ringtone.play();
                 message_data.message_text = '';

@@ -45,6 +45,7 @@ const MessageStore = defineStore("MessageStore", {
             )
             .then((respond) => {
               this.unread_messages = respond.data;
+
             });
         }
         catch(err){
@@ -96,8 +97,7 @@ const MessageStore = defineStore("MessageStore", {
               `${import.meta.env.VITE_API}api/common/fetchmessage/${current_id}?selected_id=${selected_id}`
             )
             .then((respond) => {
-              this.selected_user_fetch_messages = respond.data;
-              console.log('selected user and fetching messages : ', this.selected_user_fetch_messages);
+              this.selected_user_fetch_messages = respond.data.reverse();
             });
         }
       } catch (err) {
