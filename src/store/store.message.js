@@ -8,8 +8,6 @@ const MessageStore = defineStore("MessageStore", {
   state: () => ({
     toggle_message: false,
     toggle_user: true,
-    // Fetch All Users
-    // users: [],
     // Selected User
     selected_user: null,
     // Selected User Fetching Messages
@@ -21,19 +19,6 @@ const MessageStore = defineStore("MessageStore", {
   }),
   getters: {},
   actions: {
-
-    // Fetch All Users
-    // async fetchUsers() {
-    //   try {
-    //     await axios
-    //       .get(`${import.meta.env.VITE_API}api/common/fetchallusers`)
-    //       .then((respond) => {
-    //         this.users = respond.data;
-    //       });
-    //   } catch (err) {
-    //     console.log("Message Section fetching Users Error : ", err);
-    //   }
-    // },
 
     // Fetch Unread Messages, This function will use inside of Navbar Notification
     async fetchUnreadMessages(user_id){
@@ -98,6 +83,7 @@ const MessageStore = defineStore("MessageStore", {
             )
             .then((respond) => {
               this.selected_user_fetch_messages = respond.data.reverse();
+              console.log('selected user fetch messages : ', this.selected_user_fetch_messages)
             });
         }
       } catch (err) {

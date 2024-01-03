@@ -107,34 +107,45 @@ const toggleDialog = (user) => {
     user_key.value = user.id;
 }
 
-const userInform = (user) => {
-    console.log('clicked user btn : ',user);
-}
-
 const selectedUser = async (user) => {
     if (user_store.user) {
+        
+        // 1 STEP - Set Selected User TO CLicked User
         message_store.selected_user = user;
+        
+        // 2 STEP - Fetch All Messages From Selected User, If Not any room, create new room betweem two users
         await message_store.fetchMessage(user_store.user?.id, message_store.selected_user.id);
+
+        // 3 STEP - If There Is Not Any Message Between current user and selected user, room id will be not, thats why add room id for that user
         if (message_store.selected_user_fetch_messages.length) {
+
+            // 4 STEP - If Selected User roomid is null
             if(!message_store.selected_user?.roomid){
+                
+                // 5 STEP - SET roomid for selecting user from coming data from backend during selecting user
                 message_store.selected_user.roomid = message_store.selected_user_fetch_messages[0]?.roomId;
             }
+
+            // 6 STEP Send Coming Room between this two user to backend side for creating realtime chatting
             socket.emit('join_room', user_store.user.id, user.id, message_store.selected_user_fetch_messages[0]?.roomId);
+            
+            // 7 STEP - Set true unread messages for current user  
             await message_store.setTrueReadingMessages({current_id: user_store.user?.id, room_id: message_store.selected_user_fetch_messages[0]?.roomId});
+            
+            // 8 STEP - Set Selected User Unread Messages Count as 0
             message_store.selected_user.count = 0;
         }
-        // Set Unread Message 0 in Selected User Side
+        // 9 STEP - Set Unread Message 0 in Selected User Side
         for(let i of message_store.unread_messages_and_users){
             if(message_store.selected_user.id === i.id){
                 i.count = 0;
             }
         }
-        // Set Unread Message read in message notification side
-        message_store.unread_messages = message_store.unread_messages.filter((item)=>{
+        // 10 STEP - Set Unread Message read in message notification side
+        message_store.unread_messages = message_store.unread_messages?.filter((item)=>{
             return message_store.selected_user?.id !== item.id 
         })
     }
-
 }
 
 

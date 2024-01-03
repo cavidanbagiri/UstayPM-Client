@@ -198,7 +198,7 @@
 
 <script setup>
 
-import { ref, watchEffect, reactive } from 'vue';
+import { ref } from 'vue';
 import Notification from '../components/design/Notification.vue';
 import MessagesNotificaion from '../components/design/MessagesNotification.vue';
 import UserStore from '../store/store.user_store';
@@ -231,11 +231,6 @@ const logout_tooltip = ref(false);
 const notification_toggle = ref(false);
 const messages_notification_toggle = ref(false);
 
-
-watchEffect(() => {
-    // user.value = JSON.parse(sessionStorage?.getItem('user'));
-    // user_store.user = user.value;
-})
 
 // After Clicking, Notification Model Will Open
 const showNotification = () => {

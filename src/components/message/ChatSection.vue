@@ -1,12 +1,6 @@
 <template>
     <div class="justify-between px-1 my-1 flex flex-col bg-white w-9/12 mt-2 mb-2 border-r">
 
-        <!-- Close Button and Userlist Toggle Section -->
-        <!-- <div class=" flex justify-end py-2 px-5">
-            <span class="cursor-pointer" @click="closeChat"><i
-                    class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-400"></i></span>
-        </div> -->
-
         <div class="flex justify-center text-4xl mt-2" style="font-family: 'Poppins';">
             Chats
         </div>
@@ -94,7 +88,7 @@
                 For Selecting User, Please Click Top Right Users Icon
             </span>
         </div>
-        <!-- <span v-if="selected_typing" class="loading loading-dots loading-sm"></span> -->
+
         <!-- Text Input Area -->
         <div class="flex flex-row items-center justify-between py-2 px-1">
             <input @keyup.enter="sendMessage" :disabled="!message_store.selected_user" v-model="message_data.message_text"
@@ -106,6 +100,7 @@
                 <i class="fa-regular fa-paper-plane fa-xl "></i>
             </button>
         </div>
+
     </div>
 </template>
 
@@ -143,12 +138,16 @@ const msgTyping = () => {
 //********************************************************************************* */
 
 watchEffect(() => {
+
+    // After Sending Messages, All Messages Fething From Database and show in frontend side, this is not good
     socket.on('fetch_messages', data => {
         data = data.reverse();
         if (message_store.selected_user?.roomid === data[0].roomId) {
             message_store.selected_user_fetch_messages = data;
         }
     });
+
+    // Show typing between 2 users, if user selected
     socket.on('typing', (room_id) => {
         if (message_store.selected_user?.roomid === room_id) {
             selected_typing.value = true;
@@ -168,8 +167,13 @@ const message_data = reactive({
     senderId: '',
 })
 const sendMessage = async () => {
+    // 1 STEP - If User Login and message length is not 0
     if (user_store.user && message_data.message_text.trim().length > 0) {
+
+        // 2 STEP - Set which user will accept this message
         message_data.sender_id = message_store.selected_user.id;
+
+        // 3 STEP - Set RoomId that, this message will send for this roomid
         if (message_store.selected_user_fetch_messages) {
             if (message_store.selected_user_fetch_messages.length) {
                 message_data.room_id = message_store.selected_user_fetch_messages[0].roomId;
@@ -178,11 +182,17 @@ const sendMessage = async () => {
                 message_data.room_id = message_store.selected_user_fetch_messages.roomId
             }
         }
+
+        // 4 STEP - After Clicking send button, till sending that message, second time sending will close for double sending
         if (now_message_sending.value) {
             now_message_sending.value = false;
+            
+            // 5 STEP - Sending Message
             await message_store.sendMessage(
                 message_data
             ).then(async (respond) => {
+
+                // 6 STEP - After Sending Messages, also need to add this sending messages inside of current user chating
                 message_data.receiverId = message_data.current_id;
                 const temp_message_data = {
                     createdAt: new Date().getDate(),
@@ -191,12 +201,23 @@ const sendMessage = async () => {
                     roomId: message_data.room_id,
                     senderId: message_data.senderId
                 }
+                
+                // 7 STEP - Add sending message inside of selected_user_fetch_message's array 
                 message_store.selected_user_fetch_messages?.unshift(temp_message_data);
+
+                // 8 STEP - Set True sending button for sending new message to selected user
                 now_message_sending.value = true;
+                
+                // 9 STEP - Play ringtone that, message already sending
                 send_ringtone.play();
+
+                // 10 STEP - Set Message Text empty for writing second time message
                 message_data.message_text = '';
+
+                // 11 STEP - 
                 socket.emit('new_messages', message_data)
                 // await message_store.setTrueReadingMessages({current_id: user_store.user?.id, room_id: selected_user_fetch_messages.roomId});
+                
             }).catch((err) => {
                 console.log('Send Message Error : ', err);
             })

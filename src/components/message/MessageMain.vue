@@ -1,11 +1,14 @@
 <template>
-    <div v-if="message_store.toggle_message" >
+    <div >
         <div class="z-50 flex flex-row bg-white fixed bottom-0 right-0 rounded-md px-2 pt-1 pb-1 shadow-2xl message_main">
+
+            <!-- Show All Users -->
             <UserSection />
             <!-- Chat Section -->
             <ChatSection />
             <!-- Selected User Section -->
             <SelectedUserProfile/>
+            
         </div>
 
     </div>
@@ -28,11 +31,10 @@ const user_store = UserStore();
 const message_store = MessageStore();
 
 onMounted(async () => {
-    // await message_store.fetchUsers();
     await message_store.fetchUnreadMessagesAndUsers(user_store.user?.id)
 })
 
-watchEffect(() => {
+// watchEffect(() => {
     // socket.on('fetch_messages', data => {
     //     for (let user of message_store.unread_messages_and_users) {
     //         if (user.roomid === data[0].roomId) {
@@ -40,7 +42,7 @@ watchEffect(() => {
     //         }
     //     }
     // });
-})
+// })
 
 </script>
 

@@ -9,7 +9,7 @@
         Online Chat
       </span>
     </div>
-    <MessageMain />
+    <MessageMain v-if="message_store.toggle_message" />
 
 
   </div>
@@ -30,7 +30,6 @@ const openChatArea = () => {
 }
 
 const showItem = () => {
-
   setTimeout(() => {
     show_hover_online_chat.value = true;
   }, 200)
@@ -38,9 +37,7 @@ const showItem = () => {
 }
 
 const closeItem = () => {
-
   show_hover_online_chat.value = false;
-
 }
 
 </script>
