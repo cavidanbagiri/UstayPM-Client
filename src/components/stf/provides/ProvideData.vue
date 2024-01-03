@@ -57,6 +57,7 @@ onMounted(async () => {
   if (user === undefined) {
   }
   else {
+    console.log('else work');
     await stf_store.fetchProvidedData(user);
     if (stf_store.provided_data_headers.length === 0) {
       stf_store.getProvidedDataHeaders();

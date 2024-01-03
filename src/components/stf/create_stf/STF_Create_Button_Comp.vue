@@ -31,6 +31,7 @@ const emit = defineEmits(['setRowSize']);
 const btn_toggle = ref(true);
 
 const createSTF = async () => {
+    console.log('order list : ', stf_store.order_list);
     btn_toggle.value = false;
     if (stf_store.order_list.length === 0) {
         alert('Must Create at least 1 data');
@@ -80,6 +81,7 @@ const createSTF = async () => {
                 for(let i = stf_store.order_list?.length ; i > prop.row_size ; i -- ){
                     const some = stf_store.order_list?.pop();
                 }
+                console.log('creating data : ', data);
                 await stf_store.createSTF(data)
                     .then(async (respond) => {
                         if (respond?.response?.status === 400) {

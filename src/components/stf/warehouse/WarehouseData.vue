@@ -16,6 +16,7 @@
       </div>
     </div>
 
+
     <table v-if="stf_store.GETWAREHOUSEHEADERS.length" class=" mx-2 text-gray-800  w-full shadow-xl bg-white mt-1">
       <TableHeader :table_headers="stf_store.GETWAREHOUSEHEADERS" />
       <ShowWarehouseEachRow v-for="(i, index) in stf_store.warehouse_data" :each="i" :index="index" />
@@ -30,9 +31,6 @@
           There is not any data in warehouse which created by <span class="font-bold">{{user_store.user.name}} {{user_store.user.surname}}</span>
         </span>
     </div>
-
-    <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"
-      @closeRowInform="closeRowInform" />-->
 
     <SelectingRows />
   </div>

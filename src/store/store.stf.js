@@ -250,7 +250,7 @@ const STFStore = defineStore("STFStore", {
 
     // Fetch All User STF Headers
     async getWarehouseHeaders() {
-      if (this.warehouse_data?.length > 1) {
+      if (this.warehouse_data?.length >= 1) {
         // Add Header To Header List
         for (let [key, value] of Object.entries(this?.warehouse_data[0])) {
           // Handle If Header name contain id or Id
@@ -313,6 +313,7 @@ const STFStore = defineStore("STFStore", {
           this.provides_data = respond.data;
           this.provide_data_loading = false;
           this.provide_data_cond_text = false;
+          console.log('this provide data : ', this.provides_data);
         }else{
           this.provide_data_loading = false;
           this.provide_data_cond_text = true;
@@ -381,7 +382,6 @@ const STFStore = defineStore("STFStore", {
         }
       }
     },
-
 
     // Create URL query from table filter watcher
     createUrlQuery(filtered_object) {
