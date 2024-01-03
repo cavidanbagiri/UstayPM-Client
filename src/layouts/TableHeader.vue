@@ -25,7 +25,7 @@
             
           </slot>
 
-          <th v-for="i in prop?.table_headers" v-show="i.value" scope="col" class="px-2 py-1 text-center border font-thin">
+          <th v-for="i in prop?.table_headers" v-show="i.value" scope="col" class="px-2 text-center border font-thin">
               <div v-if="i.name==='situation'" class="w-20">
                   {{ i.showname }}
               </div>
