@@ -35,7 +35,7 @@ watchEffect(() => {
           'rgb(255, 205, 86)'
         ],
         data: [
-          2,
+          prop?.statistic_data?.sm_canceled,
           prop?.statistic_data?.sm_process,
           prop?.statistic_data?.sm_completed
         ]
