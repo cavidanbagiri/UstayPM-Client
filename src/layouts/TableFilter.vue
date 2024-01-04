@@ -113,13 +113,18 @@
 <script setup>
 
 import { ref, reactive, watchEffect } from 'vue';
+
 import ProcurementStore from '../store/store.procurement';
+import UserStore from '../store/store.user_store';
+const user_store = UserStore();
 const procurement_store = ProcurementStore();
+
 // Define Emits
 const emits = defineEmits(['filterFunction', 'filtered_fields']);
 
 // Create Filtered Object
 const filtered_objects = reactive({
+    project_id:user_store.user?.projectId,
     usernames : '',
     createdAt : '',
     material_type : '',

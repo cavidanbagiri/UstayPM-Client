@@ -319,10 +319,10 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Get Procurement Users Names
-    async getProcurementUsersNames() {
+    async getProcurementUsersNames(project_id) {
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}api/common/procurementusers`)
+        .get(`${import.meta.env.VITE_API}api/common/procurementusers/${project_id}`)
         .then((respond) => {
           this.procurement_users_names = respond.data;
         })
@@ -336,19 +336,22 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Fet Username Data Who Create STF
-    async fetchSTFCreateUsernames() {
-      try{
-        await axios
-        .get(`${import.meta.env.VITE_API}api/common/createdstfusers`)
-        .then((respond) => {
-          this.created_stf_username = respond.data;
-        })
-        .catch((err) => {
-          console.log("Get Users Names Errors : ", err);
-        });
-      }
-      catch(err){
-        console.log('Get Procurement Users Error : ',err);
+    async fetchSTFCreateUsernames(project_id) {
+      if(project_id){
+        
+        try{
+          await axios
+          .get(`${import.meta.env.VITE_API}api/common/createdstfusers/${project_id}`)
+          .then((respond) => {
+            this.created_stf_username = respond.data;
+          })
+          .catch((err) => {
+            console.log("Get Users Names Errors : ", err);
+          });
+        }
+        catch(err){
+          console.log('Get Procurement Users Error : ',err);
+        }
       }
     },
 

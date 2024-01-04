@@ -384,23 +384,25 @@ const WarehouseStore = defineStore("WarehouseStore", {
     },
 
     // Fet Username Data Who Create STF
-    async fetchSTFCreateUsernames() {
-      try{
-        await axios
-        .get(`${import.meta.env.VITE_API}api/common/createdstfusers`)
-        .then((respond) => {
-          this.created_stf_username = respond.data;
-        })
-        .catch((err) => {
-          console.log("Get Users Names Errors : ", err);
-        });
-      }
-      catch(err){
-        console.log('Get Procurement Users Error : ',err);
+    async fetchSTFCreateUsernames(project_id) {
+      if(project_id){
+        try{
+          await axios
+          .get(`${import.meta.env.VITE_API}api/common/createdstfusers/${project_id}`)
+          .then((respond) => {
+            this.created_stf_username = respond.data;
+          })
+          .catch((err) => {
+            console.log("Get Users Names Errors : ", err);
+          });
+        }
+        catch(err){
+          console.log('Get Procurement Users Error : ',err);
+        }
       }
     },
 
-    // Fetch Departments
+    // Fetch Departments -> ERROR
     async fetchWarehouseDeliveryTypes (){
       try{
         await axios.get(`${import.meta.env.VITE_API}api/warehouse/deliverytypes`)

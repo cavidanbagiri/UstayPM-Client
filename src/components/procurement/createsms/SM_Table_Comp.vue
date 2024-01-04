@@ -25,11 +25,14 @@
     import SM_Table_Body_Comp from './SM_Table_Body_Comp.vue';
     import SM_Create_Button_Comp from './SM_Create_Button_Comp.vue';
     import ProcurementStore from '../../../store/store.procurement.js';
+    import UserStore from '../../../store/store.user_store';
     const procurement_store = ProcurementStore();
+    const user_store = UserStore();
 
     onMounted(async ()=>{
-        // await procurement_store.getCompaniesNames();
-        await procurement_store.getProcurementUsersNames();
+        if(user_store.user){
+            await procurement_store.getProcurementUsersNames(user_store.user.projectId);
+        }
     })
 
 

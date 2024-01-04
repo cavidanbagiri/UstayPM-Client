@@ -74,7 +74,7 @@ onMounted(async () => {
     if (procurement_store.stf_table_headers.length === 0) {
       procurement_store.getSTFHeaders();
     }
-    await procurement_store.fetchSTFCreateUsernames();
+    await procurement_store.fetchSTFCreateUsernames(user_store.user.projectId);
     await procurement_store.getCompaniesNames();
   }
 }

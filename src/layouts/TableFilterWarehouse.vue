@@ -144,6 +144,8 @@
 
 import { ref, reactive, watchEffect } from 'vue';
 import WarehouseStore from '../store/store.warehouse';
+import UserStore from '../store/store.user_store';
+const user_store = UserStore();
 import VendorNames from './VendorNames.vue';
 const warehouse_store = WarehouseStore();
 // Define Emits
@@ -159,6 +161,7 @@ const selectedComp = (val) => {
 
 // Create Filtered Object
 const filtered_objects = reactive({
+    project_id:user_store.user?.projectId,
     createdAt: '',
     sm_material_name: '',
     vendor_name: '',
