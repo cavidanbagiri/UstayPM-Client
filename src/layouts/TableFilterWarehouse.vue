@@ -144,7 +144,7 @@
 
 import { ref, reactive, watchEffect } from 'vue';
 import WarehouseStore from '../store/store.warehouse';
-import UserStore from '../store/store.user_store';
+import UserStore from '../store/store.user';
 const user_store = UserStore();
 import VendorNames from './VendorNames.vue';
 const warehouse_store = WarehouseStore();

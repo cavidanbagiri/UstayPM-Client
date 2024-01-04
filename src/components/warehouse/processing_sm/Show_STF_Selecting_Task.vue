@@ -36,7 +36,7 @@
 import { ref, watchEffect, reactive } from 'vue';
 import Toast from '../../design/Toast.vue';
 import WarehouseStore from '../../../store/store.warehouse';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();
 

@@ -38,7 +38,7 @@ import Toast from '../../design/Toast.vue';
 
 import Vendor_Comp from './Vendor_Comp.vue';
 import ProcurementStore from '../../../store/store.procurement.js';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 
 const procurement_store = ProcurementStore();
 const user_store = UserStore();

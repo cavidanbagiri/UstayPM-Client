@@ -47,7 +47,7 @@ import Provide_SM_Table_Body from './Provide_SM_Table_Body.vue';
 import Provide_SM_Table_Header from './Provide_SM_Table_Header.vue';
 import Toast from '../../design/Toast.vue';
 
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 import WarehouseStore from '../../../store/store.warehouse';
 const user_store = UserStore(); 
 const warehouse_store = WarehouseStore();

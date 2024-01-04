@@ -12,7 +12,7 @@
 
 <script setup>
 
-import { ref, watchEffect, reactive } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 

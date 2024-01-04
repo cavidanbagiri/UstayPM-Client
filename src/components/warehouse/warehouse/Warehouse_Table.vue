@@ -53,7 +53,7 @@ import Warehouse_Table_Body from './Warehouse_Table_Body.vue'
 import Show_Warehouse_Selecting_Task from './Show_Warehouse_Selecting_Task.vue';
 import TableCommonComp from '../../design/TableCommonComp.vue';
 import WarehouseStore from '../../../store/store.warehouse';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();

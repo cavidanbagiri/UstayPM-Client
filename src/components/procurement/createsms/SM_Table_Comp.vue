@@ -25,7 +25,7 @@
     import SM_Table_Body_Comp from './SM_Table_Body_Comp.vue';
     import SM_Create_Button_Comp from './SM_Create_Button_Comp.vue';
     import ProcurementStore from '../../../store/store.procurement.js';
-    import UserStore from '../../../store/store.user_store';
+    import UserStore from '../../../store/store.user';
     const procurement_store = ProcurementStore();
     const user_store = UserStore();
 

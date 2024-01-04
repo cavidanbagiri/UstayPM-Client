@@ -201,7 +201,7 @@
 import { ref } from 'vue';
 import Notification from '../components/design/Notification.vue';
 import MessagesNotificaion from '../components/design/MessagesNotification.vue';
-import UserStore from '../store/store.user_store';
+import UserStore from '../store/store.user';
 import IndexStore from '../store/store.index';
 import MessageStore from '../store/store.message';
 

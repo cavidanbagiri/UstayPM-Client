@@ -35,7 +35,7 @@
 
 import { reactive } from 'vue';
 import WarehouseStore from '../../../store/store.warehouse';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 import Toast from '../../design/Toast.vue';
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();

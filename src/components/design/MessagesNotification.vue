@@ -50,7 +50,7 @@ import { inject } from 'vue';
 
 import DateFormatMonth from '../../layouts/DateFormatMonth.vue';
 
-import UserStore from '../../store/store.user_store';
+import UserStore from '../../store/store.user';
 import MessageStore from '../../store/store.message';
 const user_store = UserStore();
 const message_store = MessageStore();

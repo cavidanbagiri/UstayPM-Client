@@ -79,9 +79,9 @@ import { ref, watchEffect, reactive } from 'vue';
 import TableRow from '../../../layouts/TableRow.vue';
 import TableRowInform from '../../../layouts/TableRowInform.vue';
 import CancelSTF from '../../design/Cancelstf.vue';
-import Toast from '../../design/toast.vue';
+import Toast from '../../design/Toast.vue';
 import ProcurementStore from '../../../store/store.procurement';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 import IndexStore from '../../../store/store.index';
 
 const procurement_store = ProcurementStore();

@@ -95,7 +95,7 @@
 
 <script setup>
 import MessageStore from '../../store/store.message';
-import UserStore from '../../store/store.user_store';
+import UserStore from '../../store/store.user';
 
 const message_store = MessageStore();
 const user_store = UserStore();

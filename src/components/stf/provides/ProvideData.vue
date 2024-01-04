@@ -47,7 +47,7 @@ import TableExpand from '../../../layouts/TableExpand.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
 import Provided_Table_Body from './Provided_Table_Body.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 import STFStore from '../../../store/store.stf';
 const stf_store = STFStore();
 const user_store = UserStore();

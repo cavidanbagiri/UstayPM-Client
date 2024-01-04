@@ -33,7 +33,7 @@ import Login from './components/auth/Login.vue';
 import { ArcElement, Chart as ChartJS } from "chart.js";
 
 import IndexStore from './store/store.index';
-import UserStore from './store/store.user_store';
+import UserStore from './store/store.user';
 import MessageStore from './store/store.message';
 
 const user_store = UserStore();

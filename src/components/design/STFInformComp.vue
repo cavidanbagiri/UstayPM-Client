@@ -79,7 +79,7 @@ import { reactive, ref } from 'vue';
 import Toast from './Toast.vue';
 
 import IndexStore from '../../store/store.index';
-import UserStore from '../../store/store.user_store';
+import UserStore from '../../store/store.user';
 
 const index_store = IndexStore();
 const user_store = UserStore();

@@ -49,7 +49,7 @@ import SelectingRows from './SelectingRows.vue';
 import TableFilterWarehouse from '../../../layouts/TableFilterWarehouse.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 import WarehouseStore from '../../../store/store.warehouse';
 
 const procurement_store = ProcurementStore();
@@ -57,11 +57,13 @@ const user_store = UserStore();
 const warehouse_store = WarehouseStore();
 
 onMounted(async () => {
-  await procurement_store.fetchWarehouseData();
-  await warehouse_store.getCompaniesNames();
-  await warehouse_store.fetchSTFCreateUsernames();
-  if(procurement_store.GETWAREHOUSEHEADERS.length === 0){ 
-    await procurement_store.getWarehouseHeaders();
+  if(user_store.user){
+    await procurement_store.fetchWarehouseData(user_store.user.projectId);
+    await warehouse_store.getCompaniesNames();
+    await warehouse_store.fetchSTFCreateUsernames(user_store.user.projectId);
+    if(procurement_store.GETWAREHOUSEHEADERS.length === 0){ 
+      await procurement_store.getWarehouseHeaders();
+    }
   }
   
 })

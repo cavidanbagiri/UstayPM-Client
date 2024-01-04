@@ -71,7 +71,7 @@
 
 import DateFormatMonth from '../../layouts/DateFormatMonth.vue';
 
-import UserStore from '../../store/store.user_store';
+import UserStore from '../../store/store.user';
 import IndexStore from '../../store/store.index';
 const user_store = UserStore();
 const index_store = IndexStore();

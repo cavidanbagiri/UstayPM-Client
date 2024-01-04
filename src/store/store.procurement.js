@@ -356,10 +356,10 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Fetch Warehouse Data
-    async fetchWarehouseData() {
+    async fetchWarehouseData(project_id) {
         try{
           // await axios.get(`${import.meta.env.VITE_API}api/procurement/warehouse`)
-          await axios.get(`${import.meta.env.VITE_API}api/warehouse`)
+          await axios.get(`${import.meta.env.VITE_API}api/warehouse/${project_id}`)
           .then((respond)=>{
             this.warehouse_data = respond.data;
           })

@@ -54,7 +54,7 @@ import CreateSTF from '../components/stf/create_stf/CreateSTF.vue';
 import WarehouseData from '../components/stf/warehouse/WarehouseData.vue';
 import ProvideData from '../components/stf/provides/ProvideData.vue';
 
-import UserStore from '../store/store.user_store';
+import UserStore from '../store/store.user';
 import STFStore from '../store/store.stf.js'
 
 const user_store = UserStore();

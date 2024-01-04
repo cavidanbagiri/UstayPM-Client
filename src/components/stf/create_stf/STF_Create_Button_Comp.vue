@@ -16,7 +16,7 @@
 
 import { ref } from 'vue';
 import STFStore from '../../../store/store.stf';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 
 const stf_store = STFStore();
 

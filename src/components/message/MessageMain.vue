@@ -22,7 +22,7 @@ import { onMounted, watchEffect, inject } from 'vue';
 import ChatSection from './ChatSection.vue';
 import UserSection from './UserSection.vue';
 import MessageStore from '../../store/store.message';
-import UserStore from '../../store/store.user_store';
+import UserStore from '../../store/store.user';
 import SelectedUserProfile from './SelectedUserProfile.vue';
 
 const socket = inject('socket');

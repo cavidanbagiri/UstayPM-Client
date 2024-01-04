@@ -133,7 +133,7 @@
 
 import { ref, reactive, watchEffect } from 'vue';
 import ProcurementStore from '../store/store.procurement';
-import UserStore from '../store/store.user_store';
+import UserStore from '../store/store.user';
 const user_store = UserStore();
 import VendorNames from './VendorNames.vue';
 const procurement_store = ProcurementStore();

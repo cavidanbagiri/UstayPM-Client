@@ -59,7 +59,7 @@
 
 <script setup>
 
-import UserStore from '../../store/store.user_store';
+import UserStore from '../../store/store.user';
 const user_store = UserStore();
 
 </script>

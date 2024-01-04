@@ -64,7 +64,7 @@ import TableCommonComp from '../../design/TableCommonComp.vue';
 // import IndexStore from '../../../store';
 
 // Create variable for importing data
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 import ProcurementStore from '../../../store/store.procurement';
 const procurement_store = ProcurementStore();
 const user_store = UserStore();

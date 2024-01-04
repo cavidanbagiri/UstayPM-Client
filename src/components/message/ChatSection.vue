@@ -110,7 +110,7 @@ import { ref, inject, watchEffect, reactive } from 'vue';
 import sendringtone from '../../assets/sendringtone.mp3';
 import DateFormatTime from '../../layouts/DateFormatTime.vue';
 
-import UserStore from '../../store/store.user_store';
+import UserStore from '../../store/store.user';
 import MessageStore from '../../store/store.message';
 const user_store = UserStore();
 const message_store = MessageStore();

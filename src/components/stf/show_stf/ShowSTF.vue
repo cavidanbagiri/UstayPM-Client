@@ -45,7 +45,7 @@ import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
 import ShowSTFEachRow from './ShowSTFEachRow.vue';
 import SelectingRows from './SelectingRows.vue';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 import TableFilter from '../../../layouts/TableFilter.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';

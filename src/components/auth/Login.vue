@@ -65,7 +65,7 @@ import { ref } from 'vue';
 import { ErrorMessage } from 'vee-validate';
 import router from '../../router/index.js';
 
-import UserStore from '../../store/store.user_store.js';
+import UserStore from '../../store/store.user';
 const user_store = UserStore();
 
 const user_not_found = ref('');

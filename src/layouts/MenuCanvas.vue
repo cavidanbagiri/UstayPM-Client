@@ -178,10 +178,10 @@
 
 <script setup>
 
-import { ref, watchEffect } from 'vue';
+import { ref } from 'vue';
 
 import IndexStore from '../store/store.index.js';
-import UserStore from '../store/store.user_store.js';
+import UserStore from '../store/store.user.js';
 import MessageStore from '../store/store.message';
 
 import router from '../router';

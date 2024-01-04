@@ -16,7 +16,7 @@
 import { ref } from 'vue';
 import Toast from '../components/design/Toast.vue';
 import router from '../router/index.js';
-import UserStore from '../store/store.user_store';
+import UserStore from '../store/store.user';
 
 
 const user_store = UserStore();

@@ -52,7 +52,7 @@ import Get_SM_Body_Table from './Get_SM_Body_Table.vue';
 import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
 import TableCommonComp from '../../design/TableCommonComp.vue';
 
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 import WarehouseStore from '../../../store/store.warehouse';
 import ProcurementStore from '../../../store/store.procurement';
 // import IndexStore from '../../../store';

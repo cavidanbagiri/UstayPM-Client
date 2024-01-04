@@ -39,7 +39,6 @@ import SMChart from '../components/home/charts/SMChart.vue';
 import WarehouseChart from '../components/home/charts/WarehouseChart.vue';
 import UserTable from '../components/home/usertable/UserTable.vue';
 import Inform from '../components/home/inform/Inform.vue';
-// import UserStore from '../store/store.user_store';
 import IndexStore from '../store/store.index';
 import Companies from '../components/home/companies/Companies.vue';
 const index_store = IndexStore();

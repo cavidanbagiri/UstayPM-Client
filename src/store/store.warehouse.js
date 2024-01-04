@@ -405,7 +405,7 @@ const WarehouseStore = defineStore("WarehouseStore", {
     // Fetch Departments -> ERROR
     async fetchWarehouseDeliveryTypes (){
       try{
-        await axios.get(`${import.meta.env.VITE_API}api/warehouse/deliverytypes`)
+        await axios.get(`${import.meta.env.VITE_API}api/common/deliverytypes`)
         .then((respond)=>{
           this.delivery_types = respond.data;
         }).catch((err)=>{

@@ -56,7 +56,7 @@ import Provide_SM_Table from '../components/warehouse/provide_sm/Provide_SM_Tabl
 import Provided_Table from '../components/warehouse/provided/Provided_Table.vue';
 
 import WarehouseStore from '../store/store.warehouse';
-import UserStore from '../store/store.user_store';
+import UserStore from '../store/store.user';
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();
 const tabs = [

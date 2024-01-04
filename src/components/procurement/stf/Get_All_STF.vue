@@ -62,7 +62,7 @@ import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilter from '../../../layouts/TableFilter.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import ProcurementStore from '../../../store/store.procurement';
-import UserStore from '../../../store/store.user_store';
+import UserStore from '../../../store/store.user';
 
 const procurement_store = ProcurementStore();
 const user_store = UserStore();

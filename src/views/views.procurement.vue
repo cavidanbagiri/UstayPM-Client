@@ -56,7 +56,7 @@ import CreateSMS from '../components/procurement/createsms/Get_Creating_SM.vue';
 import WarehouseData from '../components/procurement/warehouse/WarehouseData.vue';
 
 import ProcurementStore from '../store/store.procurement';
-import UserStore from '../store/store.user_store';
+import UserStore from '../store/store.user';
 
 const user_store = UserStore();
 const procurement_store = ProcurementStore();
