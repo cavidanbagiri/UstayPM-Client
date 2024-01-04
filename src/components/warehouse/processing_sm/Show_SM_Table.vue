@@ -35,7 +35,9 @@
             </div>
         </div>
 
-        <Show_STF_Selecting_Task />
+        <Show_STF_Selecting_Task @acceptSM="acceptSM" />
+
+        <Toast :cond = showToastval.cond :messages=showToastval.messages />
         
     </div>
 </template>
@@ -43,7 +45,7 @@
 <script setup>
 
 // Import Section
-import { onMounted } from 'vue';
+import { onMounted, reactive } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilterSM from '../../../layouts/TableFilterSM.vue';
@@ -58,6 +60,7 @@ import ProcurementStore from '../../../store/store.procurement';
 // import IndexStore from '../../../store';
 
 import TableHeader from '../../../layouts/TableHeader.vue';
+import Toast from '../../design/Toast.vue';
 
 // Create variable for importing data
 const warehouse_store = WarehouseStore();
@@ -85,6 +88,34 @@ onMounted(async () => {
         }
     }
 })
+
+// Show Toast Message
+const showToastval = reactive({
+    cond: false,
+    messages: ''
+})
+const acceptSM = async () => {
+
+    if(user_store.user){
+        if(user_store.user.departmentId !== 3) {
+            // ... Only Procurement Users can create a new sms
+            showToastval.cond = true;
+            showToastval.messages = "You dont have authority for Accepting SM";
+            setTimeout(()=>{
+                showToastval.cond = false
+            },1000)
+        }
+        else{
+            warehouse_store.tab_num = 2;
+        }
+    }
+    else{
+        // ... User Not Login Error Return
+        showToastval.cond = true;
+        showToastval.messages = "User Not Login";
+    }
+
+}
 
 // Get Filtered Data
 const filterFunction = async (filtered_objects)=>{

@@ -28,14 +28,16 @@
             </div>
         </div>
 
-        <Show_Warehouse_Selecting_Task />
+        <Show_Warehouse_Selecting_Task @provideSM="provideSM" />
+
+
 
         <!-- <table-row-inform 
         :row_inform="index_store.row_detail_data" 
         :row_inform_condition="index_store.row_inform_condition" 
         @closeRowInform="closeRowInform"
         /> -->
-
+        <Toast :cond = showToastval.cond :messages=showToastval.messages />
 
     </div>
 </template>
@@ -43,7 +45,7 @@
 <script setup>
 
 // Import Section
-import { onMounted } from 'vue';
+import { onMounted, reactive } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilterWarehouse from '../../../layouts/TableFilterWarehouse.vue';
@@ -52,6 +54,7 @@ import TableHeader from '../../../layouts/TableHeader.vue';
 import Warehouse_Table_Body from './Warehouse_Table_Body.vue'
 import Show_Warehouse_Selecting_Task from './Show_Warehouse_Selecting_Task.vue';
 import TableCommonComp from '../../design/TableCommonComp.vue';
+import Toast from '../../design/Toast.vue';
 import WarehouseStore from '../../../store/store.warehouse';
 import UserStore from '../../../store/store.user';
 
@@ -68,6 +71,33 @@ onMounted(async () => {
     }
 
 })
+
+// Show Toast Message
+const showToastval = reactive({
+    cond: false,
+    messages: ''
+})
+const provideSM = async () => {
+    if(user_store.user){
+        if(user_store.user.departmentId !== 3) {
+            // ... Only Procurement Users can create a new sms
+            showToastval.cond = true;
+            showToastval.messages = "You dont have authority for providing data";
+            setTimeout(()=>{
+                showToastval.cond = false
+            },1000)
+        }
+        else{
+            warehouse_store.tab_num = 3;
+        }
+    }
+    else{
+        // ... User Not Login Error Return
+        showToastval.cond = true;
+        showToastval.messages = "User Not Login";
+    }
+}
+
 
 // Get Filtered Data
 const filterFunction = async (filtered_objects) => {

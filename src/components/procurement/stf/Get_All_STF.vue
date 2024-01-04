@@ -41,9 +41,9 @@
       </span>
     </div>
 
-    <!-- <table-row-inform :row_inform="index_store.row_detail_data" :row_inform_condition="index_store.row_inform_condition"
-      @closeRowInform="closeRowInform" /> -->
-    <Show_STF_Selecting_Task />
+    <Show_STF_Selecting_Task @createSM="createSM" />
+
+    <Toast :cond = showToastval.cond :messages=showToastval.messages />
 
   </div>
 </template>
@@ -51,7 +51,7 @@
 <script setup>
 
 // Import Section
-import { onMounted, watchEffect } from 'vue'
+import { onMounted, watchEffect, reactive } from 'vue'
 
 import TableHeader from '../../../layouts/TableHeader.vue';
 import TableCommonComp from '../../design/TableCommonComp.vue';
@@ -63,6 +63,7 @@ import TableFilter from '../../../layouts/TableFilter.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import ProcurementStore from '../../../store/store.procurement';
 import UserStore from '../../../store/store.user';
+import Toast from '../../design/Toast.vue';
 
 const procurement_store = ProcurementStore();
 const user_store = UserStore();
@@ -79,6 +80,33 @@ onMounted(async () => {
   }
 }
 )
+
+// For Showing Toast
+const showToastval = reactive({
+    cond: false,
+    messages: ''
+})
+const createSM = async () => {
+    if(user_store.user){
+        if(user_store.user.departmentId !== 2) {
+            // ... Only Procurement Users can create a new sms
+            showToastval.cond = true;
+            showToastval.messages = "You dont have authority for creating new SM";
+            setTimeout(()=>{
+                showToastval.cond = false
+            },3000)
+        }
+        else{
+            procurement_store.tab_num = 2;
+        }
+    }
+    else{
+        // ... User Not Login Error Return
+        showToastval.cond = true;
+        showToastval.messages = "User Not Login";
+    }
+}
+
 
 //Get Filtered Data
 const filterFunction = async (filtered_objects) => {
