@@ -55,11 +55,11 @@ const IndexStore = defineStore("IndexStore", {
     },
 
     // Get Statistic Data Result
-    async fetchStatisticResult(user_id) {
-      if (user_id) {
+    async fetchStatisticResult(data) {
+      if (data?.user_id) {
         try {
           await axios
-            .get(`${import.meta.env.VITE_API}api/common/statisticdata/${user_id}`)
+            .get(`${import.meta.env.VITE_API}api/common/statisticdata/${data?.user_id}?project_id=${data?.project_id}`)
             .then((respond) => {
               this.statistic_data = respond.data;
             })

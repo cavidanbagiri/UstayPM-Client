@@ -175,9 +175,9 @@ const WarehouseStore = defineStore("WarehouseStore", {
     },
 
     // Fetch Received Items and Show In Warehouse/received
-    async fetchWarehouseData() {
+    async fetchWarehouseData(project_id) {
       await axios
-        .get(`${import.meta.env.VITE_API}api/warehouse`)
+        .get(`${import.meta.env.VITE_API}api/warehouse/${project_id}`)
         .then((respond) => {
           this.warehouse_data = respond.data;
         })
@@ -261,9 +261,9 @@ const WarehouseStore = defineStore("WarehouseStore", {
     },
 
     // Fetch Provided Data and show in Provided Section
-    async fetchProvidedData() {
+    async fetchProvidedData(project_id) {
       await axios
-      .get(`${import.meta.env.VITE_API}api/provides`)
+      .get(`${import.meta.env.VITE_API}api/provides/${project_id}`)
       .then((respond) => {
         this.provides_data = respond.data;
         console.log('Get Provide Data and result is : ',this.provides_data);

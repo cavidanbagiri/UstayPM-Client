@@ -91,7 +91,7 @@
       </div>
       <div class="flex items-center ">
         <div class="rounded-full flex border-8 border-orange-600 w-16 h-16  items-center justify-center analyz_show_data">
-          12
+          {{ index_store.statistic_data?.stf_canceled}}
         </div>
       </div>
     </div>

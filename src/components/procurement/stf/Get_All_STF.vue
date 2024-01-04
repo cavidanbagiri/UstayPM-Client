@@ -1,14 +1,14 @@
 
 <template>
   <div class="flex flex-col" style="display: inline-block;">
-    <TableCommonComp/>
+    <TableCommonComp />
 
     <!-- Statistic and Filter Place -->
     <div class="h-40 sticky top-10 bg-white w-full z-10">
       <div class=" sticky left-16 flex flex-col bg-white" style="display: inline-block; width: calc(100vw - 5rem);">
         <!-- <table-stf-statistics :statistic_result="procurement_store.statistic_result"
           @fetchCurrentData="fetchCurrentData" /> -->
-          <STFStatistics/>
+        <STFStatistics />
 
 
         <!-- <Filter_Section_Comp /> -->
@@ -19,18 +19,19 @@
       </div>
     </div>
 
-    <div v-if="procurement_store.stf_table_headers.length>0" class="mt-1 shadow-md sm:rounded-lg w-full border-2 analyz_header">
+    <div v-if="procurement_store.stf_table_headers.length > 0"
+      class="mt-1 shadow-md sm:rounded-lg w-full border-2 analyz_header">
 
       <!-- Table -->
-      <table  class="text-left text-gray-800 dark:text-gray-400 w-full">
+      <table class="text-left text-gray-800 dark:text-gray-400 w-full">
         <!-- Table Header -->
         <TableHeader :table_headers="procurement_store.stf_table_headers" />
-         <!-- Table Border -->
-        <Get_All_STF_Table_Body_Comp /> 
+        <!-- Table Border -->
+        <Get_All_STF_Table_Body_Comp />
       </table>
     </div>
 
-    <div v-else class="flex flex-row justify-center items-center w-full h-96">  
+    <div v-else class="flex flex-row justify-center items-center w-full h-96">
       <span class="loading loading-dots loading-lg"></span>
     </div>
 
@@ -61,18 +62,21 @@ import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilter from '../../../layouts/TableFilter.vue';
 import TableExpand from '../../../layouts/TableExpand.vue'
 import ProcurementStore from '../../../store/store.procurement';
-// Create variable for importing data
+import UserStore from '../../../store/store.user_store';
+
 const procurement_store = ProcurementStore();
-// const index_store = IndexStore();
+const user_store = UserStore();
 
 onMounted(async () => {
-  // Fetch All STF
-  await procurement_store.fetchSTF()
-  if (procurement_store.stf_table_headers.length === 0) {
-    procurement_store.getSTFHeaders();
+  if (user_store.user) {
+    // Fetch All STF
+    await procurement_store.fetchSTF(user_store.user.projectId)
+    if (procurement_store.stf_table_headers.length === 0) {
+      procurement_store.getSTFHeaders();
+    }
+    await procurement_store.fetchSTFCreateUsernames();
+    await procurement_store.getCompaniesNames();
   }
-  await procurement_store.fetchSTFCreateUsernames();
-  await procurement_store.getCompaniesNames();
 }
 )
 
@@ -86,7 +90,7 @@ watchEffect(async () => {
 
   // For Fetch All STF
   if (procurement_store.after_created) {
-    await procurement_store.fetchSTF();
+    await procurement_store.fetchSTF(user_store.user.projectId);
   }
 
 })
@@ -97,7 +101,7 @@ watchEffect(async () => {
 //   }
 //   else if(statistic_result_value === 4){
 //     procurement_store.tab_num = 4;
-//   } 
+//   }
 //   else {
 //     await procurement_store.fetchStatisticResultData(statistic_result_value);
 //   }

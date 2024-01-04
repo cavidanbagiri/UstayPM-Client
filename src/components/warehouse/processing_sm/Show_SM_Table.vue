@@ -79,8 +79,6 @@ onMounted(async () => {
         // Get All Creating Users Names For Users
         await warehouse_store.fetchSTFCreateUsernames();
         await procurement_store.fetchSTFCreateUsernames();
-        // Get \Warehouse Statistics Resukt just about SM
-        // await warehouse_store.getStatisticResult();
         // Get Table Headers
         if(warehouse_store.processing_sm_headers.length === 0){
             await warehouse_store.getProcessingSMHeaders()

@@ -47,4 +47,4 @@ const UserStore = defineStore('User Store',{
   },
 });
 
-export default UserStore
+export default UserStore;

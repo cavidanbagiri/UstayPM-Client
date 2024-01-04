@@ -82,11 +82,11 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Fetch All STF
-    async fetchSTF(){
+    async fetchSTF(project_id){
       // await axios.get(`${import.meta.env.VITE_API}api/procurement/allstf`)
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}api/procurement/fetchstf`)
+        .get(`${import.meta.env.VITE_API}api/procurement/fetchstf/${project_id}`)
         .then((respond) => {
           this.all_stf = respond.data;
         })

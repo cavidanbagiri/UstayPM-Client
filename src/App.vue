@@ -55,7 +55,11 @@ provide('socket', socket);
 
 onMounted(() => {
   if (user_store.user) {
-    index_store.fetchStatisticResult(user_store.user.id);
+    const data = {
+      user_id: user_store.user.id,
+      project_id: user_store.user.projectId
+    }
+    index_store.fetchStatisticResult(data);
   }
 })
 

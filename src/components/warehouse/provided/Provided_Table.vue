@@ -55,15 +55,19 @@ import TableHeader from '../../../layouts/TableHeader.vue';
 import Provided_Table_Body from './Provided_Table_Body.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';
 import UpdateProvidedMaterial from './UpdateProvidedMaterial.vue';
-import WarehouseStore from '../../../store/store.warehouse';
 import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
-const warehouse_store = WarehouseStore();
+import WarehouseStore from '../../../store/store.warehouse';
+import UserStore from '../../../store/store.user_store';
 
+const warehouse_store = WarehouseStore();
+const user_store = UserStore();
 
 onMounted(async () => {
-  await warehouse_store.fetchProvidedData();
-  if (warehouse_store.provided_data_headers.length === 0) {
-    warehouse_store.getProvidedDataHeaders();
+  if(user_store.user){
+    await warehouse_store.fetchProvidedData(user_store.user.projectId);
+    if (warehouse_store.provided_data_headers.length === 0) {
+      warehouse_store.getProvidedDataHeaders();
+    }
   }
 })
 
