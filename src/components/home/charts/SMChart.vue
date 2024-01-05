@@ -1,9 +1,8 @@
 
 <template>
-  <div class="col-span-3 p-1  border rounded-xl shadow-xl mx-1  bg-white" style="font-family: 'Roboto';">
+  <div class="col-span-3 p-1  border rounded-xs shadow-xl mx-1  bg-white" style="font-family: 'Roboto';">
     <div class="flex flex-col items-center">
       <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">SM Balance</span>
-
       <Doughnut :data="chartData" />
     </div>
   </div>

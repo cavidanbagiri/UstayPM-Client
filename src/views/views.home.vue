@@ -6,25 +6,26 @@
 
     <!-- Common Charts -->
     <div>
-      <div class="px-4 py-4" style="font-family: 'Roboto';">
-        <span class="text-6xl">Common Charts</span>
+      <div class="px-4 pb-4 pt-5" style="font-family: 'Roboto';">
+        <span class="text-4xl">Dashboard</span>
       </div>
       <div class="grid grid-cols-12 gap-2 px-3 pt-2 ">
-        <WarehouseChart />
+        <GroupOrderChart />
         <STFChart :statistic_data='index_store.statistic_data' />
         <SMChart :statistic_data='index_store.statistic_data' />
+      </div>
+      <!-- Warehouse Chart -->
+      <div class="grid grid-cols-12 gap-2 px-3 pt-2 mt-5 ">
+        <WarehouseChart :statistic_data='index_store.statistic_data'/>
+        <WarehouseStockGroup/>
+        <MaterialTypeChart />
       </div>
     </div>
     
     <!-- User Information Charts -->
     <div>
-      <div class="px-4 py-4" style="font-family: 'Roboto';">
-        <span class="text-6xl">User Information Charts</span>
-      </div>
-      <div class="grid grid-cols-12 mt-3 mb-5 px-3 gap-4 h-4/5 overflow-hidden">
-        <Inform />
-        <UserTable />
-        <Companies />
+      <div class="grid grid-cols-12 gap-2 mt-5 mb-5 py-2 mx-4 h-[450px] ">
+        <UserTable/>
       </div>
     </div>
 
@@ -36,11 +37,12 @@
 import Dashboard from '../components/home/Dashboard.vue';
 import STFChart from '../components/home/charts/STFChart.vue';
 import SMChart from '../components/home/charts/SMChart.vue';
-import WarehouseChart from '../components/home/charts/WarehouseChart.vue';
-import UserTable from '../components/home/usertable/UserTable.vue';
-import Inform from '../components/home/inform/Inform.vue';
+import GroupOrderChart from '../components/home/charts/GroupOrderChart.vue';
 import IndexStore from '../store/store.index';
-import Companies from '../components/home/companies/Companies.vue';
+import MaterialTypeChart from '../components/home/charts/MaterialTypeChart.vue';
+import WarehouseChart from '../components/home/charts/WarehouseChart.vue';
+import WarehouseStockGroup from '../components/home/charts/WarehouseStockGroup.vue';
+import UserTable from '../components/home/charts/UserTable.vue';
 const index_store = IndexStore();
 
 

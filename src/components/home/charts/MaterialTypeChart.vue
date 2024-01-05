@@ -1,9 +1,9 @@
 
 <template>
-    <div class="col-span-3 p-1 h-3/12 border rounded-xl shadow-xl mx-1 bg-white" style="font-family: 'Roboto';">
+    <div class="col-span-3 p-1 h-3/12 border rounded-xs shadow-xl mx-1 bg-white" style="font-family: 'Roboto';">
         <div class="flex flex-col items-center">
             <!-- Title -->
-            <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">Companies</span>
+            <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">Ordering Material Type</span>
             <!-- Chart -->
             <PolarArea :data="chartData" />
         </div>
@@ -28,21 +28,17 @@ const chartData = ref();
 watchEffect(() => {
     chartData.value = {
         labels: [
-            'Red',
-            'Green',
-            'Yellow',
-            'Grey',
-            'Blue'
+            'Consumables',
+            'Fixture',
+            'Project',
         ],
         datasets: [{
             label: 'My First Dataset',
-            data: [11, 16, 7, 3, 14],
+            data: [11, 7, 16],
             backgroundColor: [
                 'rgb(255, 99, 132)',
-                'rgb(75, 192, 192)',
                 'rgb(255, 205, 86)',
-                'rgb(201, 203, 207)',
-                'rgb(54, 162, 235)'
+                'rgb(75, 192, 192)',
             ]
         }]
     }
