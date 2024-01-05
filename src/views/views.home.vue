@@ -6,31 +6,36 @@
 
     <!-- Common Charts -->
     <div>
-      <div class="px-4 pb-4 pt-5" style="font-family: 'Roboto';">
+      <div class="px-4 pb-3 pt-4" style="font-family: 'Roboto';">
         <span class="text-4xl">Dashboard</span>
       </div>
+
       <!-- Common Chart -->
-      <div>
-        <TotalInformChart :statistic_data='index_store.statistic_data' />
+      <div class="px-4 mb-5">
+        <!-- <TotalInformChart :statistic_data='index_store.statistic_data' /> -->
+        <STFStatistics/>
       </div>
+
       <!-- Procurement Chart -->
       <div class="grid grid-cols-12 gap-2 px-3 pt-2 ">
         <GroupOrderChart />
         <STFChart :statistic_data='index_store.statistic_data' />
         <SMChart :statistic_data='index_store.statistic_data' />
       </div>
+      
       <!-- Warehouse Chart -->
-      <div class="grid grid-cols-10 gap-4 px-3 pt-2 mt-5 ">
+      <div class="grid grid-cols-12 gap-4 px-3 pt-2 mt-5 ">
         <WarehouseChart :statistic_data='index_store.statistic_data'/>
+        <WarehouseStockGroup />
         <MaterialTypeChart />
-        <WarehouseStockGroup/>
+        <FieldChart />
       </div>
     </div>
     
-    <!-- User Information Charts -->
+    <!-- STF Charts -->
     <div>
-      <div class="grid grid-cols-12 gap-2 mt-5 mb-5 py-2 mx-4 h-[450px] ">
-        <UserTable/>
+      <div class="grid grid-cols-12 gap-2 mt-5 mb-5 py-2 mx-4 ">
+        <STFTable/>
       </div>
     </div>
 
@@ -47,8 +52,10 @@ import IndexStore from '../store/store.index';
 import MaterialTypeChart from '../components/home/charts/MaterialTypeChart.vue';
 import WarehouseChart from '../components/home/charts/WarehouseChart.vue';
 import WarehouseStockGroup from '../components/home/charts/WarehouseStockGroup.vue';
+import FieldChart from '../components/home/charts/FieldChart.vue';
+import STFStatistics from '../layouts/STFStatistics.vue'
 import TotalInformChart from '../components/home/charts/TotalInformChart.vue';
-import UserTable from '../components/home/charts/UserTable.vue';
+import STFTable from '../components/home/charts/STFTable.vue';
 const index_store = IndexStore();
 
 

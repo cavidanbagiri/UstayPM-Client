@@ -1,13 +1,13 @@
 <template>
-    <div class="col-span-4 bg-white rounded-xs p-1 shadow-xl border flex "  style="font-family: 'Roboto';">
+    <div class="col-span-3 bg-white rounded-xs p-1 shadow-xl border flex "  style="font-family: 'Roboto';">
         <div class="flex flex-col w-full items-center justify-between py-1">
             <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">Warehouse Stock</span>
-            <div class="w-1/2">
+            <!-- <div class="w-1/2"> -->
                 <Pie :data="chartData" />
-            </div>
+            <!-- </div>
             <div class="h-24 bg-blue-400 w-full">
                 1
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

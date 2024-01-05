@@ -5,12 +5,12 @@
             <!-- Title -->
             <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">Ordering Material Type</span>
             <!-- Chart -->
-            <div class="w-3/4">
+            <!-- <div class="w-3/4"> -->
                 <PolarArea :data="chartData" />
-            </div>
-            <div class="h-24 bg-blue-400 w-full">
+            <!-- </div> -->
+            <!-- <div class="h-24 bg-blue-400 w-full">
                 1
-            </div>
+            </div> -->
         </div>
     </div>
 </template>

@@ -32,6 +32,23 @@
       </div>
     </div>
 
+    <div class=" col-span-2 flex flex-row justify-between border shadow-md w-full p-3 rounded-md
+          hover:shadow-xl hover:cursor-pointer ">
+      <div class="flex flex-col justify-between">
+        <span class="text-gray-600 analyz_header">
+          <span class="bg-orange-200 text-orange-500 rounded-full px-2 py-2"><i class="fa-solid fa-ban fa-lg"></i></span> 
+          Canceled
+        </span>
+        <span class="bg-orange-200 rounded-md text-orange-800 p-2 analyz_get_data text-center">Get Data</span>
+      </div>
+      <div class="flex items-center ">
+        <div class="rounded-full flex border-8 border-orange-600 w-16 h-16  items-center justify-center analyz_show_data">
+          {{ index_store.statistic_data?.stf_canceled}}
+        </div>
+      </div>
+    </div>
+
+
     <div class=" col-span-2 flex flex-row justify-between border w-full p-3 rounded-md shadow-md 
           hover:shadow-xl hover:cursor-pointer ">
       <div class="flex flex-col justify-between">
@@ -76,22 +93,6 @@
       <div class="flex items-center ">
         <div class="rounded-full flex border-8 border-pink-500 w-16 h-16  items-center justify-center analyz_show_data">
           {{ index_store.statistic_data?.warehouse_inform }}
-        </div>
-      </div>
-    </div>
-
-    <div class=" col-span-2 flex flex-row justify-between border shadow-md w-full p-3 rounded-md
-          hover:shadow-xl hover:cursor-pointer ">
-      <div class="flex flex-col justify-between">
-        <span class="text-gray-600 analyz_header">
-          <span class="bg-orange-200 text-orange-500 rounded-full px-2 py-2"><i class="fa-solid fa-ban fa-lg"></i></span> 
-          Canceled
-        </span>
-        <span class="bg-orange-200 rounded-md text-orange-800 p-2 analyz_get_data text-center">Get Data</span>
-      </div>
-      <div class="flex items-center ">
-        <div class="rounded-full flex border-8 border-orange-600 w-16 h-16  items-center justify-center analyz_show_data">
-          {{ index_store.statistic_data?.stf_canceled}}
         </div>
       </div>
     </div>
