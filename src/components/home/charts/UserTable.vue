@@ -1,11 +1,17 @@
 <template>
-    <div class="col-span-6 border bg-white px-2 mx-1 overflow-hidden overflow-y-scroll relative " style="font-family: 'Poppins';">
+    <div class="col-span-6 border bg-white px-2 mx-1 overflow-hidden hover:overflow-y-scroll relative " style="font-family: 'Poppins';">
         <div class="flex flex-col mb-10 h-full">
-        <div class="p-5 text-2xl font-bold sticky top-0">
-            <span>User List Table</span>
+        <div class="flex justify-between items-center px-5 py-3 text-3xl font-bold sticky top-0">
+            <div>
+                <span>Users</span>
+            </div>
+            <div class="bg-gray-200 flex flex-row items-center px-2 shadow-lg rounded-lg w-1/2">
+                <i class="fa-solid fa-magnifying-glass text-lg px-2 border"></i>
+                <input class="bg-gray-200 p-2 outline-none text-lg font-medium " type="text" placeholder="Search ...">
+            </div>
         </div>
         <table class="text-gray-100   border-b-4 shadow-md" style="font-family: 'Roboto';">
-            <thead class="bg-gray-100 text-gray-800 sticky top-0">
+            <thead class="bg-slate-800 text-gray-100 sticky top-0">
                 <th class=" border-x-2 w-12 py-3" >S.No</th>
                 <th class=" border-x-2 " >User</th>
                 <th class=" border-x-2 " >Department</th>
