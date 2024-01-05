@@ -72,7 +72,7 @@ onMounted(async () => {
 // Get Filtered Data
 const filterFunction = async (filtered_objects)=>{
     if(user_store.GETUSER !== undefined ){
-        filtered_objects.user = user_store?.GETUSER?.id
+        // filtered_objects.user = user_store?.GETUSER?.id
         await procurement_store.getFilteredWarehouseData(filtered_objects);
     }
 }

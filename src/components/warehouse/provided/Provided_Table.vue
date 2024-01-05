@@ -40,13 +40,14 @@
 
   <UpdateProvidedMaterial v-if="toggle_update_provide_material" @closeProvidedUpdateComp="closeProvidedUpdateComp" />
   <Show_STF_Selecting_Task @openUpdateProvidedMaterial="openUpdateProvidedMaterial" />
+  <Toast :cond="show_toast.cond" :messages="show_toast.messages" />
 
 </template>
 
 <script setup>
 
 // Import Section
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, reactive } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilterProvide from '../../../layouts/TableFilterProvide.vue';
@@ -56,6 +57,7 @@ import Provided_Table_Body from './Provided_Table_Body.vue'
 import TableCommonComp from '../../design/TableCommonComp.vue';
 import UpdateProvidedMaterial from './UpdateProvidedMaterial.vue';
 import Show_STF_Selecting_Task from './Show_STF_Selecting_Task.vue';
+import Toast from '../../design/Toast.vue';
 import WarehouseStore from '../../../store/store.warehouse';
 import UserStore from '../../../store/store.user';
 
@@ -71,6 +73,11 @@ onMounted(async () => {
   }
 })
 
+const show_toast = reactive({
+  cond: false,
+  messages: ''
+})
+
 // Get Filtered Data
 const filterFunction = async (filtered_objects) => {
   await warehouse_store.getFilteredDataProvided(filtered_objects);
@@ -82,7 +89,17 @@ const closeProvidedUpdateComp = () => {
     toggle_update_provide_material.value = false;
 }
 const openUpdateProvidedMaterial = () => {
-  toggle_update_provide_material.value = true;
+  if(user_store.user?.projectId == 3 ){
+    toggle_update_provide_material.value = true;
+  }
+  else{
+    show_toast.cond = true;
+    show_toast.messages = 'You Dont Have Authority For This Operation'
+    setTimeout(()=>{
+      show_toast.cond = false;
+      show_toast.messages = ''
+    },2000)
+  }
 }
 
 

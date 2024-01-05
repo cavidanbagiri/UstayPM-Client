@@ -1,62 +1,13 @@
 <template>
-    <div class="col-span-6 w-full h-full bg-white rounded-xs p-1 shadow-xl border flex "  style="font-family: 'Roboto';">
-        <div class="flex flex-col items-center w-1/2  py-1">
+    <div class="col-span-4 bg-white rounded-xs p-1 shadow-xl border flex "  style="font-family: 'Roboto';">
+        <div class="flex flex-col w-full items-center justify-between py-1">
             <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">Warehouse Stock</span>
-            <Pie :data="chartData" />
-        </div>
-        <div class="flex- flex-col w-1/2 mx-4 ">
-
-            <div class="flex flex-col py-1 justify-around  h-full">
-
-                <span class="text-3xl font-bold text-center w-full pl-5 text-gray-600 mt-1 mb-3">Quick View</span>
-                
-                <div class="flex flex-col justify-around w-full text-3xl font-bold h-full">
-                    <!-- Project -->
-                    <div class="flex flex-row items-center justify-between px-5 py-2">
-                        <span class="">
-                            Project : 
-                        </span>
-                        <span class="text-end">45</span>
-                    </div>
-                    <!-- Consumables -->
-                    <div class="flex flex-row items-center justify-between px-5 py-2">
-                        <span class="">
-                            Consumables : 
-                        </span>
-                        <span class="text-end">427</span>
-                    </div>
-                    <!-- Consumables -->
-                    <div class="flex flex-row items-center  justify-between px-5 py-2">
-                        <span class="">
-                            Fixture : 
-                        </span>
-                        <span class="text-end">94</span>
-                    </div>
-                    <!-- Consumables -->
-                    <div class="flex flex-row items-center  justify-between px-5 py-2">
-                        <span class="">
-                            Loses : 
-                        </span>
-                        <span class="text-end">45</span>
-                    </div>
-                    <!-- Consumables -->
-                    <div class="flex flex-row items-center  justify-between px-5 py-2">
-                        <span class="">
-                            Break : 
-                        </span>
-                        <span class="text-end">9</span>
-                    </div>
-                    <!-- Consumables -->
-                    <div class="flex flex-row items-center  justify-between px-5 py-2">
-                        <span class="">
-                            Unusable : 
-                        </span>
-                        <span class="text-end">12</span>
-                    </div>
-                </div>
-
+            <div class="w-1/2">
+                <Pie :data="chartData" />
             </div>
-
+            <div class="h-24 bg-blue-400 w-full">
+                1
+            </div>
         </div>
     </div>
 </template>

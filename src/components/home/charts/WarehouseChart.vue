@@ -1,10 +1,14 @@
 
 <template>
     <div class="col-span-3 p-1  border rounded-xs shadow-xl mx-1  bg-white" style="font-family: 'Roboto';">
-      <div class="flex flex-col items-center">
+      <div class="flex flex-col items-center justify-between">
         <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">Warehouse Balance</span>
-  
-        <Pie :data="chartData" />
+        <div class="w-3/4">
+          <Pie :data="chartData" />
+        </div>
+        <div class="h-24 bg-blue-400 w-full">
+          1
+        </div>
       </div>
     </div>
   </template>
