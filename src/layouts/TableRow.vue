@@ -65,7 +65,7 @@
         </div>
         <div v-else-if="i.name === 'material_name' || i.name === 'sm_material_name' || i.name === 'delivery_material_name'"
             class="text-start min-w-[600px] ">
-            <div class="py-2 hover:relative " @mouseover="showAdditionFunction" @mouseleave="hideAdditionFunction">
+            <!-- <div class="py-2 relative " @mouseover="showAdditionFunction" @mouseleave="hideAdditionFunction">
                 <div v-show="show_icons" class="absolute top-1 right-0 flex show-icons">
                     <div class="">
                         <img src="../assets/1_trash.png" class="w-5 mr-3 hover:bg-green-500 hover:p-1 hover:rounded-full" alt="">
@@ -74,14 +74,15 @@
                         <img src="../assets/1_edit.png" class="w-5 mr-3 hover:bg-green-500 hover:p-1 hover:rounded-full" alt="">
                     </div>
                     <div class="">
-                        <img src="../assets/1_star.png" class="w-5 mr-3 hover:bg-green-500 hover:p-1 hover:rounded-full" alt="">
+                        <img src="../assets/star.png" class="w-5 mr-3 hover:bg-green-500 hover:p-1 hover:rounded-full" alt="">
                     </div>
                     <div class="">
                         <img src="../assets/1_info-sign.png" class="w-5 mr-3 hover:bg-green-500 hover:p-1 hover:rounded-full" alt="">
                     </div>
                 </div>
                 <span class="">{{ prop.each[i.name] }}</span>
-            </div>
+            </div> -->
+            <span class="">{{ prop.each[i.name] }}</span>
         </div>
         <div v-else-if="i.name === 'field_name'" class="text-start w-24">
             <span>{{ prop.each[i.name] }}</span>
