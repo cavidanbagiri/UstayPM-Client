@@ -26,7 +26,7 @@
 
         <!-- Table -->
         <div class="">
-            <table v-if="warehouse_store.processing_sm_headers.length" class=" text-xs text-left text-gray-800 dark:text-gray-400 w-full " style="font-size: xx-small;">
+            <table v-if="warehouse_store.processing_sm_headers.length" class=" text-left text-gray-800 dark:text-gray-400 w-full " style="font-size: xx-small;">
                 <TableHeader :table_headers="warehouse_store.processing_sm_headers" />
                 <Get_SM_Body_Table />
             </table>

@@ -20,10 +20,10 @@
     </div>
 
     <div v-if="procurement_store.stf_table_headers.length > 0"
-      class="mt-1 shadow-md sm:rounded-lg w-full border-2 analyz_header">
+      class="mt-1 shadow-md sm:rounded-lg w-full border-2 ">
 
       <!-- Table -->
-      <table class="text-left text-gray-800 dark:text-gray-400 w-full">
+      <table class="text-xs text-left text-gray-800 dark:text-gray-400 w-full" style="font-family: 'Roboto';">
         <!-- Table Header -->
         <TableHeader :table_headers="procurement_store.stf_table_headers" />
         <!-- Table Border -->
