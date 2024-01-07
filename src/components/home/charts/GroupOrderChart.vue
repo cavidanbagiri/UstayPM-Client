@@ -12,20 +12,43 @@
 </template>
 
 <script setup>
-import { watchEffect, ref } from 'vue';
+import { watchEffect, reactive, ref, onMounted } from 'vue';
 import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-
+import IndexStore from '../../../store/store.index';
+import UserStore from '../../../store/store.user';
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
-const chartData = ref();
+const index_store = IndexStore();
+const user_store = UserStore();
+onMounted(async ()=>{
+  await index_store.groupChartStatisticData(user_store.user?.projectId);
+})
+
+
+// const chartData = reactive({
+//   label:[],
+//   data:[]
+// });
+
+const chartData = ref()
 
 watchEffect(()=>{
+
+  const label = [];
+  const data = [];
+  for(let i of index_store?.group_chart_statistic_data){
+    // console.log('department : ', i);
+    label.push(i.department_id)
+    data.push(i.stf_count)
+  } 
+
   chartData.value = {
-  labels: ['Construction','Warehouse','Procurement','Piping','Welding','Underground','Steal','Hydrotest', 'Adminstration', 'HSE'],
+  // labels: label,
+  labels: label,
   datasets: [{
     label: 'Group Order Count',
-    data: [65, 59, 80, 52, 56, 55, 40,31,8,17],
+    data: data,
     backgroundColor: [
       'rgba(255, 99, 132, 0.2)',
       'rgba(255, 159, 64, 0.2)',

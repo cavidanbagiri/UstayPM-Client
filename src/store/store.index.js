@@ -15,6 +15,9 @@ const IndexStore = defineStore("IndexStore", {
     // Get STF, SM, Warehouse Common Statistic Data
     statistic_data: null,
 
+    // Group Chart Statistic_data
+    group_chart_statistic_data: [],
+
     // Get SOCKET New STF Notification Data
     new_stf_notification: null,
 
@@ -193,6 +196,25 @@ const IndexStore = defineStore("IndexStore", {
         }
         catch(err){
           console.log('Canceled STF Error : ', err);
+        }
+      }
+    },
+
+    // Group Chart Statistic Data
+    async groupChartStatisticData(project_id){
+      console.log('project id : ', project_id)
+      if(project_id){
+        try{
+          await axios.get(
+            `${import.meta.env.VITE_API}api/common/groupchartstatisticdata/${project_id}`
+          ).then((respond)=>{
+            console.log('res data ',respond.data);
+            this.group_chart_statistic_data = respond.data;
+            //console.log('group sttaistic : ', this.group_chart_statistic_data);
+          })
+        }
+        catch(err){
+          console.log('Group Chat Statistic Data Error : ', err);
         }
       }
     }
