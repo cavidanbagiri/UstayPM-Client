@@ -12,16 +12,31 @@
 
 <script setup>
 
-import { ref, watchEffect } from 'vue';
+import { ref, watchEffect, onMounted } from 'vue';
 import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+import IndexStore from '../../../store/store.index';
+import UserStore from '../../../store/store.user';
+
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+
+const index_store = IndexStore();
+const user_store = UserStore();
+
+onMounted(async()=>{
+  if (user_store.user) {
+    const data = {
+      user_id: user_store.user.id,
+      project_id: user_store.user.projectId
+    }
+    index_store.fetchStatisticResult(data);
+  }
+})
 
 
 // Get Statistic Result
 const prop = defineProps(['statistic_data']);
 
-const data = ref();
 
 const chartData = ref();
 
@@ -37,9 +52,9 @@ watchEffect(() => {
           'rgb(239 68 68)'
         ],
         data: [
-          prop?.statistic_data?.stf_canceled,
-          prop?.statistic_data?.stf_false,
-          prop?.statistic_data?.stf_true
+          index_store?.statistic_data?.stf_canceled,
+          index_store?.statistic_data?.stf_false,
+          index_store?.statistic_data?.stf_true
         ]
       }
     ]

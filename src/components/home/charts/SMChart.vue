@@ -10,15 +10,16 @@
 
 <script setup>
 
-import { ref, watchEffect } from 'vue';
-import { Doughnut } from 'vue-chartjs'
-import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+import { ref, watchEffect, onMounted } from 'vue';
+import { Doughnut } from 'vue-chartjs';
+import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js';
+import IndexStore from '../../../store/store.index';
+ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 // Get Statistic Result
 const prop = defineProps(['statistic_data']);
 
-const data = ref();
+const index_store = IndexStore();
 
 const chartData = ref();
 
@@ -34,9 +35,9 @@ watchEffect(() => {
           'rgb(255, 205, 86)'
         ],
         data: [
-          prop?.statistic_data?.sm_canceled,
-          prop?.statistic_data?.sm_process,
-          prop?.statistic_data?.sm_completed
+          index_store?.statistic_data?.sm_canceled,
+          index_store?.statistic_data?.sm_process,
+          index_store?.statistic_data?.sm_completed
         ]
       }
     ]
