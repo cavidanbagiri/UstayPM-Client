@@ -24,7 +24,6 @@
       
       <!-- Warehouse Chart -->
       <div class="grid grid-cols-12 gap-4 px-3 pt-2 mt-5 ">
-        <WarehouseChart :statistic_data='index_store.statistic_data'/>
         <WarehouseStockGroup />
         <MaterialTypeChart />
         <FieldChart />
@@ -49,7 +48,6 @@ import SMChart from '../components/home/charts/SMChart.vue';
 import GroupOrderChart from '../components/home/charts/GroupOrderChart.vue';
 import IndexStore from '../store/store.index';
 import MaterialTypeChart from '../components/home/charts/MaterialTypeChart.vue';
-import WarehouseChart from '../components/home/charts/WarehouseChart.vue';
 import WarehouseStockGroup from '../components/home/charts/WarehouseStockGroup.vue';
 import FieldChart from '../components/home/charts/FieldChart.vue';
 import STFStatistics from '../layouts/STFStatistics.vue'

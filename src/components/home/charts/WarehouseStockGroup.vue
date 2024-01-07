@@ -1,34 +1,138 @@
 <template>
-    <div class="col-span-3 bg-white rounded-xs p-1 shadow-xl border flex "  style="font-family: 'Roboto';">
+    <div class="col-span-6 bg-white rounded-xs p-1 shadow-xl border flex " style="font-family: 'Roboto';">
         <div class="flex flex-col w-full items-center justify-between py-1">
             <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">Warehouse Stock</span>
-            <!-- <div class="w-1/2"> -->
-                <Pie :data="chartData" />
-            <!-- </div>
-            <div class="h-24 bg-blue-400 w-full">
-                1
-            </div> -->
+            <div class="flex w-full h-full">
+                <div class=" w-1/2 flex">
+                    <PolarArea :data="chartData" />
+                </div>
+                <div class=" flex flex-col w-1/2 justify-between">
+
+                    <template v-for="i in index_store.ws_statistic_data">
+                        <!-- Warehouse Stock Consumables -->
+                        <div v-if="i.material_type == 'Consumables'" class="flex  border shadow-lg mx-6 p-3 items-center justify-between ">
+                            <div class="flex">
+                                <div>
+                                    <img class="w-16" src="../../../assets/consumables.png" alt="">
+                                </div>
+                                <div class=" flex flex-col ml-6 justify-around  h-full ">
+                                    <span class="text-xl  w-full font-bold">
+                                        Consumables
+                                    </span>
+                                    <span class=" text-2xl font-bold">{{ i.count }}</span>
+                                </div>
+                            </div>
+                            <div 
+                                class="text-xl w-16 h-16 p-3 bg-blue-200 text-blue-600 font-bold rounded-full flex items-center justify-center">
+                                {{ Math.round(100 * i.count / total) }}%
+                            </div>
+                        </div>
+
+                        <!-- Warehouse Stock Projects -->
+                        <div v-if="i.material_type == 'Project'" class="flex  border shadow-lg mx-6 p-3 items-center justify-between ">
+                            <div class="flex">
+                                <div>
+                                    <img class="w-16" src="../../../assets/concrete.png" alt="">
+                                </div>
+                                <div class=" flex flex-col ml-6 justify-around  h-full ">
+                                    <span class="text-xl  w-full font-bold">
+                                        Projects
+                                    </span>
+                                    <span class=" text-2xl font-bold">{{ i.count }}</span>
+                                </div>
+                            </div>
+                            <div
+                                class="text-xl w-16 h-16 p-3 bg-red-200 text-red-600 font-bold rounded-full flex items-center justify-center">
+                                {{ Math.round(100 * i.count / total) }}%
+                            </div>
+                        </div>
+
+                        <!-- Warehouse Stock Fixture -->
+                        <div v-if="i.material_type == 'Fixture'" class="flex  border shadow-lg mx-6 p-3 items-center justify-between ">
+                            <div class=flex>
+                                <div>
+                                    <img class="w-16" src="../../../assets/driller.png" alt="">
+                                </div>
+                                <div class=" flex flex-col ml-6 justify-around  h-full ">
+                                    <span class="text-xl  w-full font-bold">
+                                        Fixture
+                                    </span>
+                                    <span class=" text-2xl font-bold">{{ i.count }}</span>
+                                </div>
+                            </div>
+                            <div
+                                class="text-xl w-16 h-16 p-3 bg-orange-200 text-orange-600 font-bold rounded-full flex items-center justify-center">
+                                {{ Math.round(100 * i.count / total) }}%
+                            </div>
+                        </div>
+
+                    </template>
+                    <!-- Warehouse Stock Fixture -->
+                    <div class="flex  border shadow-lg mx-6 p-3 items-center justify-between ">
+                            <div class=flex>
+                                <div>
+                                    <img class="w-16" src="../../../assets/unusable.png" alt="">
+                                </div>
+                                <div class=" flex flex-col ml-6 justify-around  h-full ">
+                                    <span class="text-xl  w-full font-bold">
+                                        Unusable
+                                    </span>
+                                    <span class=" text-2xl font-bold">0</span>
+                                </div>
+                            </div>
+                            <div
+                                class="text-xl w-16 h-16 p-3 bg-yellow-200 text-yellow-600 font-bold rounded-full flex items-center justify-center">
+                                0%
+                            </div>
+                        </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup>
 
-import { ref, watchEffect } from 'vue';
-import { Pie } from 'vue-chartjs'
+import { ref, watchEffect, onMounted, reactive } from 'vue';
+import { PolarArea } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
+
+import IndexStore from '../../../store/store.index';
+import UserStore from '../../../store/store.user';
+
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
+
+const index_store = IndexStore();
+const user_store = UserStore();
+
+onMounted(async () => {
+
+    await index_store.wsStatisticData(user_store.user?.projectId)
+
+})
 
 // Get Statistic Result
 const prop = defineProps(['statistic_data']);
 
-const data = ref();
+const total = ref(0);
 
 const chartData = ref();
 
 watchEffect(() => {
+    const chart_data = reactive({
+        label: [],
+        data: []
+    })
+    for (let i of index_store.ws_statistic_data) {
+        // i.material_type = i.material_type[0].toUpperCase()+i.material_type.slice(1);
+        chart_data.label.push(i.material_type);
+        chart_data.data.push(i.count);
+        total.value += Number(i.count)
+    }
+    console.log('total is : ', total.value);
     chartData.value = {
-        labels: ['Project', 'Consumables', 'Fixture', 'Break', 'Loses', 'Unusable'],
+        labels: chart_data.label,
         datasets: [
             {
                 label: 'Data One',
@@ -36,14 +140,8 @@ watchEffect(() => {
                     'rgb(255, 99, 132)',
                     'rgb(54, 162, 235)',
                     'rgb(255, 205, 86)',
-                    'rgb(255, 205, 186)',
-                    'rgb(255, 205, 120)'
                 ],
-                data: [
-                    45,402,130,13,4,2// prop?.statistic_data?.sm_canceled,
-                    // prop?.statistic_data?.sm_process,
-                    // prop?.statistic_data?.sm_completed
-                ]
+                data: chart_data.data
             }
         ]
     }

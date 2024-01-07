@@ -18,6 +18,9 @@ const IndexStore = defineStore("IndexStore", {
     // Group Chart Statistic_data
     group_chart_statistic_data: [],
 
+    // warehouse dtock statictic data
+    ws_statistic_data : [],
+
     // Get SOCKET New STF Notification Data
     new_stf_notification: null,
 
@@ -202,15 +205,28 @@ const IndexStore = defineStore("IndexStore", {
 
     // Group Chart Statistic Data
     async groupChartStatisticData(project_id){
-      console.log('project id : ', project_id)
       if(project_id){
         try{
           await axios.get(
             `${import.meta.env.VITE_API}api/common/groupchartstatisticdata/${project_id}`
           ).then((respond)=>{
-            console.log('res data ',respond.data);
             this.group_chart_statistic_data = respond.data;
-            //console.log('group sttaistic : ', this.group_chart_statistic_data);
+          })
+        }
+        catch(err){
+          console.log('Group Chat Statistic Data Error : ', err);
+        }
+      }
+    },
+    // Group Chart Statistic Data
+    async wsStatisticData(project_id){
+      if(project_id){
+        try{
+          await axios.get(
+            `${import.meta.env.VITE_API}api/common/warehousestockstatisticdata/${project_id}`
+          ).then((respond)=>{
+            this.ws_statistic_data = respond.data;
+            console.log('warehouse stock : ', this.ws_statistic_data)
           })
         }
         catch(err){
