@@ -23,10 +23,17 @@
       </div>
       
       <!-- Warehouse Chart -->
-      <div class="grid grid-cols-12 gap-4 px-3 pt-2 mt-5 ">
-        <WarehouseStockGroup />
-        <MaterialTypeChart />
-        <FieldChart />
+      <div class="grid grid-cols-12 gap-4 px-3 pt-2 mt-5 grid-rows-12">
+        <div class="col-span-6">
+          <WarehouseStockGroup />
+          <div class="grid grid-cols-12 mt-5 gap-4">
+          <MaterialTypeChart />
+          <FieldChart />
+          </div>
+        </div>
+        <div class="col-span-6">
+          <WarehouseStockGroup1 />
+        </div>
       </div>
     </div>
     
@@ -49,6 +56,7 @@ import GroupOrderChart from '../components/home/charts/GroupOrderChart.vue';
 import IndexStore from '../store/store.index';
 import MaterialTypeChart from '../components/home/charts/MaterialTypeChart.vue';
 import WarehouseStockGroup from '../components/home/charts/WarehouseStockGroup.vue';
+import WarehouseStockGroup1 from '../components/home/charts/WarehouseStockGroup1.vue';
 import FieldChart from '../components/home/charts/FieldChart.vue';
 import STFStatistics from '../layouts/STFStatistics.vue'
 import STFTable from '../components/home/charts/STFTable.vue';

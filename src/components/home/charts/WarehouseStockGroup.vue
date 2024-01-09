@@ -4,87 +4,90 @@
             <span class="text-3xl font-bold text-start pl-5 text-gray-600 mt-1 mb-3">Warehouse Stock</span>
             <div class="flex w-full h-full">
                 <div class=" w-1/2 flex">
-                    <PolarArea :data="chartData" />
+                    <Doughnut :data="chartData" />
                 </div>
-                <div class=" flex flex-col w-1/2 justify-between">
+                <div class=" flex flex-col w-1/2 justify-around">
 
                     <template v-for="i in index_store.ws_statistic_data">
                         <!-- Warehouse Stock Consumables -->
-                        <div v-if="i.material_type == 'Consumables'" class="flex  border shadow-lg mx-6 p-3 items-center justify-between ">
-                            <div class="flex">
+                        <div v-if="i.material_type == 'Consumables'"
+                            class="flex  border shadow-lg mx-10 p-3 items-center justify-between ">
+                            <div class="flex items-center">
                                 <div>
-                                    <img class="w-16" src="../../../assets/consumables.png" alt="">
+                                    <img class="w-12" src="../../../assets/consumables.png" alt="">
                                 </div>
                                 <div class=" flex flex-col ml-6 justify-around  h-full ">
-                                    <span class="text-xl  w-full font-bold">
+                                    <span class="text-lg  w-full">
                                         Consumables
                                     </span>
-                                    <span class=" text-2xl font-bold">{{ i.count }}</span>
+                                    <span class=" text-lg ">Total {{ i.count }}</span>
                                 </div>
                             </div>
-                            <div 
-                                class="text-xl w-16 h-16 p-3 bg-blue-200 text-blue-600 font-bold rounded-full flex items-center justify-center">
+                            <div
+                                class="text-lg w-14 h-14 p-3 bg-blue-200 text-blue-600 font-bold rounded-full flex items-center justify-center">
                                 {{ Math.round(100 * i.count / total) }}%
                             </div>
                         </div>
 
                         <!-- Warehouse Stock Projects -->
-                        <div v-if="i.material_type == 'Project'" class="flex  border shadow-lg mx-6 p-3 items-center justify-between ">
-                            <div class="flex">
+                        <div v-if="i.material_type == 'Project'"
+                            class="flex  border shadow-lg mx-10 p-3 items-center justify-between ">
+                            <div class="flex items-center">
                                 <div>
-                                    <img class="w-16" src="../../../assets/concrete.png" alt="">
+                                    <img class="w-12" src="../../../assets/concrete.png" alt="">
                                 </div>
                                 <div class=" flex flex-col ml-6 justify-around  h-full ">
-                                    <span class="text-xl  w-full font-bold">
+                                    <span class="text-lg  w-full">
                                         Projects
                                     </span>
-                                    <span class=" text-2xl font-bold">{{ i.count }}</span>
+                                    <span class=" text-lg">{{ i.count }}</span>
                                 </div>
                             </div>
                             <div
-                                class="text-xl w-16 h-16 p-3 bg-red-200 text-red-600 font-bold rounded-full flex items-center justify-center">
+                                class="text-lg w-14 h-14 p-3 bg-green-200 text-green-600 font-bold rounded-full flex items-center justify-center">
                                 {{ Math.round(100 * i.count / total) }}%
                             </div>
                         </div>
 
                         <!-- Warehouse Stock Fixture -->
-                        <div v-if="i.material_type == 'Fixture'" class="flex  border shadow-lg mx-6 p-3 items-center justify-between ">
-                            <div class=flex>
+                        <div v-if="i.material_type == 'Fixture'"
+                            class="flex  border shadow-lg mx-10 p-3 items-center justify-between ">
+                            <div class="flex items-center">
                                 <div>
-                                    <img class="w-16" src="../../../assets/driller.png" alt="">
+                                    <img class="w-12" src="../../../assets/driller.png" alt="">
                                 </div>
                                 <div class=" flex flex-col ml-6 justify-around  h-full ">
-                                    <span class="text-xl  w-full font-bold">
+                                    <span class="text-lg  w-full">
                                         Fixture
                                     </span>
-                                    <span class=" text-2xl font-bold">{{ i.count }}</span>
+                                    <span class=" text-lg">{{ i.count }}</span>
                                 </div>
                             </div>
                             <div
-                                class="text-xl w-16 h-16 p-3 bg-orange-200 text-orange-600 font-bold rounded-full flex items-center justify-center">
+                                class="text-lg w-14 h-14 p-3 bg-red-200 text-red-600 font-bold rounded-full flex items-center justify-center">
                                 {{ Math.round(100 * i.count / total) }}%
                             </div>
                         </div>
 
                     </template>
                     <!-- Warehouse Stock Fixture -->
-                    <div class="flex  border shadow-lg mx-6 p-3 items-center justify-between ">
-                            <div class=flex>
-                                <div>
-                                    <img class="w-16" src="../../../assets/unusable.png" alt="">
-                                </div>
-                                <div class=" flex flex-col ml-6 justify-around  h-full ">
-                                    <span class="text-xl  w-full font-bold">
-                                        Unusable
-                                    </span>
-                                    <span class=" text-2xl font-bold">0</span>
-                                </div>
+                    <div class="flex  border shadow-lg mx-10 p-3 items-center justify-between ">
+                        <div class="flex items-center">
+                            <div>
+                                <img class="w-12" src="../../../assets/unusable.png" alt="">
                             </div>
-                            <div
-                                class="text-xl w-16 h-16 p-3 bg-yellow-200 text-yellow-600 font-bold rounded-full flex items-center justify-center">
-                                0%
+                            <div class=" flex flex-col ml-6 justify-around  h-full ">
+                                <span class="text-lg  w-full font-bold">
+                                    Unusable
+                                </span>
+                                <span class=" text-xl font-bold">0</span>
                             </div>
                         </div>
+                        <div
+                            class="text-lg w-14 h-14 p-3 bg-yellow-200 text-yellow-600 font-bold rounded-full flex items-center justify-center">
+                            0%
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -95,7 +98,7 @@
 <script setup>
 
 import { ref, watchEffect, onMounted, reactive } from 'vue';
-import { PolarArea } from 'vue-chartjs'
+import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 
 import IndexStore from '../../../store/store.index';
