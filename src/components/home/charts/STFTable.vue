@@ -1,23 +1,23 @@
 <template>
-    <div class="col-span-12 border bg-white p-5" style="font-family: 'Poppins';">
+    <div class="col-span-12 border bg-white p-5 rounded-xl" style="font-family: 'Jost';">
 
         <div class="flex flex-row pb-3 pl-5 border-b-2 justify-between mb-4">
-            <span class="text-3xl font-bold">Recetly Created STF's</span>
+            <span class="text-2xl font-bold"  style="font-family: 'Roboto';">Recently Created STF</span>
             <div class="border p-2 bg-gray-50 hover:cursor-pointer">
                 <button>View All</button>
             </div>
         </div>
 
         <div class="overflow-hidden hover:overflow-y-scroll h-[450px]">
-            <table v-if="index_store.stf_data_headers.length" class=" w-full shadow-xl border ">
-            <thead class="bg-slate-100 ">
+            <table v-if="index_store.stf_data_headers.length" class=" w-full  ">
+            <thead class="bg-slate-50 rounded-xl">
                 <th>S.No</th>
-                <th class="py-2 border-2" style="font-family: 'Roboto';" 
+                <th class="py-2  font-bold" style="font-family: 'Jost';" 
                 v-for="i in index_store.stf_data_headers">{{ i.showname }}</th>
             </thead>
-            <tr v-for="(i, index) in index_store.stf_data" class="" style="font-family: 'Roboto';">
+            <tr v-for="(i, index) in index_store.stf_data" class="" style="font-family: 'Jost';">
                 <th>{{index + 1}}</th>
-                <th class="border py-2 text-start font-medium text-sm" v-for="j in index_store.stf_data_headers">
+                <th class=" py-2 text-start font-medium text-sm" v-for="j in index_store.stf_data_headers">
                     <div class="flex w-full  justify-center" v-if="j.name === 'amount' || j.name === 'unit' ">
                         <span class="text-center ">
                             {{ i[j.name] }}

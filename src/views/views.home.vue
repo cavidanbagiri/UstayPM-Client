@@ -2,27 +2,30 @@
   <div class="flex flex-col bg-gray-100">
     
     <!-- Dashboard Information -->
-    <Dashboard />
+    <!-- <Dashboard /> -->
 
-    <div>
-      <!-- Title Section -->
+    <!-- New Admin Dashboard Section -->
+    <div class=" py-5 px-8 flex flex-col">
+      <div class=" text-4xl my-1 font-bold" style="font-family: 'Figtree';">Dashboard</div>
+      <TotalStatistic/>
+      <STFSMChart/>
+    </div>
+
+    <!-- <div>
       <div class="px-4 pb-3 pt-4" style="font-family: 'Roboto';">
         <span class="text-4xl">Dashboard</span>
       </div>
 
-      <!-- STF SM Statistic Data For Each -->
       <div class="px-4 mb-5">
         <STFStatistics/>
       </div>
 
-      <!-- Group Chart, STF and SM statistic Data Chart -->
       <div class="grid grid-cols-12 gap-2 px-3 pt-2 ">
         <GroupOrderChart />
         <STFChart />
         <SMChart  />
       </div>
       
-      <!-- Warehouse Chart -->
       <div class="grid grid-cols-12 gap-4 px-3 pt-2 mt-5 grid-rows-12">
         <div class="col-span-6">
           <WarehouseStockGroup />
@@ -35,11 +38,11 @@
           <WarehouseStockGroup1 />
         </div>
       </div>
-    </div>
+    </div> -->
     
     <!-- STF Table -->
     <div>
-      <div class="grid grid-cols-12 gap-2 mt-5 mb-5 py-2 mx-4 ">
+      <div class="grid grid-cols-12 my-2 gap-2 mb-5 px-8 ">
         <STFTable/>
       </div>
     </div>
@@ -50,16 +53,18 @@
 <script setup>
 
 import Dashboard from '../components/home/Dashboard.vue';
-import STFChart from '../components/home/charts/STFChart.vue';
-import SMChart from '../components/home/charts/SMChart.vue';
-import GroupOrderChart from '../components/home/charts/GroupOrderChart.vue';
-import IndexStore from '../store/store.index';
-import MaterialTypeChart from '../components/home/charts/MaterialTypeChart.vue';
-import WarehouseStockGroup from '../components/home/charts/WarehouseStockGroup.vue';
-import WarehouseStockGroup1 from '../components/home/charts/WarehouseStockGroup1.vue';
-import FieldChart from '../components/home/charts/FieldChart.vue';
-import STFStatistics from '../layouts/STFStatistics.vue'
+import TotalStatistic from '../components/home/newversioncahrt/TotalStatistic.vue';
+import STFSMChart from '../components/home/newversioncahrt/STFSMChart.vue';
+// import STFChart from '../components/home/charts/STFChart.vue';
+// import SMChart from '../components/home/charts/SMChart.vue';
+// import GroupOrderChart from '../components/home/charts/GroupOrderChart.vue';
+// import MaterialTypeChart from '../components/home/charts/MaterialTypeChart.vue';
+// import WarehouseStockGroup from '../components/home/charts/WarehouseStockGroup.vue';
+// import WarehouseStockGroup1 from '../components/home/charts/WarehouseStockGroup1.vue';
+// import FieldChart from '../components/home/charts/FieldChart.vue';
+// import STFStatistics from '../layouts/STFStatistics.vue'
 import STFTable from '../components/home/charts/STFTable.vue';
+import IndexStore from '../store/store.index';
 const index_store = IndexStore();
 
 
