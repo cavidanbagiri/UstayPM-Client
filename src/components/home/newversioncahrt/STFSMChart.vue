@@ -36,7 +36,7 @@
         </div>
 
         <!-- Sm Section-->
-        <div class="col-span-4 ml-4 bg-white rounded-xl flex flex-col items-center justify-between h-[30rem]"
+        <div class="col-span-4 ml-3 bg-white rounded-xl flex flex-col items-center justify-between h-[30rem]"
             style="font-family: 'Jost';">
             <!-- Title Section -->
             <div class="w-full pl-8 border-b py-3   flex justify-between">
@@ -70,7 +70,7 @@
         </div>
 
         <!-- User Profile Section -->
-        <div class="col-span-4 ml-4 bg-white rounded-xl flex flex-col items-center justify-between h-[30rem]"
+        <div class="col-span-4 ml-3 bg-white rounded-xl flex flex-col items-center justify-between h-[30rem]"
             style="font-family: 'Jost';">
             <!-- Title Section -->
             <div class="w-full pl-8 border-b py-3   flex justify-between">
@@ -90,12 +90,12 @@
                     <div>
                         <span class="text-4xl font-bold text-center " >Cavidan Bagirli</span>
                     </div>
-                    <div>
-                        <span class="text-xl  text-center text-gray-400 " >cbagirli@ustay.com</span>
+                    <div class="mt-2">
+                        <span class="text-xl text-center text-gray-400 " >cbagirli@ustay.com</span>
                     </div>
                     <div class="flex justify-between mt-5">
-                        <button class="p-2 rounded-lg mx-3 text-white font-bold bg-violet-600">Edit Profile</button>
-                        <button class="p-2 rounded-lg mx-3 text-white font-bold bg-violet-600">Edit Image</button>
+                        <button class="py-2 px-3 rounded-lg mx-4 text-white font-bold bg-violet-600">Edit Profile</button>
+                        <button class="py-2 px-3 rounded-lg mx-4 text-white font-bold bg-violet-600">Edit Image</button>
                     </div>
                 </div>
             </div>
@@ -104,6 +104,14 @@
 
         <!-- Chart Datas -->
         <div class="col-span-6 bg-white p-2 my-3 rounded-xl flex flex-col items-center justify-around ">
+            <div class="w-full pl-8 border-b py-3   flex justify-between">
+                <span class="text-2xl font-bold " style="font-family: 'Roboto';">
+                    Group Orders
+                </span>
+                <span class="text-2xl font-bold text-gray-500 pr-4 cursor-pointer">
+                    <i class="fa-solid fa-ellipsis fa-xs"></i>
+                </span>
+            </div>
             <Bar :data="chartData" class="bg-white p-2 border-none " />
         </div>
 
@@ -125,12 +133,6 @@ onMounted(async () => {
     await index_store.groupChartStatisticData(user_store.user?.projectId);
 })
 
-
-// const chartData = reactive({
-//   label:[],
-//   data:[]
-// });
-
 const chartData = ref()
 const chartDataSM = ref();
 
@@ -146,17 +148,10 @@ watchEffect(() => {
     chartData.value = {
         labels: label,
         datasets: [{
-            label: 'Group Order Count',
+            label: 'Group Order',
             data: data,
             backgroundColor: [
-                'rgba(107, 3, 252)',
-                'rgba(107, 3, 252)',
-                'rgba(107, 3, 252)',
-                'rgba(107, 3, 252)',
-                'rgba(107, 3, 252)',
-                'rgba(107, 3, 252)',
-                'rgba(107, 3, 252)',
-                'rgba(107, 3, 252)',
+                'rgba(61, 72, 224)',
             ],
             
         }],
@@ -164,7 +159,6 @@ watchEffect(() => {
     };
 
     chartDataSM.value = {
-        // labels: ['Canceled', 'Processing', 'Completed'],
         datasets: [
             {
                 label: 'Data One',

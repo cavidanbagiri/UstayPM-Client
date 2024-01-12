@@ -1,28 +1,28 @@
 <template>
-    <div class="flex flex-col shadow-xl">
+    <div class="flex flex-col shadow-xl " style="font-family: 'Jost'">
         <!-- Chart Pie Sides -->
-        <div class="flex flex-col h-44 bg-gradient-to-r from-slate-700 to-slate-900 mr-1 p-4 justify-between">
+        <div class="flex flex-col h-60  bg-slate-900 p-5  justify-between rounded-b-xl">
             <!-- Name and Dashboard Text Section -->
             <div class="flex flex-row justify-between items-center ">
                 <div class="flex flex-col ">
                     <div class="flex flex-row items-center">
-                        <img class="w-14 h-14 rounded-full " :src="user_store.user?.image_url" alt="">
-                        <span class="text-gray-200 text-4xl p-1 "
-                            style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                        <img class="w-16 h-16 rounded-full " :src="user_store.user?.image_url" alt="">
+                        <span class="text-gray-200 text-5xl pl-5 font-thin"
+                            style="font-family: 'Jost'">
                             Welcome Back, {{ user_store.user?.name }}
                         </span>
                     </div>
-                    <span class="text-gray-300 text-xs mt-3 p-1">For Showing an Orders, Click + Button</span>
+                    <span class="text-gray-300 text-sm mt-3 pt-4">For Showing an Orders, Click + Button</span>
                 </div>
                 <div class="">
-                    <span class="border-2 border-gray-400 p-2 rounded-full text-xs font-bold text-gray-300 my-3"
+                    <span class="border-2 border-gray-400 p-2 rounded-full text-sm font-bold text-gray-300 my-3"
                         style="letter-spacing: 1px;">
-                        <i class="fa-solid fa-gauge-high"></i> Dashboard Page
+                        <i class="fa-solid fa-gauge-high text-lg"></i> Dashboard Page
                     </span>
                 </div>
             </div>
             <!-- Overview Section -->
-            <div class="flex items-center justify-between" style="letter-spacing: 1px; font-family: 'Lato';">
+            <div class="flex items-center justify-between font-bold" style="letter-spacing: 1px; font-family: 'Jost';">
                 <!-- Menu Section -->
                 <div>
                     <router-link to="/">
