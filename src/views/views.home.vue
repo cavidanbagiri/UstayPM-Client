@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col bg-gray-100 px-8">
+  <div class="flex flex-col bg-gray-100 px-5">
     
     <!-- Dashboard Information -->
     <Dashboard />

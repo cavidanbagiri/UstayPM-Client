@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col justify-between h-screen bg-gradient-to-r from-slate-700 to-slate-900 w-[4.5rem] items-center pb-5 rounded-r-md 
+    <div class="flex flex-col justify-between h-screen bg-slate-900 w-[4.5rem] items-center pb-5 rounded-r-md 
   border-r-2">
 
         <!-- Main -->
