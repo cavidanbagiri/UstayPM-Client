@@ -53,15 +53,15 @@ const socket = io(URL);
 provide('socket', socket);
 
 
-// onMounted(() => {
-  // if (user_store.user) {
-  //   const data = {
-  //     user_id: user_store.user.id,
-  //     project_id: user_store.user.projectId
-  //   }
-  //   index_store.fetchStatisticResult(data);
-  // }
-// })
+onMounted(() => {
+  if (user_store.user) {
+    const data = {
+      user_id: user_store.user.id,
+      project_id: user_store.user.projectId
+    }
+    index_store.fetchStatisticResult(data);
+  }
+})
 
 
 watchEffect(() => {
