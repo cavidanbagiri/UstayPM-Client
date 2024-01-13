@@ -1,48 +1,80 @@
 <template>
-    <div class="col-span-12 border bg-white p-5 rounded-xl" style="font-family: 'Jost';">
+    <div class="col-span-8 border bg-white px-5 rounded-xl h-[30rem] overflow-hidden hover:overflow-y-scroll"
+        style="font-family: 'Jost';">
 
-        <div class="flex flex-row pb-3 pl-5 border-b-2 justify-between mb-4">
-            <span class="text-2xl font-bold"  style="font-family: 'Roboto';">Recently Created STF</span>
-            <div class="border p-2 bg-gray-50 hover:cursor-pointer">
-                <button>View All</button>
-            </div>
+        <!-- Title Section -->
+        <div class="w-full pl-8 border-b py-3   flex justify-between">
+            <span class="text-2xl font-bold " style="font-family: 'Poppins';">
+                Last STF
+            </span>
+            <span class="text-sm flex justify-center items-center font-bold text-gray-500 pr-4 cursor-pointer">
+                
+                <div class="bg-gray-100 mr-3 rounded-xl border px-2">
+                    <span><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input class="outline-none w-48 p-2 bg-gray-100 rounded-xl" type="text" placeholder="Search ...">
+                </div>
+                <button class="bg-indigo-500 text-white py-2 px-2 rounded-lg">
+                    View All
+                </button>
+            </span>
         </div>
 
-        <div class="overflow-hidden hover:overflow-y-scroll h-[450px]">
-            <table v-if="index_store.stf_data_headers.length" class=" w-full  ">
-            <thead class="bg-slate-50 rounded-xl">
-                <th>S.No</th>
-                <th class="py-2  font-bold" style="font-family: 'Jost';" 
-                v-for="i in index_store.stf_data_headers">{{ i.showname }}</th>
-            </thead>
-            <tr v-for="(i, index) in index_store.stf_data" class="" style="font-family: 'Jost';">
-                <th>{{index + 1}}</th>
-                <th class=" py-2 text-start font-medium text-sm" v-for="j in index_store.stf_data_headers">
-                    <div class="flex w-full  justify-center" v-if="j.name === 'amount' || j.name === 'unit' ">
-                        <span class="text-center ">
-                            {{ i[j.name] }}
-                        </span>
-                    </div>
-                    <div class="flex w-full  justify-center" v-else-if="j.name === 'createdAt' ">
-                        <span class="text-center ">
-                            <DateFormatMonth :time="i[j.name]" />
-                        </span>
-                    </div>
-                    <div class="flex w-full  justify-start" v-else-if="j.name === 'username' ">
-                        <span class="flex items-center ">
-                            <img class="ml-2 w-10 h-10 rounded-full" :src="i.image_url" alt="">
-                            <span class="pl-3">
+        <!-- Table Section -->
+        <div class="mt-1 ">
+
+            <table v-if="index_store.stf_data_headers.length" class=" w-full ">
+
+                <!-- Table Static Header -->
+                <thead class="bg-gray-100" >
+                    <th style="font-family: 'Figtree';" class="font-medium text-[14px]">S.No</th>
+                    <th class="py-2 font-medium text-[14px] border-x" style="font-family: 'Figtree';" v-for="i in index_store.stf_data_headers">
+                        {{ i.showname }}
+                    </th>
+                </thead>
+
+                <!-- Table Rows -->
+                <tr v-for="(i, index) in index_store.stf_data" class="font-thin text-[13px]" style="font-family: 'Figtree';">
+
+                    <!-- Index Num -->
+                    <th>{{ index + 1 }}</th>
+
+                    <!-- Row Amount and Unit For Center Text -->
+                    <th class=" py-2 text-start font-medium text-sm" v-for="j in index_store.stf_data_headers"
+                    style="font-family: 'Figtree';">
+                        <div class="flex w-full  justify-center" v-if="j.name === 'amount' || j.name === 'unit'">
+                            <span class="text-center ">
                                 {{ i[j.name] }}
                             </span>
-                        </span>
-                    </div>
-                    <div v-else class="pl-2">
-                        {{ i[j.name] }}
-                    </div>
-                </th>
-            </tr>
+                        </div>
 
-        </table>
+                        <!-- Row User for showing Image -->
+                        <div class="flex w-full p-1 justify-center text-xs font-bold" v-else-if="j.name === 'stf_num'" >
+                            <span class="flex items-center justify-center bg-green-100 rounded-xl px-2 py-2">
+                                <span class=" text-green-500">
+                                    {{ i[j.name] }}
+                                </span>
+                            </span>
+                        </div>
+
+                        <!-- Row User for showing Image -->
+                        <div class="flex w-full text-[15px] justify-start" v-else-if="j.name === 'username'" style="font-family: 'Jost';">
+                            <span class="flex items-center ">
+                                <img class="ml-2 w-10 h-10 rounded-full" :src="i.image_url" alt="">
+                                <span class="pl-3 ">
+                                    {{ i[j.name] }}
+                                </span>
+                            </span>
+                        </div>
+
+                        <!-- Row User Another -->
+                        <div v-else class="pl-2">
+                            {{ i[j.name] }}
+                        </div>
+
+                    </th>
+                </tr>
+
+            </table>
         </div>
     </div>
 </template>
@@ -50,8 +82,6 @@
 <script setup>
 
 import { onMounted } from 'vue';
-
-import DateFormatMonth from '../../../layouts/DateFormatMonth.vue';
 
 import IndexStore from '../../../store/store.index';
 import UserStore from '../../../store/store.user';

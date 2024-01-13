@@ -4,7 +4,7 @@
             style="font-family: 'Jost';">
             <!-- Title Section -->
             <div class="w-full pl-8 border-b py-3   flex justify-between">
-                <span class="text-2xl font-bold " style="font-family: 'Roboto';">
+                <span class="text-2xl font-bold " style="font-family: 'Figtree';">
                     Total STF
                 </span>
                 <span class="text-2xl font-bold text-gray-500 pr-4 cursor-pointer">

@@ -102,7 +102,6 @@ const IndexStore = defineStore("IndexStore", {
             val = val.split("_").join(" ");
             if (
               key === "stf_num" ||
-              key === "createdAt" ||
               key === "situation" ||
               key === "material_type" ||
               key === "material_name" ||

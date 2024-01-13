@@ -2,7 +2,7 @@
   <!-- Chart Datas -->
   <div class="col-span-7 bg-white p-2 my-3 rounded-xl flex flex-col items-center justify-around ">
     <div class="w-full pl-8 border-b py-3   flex justify-between">
-      <span class="text-2xl font-bold " style="font-family: 'Roboto';">
+      <span class="text-2xl font-bold " style="font-family: 'Figtree';">
         Group Orders
       </span>
       <span class="text-2xl font-bold text-gray-500 pr-4 cursor-pointer">

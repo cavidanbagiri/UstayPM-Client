@@ -12,8 +12,9 @@
     
     <!-- STF Table -->
     <div>
-      <div class="grid grid-cols-12  gap-2 mb-5  ">
+      <div class="grid grid-cols-12  gap-6 mb-5  ">
         <STFTable/>
+        <WarehouseStockChart/>
       </div>
     </div>
 
@@ -26,6 +27,7 @@ import Dashboard from '../components/home/newversioncahrt/Dashboard.vue';
 import TotalStatistic from '../components/home/newversioncahrt/TotalStatistic.vue';
 import STFSMChart from '../components/home/newversioncahrt/STFSMChart.vue';
 import STFTable from '../components/home/charts/STFTable.vue';
+import WarehouseStockChart from '../components/home/newversioncahrt/WarehouseStockChart.vue';
 import IndexStore from '../store/store.index';
 const index_store = IndexStore();
 

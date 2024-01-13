@@ -18,7 +18,7 @@
                         </div>
                         <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">57</span>
                         <span class="text-2xl font-bold mt-4" >Project</span>
-                        <span class="text-sm w-full font-thin mt-4 pl-3 pb-2 text-blue-400 " style="font-family: 'Inter';">View All
+                        <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-blue-400 " style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
@@ -35,7 +35,7 @@
                         </div>
                         <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">793</span>
                         <span class="text-2xl font-bold mt-4" >Consumables</span>
-                        <span class="text-sm w-full font-thin mt-4 pl-3 pb-2 text-orange-400 " style="font-family: 'Inter';">View All
+                        <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-orange-400 " style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
@@ -55,7 +55,7 @@
                         </div>
                         <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">114</span>
                         <span class="text-2xl font-bold mt-4" >Fixture</span>
-                        <span class="text-sm w-full font-thin mt-4 pl-3 pb-2 text-green-400 " style="font-family: 'Inter';">View All
+                        <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-green-400 " style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
@@ -72,7 +72,7 @@
                         </div>
                         <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">9</span>
                         <span class="text-2xl font-bold mt-4" >Break</span>
-                        <span class="text-sm w-full font-thin mt-4 pl-3 pb-2 text-red-400 " style="font-family: 'Inter';">View All
+                        <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-red-400 " style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
