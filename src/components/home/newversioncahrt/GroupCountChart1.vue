@@ -16,7 +16,7 @@
 <script setup>
 
 import { watchEffect, ref, onMounted } from 'vue';
-import { Bar, Line } from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import IndexStore from '../../../store/store.index';
 import UserStore from '../../../store/store.user';

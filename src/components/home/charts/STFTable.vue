@@ -26,8 +26,8 @@
 
                 <!-- Table Static Header -->
                 <thead class="bg-gray-100" >
-                    <th style="font-family: 'Figtree';" class="font-medium text-[14px]">S.No</th>
-                    <th class="py-2 font-medium text-[14px] border-x" style="font-family: 'Figtree';" v-for="i in index_store.stf_data_headers">
+                    <th style="font-family: 'Figtree';" class="font-medium text-[14px] w-12">S.No</th>
+                    <th class="py-2 font-medium text-[14px] " style="font-family: 'Figtree';" v-for="i in index_store.stf_data_headers">
                         {{ i.showname }}
                     </th>
                 </thead>
@@ -41,14 +41,14 @@
                     <!-- Row Amount and Unit For Center Text -->
                     <th class=" py-2 text-start font-medium text-sm" v-for="j in index_store.stf_data_headers"
                     style="font-family: 'Figtree';">
-                        <div class="flex w-full  justify-center" v-if="j.name === 'amount' || j.name === 'unit'">
+                        <div class="flex w-24  justify-center" v-if="j.name === 'amount' || j.name === 'unit'">
                             <span class="text-center ">
                                 {{ i[j.name] }}
                             </span>
                         </div>
 
                         <!-- Row User for showing Image -->
-                        <div class="flex w-full p-1 justify-center text-xs font-bold" v-else-if="j.name === 'stf_num'" >
+                        <div class="flex w-40 p-1 justify-center text-xs font-bold" v-else-if="j.name === 'stf_num'" >
                             <span class="flex items-center justify-center bg-green-100 rounded-xl px-2 py-2">
                                 <span class=" text-green-500">
                                     {{ i[j.name] }}
@@ -57,7 +57,7 @@
                         </div>
 
                         <!-- Row User for showing Image -->
-                        <div class="flex w-full text-[15px] justify-start" v-else-if="j.name === 'username'" style="font-family: 'Jost';">
+                        <div class="flex w-72 text-[15px] justify-start font-medium" v-else-if="j.name === 'username'" style="font-family: 'Figtree';">
                             <span class="flex items-center ">
                                 <img class="ml-2 w-10 h-10 rounded-full" :src="i.image_url" alt="">
                                 <span class="pl-3 ">
@@ -67,7 +67,7 @@
                         </div>
 
                         <!-- Row User Another -->
-                        <div v-else class="pl-2">
+                        <div v-else class="pl-2" >
                             {{ i[j.name] }}
                         </div>
 

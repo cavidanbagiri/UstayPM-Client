@@ -14,6 +14,7 @@
         <WarehouseDatasChart/>
 
         <!-- <UserProfileChart/> -->
+        <!-- <GroupCountChart1/> -->
         
 
     </div>
@@ -30,6 +31,7 @@ import WarehouseDatasChart from './WarehouseDatasChart.vue'
 // import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import IndexStore from '../../../store/store.index';
 import UserStore from '../../../store/store.user';
+import GroupCountChart1 from './GroupCountChart1.vue';
 // ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 const index_store = IndexStore();
