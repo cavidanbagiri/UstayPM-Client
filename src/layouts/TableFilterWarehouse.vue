@@ -16,12 +16,6 @@
                         <option>Ascending</option>
                     </select>
                 </div>
-                <!-- Search With Date -->
-                <div class="flex flex-col m-1">
-                    <span class="m-1">Search Date</span>
-                    <input class="border outline-none rounded-md border-gray-300 p-2" type="date" name="" id=""
-                        placeholder="Date" v-model="filtered_objects.createdAt" />
-                </div>
                 <!-- Search With Material Type-->
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search Type</span>
@@ -32,6 +26,26 @@
                         <option>Consumables</option>
                         <option>Fixture</option>
                     </select>
+                </div>
+                <!-- Search With Username -->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Search Username</span>
+                    <select v-model="filtered_objects.usernames"
+                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
+                        <option value="All" style="font-family:'Poppins', sans-serif;" class="text-lg" >-- All --</option>
+                        <option v-for="i in warehouse_store.created_stf_username" class="text-lg" :value="i.id"
+                            style="font-family: 'Poppins', sans-serif;">
+                            {{ i.ordered_name }}
+                        </option>
+                    </select>
+                </div>
+                <!-- Vendor Name -->
+                <VendorNames @selectedComp="selectedComp" :companies_list="warehouse_store.companies_names" />
+                <!-- Search With Date -->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Search Date</span>
+                    <input class="border outline-none rounded-md border-gray-300 p-2" type="date" name="" id=""
+                        placeholder="Date" v-model="filtered_objects.createdAt" />
                 </div>
                 <!-- Search With STF -->
                 <div class="flex flex-col m-1">
@@ -68,33 +82,6 @@
                             class="block w-full p-2 pl-10 outline-none text-gray-900 border border-blue-300 rounded-lg  hover:border-blue-600  shadow-lg"
                             placeholder="SM..." v-model="filtered_objects.sm_num">
                     </div>
-                </div>
-                <!-- Search Vendor Name -->
-                <!-- <div class="flex flex-col m-1">
-                    <span class="m-1">Search Vendor Name</span>
-                    <select v-model="filtered_objects.vendor_name"
-                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
-                        >
-                        <option v-for="i in procurement_store.companies_names" class="text-lg" 
-                        :value="i.company_id"
-                        style="font-family: 'Poppins', sans-serif;">
-                          {{ i.vendor_name }}
-                        </option>
-                    </select>
-                </div> -->
-                <!-- Vendor Name -->
-                <VendorNames @selectedComp="selectedComp" :companies_list="warehouse_store.companies_names" />
-                <!-- Search With Username -->
-                <div class="flex flex-col m-1">
-                    <span class="m-1">Search Username</span>
-                    <select v-model="filtered_objects.usernames"
-                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
-                        <option value="All" style="font-family:'Poppins', sans-serif;" class="text-lg" >-- All --</option>
-                        <option v-for="i in warehouse_store.created_stf_username" class="text-lg" :value="i.id"
-                            style="font-family: 'Poppins', sans-serif;">
-                            {{ i.ordered_name }}
-                        </option>
-                    </select>
                 </div>
             </div>
             <div class="flex flex-row justify-end">

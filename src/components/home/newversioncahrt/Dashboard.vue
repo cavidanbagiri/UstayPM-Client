@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col shadow-xl " style="font-family: 'Jost'">
         <!-- Chart Pie Sides -->
-        <div class="flex flex-col h-60  bg-slate-900 p-5  justify-between rounded-b-xl">
+        <div class="flex flex-col h-48  bg-slate-900 p-5  justify-between rounded-b-xl">
             <!-- Name and Dashboard Text Section -->
             <div class="flex flex-row justify-between items-center ">
                 <div class="flex flex-col ">
@@ -12,7 +12,7 @@
                             Welcome Back, {{ user_store.user?.name }}
                         </span>
                     </div>
-                    <span class="text-gray-300 text-sm mt-3 pt-4">For Showing an Orders, Click + Button</span>
+                    <span class="text-gray-300 text-sm mt-1 pt-4">For Showing an Orders, Click + Button</span>
                 </div>
                 <div class="">
                     <span class="border-2 border-gray-400 p-2 rounded-full text-sm font-bold text-gray-300 my-3"

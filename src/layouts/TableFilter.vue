@@ -16,12 +16,6 @@
                         <option>Ascending</option>
                     </select>
                 </div>
-                <!-- Search With Date -->
-                <div class="flex flex-col m-1">
-                    <span class="m-1">Search Date</span>
-                    <input class="border outline-none rounded-md border-gray-300 p-2" type="date" name="" id=""
-                        placeholder="Date" v-model="filtered_objects.createdAt" />
-                </div>
                 <!-- Search With Material Type-->
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search Type</span>
@@ -47,6 +41,12 @@
                           {{ i.ordered_name }} - ({{ i.stf_data }})
                         </option>
                     </select>
+                </div>
+                <!-- Search With Date -->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Search Date</span>
+                    <input class="border outline-none rounded-md border-gray-300 p-2" type="date" name="" id=""
+                        placeholder="Date" v-model="filtered_objects.createdAt" />
                 </div>
                 <!-- Search With STF -->
                 <div class="flex flex-col m-1">

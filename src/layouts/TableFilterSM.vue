@@ -16,12 +16,6 @@
                         <option>Ascending</option>
                     </select>
                 </div>
-                <!-- Search With Date -->
-                <div class="flex flex-col m-1">
-                    <span class="m-1">Search Date</span>
-                    <input class="border outline-none rounded-md border-gray-300 p-2" type="date" name="" id=""
-                        placeholder="Date" v-model="filtered_objects.createdAt" />
-                </div>
                 <!-- Search With Material Type-->
                 <div class="flex flex-col m-1">
                     <span class="m-1">Search Type</span>
@@ -32,6 +26,26 @@
                         <option>Consumables</option>
                         <option>Fixture</option>
                     </select>
+                </div>
+                <!-- Search With Username -->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Search Username</span>
+                    <select v-model="filtered_objects.usernames"
+                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg" style="font-size: 16px;">
+                        <option value="All">-- All --</option>
+                        <option v-for="i in procurement_store.created_stf_username" :value="i.id"
+                            style="font-family: 'Poppins', sans-serif;">
+                            {{ i.ordered_name }}
+                        </option>
+                    </select>
+                </div>
+                <!-- Selected Vendorname -->
+                <VendorNames @selectedComp="selectedComp" :companies_list="procurement_store.companies_names" />
+                <!-- Search With Date -->
+                <div class="flex flex-col m-1">
+                    <span class="m-1">Search Date</span>
+                    <input class="border outline-none rounded-md border-gray-300 p-2" type="date" name="" id=""
+                        placeholder="Date" v-model="filtered_objects.createdAt" />
                 </div>
                 <!-- Search With STF -->
                 <div class="flex flex-col m-1">
@@ -70,21 +84,6 @@
                     </div>
                 </div>
                 
-                <!-- Selected Vendorname -->
-                <VendorNames @selectedComp="selectedComp" :companies_list="procurement_store.companies_names" />
-
-                <!-- Search With Username -->
-                <div class="flex flex-col m-1">
-                    <span class="m-1">Search Username</span>
-                    <select v-model="filtered_objects.usernames"
-                        class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg" style="font-size: 16px;">
-                        <option value="All">-- All --</option>
-                        <option v-for="i in procurement_store.created_stf_username" :value="i.id"
-                            style="font-family: 'Poppins', sans-serif;">
-                            {{ i.ordered_name }}
-                        </option>
-                    </select>
-                </div>
             </div>
             <div class="flex flex-row justify-end">
                 <!-- Search With Material Name -->
