@@ -88,6 +88,7 @@ watchEffect(() => {
     /*  
       ----------------------------------------------------------- New STF Notification Socket
     */
+
     // Send Notification emit and listen
     socket.emit("newstfnotification", user_store.user);
     // create stf emit
@@ -98,10 +99,15 @@ watchEffect(() => {
     socket.on("getstfnotification", (data) => {
       index_store.new_stf_notification = data;
     })
+    
+    // 
+    socket.emit("acceptsmnotification", user_store.user);
     // Check Accept SM Notification
     socket.on("accept_sms", (data) => {
-      if (data?.orderer_id === user_store.user?.id || user_store.user.departmentId === 2) {
-        index_store.accept_sms_notification.push(data);
+      for(let i of data){
+        if(i.orderer_id === user_store.user?.id){
+          index_store.accept_sms_notification = data;
+        }
       }
     })
 

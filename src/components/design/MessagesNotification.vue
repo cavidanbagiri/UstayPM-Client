@@ -1,5 +1,5 @@
 <template>
-  <div style="font-family: 'Poppins';"
+  <div style="font-family: 'Inter';"
       class="flex flex-col text-xl absolute top-0 left-12 w-[500px] max-h-[650px] overflow-auto bg-white py-2 px-3 border rounded-lg shadow-2xl">
       <div class="flex justify-between">
           <div class="flex">
@@ -27,7 +27,7 @@
                       <span class="text-lg font-bold">
                           {{i.username}}
                       </span>
-                      <span class="font-thin text-sm text-gray-500 pl-2" style="font-family: 'Poppins';">
+                      <span class="font-bolg text-sm text-gray-500 pl-2" style="font-family: 'Jost';">
                           Send You New Message
                       </span>
                       <!-- <div class=" flex items-center my-1 justify-end">

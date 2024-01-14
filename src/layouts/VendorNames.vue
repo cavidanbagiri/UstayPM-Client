@@ -9,7 +9,7 @@
     </div>
     <Transition name="show">
       <div v-if="show"
-        class="flex flex-col bg-white border rounded-xl shadow-2xl absolute top-10 right-10 p-0 min-w-[700px] max-h-[600px] overflow-auto">
+        class="flex flex-col bg-white border rounded-xl shadow-2xl absolute top-10 left-10 p-0 min-w-[700px] max-h-[600px] overflow-auto">
         <!-- Title Section -->
         <div class="sticky top-0 bg-white p-2 height-[30px]">
           <div class="flex justify-between text-gray-600">

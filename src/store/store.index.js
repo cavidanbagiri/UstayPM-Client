@@ -157,13 +157,43 @@ const IndexStore = defineStore("IndexStore", {
       }
     },
 
-    // Set Notification True
-    async readNotification(user_id) {
-      if (user_id) {
+    // Set Create New STF Notification Read True
+    // async readNotification(user_id) {
+    //   if (user_id) {
+    //     try {
+    //       await axios
+    //         .post(
+    //           `${import.meta.env.VITE_API}api/common/readnotification/${user_id}`
+    //         )
+    //         .then((respond) => {});
+    //     } catch (err) {
+    //       console.log("Read Notification Error : ", err);
+    //     }
+    //   }
+    // },
+
+    // Set Accept SM Notification Read True
+    async acceptSMRead(data){
+      if (data.user_id) {
         try {
           await axios
             .post(
-              `${import.meta.env.VITE_API}api/common/readnotification/${user_id}`
+              `${import.meta.env.VITE_API}api/common/readacceptsmnotification/${data.user_id}?notification_id=${data.notification_id}`
+            )
+            .then((respond) => {});
+        } catch (err) {
+          console.log("Read Notification Error : ", err);
+        }
+      }
+    },
+
+    // Set Accept SM Notification Read True
+    async NewSTFNotificationRead(data){
+      if (data.user_id) {
+        try {
+          await axios
+            .post(
+              `${import.meta.env.VITE_API}api/common/readnotification/${data.user_id}?notification_id=${data.notification_id}`
             )
             .then((respond) => {});
         } catch (err) {
@@ -217,6 +247,7 @@ const IndexStore = defineStore("IndexStore", {
         }
       }
     },
+
     // Group Chart Statistic Data
     async wsStatisticData(project_id){
       if(project_id){
