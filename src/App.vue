@@ -30,6 +30,7 @@ import MessageImage from './components/message/MessageImage.vue';
 import MenuCanvas from './layouts/MenuCanvas.vue';
 import STFInformBar from './layouts/STFInformBar.vue';
 import Login from './components/auth/Login.vue';
+import receiveringtone from './assets/receiveringtone.mp3';
 import { ArcElement, Chart as ChartJS } from "chart.js";
 
 import IndexStore from './store/store.index';
@@ -41,6 +42,9 @@ const index_store = IndexStore();
 const message_store = MessageStore();
 
 ChartJS.register(ArcElement);
+
+// Create Ringtone
+const received_ringtone = new Audio(receiveringtone);
 
 // User Login or Not Value
 const user_login = ref(false);
@@ -116,13 +120,15 @@ watchEffect(() => {
     */
     message_store.fetchUnreadMessages(user_store.user?.id);
 
-
+    
     /*
       ---------------------------------------------------------- Unread Real Coming Messages
     */
     // If User Not Selected, this broadcast will show unread message in navbar section during realtime 
     socket.on('broadcastmessage', data => {
       if (data[data.length - 1].senderId == user_store.user?.id && data[data.length - 1].receiverId != message_store.selected_user?.id) {
+        received_ringtone.play();
+        console.log('received msg work')
         message_store.fetchUnreadMessages(user_store.user?.id);
       }
     });

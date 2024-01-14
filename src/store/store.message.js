@@ -15,7 +15,7 @@ const MessageStore = defineStore("MessageStore", {
     // Unread Messages
     unread_messages : null,
     // Fetch Unread Messages and Users
-    unread_messages_and_users: null
+    unread_messages_and_users: []
   }),
   getters: {},
   actions: {
