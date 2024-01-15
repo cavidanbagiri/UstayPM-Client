@@ -206,9 +206,12 @@ const IndexStore = defineStore("IndexStore", {
     async setStfStatus(status){
         if(status.user){
           try{
-            await axios.post(`${import.meta.env.VITE_API}api/common/changestatus`,status)
+            return await axios.post(`${import.meta.env.VITE_API}api/common/changestatus`,status)
             .then((respond)=>{
               console.log('Change Status from axios : ', respond);
+              return respond;
+            }).catch((err)=>{
+              console.log('catch is : ', err);
             })
           } 
           catch(err){
@@ -257,6 +260,23 @@ const IndexStore = defineStore("IndexStore", {
           ).then((respond)=>{
             this.ws_statistic_data = respond.data;
             console.log('warehouse stock : ', this.ws_statistic_data)
+          })
+        }
+        catch(err){
+          console.log('Group Chat Statistic Data Error : ', err);
+        }
+      }
+    },
+
+    // Toggle Star
+    async toggleStar(data){
+      // console.log('data : ', data);
+      if(data.user_id){
+        try{
+          return await axios.post(
+            `${import.meta.env.VITE_API}api/common/setstar/${data.user_id}`, data
+          ).then((respond)=>{
+            return respond
           })
         }
         catch(err){

@@ -1,4 +1,4 @@
-<template> 
+<template>
   <div class="flex flex-col " style="display: inline-block;">
     <TableCommonComp />
     <!-- Filter Statistic Section-->
@@ -16,17 +16,28 @@
     </div>
 
     <table v-if="stf_store.GETALLSTFHEADERS.length" class=" mx-2 w-full shadow-xl  mt-1">
-      <TableHeader :table_headers="stf_store.GETALLSTFHEADERS" />
+
+      <TableHeader :table_headers="stf_store.GETALLSTFHEADERS">
+        <template #star>
+          <th class="px-2 py-3 text-center">
+            <div class="flex flex-col font-thin">
+              Star
+            </div>
+          </th>
+        </template>
+      </TableHeader>
+
       <ShowSTFEachRow v-for="(i, index) in stf_store.all_stf" :each="i" :index="index" />
     </table>
 
     <div v-if="stf_store.all_stf_loading" class="flex flex-row justify-center items-center w-full h-96">
       <span class="loading loading-dots loading-lg"></span>
     </div>
-    
+
     <div v-if="stf_store.all_stf_cond_text" class="flex flex-row justify-center items-center w-full h-96">
       <span class="text-3xl">
-        There is not any data in warehouse which created by <span class="font-bold">{{user_store.user.name}} {{user_store.user.surname}}</span>
+        There is not any data in warehouse which created by <span class="font-bold">{{ user_store.user.name }}
+          {{ user_store.user.surname }}</span>
       </span>
     </div>
 

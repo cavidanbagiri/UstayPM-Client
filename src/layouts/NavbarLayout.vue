@@ -71,7 +71,7 @@
 
             <!-- Stars -->
             <div class="relative">
-                <router-link to="/">
+                <router-link to="/starred">
                     <span @mouseover="star_tooltip = true" @mouseleave="star_tooltip = false"
                         class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
                         <!-- <i class="fa-solid fa-star fa-md" style="color:white"></i> -->
