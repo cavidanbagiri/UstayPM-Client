@@ -81,7 +81,11 @@ onMounted(async () => {
 const filterFunction = async (filtered_objects) => {
   if (user_store.GETUSER !== undefined) {
     filtered_objects.user = user_store?.GETUSER?.id
-    await stf_store.getFilteredData(filtered_objects);
+    const data = {
+    filtered_objects: filtered_objects,
+    user_id: user_store.user?.id
+  }
+    await stf_store.getFilteredData(data);
   }
 }
 

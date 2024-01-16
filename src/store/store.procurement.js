@@ -82,11 +82,11 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Fetch All STF
-    async fetchSTF(project_id){
+    async fetchSTF(data){
       // await axios.get(`${import.meta.env.VITE_API}api/procurement/allstf`)
       try{
         await axios
-        .get(`${import.meta.env.VITE_API}api/procurement/fetchstf/${project_id}`)
+        .get(`${import.meta.env.VITE_API}api/procurement/fetchstf/${data.project_id}?user_id=${data.user_id}`)
         .then((respond) => {
           this.all_stf = respond.data;
         })
@@ -100,12 +100,13 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Get Filtered Data For User STF
-    async getFilteredDataSTF(filtered_object) {
-      const queries = this.createUrlQuery(filtered_object);
+    async getFilteredDataSTF(data) {
+      const queries = this.createUrlQuery(data.filtered_objects);
       try {
         await axios
           .get(
-            `${import.meta.env.VITE_API}api/common/filterstf${queries}`
+            // `${import.meta.env.VITE_API}api/common/filterstf${queries}?user_id=${data.user_id}`
+            `${import.meta.env.VITE_API}api/common/filterstf/${data.user_id}${queries}`
           )
           .then((respond) => {
             this.all_stf = respond.data;

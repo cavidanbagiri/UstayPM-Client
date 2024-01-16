@@ -58,9 +58,18 @@
                 </label>
             </div>
         </td>
+
         <!-- Show Index Num -->
         <th class="px-2 py-2  font-bold text-center">
             {{ prop?.index + 1 }}
+        </th>
+
+        <!-- Starred Section -->
+        <th class="px-2 py-2 font-medium text-center ">
+            <span v-if="!prop.each?.starred_id" class="flex items-center justify-center"><img @click="toggleStar(prop.each)"
+                    class="w-4 " src="../../../assets/emptystar.png" alt=""></span>
+            <span v-else class="flex items-center justify-center"><img @click="toggleStar(prop.each)" class="w-4 "
+                    src="../../../assets/fullstar.png" alt=""></span>
         </th>
 
         <TableRow :each="prop?.each" :table_headers="procurement_store.stf_table_headers" />
@@ -163,6 +172,20 @@ watchEffect(() => {
         checked.value = false;
     }
 })
+
+// Toggle Star
+const toggleStar = async (data) => {
+    data.user_id = user_store.user?.id;
+    await index_store.toggleStar(data)
+        .then((respond) => {
+            if (respond?.data?.msg === 'Row Starred') {
+                prop.each.starred_id = respond?.data?.id;
+            }
+            else {
+                prop.each.starred_id = null;
+            }
+        })
+}
 
 
 </script>

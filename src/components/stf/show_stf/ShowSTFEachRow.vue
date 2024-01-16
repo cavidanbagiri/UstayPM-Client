@@ -131,6 +131,7 @@ const starred_image = ref(false);
 
 // Toggle Star
 const toggleStar = async (data) => {
+    console.log('1 data is : ', data);
     await index_store.toggleStar(data)
         .then((respond) => {
             if (respond?.data?.msg === 'Row Starred') {

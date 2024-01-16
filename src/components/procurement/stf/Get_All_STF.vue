@@ -25,7 +25,15 @@
       <!-- Table -->
       <table class="text-xs text-left text-gray-800 dark:text-gray-400 w-full" style="font-family: 'Roboto';">
         <!-- Table Header -->
-        <TableHeader :table_headers="procurement_store.stf_table_headers" />
+        <TableHeader :table_headers="procurement_store.stf_table_headers" >
+        <template #star>
+          <th class="px-2 py-3 text-center">
+            <div class="flex flex-col font-thin">
+              Star
+            </div>
+          </th>
+        </template>
+        </TableHeader>
         <!-- Table Border -->
         <Get_All_STF_Table_Body_Comp />
       </table>
@@ -70,8 +78,12 @@ const user_store = UserStore();
 
 onMounted(async () => {
   if (user_store.user) {
+    const data = {
+      project_id : user_store.user?.projectId,
+      user_id: user_store.user?.id
+    }
     // Fetch All STF
-    await procurement_store.fetchSTF(user_store.user.projectId)
+    await procurement_store.fetchSTF(data)
     if (procurement_store.stf_table_headers.length === 0) {
       procurement_store.getSTFHeaders();
     }
@@ -110,7 +122,11 @@ const createSM = async () => {
 
 //Get Filtered Data
 const filterFunction = async (filtered_objects) => {
-  await procurement_store.getFilteredDataSTF(filtered_objects);
+  const data = {
+    filtered_objects: filtered_objects,
+    user_id: user_store.user?.id
+  }
+  await procurement_store.getFilteredDataSTF(data);
 }
 
 // After Creating SM, This code will work

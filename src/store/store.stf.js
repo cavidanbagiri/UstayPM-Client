@@ -87,14 +87,14 @@ const STFStore = defineStore("STFStore", {
     },
 
     // Get Filtered Data For User STF
-    async getFilteredData(filtered_object) {
+    async getFilteredData(data) {
       this.all_stf_loading = true;
-      const queries = this.createUrlQuery(filtered_object);
+      const queries = this.createUrlQuery(data.filtered_objects);
       try {
         await axios
         .get(
           // `${import.meta.env.VITE_API}api/stf/filter${queries}`
-          `${import.meta.env.VITE_API}api/common/filterstf${queries}`
+          `${import.meta.env.VITE_API}api/common/filterstf/${data.user_id}${queries}`
           )
           .then((respond) => {
             if(respond.data.length !== 0){

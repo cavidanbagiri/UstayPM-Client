@@ -265,7 +265,6 @@ const IndexStore = defineStore("IndexStore", {
 
     // Toggle Star
     async toggleStar(data){
-      // console.log('data : ', data);
       if(data.user_id){
         try{
           return await axios.post(
