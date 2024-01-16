@@ -79,6 +79,13 @@ watchEffect(() => {
   }
   if (user_store.user) {
 
+    // Fetch Statistic Result For 
+    const data = {
+      user_id: user_store.user.id,
+      project_id: user_store.user.projectId
+    }
+    index_store.fetchStatisticResult(data);
+
     /*
       ----------------------------------------------------------- Creating Socket Connection
     */
@@ -128,13 +135,11 @@ watchEffect(() => {
     socket.on('broadcastmessage', data => {
       if (data[data.length - 1].senderId == user_store.user?.id && data[data.length - 1].receiverId != message_store.selected_user?.id) {
         received_ringtone.play();
-        console.log('received msg work')
         message_store.fetchUnreadMessages(user_store.user?.id);
       }
     });
 
     socket.on('broadcastunreadcountingmessages', data => {
-      console.log(' broadcastunreadcountingmessages data is : ', data);
 
       // 1 STEP - If Coming message is for current user
       if (data[data.length - 1].senderId == user_store.user?.id) {

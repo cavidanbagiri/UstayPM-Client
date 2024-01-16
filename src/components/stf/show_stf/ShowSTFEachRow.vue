@@ -38,8 +38,10 @@
 
         <!-- Starred Section -->
         <th class="px-2 py-2 font-medium text-center ">
-            <span v-if="!starred_image" class="flex items-center justify-center"><img @click="toggleStar(prop.each)" class="w-4 " src="../../../assets/emptystar.png" alt=""></span>
-            <span v-if="starred_image" class="flex items-center justify-center"><img @click="toggleStar(prop.each)" class="w-4 " src="../../../assets/fullstar.png" alt=""></span>
+            <span v-if="!prop.each?.starred_id" class="flex items-center justify-center"><img @click="toggleStar(prop.each)"
+                    class="w-4 " src="../../../assets/emptystar.png" alt=""></span>
+            <span v-else class="flex items-center justify-center"><img @click="toggleStar(prop.each)" class="w-4 "
+                    src="../../../assets/fullstar.png" alt=""></span>
         </th>
 
         <!-- The Abother Rows -->
@@ -69,7 +71,7 @@
                 </div>
             </template>
         </TableRowInform>
-        
+
         <!-- Checked Rows -->
         <td class="w-1 p-4 py-2 ">
             <div class="flex items-center">
@@ -82,15 +84,18 @@
 
         <!-- S/No Section -->
         <th class="px-2 py-2 font-medium text-center">{{ prop.index + 1 }}</th>
-        
+
         <!-- Starred Section -->
         <th class="px-2 py-2 font-medium text-center ">
-            <span class="flex items-center justify-center"><img class="w-4 " :src="starred_image" alt=""></span>
+            <span v-if="!prop.each?.starred_id" class="flex items-center justify-center"><img @click="toggleStar(prop.each)"
+                    class="w-4 " src="../../../assets/emptystar.png" alt=""></span>
+            <span v-else class="flex items-center justify-center"><img @click="toggleStar(prop.each)" class="w-4 "
+                    src="../../../assets/fullstar.png" alt=""></span>
         </th>
 
         <!-- The Abother Rows -->
         <TableRow :each="prop?.each" :table_headers="stf_store.all_stf_headers" />
-        
+
     </tr>
 </template>
 
@@ -127,19 +132,14 @@ const starred_image = ref(false);
 // Toggle Star
 const toggleStar = async (data) => {
     await index_store.toggleStar(data)
-    .then((respond)=>{
-        console.log(respond?.data);
-        if(respond?.data === 'Row Starred'){
-            console.log('inside if');
-            // starred_image.value = 'fullstar.png'
-            starred_image.value = true;
-        }
-        else{
-            console.log('inside else');
-            // starred_image.value = 'emptystar.png'
-            starred_image.value = false;
-        }
-    })
+        .then((respond) => {
+            if (respond?.data?.msg === 'Row Starred') {
+                prop.each.starred_id = respond?.data?.id;
+            }
+            else {
+                prop.each.starred_id = null;
+            }
+        })
 }
 
 </script>
