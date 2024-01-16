@@ -1,5 +1,5 @@
 <template>
-    <div class="col-span-8 border bg-white px-5 rounded-xl h-[30rem] overflow-hidden hover:overflow-y-scroll"
+    <div class="col-span-5 border bg-white  rounded-xl h-[30rem] overflow-hidden hover:overflow-y-scroll"
         style="font-family: 'Jost';">
 
         <!-- Title Section -->
@@ -26,8 +26,8 @@
 
                 <!-- Table Static Header -->
                 <thead class="bg-gray-100" >
-                    <th style="font-family: 'Jost';" class="font-bold text-[16px] w-12">S.No</th>
-                    <th class="py-2 font-bold text-[16px] px-2 text-start" style="font-family: 'Jost';" v-for="i in index_store.stf_data_headers">
+                    <th style="font-family: 'Jost';" class="font-bold text-[16px] w-24 px-4">No</th>
+                    <th class="py-2 font-bold text-[16px] text-start" style="font-family: 'Jost';" v-for="i in index_store.stf_data_headers">
                         {{ i.showname }}
                     </th>
                 </thead>
@@ -41,14 +41,14 @@
                     <!-- Row Amount and Unit For Center Text -->
                     <th class=" py-2 text-start font-bold text-[15px]" v-for="j in index_store.stf_data_headers"
                     style="font-family: 'Jost';">
-                        <div class="flex w-24  justify-start px-2" v-if="j.name === 'amount' || j.name === 'unit'">
+                        <!-- <div v-if="j.name === 'amount' || j.name === 'unit'" class="flex w-24  justify-start px-2" >
                             <span >
                                 {{ i[j.name] }}
                             </span>
-                        </div>
+                        </div> -->
 
                         <!-- Row STF Num -->
-                        <div class="flex w-40 p-1 justify-start text-xs font-bold" v-else-if="j.name === 'stf_num'" >
+                        <div class="flex w-40 p-1 justify-start text-xs font-bold" v-if="j.name === 'stf_num'" >
                             <span class="flex items-center justify-center bg-green-100 rounded-xl px-2 py-2">
                                 <span class=" text-green-500">
                                     {{ i[j.name] }}
@@ -57,7 +57,7 @@
                         </div>
 
                         <!-- Row User for showing Image -->
-                        <div class="flex w-72 text-[15px] justify-start font-bold" v-else-if="j.name === 'username'" style="font-family: 'Jost';">
+                        <div class="flex w-72 text-[15px] justify-start font-bold" v-else-if="j.name === 'created_by'" style="font-family: 'Jost';">
                             <span class="flex items-center ">
                                 <img class="ml-2 w-10 h-10 rounded-full" :src="i.image_url" alt="">
                                 <span class="pl-3 ">
@@ -66,10 +66,20 @@
                             </span>
                         </div>
 
-                        <!-- Row User Another -->
-                        <div v-else class="pl-2" >
-                            {{ i[j.name] }}
+                         <!-- Row User for showing Image -->
+                         <div class="flex w-72 text-[15px] justify-start font-bold" v-else-if="j.name === 'created_date'" style="font-family: 'Jost';">
+                            <!-- <span class="flex items-center "> -->
+                                <!-- <span class="pl-3 "> -->
+                                    <DateFormatMonth :time="i[j.name]" />
+                                    <!-- {{ i[j.name] }} -->
+                                <!-- </span> -->
+                            <!-- </span> -->
                         </div>
+
+                        <!-- Row User Another -->
+                        <!-- <div v-else class="pl-2" >
+                            {{ i[j.name] }}
+                        </div> -->
 
                     </th>
                 </tr>
@@ -82,6 +92,7 @@
 <script setup>
 
 import { onMounted } from 'vue';
+import DateFormatMonth from '../../../layouts/DateFormatMonth.vue';
 
 import IndexStore from '../../../store/store.index';
 import UserStore from '../../../store/store.user';

@@ -64,7 +64,7 @@ const IndexStore = defineStore("IndexStore", {
       }
     },
 
-    // Fetch STF Data and show in frontend
+    // Fetch STF Data and show in dashbord stf_table side
     async fetchSTFData(project_id){
       try {
         await axios
@@ -102,13 +102,8 @@ const IndexStore = defineStore("IndexStore", {
             val = val.split("_").join(" ");
             if (
               key === "stf_num" ||
-              key === "situation" ||
-              key === "material_type" ||
-              key === "material_name" ||
-              key === "amount" ||
-              key === "unit" ||
-              key === "username" ||
-              key === "field_name"
+              key === "created_by" ||
+              key === "created_date" 
             ) {
               // header_cond[`${key}`] = true;
               header_cond["showname"] = `${val}`;

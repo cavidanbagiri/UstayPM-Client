@@ -11,6 +11,6 @@ import Login from '../components/auth/Login.vue';
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 
 </style>
