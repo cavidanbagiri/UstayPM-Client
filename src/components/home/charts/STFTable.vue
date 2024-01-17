@@ -1,5 +1,5 @@
 <template>
-    <div class="col-span-5 border bg-white  rounded-xl h-[30rem] overflow-hidden hover:overflow-y-scroll"
+    <div class="col-span-5  bg-white  rounded-xl h-[30rem] overflow-hidden hover:overflow-y-scroll"
         style="font-family: 'Jost';">
 
         <!-- Title Section -->
@@ -8,7 +8,7 @@
                 Last STF
             </span>
             <span class="text-sm flex justify-center items-center font-bold text-gray-500 pr-4 cursor-pointer">
-                
+
                 <div class="bg-gray-100 mr-3 rounded-xl border px-2">
                     <span><i class="fa-solid fa-magnifying-glass"></i></span>
                     <input class="outline-none w-48 p-2 bg-gray-100 rounded-xl" type="text" placeholder="Search ...">
@@ -25,30 +25,26 @@
             <table v-if="index_store.stf_data_headers.length" class=" w-full ">
 
                 <!-- Table Static Header -->
-                <thead class="bg-gray-100" >
-                    <th style="font-family: 'Jost';" class="font-bold text-[16px] w-24 px-4">No</th>
-                    <th class="py-2 font-bold text-[16px] text-start" style="font-family: 'Jost';" v-for="i in index_store.stf_data_headers">
+                <thead class="bg-gray-100">
+                    <th style="font-family: 'Jost';" class="font-thin text-[16px] w-24 px-4">No</th>
+                    <th class="py-2 text-[16px] text-center font-thin" style="font-family: 'Jost';"
+                        v-for="i in index_store.stf_data_headers">
                         {{ i.showname }}
                     </th>
                 </thead>
 
                 <!-- Table Rows -->
-                <tr v-for="(i, index) in index_store.stf_data" class="font-bold text-[15px]" style="font-family: 'Jost';">
+                <tr v-for="(i, index) in index_store.stf_data" class=" text-[15px]" style="font-family: 'Jost';">
 
                     <!-- Index Num -->
                     <th>{{ index + 1 }}</th>
 
                     <!-- Row Amount and Unit For Center Text -->
-                    <th class=" py-2 text-start font-bold text-[15px]" v-for="j in index_store.stf_data_headers"
-                    style="font-family: 'Jost';">
-                        <!-- <div v-if="j.name === 'amount' || j.name === 'unit'" class="flex w-24  justify-start px-2" >
-                            <span >
-                                {{ i[j.name] }}
-                            </span>
-                        </div> -->
+                    <th class=" py-2 text-start  text-[15px] " v-for="j in index_store.stf_data_headers"
+                        style="font-family: 'Jost';">
 
                         <!-- Row STF Num -->
-                        <div class="flex w-40 p-1 justify-start text-xs font-bold" v-if="j.name === 'stf_num'" >
+                        <div class="flex w-40 p-1 justify-start text-xs " v-if="j.name === 'stf_num'">
                             <span class="flex items-center justify-center bg-green-100 rounded-xl px-2 py-2">
                                 <span class=" text-green-500">
                                     {{ i[j.name] }}
@@ -57,7 +53,8 @@
                         </div>
 
                         <!-- Row User for showing Image -->
-                        <div class="flex w-72 text-[15px] justify-start font-bold" v-else-if="j.name === 'created_by'" style="font-family: 'Jost';">
+                        <div class="flex w-72 text-[15px] justify-start font-thin" v-else-if="j.name === 'created_by'"
+                            style="font-family: 'Jost';">
                             <span class="flex items-center ">
                                 <img class="ml-2 w-10 h-10 rounded-full" :src="i.image_url" alt="">
                                 <span class="pl-3 ">
@@ -66,20 +63,11 @@
                             </span>
                         </div>
 
-                         <!-- Row User for showing Image -->
-                         <div class="flex w-72 text-[15px] justify-start font-bold" v-else-if="j.name === 'created_date'" style="font-family: 'Jost';">
-                            <!-- <span class="flex items-center "> -->
-                                <!-- <span class="pl-3 "> -->
-                                    <DateFormatMonth :time="i[j.name]" />
-                                    <!-- {{ i[j.name] }} -->
-                                <!-- </span> -->
-                            <!-- </span> -->
+                        <!-- Row User for showing Image -->
+                        <div class="flex w-72 text-[15px] justify-start  font-thin" v-else-if="j.name === 'created_date'"
+                            style="font-family: 'Jost';">
+                            <DateFormatMonth :time="i[j.name]" />
                         </div>
-
-                        <!-- Row User Another -->
-                        <!-- <div v-else class="pl-2" >
-                            {{ i[j.name] }}
-                        </div> -->
 
                     </th>
                 </tr>
