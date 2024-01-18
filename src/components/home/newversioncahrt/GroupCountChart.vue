@@ -59,12 +59,12 @@ watchEffect(() => {
       }
     },
     scales: {
-      y: {
-        beginAtZero: true,
-        grid: {
-          display: false
-        }
-      },
+      // y: {
+      //   beginAtZero: true,
+      //   grid: {
+      //     display: false
+      //   }
+      // },
       x: {
         beginAtZero: true,
         grid: {

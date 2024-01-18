@@ -29,7 +29,11 @@ const IndexStore = defineStore("IndexStore", {
 
     // fetch stf inform data limit 30
     stf_data: [],
-    stf_data_headers:[]
+    stf_data_headers:[],
+
+    // starred stfs
+    starred_stf: [],
+    starred_stf_headers: [],
 
   }),
 
@@ -277,7 +281,70 @@ const IndexStore = defineStore("IndexStore", {
           console.log('Group Chat Statistic Data Error : ', err);
         }
       }
-    }
+    },
+
+    // Starred STF
+    async starredSTF(data){
+      if(data.user_id){
+        await axios.get(`
+          ${import.meta.env.VITE_API}api/common/fetchuserstarred/${data.user_id}?project_id=${data.project_id}
+        `).then((respond)=>{
+          this.starred_stf = respond.data
+        }).catch((err)=>{
+          console.log('fetch stf starred ERROR : ', err);
+        })
+      }
+    },
+
+
+    async getSTFStarredHeaders() {
+      if (this.starred_stf?.length >= 1) {
+        // Add Header To Header List
+        for (let [key, value] of Object.entries(this?.starred_stf[0]?.STFModel)) {
+          // Handle If Header name contain id or Id
+          const last_two_digits = key.slice(key.length - 2, key.length);
+          if (
+            key !== "id" &&
+            last_two_digits !== "id" &&
+            last_two_digits !== "Id" &&
+            key !== "image_url"
+          ) {
+            let header_cond = {};
+            let val = key.charAt(0).toUpperCase() + key.slice(1);
+            val = val.split("_").join(" ");
+            if (
+              key === "stf_num" ||
+              key === "created_by" ||
+              key === "created_date" 
+            ) {
+              // header_cond[`${key}`] = true;
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = true;
+            } else {
+              // header_cond[`${key}`] = false;
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = false;
+            }
+            this.starred_stf_headers.push(header_cond);
+          }
+        }
+        // Sort Headers
+        for (let i = 0; i < this.starred_stf_headers?.length; i++) {
+          // if (this.stf_data_headers[i].name === "completed") {
+          //   let temp = this.stf_data_headers[0];
+          //   this.stf_data_headers[0] = this.stf_data_headers[i];
+          //   this.stf_data_headers[i] = temp;
+          // }
+          if (this.starred_stf_headers[i].name === "stf_num") {
+            let temp = this.starred_stf_headers[0];
+            this.starred_stf_headers[0] = this.starred_stf_headers[i];
+            this.starred_stf_headers[i] = temp;
+          }
+        }
+      }
+    },
 
   },
 });

@@ -15,6 +15,9 @@
       <TotalStatistic />
     </div>  
 
+    <!-- Show Starred STF -->
+    <StarredSTF/>
+
   </div>
 
 </template>
@@ -23,8 +26,26 @@
 
 <script setup>
 
-import STFStatistics from '../layouts/STFStatistics.vue';
+import { onMounted, watchEffect } from 'vue';
 import TotalStatistic from '../components/home/newversioncahrt/TotalStatistic.vue';
+import StarredSTF from '../components/starred/STFStarred.vue';
+import IndexStore from '../store/store.index';
+import UserStore from '../store/store.user';
+const index_store = IndexStore();
+const user_store = UserStore();
+
+watchEffect(async()=>{
+  if(user_store.user?.id){
+    const data = {
+      user_id: user_store.user?.id,
+      project_id: user_store.user?.projectId
+    }
+    await index_store.starredSTF(data);
+    if(index_store.starred_stf.length){
+      await index_store.getSTFStarredHeaders();
+    }
+  }
+})
 
 </script>
 

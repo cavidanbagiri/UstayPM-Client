@@ -7,7 +7,7 @@
             <!-- Open Toggle Canvas -->
             <div class="relative" @click="toggleCanvas">
                 <span
-                    class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                    class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                     <!-- <i class="fa-solid fa-bars fa-md" style="color:white;"></i> -->
                     <img src="../assets/icons/menu.png" alt="">
                 </span>
@@ -21,7 +21,7 @@
             <div class="relative">
                 <router-link to="/">
                     <span @mouseover="home_tooltip = true" @mouseleave="home_tooltip = false"
-                        class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                        class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                         <img src="../assets/icons/home.png" alt="">
                     </span>
                     <span v-if="home_tooltip"
@@ -38,7 +38,7 @@
                     {{ index_store.new_stf_notification?.length + index_store.accept_sms_notification?.length }}</div>
                 <span @click="showNotification" @mouseover="notification_tooltip = true"
                     @mouseleave="notification_tooltip = false"
-                    class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                    class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                     <!-- <i class="fa-solid fa-bell fa-md " style="color:white"></i> -->
                     <img src="../assets/icons/bell.png" alt="">
                 </span>
@@ -57,7 +57,7 @@
                 </div>
                 <span @click="showMessagesNotification" @mouseover="messages_tooltip = true"
                     @mouseleave="messages_tooltip = false"
-                    class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                    class="rounded-md cursor-pointer mt-[11px] w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                     <!-- <i class="fa-solid fa-message fa-md" style="color:white"></i> -->
                     <img src="../assets/icons/email.png" alt="">
                 </span>
@@ -73,7 +73,7 @@
             <div class="relative">
                 <router-link to="/starred">
                     <span @mouseover="star_tooltip = true" @mouseleave="star_tooltip = false"
-                        class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                        class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                         <!-- <i class="fa-solid fa-star fa-md" style="color:white"></i> -->
                         <img src="../assets/icons/star.png" alt="">
                     </span>
@@ -88,7 +88,7 @@
             <div class="relative">
                 <router-link to="/stf" class="no-underline ">
                     <span @mouseover="stf_tooltip = true" @mouseleave="stf_tooltip = false"
-                        class=" rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                        class=" rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                         <!-- <i class="fa-solid fa-plus fa-md" style="color:white"></i> -->
                         <img src="../assets/icons/tab.png" alt="">
                     </span>
@@ -103,7 +103,7 @@
             <div class="relative">
                 <router-link to="/procurement" class="no-underline ">
                     <span @mouseover="procurement_tooltip = true" @mouseleave="procurement_tooltip = false"
-                        class=" rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                        class=" rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                         <img src="../assets/icons/cart.png" alt="">
                     </span>
                     <span v-if="procurement_tooltip"
@@ -117,7 +117,7 @@
             <div class="relative">
                 <router-link to="/warehouse" class="no-underline ">
                     <span @mouseover="warehouse_tooltip = true" @mouseleave="warehouse_tooltip = false"
-                        class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                        class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                         <!-- <i class="fa-solid fa-warehouse fa-sm" style="color:white;"></i> -->
                         <img src="../assets/icons/warehouse.png" alt="">
                     </span>
@@ -129,10 +129,10 @@
             </div>
 
             <!-- WorkSpace Menu -->
-            <div class="relative">
+            <!-- <div class="relative">
                 <router-link to="/">
                     <span @mouseover="workspace_tooltip = true" @mouseleave="workspace_tooltip = false"
-                        class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                        class="rounded-md cursor-pointer  mt-5 w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                         <img src="../assets/icons/clipboard.png" alt="">
                     </span>
                     <span v-if="workspace_tooltip"
@@ -140,13 +140,13 @@
                         Workspace
                     </span>
                 </router-link>
-            </div>
+            </div> -->
 
             <!-- User Profile -->
             <div class="relative">
                 <router-link to="/profile">
                     <span @mouseover="profile_tooltip = true" @mouseleave="profile_tooltip = false"
-                        class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                        class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                         <!-- <i class="fa-solid fa-user fa-sm" style="color:white;"></i> -->
                         <img src="../assets/icons/user.png" alt="">
                     </span>
@@ -167,7 +167,7 @@
             <div v-if="!user_store.user" class="relative">
                 <router-link to="/user/login">
                     <span @mouseover="login_tooltip = true" @mouseleave="login_tooltip = false"
-                        class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                        class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                         <!-- <i class="fa-solid fa-right-to-bracket fa-sm" style="color:white;"></i> -->
                         <img src="../assets/icons/logout.png" alt="">
                     </span>
@@ -180,7 +180,7 @@
             <div v-else class="relative" @click="logout">
                 <router-link to="/user/login">
                     <span @mouseover="logout_tooltip = true" @mouseleave="logout_tooltip = false"
-                        class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-green-500 duration-300">
+                        class="rounded-md cursor-pointer  mt-5  w-10 h-10 flex flex-row justify-center items-center hover:bg-indigo-600 duration-300">
                         <!-- <i class="fa-solid fa-right-from-bracket fa-sm" style="color:white;"></i> -->
                         <img src="../assets/icons/log-in.png" alt="">
                     </span>

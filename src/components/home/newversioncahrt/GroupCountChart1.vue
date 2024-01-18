@@ -71,7 +71,6 @@ watchEffect(() => {
           display: false
         }
       },
-
     }
   }
 
