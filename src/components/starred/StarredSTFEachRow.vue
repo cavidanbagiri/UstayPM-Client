@@ -87,9 +87,9 @@
         <!-- Starred Section -->
         <th class="px-2 py-2 font-medium text-center ">
             <span v-if="!prop.each?.starred_id" class="flex items-center justify-center"><img @click="toggleStar(prop.each)"
-                    class="w-4 " src="../../../assets/emptystar.png" alt=""></span>
+                    class="w-4 " src="../../assets/emptystar.png" alt=""></span>
             <span v-else class="flex items-center justify-center"><img @click="toggleStar(prop.each)" class="w-4 "
-                    src="../../../assets/fullstar.png" alt=""></span>
+                    src="../../assets/fullstar.png" alt=""></span>
         </th>
 
         <!-- The Abother Rows -->
