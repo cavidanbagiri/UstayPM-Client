@@ -35,6 +35,10 @@ const IndexStore = defineStore("IndexStore", {
     starred_stf: [],
     starred_stf_headers: [],
 
+    // Starred
+    all_starred_loading: true,
+    all_starred_cond_text: false,
+
   }),
 
   getters: {
@@ -285,11 +289,20 @@ const IndexStore = defineStore("IndexStore", {
 
     // Starred STF
     async starredSTF(data){
+      this.all_starred_loading = true;
       if(data.user_id){
         await axios.get(`
           ${import.meta.env.VITE_API}api/common/fetchuserstarred/${data.user_id}?project_id=${data.project_id}
         `).then((respond)=>{
-          this.starred_stf = respond.data
+          if(respond.data.length !== 0){
+            this.starred_stf = respond.data
+            this.all_starred_loading = false;
+            this.all_starred_cond_text = false;
+          }
+          else{
+            this.all_starred_loading = false;
+            this.all_starred_cond_text = true;
+          }
         }).catch((err)=>{
           console.log('fetch stf starred ERROR : ', err);
         })
@@ -300,7 +313,7 @@ const IndexStore = defineStore("IndexStore", {
     async getSTFStarredHeaders() {
       if (this.starred_stf?.length >= 1) {
         // Add Header To Header List
-        for (let [key, value] of Object.entries(this?.starred_stf[0]?.STFModel)) {
+        for (let [key, value] of Object.entries(this?.starred_stf[0])) {
           // Handle If Header name contain id or Id
           const last_two_digits = key.slice(key.length - 2, key.length);
           if (
@@ -313,9 +326,16 @@ const IndexStore = defineStore("IndexStore", {
             let val = key.charAt(0).toUpperCase() + key.slice(1);
             val = val.split("_").join(" ");
             if (
+              key === "completed" ||
               key === "stf_num" ||
-              key === "created_by" ||
-              key === "created_date" 
+              key === "createdAt" ||
+              key === "situation" ||
+              key === "material_type" ||
+              key === "material_name" ||
+              key === "amount" ||
+              key === "unit" ||
+              key === "username" ||
+              key === "field_name"
             ) {
               // header_cond[`${key}`] = true;
               header_cond["showname"] = `${val}`;

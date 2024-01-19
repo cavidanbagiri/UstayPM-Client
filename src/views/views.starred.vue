@@ -41,7 +41,7 @@ watchEffect(async()=>{
       project_id: user_store.user?.projectId
     }
     await index_store.starredSTF(data);
-    if(index_store.starred_stf.length){
+    if(index_store.starred_stf_headers.length == 0){
       await index_store.getSTFStarredHeaders();
     }
   }
