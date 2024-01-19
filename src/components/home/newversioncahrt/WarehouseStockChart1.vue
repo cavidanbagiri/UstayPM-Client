@@ -5,7 +5,7 @@
             <!-- Title Section -->
             <div class="w-full pl-8 py-3   flex justify-between">
                 <span class="text-2xl font-bold " style="font-family: 'Figtree';">
-                    Warehouse Stock
+                    Warehouse Group Stock
                 </span>
                 <span class="text-2xl font-bold text-gray-500 pr-4 cursor-pointer">
                     <i class="fa-solid fa-ellipsis fa-xs"></i>

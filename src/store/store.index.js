@@ -31,6 +31,10 @@ const IndexStore = defineStore("IndexStore", {
     stf_data: [],
     stf_data_headers:[],
 
+    // Fetch User Data
+    user_data: [],
+    user_data_headers: [],
+
     // starred stfs
     starred_stf: [],
     starred_stf_headers: [],
@@ -137,6 +141,76 @@ const IndexStore = defineStore("IndexStore", {
             let temp = this.stf_data_headers[0];
             this.stf_data_headers[0] = this.stf_data_headers[i];
             this.stf_data_headers[i] = temp;
+          }
+        }
+      }
+    },
+
+    // Fetch STF Data and show in dashbord stf_table side
+    async fetchUserData(project_id){
+      try {
+        await axios
+          .get(
+            `
+            ${import.meta.env.VITE_API}api/common/fetchuserdata/${project_id}
+          `
+          )
+          .then((respond) => {
+            this.user_data = respond.data;
+            console.log('this user data : ', this.user_data);
+          })
+          .catch((err) => {
+            console.log("row detail respond Error : ", err);
+          });
+      } catch (err) {
+        console.log("Get Row Detail Error : ", err);
+      }
+    },
+
+    // Fetch All User STF Headers
+    async getUserHeaders() {
+      if (this.user_data?.length >= 1) {
+        // Add Header To Header List
+        for (let [key, value] of Object.entries(this?.user_data[0])) {
+          // Handle If Header name contain id or Id
+          const last_two_digits = key.slice(key.length - 2, key.length);
+          if (
+            key !== "id" &&
+            last_two_digits !== "id" &&
+            last_two_digits !== "Id" &&
+            key !== "image_url"
+          ) {
+            let header_cond = {};
+            let val = key.charAt(0).toUpperCase() + key.slice(1);
+            val = val.split("_").join(" ");
+            if (
+              key === "image_url" ||
+              key === "username" 
+            ) {
+              // header_cond[`${key}`] = true;
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = true;
+            } else {
+              // header_cond[`${key}`] = false;
+              header_cond["showname"] = `${val}`;
+              header_cond["name"] = `${key}`;
+              header_cond["value"] = false;
+            }
+            this.user_data_headers.push(header_cond);
+          }
+        }
+        // Sort Headers
+        for (let i = 0; i < this.user_data_headers?.length; i++) {
+          // if (this.stf_data_headers[i].name === "completed") {
+          //   let temp = this.stf_data_headers[0];
+          //   this.stf_data_headers[0] = this.stf_data_headers[i];
+          //   this.stf_data_headers[i] = temp;
+          // }
+          if (this.user_data_headers[i].name === "stf_num") {
+            let temp = this.user_data_headers[0];
+            this.user_data_headers[0] = this.user_data_headers[i];
+            this.user_data_headers[i] = temp;
           }
         }
       }

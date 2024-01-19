@@ -12,13 +12,13 @@
             </span>
             <input
                 class="  w-full me-1 outline-none hover:orange-pink-500 text-gray-500 bg-gray-100 py-1 "
-                style="font-family: 'Figtree';" type="text" placeholder="Search Contact ...">
+                style="font-family: 'Figtree';" type="text" placeholder="Search Contact ..." v-model="user_filter">
         </div>
         <!-- User Liste Section -->
         <div>
             <ul class="" style="font-family: 'Roboto';">
                 <!-- Each User -->
-                <li @click="selectedUser(user)" v-for="user in message_store.unread_messages_and_users" :key="user.id"
+                <li @click="selectedUser(user)" v-for="user in message_store.filtering_unread_messages_and_users" :key="user.id"
                     class=" my-1 p-2 py-3 relative  flex justify-between  items-center rounded-lg cursor-pointer hover:bg-slate-100 duration-300  ">
                     <div class="flex justify-start items-center">
                         <img class="w-12 h-12 rounded-full"
@@ -99,6 +99,23 @@ const user_store = UserStore();
 const message_store = MessageStore();
 
 const socket = inject('socket');
+
+// For User filtering
+const user_filter = ref('');
+watchEffect(()=>{
+    if(user_filter.value){
+        message_store.filtering_unread_messages_and_users = [];
+        for(let i of message_store.unread_messages_and_users){
+            if(i.username.includes(user_filter.value)  ){
+                message_store.filtering_unread_messages_and_users.push(i);
+            }
+        }
+    }
+    else{
+        message_store.filtering_unread_messages_and_users = message_store.unread_messages_and_users;
+    }
+    
+})
 
 const show_dialog = ref(false);
 const user_key = ref(0);

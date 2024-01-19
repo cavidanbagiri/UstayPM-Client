@@ -34,7 +34,7 @@
                     <span class="text-4xl font-bold " >{{ index_store.statistic_data?.sm_process }}</span>
                     <span class="text-md font-thin"  style="font-family: 'Jost';">Sm Processing</span>
                 </div>
-                <img class="w-16 p-4 bg-sky-200 rounded-xl" src="../../../assets/statistic_icons/processing1.png" alt="">
+                <img class="w-16 p-4 bg-sky-200 rounded-xl" src="../../../assets/statistic_icons/processing2.png" alt="">
             </div>
             <div class="flex flex-row justify-between bg-gray-100 w-full items-center p-3 rounded-xl" style="font-family: 'Jost';">
                 <span class="text-green-500 font-bold text-sm">15-01-2023 

@@ -5,7 +5,7 @@
         <!-- Title Section -->
         <div class="w-full pl-8 border-b py-3   flex justify-between">
             <span class="text-2xl font-bold " style="font-family: 'Poppins';">
-                Last STF
+                Last Created STF
             </span>
             <span class="text-sm flex justify-center items-center font-bold text-gray-500 pr-4 cursor-pointer">
 
