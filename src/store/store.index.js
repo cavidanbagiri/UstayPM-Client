@@ -223,7 +223,6 @@ const IndexStore = defineStore("IndexStore", {
             .get(`${import.meta.env.VITE_API}api/common/statisticdata/${data?.user_id}?project_id=${data?.project_id}`)
             .then((respond) => {
               this.statistic_data = respond.data;
-              console.log('this.statistic_data : ', this.statistic_data);
             })
             .catch((err) => {
               console.log("row detail respond Error : ", err);
@@ -330,14 +329,12 @@ const IndexStore = defineStore("IndexStore", {
 
     // Group Chart Statistic Data
     async wsStatisticData(project_id){
-      console.log('statistic works');
       if(project_id){
         try{
           await axios.get(
             `${import.meta.env.VITE_API}api/common/warehousestockstatisticdata/${project_id}`
           ).then((respond)=>{
             this.ws_statistic_data = respond.data;
-            console.log('wa : ', this.ws_statistic_data);
           })
         }
         catch(err){

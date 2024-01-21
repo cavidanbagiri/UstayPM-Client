@@ -1,36 +1,27 @@
 <template>
-    <div class="flex flex-row w-4/12  justify-around">
+    <div class="flex flex-row  justify-around">
         <div class="flex flex-col items-center my-2  rounded-sm w-full" style="font-family: 'Figtree';">
             <!-- Profile Section -->
             <div class="bg-white w-full h-full flex flex-col pt-2 px-4">
-                <!-- Close Chat Section -->
-                <span class="cursor-pointer text-end" @click="closeChat"><i
-                    class=" hover:text-blue-400 fa-solid fa-xmark fa-2xl text-gray-500"></i></span>
+                
                     
                 <!-- Title Section -->
-                <div class="flex justify-center text-4xl w-full text-center p-1  py-2 " style="font-family: 'Figtree';">
-                    <span class="">Profile</span>
-                </div>
+                <div class=" p-2 flex justify-center">
+                 <span class="w-full text-4xl font-bold text-center pl-5 mb-5" style="font-family: Inter;">Profile</span>
+                 </div>
                 <!-- Image Section -->
                 <div class=" mt-1 flex flex-col items-center w-full py-1">
                     <div class="avatar">
-                        <div v-if="message_store.selected_user" class="w-64 rounded-full border">
-                            <img :src="message_store.selected_user.image_url" />
-                        </div>
-                        <div v-else class="w-64 rounded-full border">
+                        <div class="w-64 rounded-full border">
                             <img :src="user_store.user?.image_url" />
                         </div>
                     </div>
                     <div class="text-2xl mt-3 font-bold ">
-                        <span v-if="message_store.selected_user">{{ message_store.selected_user.username }}</span>
-                        <span v-else>{{ user_store.user?.name }} {{ user_store.user?.surname }}</span>
+                        <span >{{ user_store.user?.name }} {{ user_store.user?.surname }}</span>
                     </div>
                     <span class="text-red-500 mt-3 text-xl font-bold">
                         Ustay
-                        <span v-if="message_store.selected_user" class="text-black font-medium text-lg">
-                            {{ message_store.selected_user?.project_name }}
-                        </span>
-                        <span v-else class="text-black font-medium text-lg">
+                        <span class="text-black font-medium text-lg">
                             {{ user_store.user?.ProjectModel?.project_name }}
                         </span>
                     </span>
@@ -52,19 +43,13 @@
                 </span>
                 <span class="text-gray-400 mt-1 flex justify-between p-1 border-b">
                     Department
-                    <span v-if="message_store.selected_user" class="text-gray-900">
-                        {{ message_store.selected_user?.department_name }}
-                    </span>
-                    <span v-else class="text-gray-900">
+                    <span class="text-gray-900">
                         {{ user_store.user?.DepartmentModel?.department_name }}
                     </span>
                 </span>
                 <span class="text-gray-400 mt-1 flex justify-between p-1 border-b">
                     Position
-                    <span v-if="message_store.selected_user" class="text-gray-900">
-                        {{ message_store.selected_user?.status_name }}
-                    </span>
-                    <span v-else class="text-gray-900">
+                    <span  class="text-gray-900">
                         {{ user_store.user?.StatusModel?.status_name }}
                     </span>
                 </span>
@@ -79,9 +64,6 @@
                 </div>
                 <div class="flex mt-3">
                     <img src="../../assets/icons/mail.png" alt="">
-                    <span v-if="message_store.selected_user" class="mt-1">
-                        {{ message_store.selected_user?.email }}
-                    </span>
                     <span velse class="mt-1 ml-4">
                         {{ user_store.user.email }}
                     </span>
@@ -94,22 +76,13 @@
 </template>
 
 <script setup>
-import MessageStore from '../../store/store.message';
 import UserStore from '../../store/store.user';
-
-const message_store = MessageStore();
 const user_store = UserStore();
-
-
-// Close Chat Bar
-const closeChat = () => { 
-    message_store.toggle_message = false;
-    message_store.selected_user = null;
-    console.log('message store selected user is : ', message_store.selected_user);
-}
 
 
 
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+
+</style>

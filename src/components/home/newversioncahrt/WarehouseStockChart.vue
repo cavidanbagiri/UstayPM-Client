@@ -64,8 +64,6 @@ if(labels.length === 0){
         labels.push(i.material_type);
         data.push(i.count);
     }
-    console.log('label : ', labels);
-    console.log('data : ', data);
 }
 
 chartDataSM.value = {

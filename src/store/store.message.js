@@ -42,6 +42,7 @@ const MessageStore = defineStore("MessageStore", {
 
     // Fetch Users and Unread Messages
     async fetchUnreadMessagesAndUsers(user_id){
+      console.log('unread messages and users are working');
       if(user_id){
         try{
           await axios

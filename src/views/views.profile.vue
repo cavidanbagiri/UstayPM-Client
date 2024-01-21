@@ -1,12 +1,21 @@
 
-
 <template>
-    <div>
-        <label for="avatar">Choose a profile picture:</label>
-        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" @change="onFileChange" />
-        <button @click="onUploadFile">
-            Add
-        </button>
+    <div class="flex flex-row p-2">
+        <!-- User Profile -->
+        <div class="py-2">
+            <UserProfile />
+            <div class="px-4">
+                <label for="avatar">Change Picture:</label>
+                <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg" @change="onFileChange" />
+                <button @click="onUploadFile">
+                    Add
+                </button>
+            </div>
+        </div>
+        <!-- Users Lst -->
+        <div class="w-full h-full ml-5 p-2 bg-gray-50">
+            <UserList />
+        </div>
         <Toast :cond="show_toast_cond" messages="Image Added Succesfully" />
     </div>
 </template>
@@ -15,9 +24,10 @@
 
 import { ref } from 'vue';
 import Toast from '../components/design/Toast.vue';
+import UserList from '../components/userprofile/UserList.vue';
+import UserProfile from '../components/userprofile/UserProfile.vue';
 import router from '../router/index.js';
 import UserStore from '../store/store.user';
-
 
 const user_store = UserStore();
 
