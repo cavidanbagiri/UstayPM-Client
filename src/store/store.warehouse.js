@@ -58,23 +58,23 @@ const WarehouseStore = defineStore("WarehouseStore", {
   actions:{
     
     // Get Waiting SM                                                               [ Check ]
-    async getProcessingSMS(projectModelId) {
-      if(projectModelId){
-        try{
-          await axios
-          .get(`${import.meta.env.VITE_API}api/procurement/fetchsm/${projectModelId}`) 
-          .then((respond) => {
-            this.processing_sms = respond.data;
-          })
-          .catch((err) => {
-            console.log("Get Warehouse Waiting Error : ", err);
-          });
-        }
-        catch(err){
-          console.log('Error Happen For Fetching Warehouse Procesing Data');
-        }
-      }
-    },
+    // async getProcessingSMS(projectModelId) {
+    //   if(projectModelId){
+    //     try{
+    //       await axios
+    //       .get(`${import.meta.env.VITE_API}api/procurement/fetchsm/${projectModelId}`) 
+    //       .then((respond) => {
+    //         this.processing_sms = respond.data;
+    //       })
+    //       .catch((err) => {
+    //         console.log("Get Warehouse Waiting Error : ", err);
+    //       });
+    //     }
+    //     catch(err){
+    //       console.log('Error Happen For Fetching Warehouse Procesing Data');
+    //     }
+    //   }
+    // },
 
     // Get Filtered Data For User STF
     async getFilteredDataProcessingSM(filtered_object) {

@@ -21,7 +21,7 @@
 
 <script setup>
 
-import { watchEffect, ref, onMounted, provide } from 'vue';
+import { watchEffect, ref, provide } from 'vue';
 import { io } from 'socket.io-client';
 // import { provide } from vue;
 
@@ -57,16 +57,6 @@ const socket = io(URL);
 provide('socket', socket);
 
 
-onMounted(() => {
-  if (user_store.user) {
-    const data = {
-      user_id: user_store.user.id,
-      project_id: user_store.user.projectId
-    }
-    index_store.fetchStatisticResult(data);
-  }
-})
-
 
 watchEffect(() => {
   // If User Not Login, Redirect To User Login Page
@@ -77,9 +67,9 @@ watchEffect(() => {
   else {
     user_login.value = false;
   }
-  if (user_store.user) {
 
-    // Fetch Statistic Result For 
+  // Fetch Statistic Result For 
+  if (user_store.user) {
     const data = {
       user_id: user_store.user.id,
       project_id: user_store.user.projectId

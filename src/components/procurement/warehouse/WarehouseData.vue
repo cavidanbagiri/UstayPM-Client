@@ -40,7 +40,7 @@
    
 <script setup>
 
-import { onMounted } from 'vue';
+import { onMounted, watchEffect } from 'vue';
 import ProcurementStore from '../../../store/store.procurement';
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
@@ -58,14 +58,16 @@ const warehouse_store = WarehouseStore();
 
 onMounted(async () => {
   if(user_store.user){
-    await procurement_store.fetchWarehouseData(user_store.user.projectId);
+    // await procurement_store.fetchWarehouseData(user_store.user.projectId);
     await warehouse_store.getCompaniesNames();
     await warehouse_store.fetchSTFCreateUsernames(user_store.user.projectId);
-    if(procurement_store.GETWAREHOUSEHEADERS.length === 0){ 
+  }
+})
+
+watchEffect(async()=>{
+  if(procurement_store.GETWAREHOUSEHEADERS.length === 0){ 
       await procurement_store.getWarehouseHeaders();
     }
-  }
-  
 })
 
 

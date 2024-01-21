@@ -76,16 +76,9 @@
 
 <script setup>
 
-import { onMounted } from 'vue';
-
 import IndexStore from '../../../store/store.index';
 const index_store = IndexStore();
 
-onMounted(async ()=>{
-  if(!index_store.statistic_data){
-    await index_store.fetchStatisticResult();
-  }
-})
 
 </script>
 

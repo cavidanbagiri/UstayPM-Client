@@ -83,7 +83,7 @@ onMounted(async () => {
       user_id: user_store.user?.id
     }
     // Fetch All STF
-    await procurement_store.fetchSTF(data)
+    // await procurement_store.fetchSTF(data)
     if (procurement_store.stf_table_headers.length === 0) {
       procurement_store.getSTFHeaders();
     }
@@ -131,6 +131,16 @@ const filterFunction = async (filtered_objects) => {
 
 // After Creating SM, This code will work
 watchEffect(async () => {
+
+  if (user_store.user) {
+    const data = {
+      project_id : user_store.user?.projectId,
+      user_id: user_store.user?.id
+    }
+    if (procurement_store.stf_table_headers.length === 0) {
+      procurement_store.getSTFHeaders();
+    }
+  }
 
   // For Fetch All STF
   if (procurement_store.after_created) {

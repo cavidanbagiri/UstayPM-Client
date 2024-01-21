@@ -20,7 +20,7 @@
                         </div>
                         <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">{{ data.project }}</span>
                         <span class="text-2xl font-bold mt-4" >Project</span>
-                        <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-blue-400 " style="font-family: 'Inter';">View All
+                        <span @click="goWarehouse" class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-blue-400 hover:cursor-pointer" style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
@@ -40,7 +40,7 @@
                         </div>
                         <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">{{ data.consumables }}</span>
                         <span class="text-2xl font-bold mt-4" >Consumables</span>
-                        <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-orange-400 " style="font-family: 'Inter';">View All
+                        <span @click="goWarehouse" class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-orange-400 hover:cursor-pointer " style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
@@ -63,7 +63,7 @@
                         </div>
                         <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">{{ data.fixture }}</span>
                         <span class="text-2xl font-bold mt-4" >Fixture</span>
-                        <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-green-400 " style="font-family: 'Inter';">View All
+                        <span @click="goWarehouse" class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-green-400  hover:cursor-pointer" style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>
@@ -83,7 +83,7 @@
                         </div>
                         <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">0</span>
                         <span class="text-2xl font-bold mt-4" >Break</span>
-                        <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-red-400 " style="font-family: 'Inter';">View All
+                        <span @click="goWarehouse" class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-red-400 hover:cursor-pointer" style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
                         </span>
                     </div>

@@ -13,8 +13,10 @@
                 </span>
                 <div v-if="data_cond" class="p-5 absolute top-5 right-5">
                     <router-link to="/procurement" class="">
-                    <span class=" border bg-white px-5 py-3 font-bold text-[16px] hover:cursor-pointer hover:underline">Get Data</span>
-                </router-link>
+                        <span
+                            class=" border bg-white px-5 py-3 font-bold text-[16px] hover:cursor-pointer hover:underline">Get
+                            Data</span>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -22,10 +24,7 @@
         <div class="border-[24px]  w-[16rem] h-[16rem] border-violet-600 rounded-full flex justify-center items-center"
             style="">
             <span class="text-5xl font-bold text-violet-700">
-                {{ parseInt(index_store?.statistic_data?.stf_false) +
-                    parseInt(index_store?.statistic_data?.stf_true) +
-                    parseInt(index_store?.statistic_data?.stf_canceled)
-                }}
+                {{total}}
             </span>
         </div>
         <!-- Footer Section -->
@@ -47,13 +46,17 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
+import { ref, watchEffect } from 'vue';
 import IndexStore from '../../../store/store.index';
 const index_store = IndexStore();
 
 const data_cond = ref(false);
 
+const total = ref(0);
+
+watchEffect(() => {
+    total.value = parseInt(index_store?.statistic_data?.stf_false) + parseInt(index_store?.statistic_data?.stf_true) + parseInt(index_store?.statistic_data?.stf_canceled);
+})
 
 </script>
 

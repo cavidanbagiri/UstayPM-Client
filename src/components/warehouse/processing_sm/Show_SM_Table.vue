@@ -2,7 +2,7 @@
 
 <template>
     <div class="flex flex-col" style="display:inline-block">
-        <TableCommonComp/>
+        <TableCommonComp />
         <div class="sticky h-40 top-10 bg-white z-10">
             <div class=" sticky left-16 flex flex-col w-max bg-white"
                 style="display:inline-block; width: calc(100vw - 5rem);">
@@ -18,7 +18,7 @@
 
                 <!-- <Filter_Section_Comp /> -->
                 <TableFilterSM @filterFunction="filterFunction">
-                    <TableExpand v-if="true" :table_headers="warehouse_store.processing_sm_headers" /> 
+                    <TableExpand v-if="true" :table_headers="warehouse_store.processing_sm_headers" />
                 </TableFilterSM>
 
             </div>
@@ -26,26 +26,27 @@
 
         <!-- Table -->
         <div class="">
-            <table v-if="warehouse_store.processing_sm_headers.length" class=" text-left text-gray-800 dark:text-gray-400 w-full " style="font-size: xx-small;">
+            <table v-if="warehouse_store.processing_sm_headers.length"
+                class=" text-left text-gray-800 dark:text-gray-400 w-full " style="font-size: xx-small;">
                 <TableHeader :table_headers="warehouse_store.processing_sm_headers" />
                 <Get_SM_Body_Table />
             </table>
             <div v-else class="flex flex-row justify-center items-center w-full h-96">
-              <span class="loading loading-dots loading-lg"></span>
+                <span class="loading loading-dots loading-lg"></span>
             </div>
         </div>
 
         <Show_STF_Selecting_Task @acceptSM="acceptSM" />
 
-        <Toast :cond = showToastval.cond :messages=showToastval.messages />
-        
+        <Toast :cond=showToastval.cond :messages=showToastval.messages />
+
     </div>
 </template>
 
 <script setup>
 
 // Import Section
-import { onMounted, reactive } from 'vue';
+import { onMounted, reactive, watchEffect } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilterSM from '../../../layouts/TableFilterSM.vue';
@@ -71,21 +72,23 @@ const procurement_store = ProcurementStore();
 onMounted(async () => {
     // Get All Waiting SMS
     const user = user_store.GETUSER;
-    if (user === null || user === undefined ) {
+    if (user === null || user === undefined) {
         console.log('if work');
     }
-    else{
-        await warehouse_store.getProcessingSMS(user?.projectId);
+    else {
         // Get All Companies Names For Filtering 
         await warehouse_store.getCompaniesNames();
         await procurement_store.getCompaniesNames();
         // Get All Creating Users Names For Users
         await warehouse_store.fetchSTFCreateUsernames(user_store.user.projectId);
         await procurement_store.fetchSTFCreateUsernames(user_store.user.projectId);
-        // Get Table Headers
-        if(warehouse_store.processing_sm_headers.length === 0){
-            await warehouse_store.getProcessingSMHeaders()
-        }
+    }
+})
+
+watchEffect(async() => {
+    // Get Table Headers
+    if (warehouse_store.processing_sm_headers.length === 0) {
+        await warehouse_store.getProcessingSMHeaders()
     }
 })
 
@@ -96,20 +99,20 @@ const showToastval = reactive({
 })
 const acceptSM = async () => {
 
-    if(user_store.user){
-        if(user_store.user.departmentId !== 3) {
+    if (user_store.user) {
+        if (user_store.user.departmentId !== 3) {
             // ... Only Procurement Users can create a new sms
             showToastval.cond = true;
             showToastval.messages = "You dont have authority for Accepting SM";
-            setTimeout(()=>{
+            setTimeout(() => {
                 showToastval.cond = false
-            },1000)
+            }, 1000)
         }
-        else{
+        else {
             warehouse_store.tab_num = 2;
         }
     }
-    else{
+    else {
         // ... User Not Login Error Return
         showToastval.cond = true;
         showToastval.messages = "User Not Login";
@@ -118,7 +121,7 @@ const acceptSM = async () => {
 }
 
 // Get Filtered Data
-const filterFunction = async (filtered_objects)=>{
+const filterFunction = async (filtered_objects) => {
     await warehouse_store.getFilteredDataProcessingSM(filtered_objects);
 }
 

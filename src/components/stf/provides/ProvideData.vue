@@ -39,7 +39,7 @@
 <script setup>
 
 // Import Section
-import { onMounted } from 'vue';
+import { watchEffect } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilterProvide from '../../../layouts/TableFilterProvide.vue';
@@ -52,13 +52,12 @@ import STFStore from '../../../store/store.stf';
 const stf_store = STFStore();
 const user_store = UserStore();
 
-onMounted(async () => {
+watchEffect(async () => {
   const user = user_store.GETUSER;
   if (user === undefined) {
   }
   else {
-    console.log('else work');
-    await stf_store.fetchProvidedData(user);
+    // await stf_store.fetchProvidedData(user);
     if (stf_store.provided_data_headers.length === 0) {
       stf_store.getProvidedDataHeaders();
     }

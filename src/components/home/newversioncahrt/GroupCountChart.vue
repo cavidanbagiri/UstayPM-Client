@@ -5,9 +5,6 @@
       <span class="text-2xl font-bold " style="font-family: 'Figtree';">
         Group Orders
       </span>
-      <!-- <span class="text-2xl font-bold text-gray-500 pr-4 cursor-pointer">
-        <i class="fa-solid fa-ellipsis fa-xs"></i>
-      </span> -->
     </div>
     <Bar :data="chartData" :options="chartOption" class="bg-white p-2 border-none " />
   </div>
@@ -16,10 +13,9 @@
 <script setup>
 
 import { watchEffect, ref, onMounted } from 'vue';
-import { Bar, Line } from 'vue-chartjs'
+import { Bar} from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import IndexStore from '../../../store/store.index';
-import UserStore from '../../../store/store.user';
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 
@@ -27,10 +23,7 @@ const chartData = ref();
 const chartOption = ref();
 
 const index_store = IndexStore();
-const user_store = UserStore();
-onMounted(async () => {
-  await index_store.groupChartStatisticData(user_store.user?.projectId);
-})
+
 
 watchEffect(() => {
 

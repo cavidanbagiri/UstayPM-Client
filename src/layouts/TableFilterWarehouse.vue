@@ -7,7 +7,7 @@
             <!-- Common Filter Keys -->
             <div class="flex flex-row start">
                 <!-- Date Order -->
-                <div class="flex flex-col my-1 mr-3" style="font-size: x-small;">
+                <div class="sm:hidden 2xl:flex flex-col my-1 mr-3" style="font-size: x-small;">
                     <span class="m-1">Date Order</span>
                     <select
                         class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg"
@@ -17,7 +17,7 @@
                     </select>
                 </div>
                 <!-- Search With Material Type-->
-                <div class="flex flex-col m-1">
+                <div class="sm:hidden xl:flex flex-col m-1">
                     <span class="m-1">Search Type</span>
                     <select v-model="filtered_objects.material_type"
                         class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
@@ -28,7 +28,7 @@
                     </select>
                 </div>
                 <!-- Search With Username -->
-                <div class="flex flex-col m-1">
+                <div class="sm:hidden xl:flex  flex-col m-1">
                     <span class="m-1">Search Username</span>
                     <select v-model="filtered_objects.usernames"
                         class="border outline-none  rounded-lg  h-full p-1 border-blue-300 hover:border-blue-600 shadow-lg">
@@ -42,7 +42,7 @@
                 <!-- Vendor Name -->
                 <VendorNames @selectedComp="selectedComp" :companies_list="warehouse_store.companies_names" />
                 <!-- Search With Date -->
-                <div class="flex flex-col m-1">
+                <div class="sm:hidden 2xl:flex flex-col m-1">
                     <span class="m-1">Search Date</span>
                     <input class="border outline-none rounded-md border-gray-300 p-2" type="date" name="" id=""
                         placeholder="Date" v-model="filtered_objects.createdAt" />
@@ -90,7 +90,7 @@
                     <span class="m-1">Search Type</span>
                     <label for="search"
                         class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
-                    <div class="relative  w-96">
+                    <div class="relative sm:48 lg:w-64 2xl:w-96">
                         <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none w-96">
                             <svg aria-hidden="true" class="w-4 h-4 text-gray-500 dark:text-gray-400" fill="none"
                                 stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

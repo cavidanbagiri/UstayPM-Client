@@ -38,7 +38,7 @@
    
 <script setup>
 
-import { onMounted } from 'vue';
+import { watchEffect } from 'vue';
 import STFStore from '../../../store/store.stf';
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
@@ -54,15 +54,15 @@ const stf_store = STFStore();
 const user_store = UserStore();
 const warehouse_store = WarehouseStore();
 
-onMounted(async () => {
+watchEffect(async () => {
   const user = user_store.GETUSER;
   if (user === undefined) {
   }
   else {
-    await stf_store.fetchWarehouseData(user);
-    await warehouse_store.getCompaniesNames();
+    // await stf_store.fetchWarehouseData(user);
     if(stf_store.GETWAREHOUSEHEADERS.length === 0){ 
-      await stf_store.getWarehouseHeaders();
+      stf_store.getWarehouseHeaders();
+      await warehouse_store.getCompaniesNames();
     }
   }
 })

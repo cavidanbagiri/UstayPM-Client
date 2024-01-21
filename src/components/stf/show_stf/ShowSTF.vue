@@ -50,7 +50,7 @@
    
 <script setup>
 
-import { onMounted } from 'vue';
+import { watchEffect } from 'vue';
 import STFStore from '../../../store/store.stf';
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableHeader from '../../../layouts/TableHeader.vue';
@@ -64,18 +64,18 @@ import TableCommonComp from '../../design/TableCommonComp.vue';
 const stf_store = STFStore();
 const user_store = UserStore();
 
-onMounted(async () => {
+
+watchEffect(async()=>{
   const user = user_store.GETUSER;
   if (user === undefined) {
   }
   else {
-    await stf_store.fetchUserSTFAll(user);
+    // await stf_store.fetchUserSTFAll(user);
     if (stf_store.GETALLSTFHEADERS.length === 0) {
-      await stf_store.getHeaders();
+      stf_store.getHeaders();
     }
   }
 })
-
 
 // Get Filtered Data
 const filterFunction = async (filtered_objects) => {

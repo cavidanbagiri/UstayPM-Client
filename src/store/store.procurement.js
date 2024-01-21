@@ -82,22 +82,22 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Fetch All STF
-    async fetchSTF(data){
-      // await axios.get(`${import.meta.env.VITE_API}api/procurement/allstf`)
-      try{
-        await axios
-        .get(`${import.meta.env.VITE_API}api/procurement/fetchstf/${data.project_id}?user_id=${data.user_id}`)
-        .then((respond) => {
-          this.all_stf = respond.data;
-        })
-        .catch((err) => {
-          console.log("all stf Error : ", err);
-        });
-      }
-      catch(err){
-        console.log('Fetch All STF Error : ',err);
-      }
-    },
+    // async fetchSTF(data){
+    //   // await axios.get(`${import.meta.env.VITE_API}api/procurement/allstf`)
+    //   try{
+    //     await axios
+    //     .get(`${import.meta.env.VITE_API}api/procurement/fetchstf/${data.project_id}?user_id=${data.user_id}`)
+    //     .then((respond) => {
+    //       this.all_stf = respond.data;
+    //     })
+    //     .catch((err) => {
+    //       console.log("all stf Error : ", err);
+    //     });
+    //   }
+    //   catch(err){
+    //     console.log('Fetch All STF Error : ',err);
+    //   }
+    // },
 
     // Get Filtered Data For User STF
     async getFilteredDataSTF(data) {
@@ -178,23 +178,23 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Fetch All SMS
-    async fetchAllSM(projectId) {
-     if(projectId){
-      try{
-        await axios
-        .get(`${import.meta.env.VITE_API}api/procurement/fetchsm/${projectId}`)
-        .then((respond) => {
-          this.all_sms = respond.data;
-        })
-        .catch((err) => {
-          console.log("all stf Error : ", err);
-        });
-      }
-      catch(err){
-        console.log('Fetch ALl SM Error : ',err);
-      }
-     }
-    },
+    // async fetchAllSM(projectId) {
+    //  if(projectId){
+    //   try{
+    //     await axios
+    //     .get(`${import.meta.env.VITE_API}api/procurement/fetchsm/${projectId}`)
+    //     .then((respond) => {
+    //       this.all_sms = respond.data;
+    //     })
+    //     .catch((err) => {
+    //       console.log("all stf Error : ", err);
+    //     });
+    //   }
+    //   catch(err){
+    //     console.log('Fetch ALl SM Error : ',err);
+    //   }
+    //  }
+    // },
 
     // Get Filtered Data For User STF
     async getFilteredDataSM(filtered_object) {
@@ -357,22 +357,22 @@ const ProcurementStore = defineStore("ProcurementStore",{
     },
 
     // Fetch Warehouse Data
-    async fetchWarehouseData(project_id) {
-        try{
-          // await axios.get(`${import.meta.env.VITE_API}api/procurement/warehouse`)
-          await axios.get(`${import.meta.env.VITE_API}api/warehouse/${project_id}`)
-          .then((respond)=>{
-            this.warehouse_data = respond.data;
-          })
-          .catch((err)=>{
-            console.log('Fetch User Catch Error : ',err);
-          })
+    // async fetchWarehouseData(project_id) {
+    //     try{
+    //       // await axios.get(`${import.meta.env.VITE_API}api/procurement/warehouse`)
+    //       await axios.get(`${import.meta.env.VITE_API}api/warehouse/${project_id}`)
+    //       .then((respond)=>{
+    //         this.warehouse_data = respond.data;
+    //       })
+    //       .catch((err)=>{
+    //         console.log('Fetch User Catch Error : ',err);
+    //       })
   
-        }catch(err){
-          console.log('Fetch User STF Error : ', err);
-          return err;
-        }
-    },
+    //     }catch(err){
+    //       console.log('Fetch User STF Error : ', err);
+    //       return err;
+    //     }
+    // },
 
     // Fetch All User STF Headers
     async getWarehouseHeaders() {

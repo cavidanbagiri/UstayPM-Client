@@ -215,39 +215,6 @@ const IndexStore = defineStore("IndexStore", {
       }
     },
 
-    // Get Statistic Data Result
-    async fetchStatisticResult(data) {
-      if (data?.user_id) {
-        try {
-          await axios
-            .get(`${import.meta.env.VITE_API}api/common/statisticdata/${data?.user_id}?project_id=${data?.project_id}`)
-            .then((respond) => {
-              this.statistic_data = respond.data;
-            })
-            .catch((err) => {
-              console.log("row detail respond Error : ", err);
-            });
-        } catch (err) {
-          console.log("Get Row Detail Error : ", err);
-        }
-      }
-    },
-
-    // Set Create New STF Notification Read True
-    // async readNotification(user_id) {
-    //   if (user_id) {
-    //     try {
-    //       await axios
-    //         .post(
-    //           `${import.meta.env.VITE_API}api/common/readnotification/${user_id}`
-    //         )
-    //         .then((respond) => {});
-    //     } catch (err) {
-    //       console.log("Read Notification Error : ", err);
-    //     }
-    //   }
-    // },
-
     // Set Accept SM Notification Read True
     async acceptSMRead(data){
       if (data.user_id) {
@@ -307,6 +274,25 @@ const IndexStore = defineStore("IndexStore", {
         }
         catch(err){
           console.log('Canceled STF Error : ', err);
+        }
+      }
+    },
+
+     // Get Statistic Data Result
+     async fetchStatisticResult(data) {
+      if (data?.user_id) {
+        try {
+          await axios
+            .get(`${import.meta.env.VITE_API}api/common/statisticdata/${data?.user_id}?project_id=${data?.project_id}`)
+            .then((respond) => {
+              this.statistic_data = respond.data;
+              this.groupChartStatisticData(data?.project_id);
+            })
+            .catch((err) => {
+              console.log("row detail respond Error : ", err);
+            });
+        } catch (err) {
+          console.log("Get Row Detail Error : ", err);
         }
       }
     },
@@ -381,7 +367,7 @@ const IndexStore = defineStore("IndexStore", {
       }
     },
 
-
+    // Get Starred Table Headers
     async getSTFStarredHeaders() {
       if (this.starred_stf?.length >= 1) {
         // Add Header To Header List

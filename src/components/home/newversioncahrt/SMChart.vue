@@ -46,7 +46,6 @@ import { Pie } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import IndexStore from '../../../store/store.index';
 import ProcurementStore from '../../../store/store.procurement';
-import UserStore from '../../../store/store.user';
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
 const index_store = IndexStore();

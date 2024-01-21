@@ -53,7 +53,7 @@
 <script setup>
 
 // Import Section
-import { onMounted } from 'vue';
+import { watchEffect } from 'vue';
 // import Show_SM_Table from './Show_SM_Table.vue';
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilterSM from '../../../layouts/TableFilterSM.vue';
@@ -71,14 +71,13 @@ const user_store = UserStore();
 // const index_store = IndexStore();    
 
 
-onMounted(async () => {
+watchEffect(async () => {
     // Fetch All SM
     const user = user_store.GETUSER;
     if (user === null || user === undefined) {
-        console.log('if work');
     }
     else {
-        await procurement_store.fetchAllSM(user?.projectId);
+        // await procurement_store.fetchAllSM(user?.projectId);
         if (procurement_store.sm_table_headers.length === 0) {
             procurement_store.getSMHeaders();
         }
@@ -90,22 +89,6 @@ const filterFunction = async (filtered_objects) => {
     await procurement_store.getFilteredDataSM(filtered_objects);
 }
 
-
-
-// const fetchCurrentData = async (statistic_result_value) => {
-//     if (statistic_result_value === 0) {
-//         await procurement_store.fetchAllSM();
-//     }
-//     else if(statistic_result_value === 4){
-//         procurement_store.tab_num = 4;
-//     }
-//     else {
-//         await procurement_store.fetchStatisticResultDataSM(statistic_result_value);
-//     }
-// }
-
-// Close Row Information Tab
-// const closeRowInform = () => index_store.row_inform_condition = false;
 
 </script>
 

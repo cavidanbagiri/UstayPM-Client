@@ -58,33 +58,33 @@ const STFStore = defineStore("STFStore", {
     },
 
     // Fetch All User STF -> Checked
-    async fetchUserSTFAll(user) {
-      this.all_stf_loading = true;
-      if (user?.id) {
-        try {
-          // await axios.get(`${import.meta.env.VITE_API}api/stf/getuserstfall/${user.id}`)
-          await axios
-            .get(`${import.meta.env.VITE_API}api/stf/getuserstfall/${user.id}`)
-            .then((respond) => {
-              if(respond.data.length !== 0){
-                this.all_stf = respond.data;
-                this.all_stf_loading = false;
-                this.all_stf_cond_text = false;
-              }
-              else{
-                this.all_stf_loading = false;
-                this.all_stf_cond_text = true;
-              }
-            })
-            .catch((err) => {
-              console.log("Fetch User Catch Error : ", err);
-            });
-        } catch (err) {
-          console.log("Fetch User STF Error : ", err);
-          return err;
-        }
-      }
-    },
+    // async fetchUserSTFAll(user) {
+    //   this.all_stf_loading = true;
+    //   if (user?.id) {
+    //     try {
+    //       // await axios.get(`${import.meta.env.VITE_API}api/stf/getuserstfall/${user.id}`)
+    //       await axios
+    //         .get(`${import.meta.env.VITE_API}api/stf/getuserstfall/${user.id}`)
+    //         .then((respond) => {
+    //           if(respond.data.length !== 0){
+    //             this.all_stf = respond.data;
+    //             this.all_stf_loading = false;
+    //             this.all_stf_cond_text = false;
+    //           }
+    //           else{
+    //             this.all_stf_loading = false;
+    //             this.all_stf_cond_text = true;
+    //           }
+    //         })
+    //         .catch((err) => {
+    //           console.log("Fetch User Catch Error : ", err);
+    //         });
+    //     } catch (err) {
+    //       console.log("Fetch User STF Error : ", err);
+    //       return err;
+    //     }
+    //   }
+    // },
 
     // Get Filtered Data For User STF
     async getFilteredData(data) {
@@ -116,7 +116,7 @@ const STFStore = defineStore("STFStore", {
     },
 
     // Fetch All User STF Headers
-    async getHeaders() {
+    getHeaders() {
       if (this.all_stf?.length >= 1) {
         // Add Header To Header List
         for (let [key, value] of Object.entries(this?.all_stf[0])) {
@@ -193,31 +193,31 @@ const STFStore = defineStore("STFStore", {
     },
 
     // Fetch Warehouse Data
-    async fetchWarehouseData(user) {
-      if (user?.id) {
-        this.warehouse_data_loading = true;
-        try {
-          await axios
-            .get(`${import.meta.env.VITE_API}api/stf/warehouse/${user.id}`)
-            .then((respond) => {
-              if(respond.data?.length!==0){
-                this.warehouse_data = respond.data;
-                this.warehouse_data_loading = false;
-                this.warehouse_data_cond_text = false;
-              }else{
-                this.warehouse_data_loading = false;
-                this.warehouse_data_cond_text = true;
-              }
-            })
-            .catch((err) => {
-              console.log("Fetch User Catch Error : ", err);
-            });
-        } catch (err) {
-          console.log("Fetch User STF Error : ", err);
-          return err;
-        }
-      }
-    },
+    // async fetchWarehouseData(user) {
+    //   if (user?.id) {
+    //     this.warehouse_data_loading = true;
+    //     try {
+    //       await axios
+    //         .get(`${import.meta.env.VITE_API}api/stf/warehouse/${user.id}`)
+    //         .then((respond) => {
+    //           if(respond.data?.length!==0){
+    //             this.warehouse_data = respond.data;
+    //             this.warehouse_data_loading = false;
+    //             this.warehouse_data_cond_text = false;
+    //           }else{
+    //             this.warehouse_data_loading = false;
+    //             this.warehouse_data_cond_text = true;
+    //           }
+    //         })
+    //         .catch((err) => {
+    //           console.log("Fetch User Catch Error : ", err);
+    //         });
+    //     } catch (err) {
+    //       console.log("Fetch User STF Error : ", err);
+    //       return err;
+    //     }
+    //   }
+    // },
 
     // Get Filtered Data For User Warehouse
     async getFilteredWarehouseData(filtered_object) {
@@ -249,80 +249,80 @@ const STFStore = defineStore("STFStore", {
     },
 
     // Fetch All User STF Headers
-    async getWarehouseHeaders() {
-      if (this.warehouse_data?.length >= 1) {
-        // Add Header To Header List
-        for (let [key, value] of Object.entries(this?.warehouse_data[0])) {
-          // Handle If Header name contain id or Id
-          const last_two_digits = key.slice(key.length - 2, key.length);
-          if (
-            key !== "id" &&
-            last_two_digits !== "id" &&
-            last_two_digits !== "Id"
-          ) {
-            let header_cond = {};
-            let val = key.charAt(0).toUpperCase() + key.slice(1);
-            val = val.split("_").join(" ");
-            if (
-              key === "stf_num" ||
-              key === "sm_num" ||
-              key === "material_name" ||
-              key === "amount" ||
-              key === "unit" ||
-              key === "vendor_name" ||
-              key === "stock" ||
-              key === "certificate" ||
-              key === "passport" ||
-              key === "field"
-            ) {
-              // header_cond[`${key}`] = true;
-              header_cond["showname"] = `${val}`;
-              header_cond["name"] = `${key}`;
-              header_cond["value"] = true;
-            } else {
-              // header_cond[`${key}`] = false;
-              header_cond["showname"] = `${val}`;
-              header_cond["name"] = `${key}`;
-              header_cond["value"] = false;
+    getWarehouseHeaders() {
+          if (this.warehouse_data?.length >= 1) {
+            // Add Header To Header List
+            for (let [key, value] of Object.entries(this?.warehouse_data[0])) {
+              // Handle If Header name contain id or Id
+              const last_two_digits = key.slice(key.length - 2, key.length);
+              if (
+                key !== "id" &&
+                last_two_digits !== "id" &&
+                last_two_digits !== "Id"
+              ) {
+                let header_cond = {};
+                let val = key.charAt(0).toUpperCase() + key.slice(1);
+                val = val.split("_").join(" ");
+                if (
+                  key === "stf_num" ||
+                  key === "sm_num" ||
+                  key === "material_name" ||
+                  key === "amount" ||
+                  key === "unit" ||
+                  key === "vendor_name" ||
+                  key === "stock" ||
+                  key === "certificate" ||
+                  key === "passport" ||
+                  key === "field"
+                ) {
+                  // header_cond[`${key}`] = true;
+                  header_cond["showname"] = `${val}`;
+                  header_cond["name"] = `${key}`;
+                  header_cond["value"] = true;
+                } else {
+                  // header_cond[`${key}`] = false;
+                  header_cond["showname"] = `${val}`;
+                  header_cond["name"] = `${key}`;
+                  header_cond["value"] = false;
+                }
+                this.warehouse_headers.push(header_cond);
+              }
             }
-            this.warehouse_headers.push(header_cond);
-          }
+          // Sort Headers
+          // for (let i = 0; i < this.warehouse_data?.length; i++) {
+          //   if (this.warehouse_data[i].name === "completed") {
+          //     let temp = this.warehouse_data[0];
+          //     this.warehouse_data[0] = this.warehouse_data[i];
+          //     this.warehouse_data[i] = temp;
+          //   }
+          //   if (this.warehouse_data[i].name === "stf_num") {
+          //     let temp = this.warehouse_data[1];
+          //     this.warehouse_data[1] = this.warehouse_data[i];
+          //     this.warehouse_data[i] = temp;
+          //   }
+          // }
         }
-        // Sort Headers
-        // for (let i = 0; i < this.warehouse_data?.length; i++) {
-        //   if (this.warehouse_data[i].name === "completed") {
-        //     let temp = this.warehouse_data[0];
-        //     this.warehouse_data[0] = this.warehouse_data[i];
-        //     this.warehouse_data[i] = temp;
-        //   }
-        //   if (this.warehouse_data[i].name === "stf_num") {
-        //     let temp = this.warehouse_data[1];
-        //     this.warehouse_data[1] = this.warehouse_data[i];
-        //     this.warehouse_data[i] = temp;
-        //   }
-        // }
-      }
     },
 
     // Fetch Provided Data and show in Provided Section
-    async fetchProvidedData(user) {
-      await axios
-      .get(`${import.meta.env.VITE_API}api/stf/provided/${user.departmentId}`)
-      .then((respond) => {
-        if(respond.data?.length!==0){
-          this.provides_data = respond.data;
-          this.provide_data_loading = false;
-          this.provide_data_cond_text = false;
-          console.log('this provide data : ', this.provides_data);
-        }else{
-          this.provide_data_loading = false;
-          this.provide_data_cond_text = true;
-        }
-        })
-        .catch((err) => {
-          console.log("Provied Items Error : ", err);
-        });
-    },
+    // async fetchProvidedData(user) {
+    //   await axios
+    //   .get(`${import.meta.env.VITE_API}api/stf/provided/${user.departmentId}`)
+    //   .then((respond) => {
+    //     if(respond.data?.length!==0){
+    //       this.provides_data = respond.data;
+    //       this.provide_data_loading = false;
+    //       this.provide_data_cond_text = false;
+    //       console.log('this provide data : ', this.provides_data);
+    //     }else{
+    //       this.provide_data_loading = false;
+    //       this.provide_data_cond_text = true;
+    //     }
+    //     })
+    //     .catch((err) => {
+    //       console.log("Provied Items Error : ", err);
+    //     });
+    // },
 
     // Get Filtered Data For Provided Section
     async getFilteredDataProvided(filtered_object) {
