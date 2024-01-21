@@ -12,13 +12,13 @@
                                 <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </span>
                             <div v-if="project_cond" class="getdata_parent">
-                                <span class="getdata_child">Get Data</span>
+                                <span @click="goWarehouse" class="getdata_child">Get Data</span>
                             </div>
                         </div>
                         <div class="w-20 h-20 bg-blue-100 flex justify-center items-center rounded-full mt-4">
                             <i class="fa-solid fa-bars-progress fa-xl text-blue-500"></i>   
                         </div>
-                        <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">57</span>
+                        <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">{{ data.project }}</span>
                         <span class="text-2xl font-bold mt-4" >Project</span>
                         <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-blue-400 " style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
@@ -32,13 +32,13 @@
                                 <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </span>
                             <div v-if="consumables_cond" class="getdata_parent">
-                                <span class="getdata_child">Get Data</span>
+                                <span @click="goWarehouse" class="getdata_child">Get Data</span>
                             </div>
                         </div>
                         <div class="w-20 h-20 bg-orange-100 flex justify-center items-center rounded-full mt-4">
                             <i class="fa-solid fa-oil-well fa-xl text-orange-500"></i>   
                         </div>
-                        <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">793</span>
+                        <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">{{ data.consumables }}</span>
                         <span class="text-2xl font-bold mt-4" >Consumables</span>
                         <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-orange-400 " style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
@@ -55,13 +55,13 @@
                                 <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </span>
                             <div v-if="fixture_cond" class="getdata_parent">
-                                <span class="getdata_child">Get Data</span>
+                                <span @click="goWarehouse" class="getdata_child">Get Data</span>
                             </div>
                         </div>
                         <div class="w-20 h-20 bg-green-100 flex justify-center items-center rounded-full mt-4">
                             <i class="fa-solid fa-calendar fa-xl text-green-500"></i>   
                         </div>
-                        <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">114</span>
+                        <span class="text-4xl font-bold mt-4" style="font-family: 'Poppins';">{{ data.fixture }}</span>
                         <span class="text-2xl font-bold mt-4" >Fixture</span>
                         <span class="text-sm w-full font-medium mt-4 pl-3 pb-2 text-green-400 " style="font-family: 'Inter';">View All
                             <i class="fa-solid fa-arrow-right"></i>
@@ -75,7 +75,7 @@
                                 <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </span>
                             <div v-if="break_cond" class="getdata_parent">
-                                <span class="getdata_child">Get Data</span>
+                                <span @click="goWarehouse" class="getdata_child">Get Data</span>
                             </div>
                         </div>
                         <div class="w-20 h-20 bg-red-100 flex justify-center items-center rounded-full mt-4">
@@ -94,12 +94,46 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+
+import { ref, reactive, watchEffect } from 'vue';
+import { useRouter } from 'vue-router';
+import IndexStore from '../../../store/store.index';
+import WarehouseStore from '../../../store/store.warehouse';
+
+const router = useRouter();
+const index_store = IndexStore();
+const warehouse_store = WarehouseStore();
 
 const project_cond = ref(false);
 const fixture_cond = ref(false);
 const consumables_cond = ref(false);
 const break_cond = ref(false);
+
+const data = reactive({
+    project:0,
+    consumables:0,
+    fixture:0
+})
+
+watchEffect(()=>{
+    for(let i of index_store.ws_statistic_data){
+        if(i?.material_type === 'Consumables'){
+            data.consumables = i?.count
+        }
+        else if(i?.material_type === 'Project'){
+            data.project = i?.count
+        }
+        else if(i?.material_type === 'Fixture'){
+            data.fixture = i?.count
+        }
+    }
+})
+
+const goWarehouse = () => {
+    warehouse_store.tab_num = 1;
+    router.push('/warehouse')
+}
+
 
 </script>
 

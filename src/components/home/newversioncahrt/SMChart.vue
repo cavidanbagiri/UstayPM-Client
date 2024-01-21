@@ -66,14 +66,9 @@ const data_cond = ref(false);
 
 watchEffect(() => {
 
-    const label = [];
-    const data = [];
-
-
     chartDataSM.value = {
         datasets: [
             {
-                label: 'Data One',
                 backgroundColor: [
                     'rgb(107, 3, 252)',
                     'rgb(61, 72, 224)'

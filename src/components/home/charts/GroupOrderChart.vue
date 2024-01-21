@@ -26,11 +26,6 @@ onMounted(async ()=>{
 })
 
 
-// const chartData = reactive({
-//   label:[],
-//   data:[]
-// });
-
 const chartData = ref()
 
 watchEffect(()=>{

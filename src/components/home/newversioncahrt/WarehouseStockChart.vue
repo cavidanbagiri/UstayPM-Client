@@ -25,56 +25,59 @@
             </div>
             <!-- Footer Section -->
             <div class="w-full flex flex-row justify-around my-3">
-                <div class="  flex flex-col items-center">
-                    <span class="text-xl font-bold text-gray-400">Waiting</span>
-                    <span class="text-3xl font-bold">15</span>
-                </div>
-                <div class="  flex flex-col items-center">
-                    <span class="text-xl font-bold text-gray-400">Complete</span>
-                    <span class="text-3xl font-bold">415</span>
-                </div>
-                <div class="  flex flex-col items-center">
-                    <span class="text-xl font-bold text-gray-400">Canceled</span>
-                    <span class="text-3xl font-bold">4</span>
+                <div v-for="i in index_store.ws_statistic_data" class="  flex flex-col items-center">
+                    <span class="text-xl font-bold text-gray-400">{{ i?.material_type }}</span>
+                    <span class="text-3xl font-bold">{{ i?.count }}</span>
                 </div>
             </div>
         </div>
 </template>
 
 <script setup>
-import { watchEffect, ref } from 'vue';
-import { Bar, Pie, Doughnut } from 'vue-chartjs'
+import { watchEffect, ref, onMounted } from 'vue';
+import { Doughnut } from 'vue-chartjs'
 import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale } from 'chart.js'
 import IndexStore from '../../../store/store.index';
 import UserStore from '../../../store/store.user';
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
+const index_store = IndexStore();
+const user_store = UserStore();
 
 const data_cond = ref(false);
 
 const chartDataSM = ref();
 
-watchEffect(() => {
+onMounted(()=>{
+    if(user_store.user){
+        index_store.wsStatisticData(user_store.user?.projectId);
+    }
+})
 
-const label = [];
+const labels = [];
 const data = [];
 
+watchEffect(() => {
+
+if(labels.length === 0){
+    for(let i of index_store.ws_statistic_data){
+        labels.push(i.material_type);
+        data.push(i.count);
+    }
+    console.log('label : ', labels);
+    console.log('data : ', data);
+}
 
 chartDataSM.value = {
+    // labels: labels,
     datasets: [
         {
-            label: 'Data One',
             backgroundColor: [
                 'rgb(3, 107, 252)',
                 'rgb(107, 3, 252)',
                 'rgb(61, 72, 224)'
             ],
-            data: [
-                15, 23, 47
-                //   index_store?.statistic_data?.sm_canceled,
-                //   index_store?.statistic_data?.sm_process,
-                //   index_store?.statistic_data?.sm_completed
-            ]
+            data: [...data] 
         }
     ]
 }
