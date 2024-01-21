@@ -13,9 +13,9 @@
     <!-- STF Table -->
     <div>
       <div class="grid grid-cols-12  gap-6 mb-5  ">
+        <WarehouseStockChart/>
         <STFTable/>
         <UserTable/>
-        <WarehouseStockChart/>
       </div>
     </div>
 

@@ -3,14 +3,21 @@
   <div class="col-span-4 ml-3 bg-white rounded-xl flex flex-col items-center justify-between h-[30rem]"
             style="font-family: 'Jost';">
             <!-- Title Section -->
-            <div class="w-full pl-8 border-b py-3   flex justify-between">
-                <span class="text-2xl font-bold " style="font-family: 'Figtree';">
-                    Warehouse Stock
-                </span>
+            <div class="w-full pl-8 py-3 flex justify-between items-center">
+            <span class="text-2xl font-bold w-full" style="font-family: 'Inter';">
+                Warehouse Stock
+            </span>
+            <div class="pl-3 text-sm relative w-full text-end" @click="data_cond = !data_cond">
                 <span class="text-2xl font-bold text-gray-500 pr-4 cursor-pointer">
                     <i class="fa-solid fa-ellipsis fa-xs"></i>
                 </span>
+                <div v-if="data_cond" class="p-5 absolute top-5 right-5">
+                    <router-link to="/warehouse" class="">
+                    <span class=" border bg-white px-5 py-3 font-bold text-[16px] hover:cursor-pointer hover:underline">Get Data</span>
+                </router-link>
+                </div>
             </div>
+        </div>
             <!--  Chart Section -->
             <div class=" w-[16rem] h-[16rem] flex justify-center items-center" style="">
                 <Doughnut :data="chartDataSM" />
@@ -42,6 +49,8 @@ import IndexStore from '../../../store/store.index';
 import UserStore from '../../../store/store.user';
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale)
 
+
+const data_cond = ref(false);
 
 const chartDataSM = ref();
 

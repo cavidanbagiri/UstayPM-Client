@@ -54,3 +54,26 @@
       border-width: 1px;
   }
 }
+
+.getdata_parent{
+  position: absolute;
+  top: 2.5rem;
+  left: 3rem;
+  background-color: white;
+  border: solid 1px ;
+  border-color: gray;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  font-size: 16px;
+}
+.getdata_child{
+  font-weight: bold;
+}
+.getdata_child:hover{
+  cursor: pointer;
+  text-decoration: underline;
+}

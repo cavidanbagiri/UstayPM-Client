@@ -7,9 +7,9 @@
                 <span class="text-2xl font-bold " style="font-family: 'Figtree';">
                     Warehouse Group Stock
                 </span>
-                <span class="text-2xl font-bold text-gray-500 pr-4 cursor-pointer">
+                <!-- <span class="text-2xl font-bold text-gray-500 pr-4 cursor-pointer">
                     <i class="fa-solid fa-ellipsis fa-xs"></i>
-                </span>
+                </span> -->
             </div>
             <!-- List Section -->
             <div class="w-full overflow-hidden p-2 px-4 hover:overflow-y-scroll mt-1">

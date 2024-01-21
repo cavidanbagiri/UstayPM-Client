@@ -11,8 +11,8 @@
                             <span class="py-2 px-4 rounded-lg bg-gray-100 cursor-pointer hover:shadow-xl duration-300">
                                 <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </span>
-                            <div v-if="project_cond" class="absolute top-10 left-12 bg-white border p-1 shadow-lg px-3 rounded-lg text-[16px]">
-                                <span class="font-bold hover:cursor-pointer hover:underline">Get Data</span>
+                            <div v-if="project_cond" class="getdata_parent">
+                                <span class="getdata_child">Get Data</span>
                             </div>
                         </div>
                         <div class="w-20 h-20 bg-blue-100 flex justify-center items-center rounded-full mt-4">
@@ -31,8 +31,8 @@
                             <span class="py-2 px-4 rounded-lg bg-gray-100 cursor-pointer hover:shadow-xl duration-300">
                                 <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </span>
-                            <div v-if="consumables_cond" class="absolute top-10 left-12 bg-white border p-1 shadow-lg px-3 rounded-lg text-[16px]">
-                                <span class="font-bold hover:cursor-pointer hover:underline">Get Data</span>
+                            <div v-if="consumables_cond" class="getdata_parent">
+                                <span class="getdata_child">Get Data</span>
                             </div>
                         </div>
                         <div class="w-20 h-20 bg-orange-100 flex justify-center items-center rounded-full mt-4">
@@ -54,8 +54,8 @@
                             <span class="py-2 px-4 rounded-lg bg-gray-100 cursor-pointer hover:shadow-xl duration-300">
                                 <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </span>
-                            <div v-if="fixture_cond" class="absolute top-10 left-12 bg-white border p-1 shadow-lg px-3 rounded-lg text-[16px]">
-                                <span class="font-bold hover:cursor-pointer hover:underline">Get Data</span>
+                            <div v-if="fixture_cond" class="getdata_parent">
+                                <span class="getdata_child">Get Data</span>
                             </div>
                         </div>
                         <div class="w-20 h-20 bg-green-100 flex justify-center items-center rounded-full mt-4">
@@ -74,8 +74,8 @@
                             <span class="py-2 px-4 rounded-lg bg-gray-100 cursor-pointer hover:shadow-xl duration-300">
                                 <i class="fa-solid fa-ellipsis-vertical fa-lg"></i>
                             </span>
-                            <div v-if="break_cond" class="absolute top-10 left-12 bg-white border p-1 shadow-lg px-3 rounded-lg text-[16px]">
-                                <span class="font-bold hover:cursor-pointer hover:underline">Get Data</span>
+                            <div v-if="break_cond" class="getdata_parent">
+                                <span class="getdata_child">Get Data</span>
                             </div>
                         </div>
                         <div class="w-20 h-20 bg-red-100 flex justify-center items-center rounded-full mt-4">
@@ -103,6 +103,8 @@ const break_cond = ref(false);
 
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
+
+    
 
 </style>
