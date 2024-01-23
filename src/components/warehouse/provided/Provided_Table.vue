@@ -47,7 +47,7 @@
 <script setup>
 
 // Import Section
-import { onMounted, ref, reactive } from 'vue';
+import { ref, reactive, watchEffect } from 'vue';
 
 import STFStatistics from '../../../layouts/STFStatistics.vue';
 import TableFilterProvide from '../../../layouts/TableFilterProvide.vue';
@@ -64,13 +64,11 @@ import UserStore from '../../../store/store.user';
 const warehouse_store = WarehouseStore();
 const user_store = UserStore();
 
-onMounted(async () => {
-  if(user_store.user){
-    await warehouse_store.fetchProvidedData(user_store.user.projectId);
-    if (warehouse_store.provided_data_headers.length === 0) {
+
+watchEffect(()=>{
+  if (warehouse_store.provided_data_headers.length === 0) {
       warehouse_store.getProvidedDataHeaders();
     }
-  }
 })
 
 const show_toast = reactive({

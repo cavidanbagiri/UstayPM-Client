@@ -2,10 +2,10 @@
   <div class=" flex flex-col  bg-white">
 
     <!-- If User Login -->
-    <div v-if="user_store.user" class="bg-white" style="font-family: 'Poppins', sans-serif ;">
-      <div class="bg-white sticky top-0">
+    <div v-if="user_store.user" class="bg-white" >
+      <div class="sticky top-0 bg-white z-10" style="font-family: 'Poppins', sans-serif ;">
 
-        <div class="flex flex-row anim h-10 bg-white items-center sticky left-16 "
+        <div class="flex flex-row anim h-10 bg-white items-center sticky left-16"
           style="letter-spacing: 1px;font-size: x-small;display: inline-block;">
 
           <div class="flex flex-row anim h-10 sticky top-0 bg-white w-full items-center"
@@ -48,7 +48,6 @@
 
 <script setup>
 
-import { onMounted } from 'vue';
 
 import STFAll from '../components/procurement/stf/Get_All_STF.vue';
 import SMSAll from '../components/procurement/sms/Get_SM_Comp.vue';
@@ -67,10 +66,6 @@ const changeTab = (num) => {
   
   num !==2 ? procurement_store.tab_num = num : ''
 }
-
-onMounted(async () => {
-  // procurement_store.fetchFieldsNames(1);
-})
 
 </script>
 

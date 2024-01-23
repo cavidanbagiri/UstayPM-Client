@@ -5,11 +5,11 @@
 
     <div v-if="user_store.user" class=" bg-white">
 
-      <div class="sticky top-0 bg-white" style="font-family: 'Poppins', sans-serif;">
+      <div class="sticky top-0 bg-white z-10" style="font-family: 'Poppins', sans-serif;">
         <div class="flex flex-row anim h-10 bg-white items-center sticky left-16 "
           style="letter-spacing: 1px;font-size: x-small;display: inline-block;">
 
-          <span :class="warehouse_store?.tab_num === 0 ? 'border-b-violet-800 border-b-4 ' : ''" @click="changeTabe(0)"
+          <span :class="warehouse_store?.tab_num === 0 ? 'border-b-violet-800 border-b-4' : ''" @click="changeTabe(0)"
             class=" text-black px-3 mx-1 pb-2 border-b-2  cursor-pointer"> <i
               class="fa-solid fa-arrow-rotate-left fa-md"></i>
             Processing SM</span>

@@ -73,7 +73,6 @@ onMounted(async () => {
     // Get All Waiting SMS
     const user = user_store.GETUSER;
     if (user === null || user === undefined) {
-        console.log('if work');
     }
     else {
         // Get All Companies Names For Filtering 
