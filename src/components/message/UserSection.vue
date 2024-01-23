@@ -105,11 +105,24 @@ const user_filter = ref('');
 watchEffect(()=>{
     if(user_filter.value){
         message_store.filtering_unread_messages_and_users = [];
+        let temp = [];
         for(let i of message_store.unread_messages_and_users){
-            if(i.username.includes(user_filter.value)  ){
-                message_store.filtering_unread_messages_and_users.push(i);
+            let count = 0;
+            for(let j = 0 ; j < user_filter.value.length; j++){
+                if(j===0){
+                    if(i.username[j] === user_filter.value[j].toUpperCase()){
+                        count++;
+                    }
+                }
+                else if(i.username[j] === user_filter.value[j]){
+                    count++;
+                }
+            }
+            if(count === user_filter.value.length){
+                temp.push(i);
             }
         }
+        message_store.filtering_unread_messages_and_users = temp;
     }
     else{
         message_store.filtering_unread_messages_and_users = message_store.unread_messages_and_users;
